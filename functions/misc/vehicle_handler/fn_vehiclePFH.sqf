@@ -3,6 +3,7 @@
         _x params ["_vehicle","_vehicleClass","_spawnPos","_spawnDir","_timer"];
 
         if (isNull _vehicle) then {
+            diag_log format ["%1 was deleted when the check occured",_vehicle];
             [{
                 params ["_vehicleClass","_spawnPos","_spawnDir","_timer"];
                 _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
@@ -35,7 +36,7 @@
                 } count allPlayers;
 
                 if (_distanceCheckResult) then {
-                    deleteVehicle _vehicle;
+                    diag_log format ["%1 too far from players",_vehicle];
                     [{
                         params ["_vehicleClass","_spawnPos","_spawnDir","_timer"];
                         _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
@@ -45,12 +46,11 @@
                         [_newVehicle] call derp_fnc_vehicleSetup;
 
                     },[_vehicleClass,_spawnPos,_spawnDir,_timer],_timer] call derp_fnc_waitAndExec;
+                    deleteVehicle _vehicle;
                     vehicleHandlingArray deleteAt (vehicleHandlingArray find _x);
                 };
             };
         };
-    } {
-        //code
     } forEach vehicleHandlingArray;
 
-},60,[]] call CBA_fnc_addPerFrameHandler;
+},10,[]] call CBA_fnc_addPerFrameHandler;
