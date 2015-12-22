@@ -67,7 +67,7 @@ _missionTask1 = [west,["mission1"],["A town has been occupied, you need to clear
 },[_selectedLocation],30] call derp_fnc_waitAndExec;
 
 //------------------- PFH checking every 10s if the mission has been completed
-_missionPFH = {
+[{
 	if ((!isNil "missionWin") && {missionWin}) then {
 		params ["_selectedLocation","_missionTask1","_urbanGroup1","_urbanGroup2"];
 
@@ -92,5 +92,4 @@ _missionPFH = {
 
 		[_this select 1] call CBA_fnc_removePerFrameHandler;
 	};
-};
-[_missionPFH,10,[_selectedLocation,_missionTask1,_urbanGroup1,_urbanGroup2]] call CBA_fnc_addPerFrameHandler;
+},10,[_selectedLocation,_missionTask1,_urbanGroup1,_urbanGroup2]] call CBA_fnc_addPerFrameHandler;

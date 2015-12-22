@@ -1,20 +1,16 @@
-/*
-
-*/
-//---------------------------------------------------------- CONFIG
-params ["_vehicle","_type"];
+params ["_vehicle"];
 
 _type = typeOf _vehicle;
 
 if (isNull _vehicle) exitWith {};
 
-//---------------------------------------------------------- ARRAYS
+//---------------------------------------------------------- Arrays
 _ghosthawk = ["B_Heli_Transport_01_camo_F","B_Heli_Transport_01_F"]; 			// ghosthawk
 _noAmmoCargo = ["B_APC_Tracked_01_CRV_F","B_Truck_01_ammo_F"];					// Bobcat CRV
 _uav = ["B_UAV_02_CAS_F","B_UAV_02_F","B_UGV_01_F","B_UGV_01_rcws_F"];			// UAVs
 _fob = [""];
 
-//---------------------------------------------------------- SORT
+//---------------------------------------------------------- Sorting
 //---------- FOB sorting
 if (_type in _fob) then {
     [_vehicle,nil,true] remoteExecCall ["derp_fnc_FOB_handler", 2];

@@ -1743,7 +1743,7 @@ class Mission
 			lock="UNLOCKED";
 			skill=0.60000002;
 			ammo=0.66858453;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="huron1";
 			syncId=80;
 			synchronizations[]={56};
 		};
@@ -1757,7 +1757,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="ghostHawk2";
 			syncId=81;
 			synchronizations[]={56};
 		};
@@ -1790,7 +1790,7 @@ class Mission
 		class Item15
 		{
 			position[]={15165.504,17.91,17263.754};
-			azimut=260.31097;
+			azimut=260.311;
 			id=93;
 			side="EMPTY";
 			vehicle="Land_HelipadCivil_F";
@@ -1854,7 +1854,7 @@ class Mission
 			vehicle="I_Heli_Transport_02_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="mohawk1";
 			syncId=83;
 			synchronizations[]={56};
 		};
@@ -1866,7 +1866,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_Heli_Light_01_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hummy1";
 			syncId=84;
 			synchronizations[]={56};
 		};
@@ -4958,7 +4958,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="ghostHawk1";
 			syncId=100;
 			synchronizations[]={56};
 		};
