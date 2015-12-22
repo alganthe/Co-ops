@@ -49,6 +49,8 @@
                 };
             };
         };
-    } count vehicleHandlingArray;
+    } {
+        //code
+    } forEach vehicleHandlingArray;
 
 },60,[]] call CBA_fnc_addPerFrameHandler;
