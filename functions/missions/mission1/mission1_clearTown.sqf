@@ -24,7 +24,7 @@ _missionLocations = ["missionMarker_Athira","missionMarker_Frini","missionMarker
 while {true} do {
 	selectedLocation = (_missionLocations select floor random count _missionLocations);
 
-	_isAOempty = count ((getMarkerPos _selectedLocation) nearEntities ["Man",PARAM_AOSize]);
+	_isAOempty = count ((getMarkerPos selectedLocation) nearEntities ["Man",PARAM_AOSize]);
 	if (_isAOempty == 0) exitWith {
 		false
 	};
@@ -42,15 +42,15 @@ if (HCAOsConnected) then {
 
 } else {
 	[_markerPos,PARAM_AOSize,PARAM_AOSize,0,0,_DACvalues] call DAC_fNewZone;
-
-	private _urbanGroup1 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
-	{_x disableAI "FSM"} forEach units _urbanGroup1;
-	[_markerPos,(units _urbanGroup1),200,false,true,false,false] call Zen_fnc_occupyHouse;
-
-	private _urbanGroup2 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
-	{_x disableAI "FSM"} forEach units _urbanGroup2;
-	[_markerPos,(units _urbanGroup2),200,false,true,false,false] call Zen_fnc_occupyHouse;
 };
+
+_mission1_UrbanGroup1 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
+{_x disableAI "FSM"} forEach units _mission1_UrbanGroup1;
+[_markerPos,(units _mission1_UrbanGroup1),200,false,true,false,false] call Zen_fnc_occupyHouse;
+
+_mission1_UrbanGroup2 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
+{_x disableAI "FSM"} forEach units _mission1_UrbanGroup2;
+[_markerPos,(units _mission1_UrbanGroup2),200,false,true,false,false] call Zen_fnc_occupyHouse;
 
 //------------------- AO boundaries + task
 _marker = createMarker ["mission1_mrk", _markerPos];
@@ -66,7 +66,7 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 
 (nearestLocations [_markerPos,["NameCityCapital","NameCity","NameVillage"],200]) params ["_taskTitle"];
 
-_missionTask1 = [west,["mission1"],["A town has been occupied, you need to clear it out! Good Luck",["Clear ",(text _taskTitle)] joinString "",_selectedLocation],_selectedLocation,true,5,true,"Attack",true] call BIS_fnc_taskCreate;
+[west,["mission1"],["A town has been occupied, you need to clear it out! Good Luck",["Clear ",(text _taskTitle)] joinString "",_selectedLocation],_selectedLocation,true,5,true,"Attack",true] call BIS_fnc_taskCreate;
 
 //------------------- Trigger for mission end
 [{
@@ -75,34 +75,32 @@ _missionTask1 = [west,["mission1"],["A town has been occupied, you need to clear
 	_winTrigger = createTrigger ["EmptyDetector",_markerPos,false];
 	_winTrigger setTriggerArea [PARAM_AOSize,PARAM_AOSize,0,false];
 	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
-	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true;", ""];
+	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) > 10)", "missionWin = true;['mission1','Succeeded',true] call BIS_fnc_taskSetState", ""];
 
 },[_markerPos],30] call derp_fnc_waitAndExec;
 
 //------------------- PFH checking every 10s if the mission has been completed
 [{
 	if ((!isNil "missionWin") && {missionWin}) then {
-		params ["_selectedLocation","_missionTask1","_urbanGroup1","_urbanGroup2"];
-
-		[_missionTask1,"Succeeded",true] call BIS_fnc_taskSetState;
+		(_this select 0) params ["_markerPos","_mission1_UrbanGroup1","_mission1_UrbanGroup2"];
 
 		deleteMarker "mission1_mrk";
 		deleteMarker "mission1_1_mrk";
 		missionWin = nil;
 
 		[{
-			params ["_missionTask1","_urbanGroup1","_urbanGroup2"];
+			params ["_mission1_UrbanGroup1","_mission1_UrbanGroup2"];
 
 			["m1"] call DAC_fDeleteZone;
-			if (!isNil "_urbanGroup1") then {{deleteVehicle _x} count (units _urbanGroup1)};
-			if (!isNil "_urbanGroup2") then {{deleteVehicle _x} count (units _urbanGroup2)};
+			if (!isNil "_urbanGroup1") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup1)};
+			if (!isNil "_urbanGroup2") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup2)};
 
-			[_missionTask1,true] call BIS_fnc_deleteTask;
-		},[_missionTask1,_urbanGroup1,_urbanGroup2],300] call derp_fnc_waitAndExec;
+			["mission1",true] call BIS_fnc_deleteTask;
+		},[_mission1_UrbanGroup1,_mission1_UrbanGroup2],300] call derp_fnc_waitAndExec;
 
-		[_selectedLocation,"ELLIPSE",[PARAM_AOSize,PARAM_AOSize]] call derp_fnc_missionTransition;
+		[_markerPos,"ELLIPSE"] call derp_fnc_missionTransition;
 		derp_missionCounter = derp_missionCounter + 1;
 
 		[_this select 1] call CBA_fnc_removePerFrameHandler;
 	};
-},10,[_selectedLocation,_missionTask1,_urbanGroup1,_urbanGroup2]] call CBA_fnc_addPerFrameHandler;
+},10,[_markerPos,_mission1_UrbanGroup1,_mission1_UrbanGroup2]] call CBA_fnc_addPerFrameHandler;
