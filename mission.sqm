@@ -1145,8 +1145,7 @@ class Mission
 					isUAV=1;
 					leader=1;
 					skill=0.60000002;
-					text="UAV_2";
-					init="0 = [this,900,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+					text="greyhawk2";
 				};
 			};
 		};
@@ -1169,7 +1168,7 @@ class Mission
 					leader=1;
 					rank="CORPORAL";
 					skill=0.60000002;
-					init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+					text="stomper1";
 					description="UVG Stomper";
 				};
 			};
@@ -1191,8 +1190,7 @@ class Mission
 					isUAV=1;
 					leader=1;
 					skill=0.60000002;
-					text="UAV_1";
-					init="0 = [this,900,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+					text="greyhawk1";
 				};
 			};
 		};
@@ -1601,7 +1599,7 @@ class Mission
 			vehicle="B_Truck_01_medical_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="truck2";
 			syncId=71;
 			synchronizations[]={56};
 		};
@@ -1661,7 +1659,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hunter5";
 			syncId=75;
 			synchronizations[]={56};
 		};
@@ -1675,7 +1673,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="boat2";
 			syncId=76;
 			synchronizations[]={56};
 		};
@@ -1689,7 +1687,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="boat1";
 			syncId=77;
 			synchronizations[]={56};
 		};
@@ -1703,7 +1701,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="sdv1";
 			syncId=78;
 			synchronizations[]={56};
 		};
@@ -1728,7 +1726,7 @@ class Mission
 			vehicle="B_APC_Wheeled_01_cannon_F";
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="armored1";
 			syncId=79;
 			synchronizations[]={56};
 		};
@@ -1771,7 +1769,7 @@ class Mission
 			vehicle="B_Truck_01_fuel_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="truck3";
 			syncId=82;
 			synchronizations[]={56};
 		};
@@ -1889,7 +1887,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_Truck_01_transport_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="truck1";
 			syncId=85;
 			synchronizations[]={56};
 		};
@@ -2060,7 +2058,7 @@ class Mission
 			vehicle="B_G_Offroad_01_armed_F";
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="armedTechnical1";
 			syncId=86;
 			synchronizations[]={56};
 		};
@@ -2074,7 +2072,7 @@ class Mission
 			vehicle="B_G_Offroad_01_armed_F";
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="armedTechnical2";
 			syncId=87;
 			synchronizations[]={56};
 		};
@@ -2088,7 +2086,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hunter3";
 			syncId=88;
 			synchronizations[]={56};
 		};
@@ -2101,7 +2099,7 @@ class Mission
 			vehicle="B_MRAP_01_hmg_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hunter2";
 			syncId=89;
 			synchronizations[]={56};
 		};
@@ -2114,7 +2112,7 @@ class Mission
 			vehicle="B_MRAP_01_hmg_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hunter1";
 			syncId=90;
 			synchronizations[]={56};
 		};
@@ -2128,7 +2126,7 @@ class Mission
 			leader=1;
 			lock="UNLOCKED";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hunter6";
 			syncId=91;
 			synchronizations[]={56};
 		};
@@ -2141,7 +2139,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_APC_Tracked_01_rcws_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="armored2";
 			syncId=92;
 			synchronizations[]={56};
 		};
@@ -2153,7 +2151,7 @@ class Mission
 			side="EMPTY";
 			vehicle="C_Boat_Civil_01_rescue_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="boat3";
 			syncId=93;
 			synchronizations[]={56};
 		};
@@ -2166,7 +2164,7 @@ class Mission
 			vehicle="B_MRAP_01_hmg_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="hunter4";
 			syncId=94;
 			synchronizations[]={56};
 		};
@@ -2178,7 +2176,7 @@ class Mission
 			side="EMPTY";
 			vehicle="I_APC_tracked_03_cannon_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="armored3";
 			syncId=95;
 			synchronizations[]={56};
 		};
@@ -4696,7 +4694,7 @@ class Mission
 			vehicle="B_Truck_01_Repair_F";
 			leader=1;
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="truck4";
 			syncId=96;
 			synchronizations[]={56};
 		};
@@ -4708,7 +4706,7 @@ class Mission
 			side="EMPTY";
 			vehicle="B_Truck_01_covered_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="truck5";
 			syncId=97;
 			synchronizations[]={56};
 		};
@@ -4974,12 +4972,12 @@ class Mission
 		class Item305
 		{
 			position[]={15192.277,17.936371,17281.063};
-			azimut=316.31659;
+			azimut=316.31699;
 			id=383;
 			side="EMPTY";
 			vehicle="B_APC_Tracked_01_CRV_F";
 			skill=0.60000002;
-			init="0 = [this,30,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="armored4";
 			syncId=101;
 			synchronizations[]={56};
 		};
@@ -4991,8 +4989,7 @@ class Mission
 			side="EMPTY";
 			vehicle="I_Plane_Fighter_03_AA_F";
 			skill=0.60000002;
-			text="CAP";
-			init="0 = [this,600,FALSE,QS_fnc_vSetup02] spawn QS_fnc_vMonitor;";
+			text="buzzard1";
 			syncId=102;
 			synchronizations[]={56};
 		};
@@ -5238,7 +5235,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=18;
+		items=45;
 		class Item0
 		{
 			position[]={15188.803,17.007568,17440.068};
@@ -5376,14 +5373,14 @@ class Mission
 		};
 		class Item14
 		{
-			position[]={10305.836,120.00807,19020.623};
-			name="test_mission1marker";
+			position[]={10326.368,125.10624,19051.848};
+			name="missionMarker_Galati";
 			type="Empty";
 		};
 		class Item15
 		{
-			position[]={14024.749,26.012442,18640.973};
-			name="test_mission2marker";
+			position[]={14019.978,26.800865,18702.316};
+			name="missionMarker_Athira";
 			type="Empty";
 		};
 		class Item16
@@ -5399,6 +5396,168 @@ class Mission
 			text="Return point";
 			type="mil_end";
 			colorName="ColorWEST";
+		};
+		class Item18
+		{
+			position[]={14644.732,47.563282,20779.742};
+			name="missionMarker_Frini";
+			type="Empty";
+		};
+		class Item19
+		{
+			position[]={9414.9199,120.03185,20281.168};
+			name="missionMarker_Abdera";
+			type="Empty";
+		};
+		class Item20
+		{
+			position[]={4565.4395,299.84418,21396.098};
+			name="missionMarker_Oreokastro";
+			type="Empty";
+		};
+		class Item21
+		{
+			position[]={4876.9409,78.273697,16146.962};
+			name="missionMarker_Negades";
+			type="Empty";
+		};
+		class Item22
+		{
+			position[]={3809.7319,16.349392,13713.622};
+			name="missionMarker_Aggelochori";
+			type="Empty";
+		};
+		class Item23
+		{
+			position[]={4145.8711,51.915924,11732.794};
+			name="missionMarker_Neri";
+			type="Empty";
+		};
+		class Item24
+		{
+			position[]={5095.3276,49.3685,11247.779};
+			name="missionMarker_Panochori";
+			type="Empty";
+		};
+		class Item25
+		{
+			position[]={9081.2705,20.202744,11951.959};
+			name="missionMarker_Zaros";
+			type="Empty";
+		};
+		class Item26
+		{
+			position[]={10642.533,16.232353,12227.999};
+			name="missionMarker_Therisa";
+			type="Empty";
+		};
+		class Item27
+		{
+			position[]={10956.913,29.217661,13438.104};
+			name="missionMarker_Poliakko";
+			type="Empty";
+		};
+		class Item28
+		{
+			position[]={12539.29,12.986196,14341.725};
+			name="missionMarker_Neochori";
+			type="Empty";
+		};
+		class Item29
+		{
+			position[]={8641.1709,182.38667,18257.465};
+			name="missionMarker_Syrta";
+			type="Empty";
+		};
+		class Item30
+		{
+			position[]={18786.717,31.315784,16597.074};
+			name="missionMarker_Rodopoli";
+			type="Empty";
+		};
+		class Item31
+		{
+			position[]={18095.217,24.199245,15228.974};
+			name="missionMarker_Charkia";
+			type="Empty";
+		};
+		class Item32
+		{
+			position[]={9335.4102,119.93184,15876.229};
+			name="missionMarker_Agios_Dionysios";
+			type="Empty";
+		};
+		class Item33
+		{
+			position[]={7119.0981,116.10728,16458.301};
+			name="missionMarker_Kore";
+			type="Empty";
+		};
+		class Item34
+		{
+			position[]={20929.965,44.846977,16928.586};
+			name="missionMarker_Paros";
+			type="Empty";
+		};
+		class Item35
+		{
+			position[]={21384.121,19.733946,16352.354};
+			name="missionMarker_Kalochori";
+			type="Empty";
+		};
+		class Item36
+		{
+			position[]={19358.289,38.384945,13241.554};
+			name="missionMarker_Dorida";
+			type="Empty";
+		};
+		class Item37
+		{
+			position[]={20235.58,55.284203,11653.506};
+			name="missionMarker_Chalkeia";
+			type="Empty";
+		};
+		class Item38
+		{
+			position[]={20787.576,37.989891,6722.2246};
+			name="missionMarker_Selakano";
+			type="Empty";
+		};
+		class Item39
+		{
+			position[]={20535.273,34.399754,8879.3867};
+			name="missionMarker_Panagia";
+			type="Empty";
+		};
+		class Item40
+		{
+			position[]={16785.957,22.085358,12634.851};
+			name="missionMarker_Pyrgos";
+			type="Empty";
+		};
+		class Item41
+		{
+			position[]={26994.504,20.465994,23202.891};
+			name="missionMarker_Molos";
+			type="Empty";
+		};
+		class Item42
+		{
+			position[]={25694.98,20.349356,21347.049};
+			name="missionMarker_Sofia";
+			type="Empty";
+		};
+		class Item43
+		{
+			position[]={21635.391,15.266064,7570.3711};
+			name="missionMarker_Feres";
+			type="Empty";
+		};
+		class Item44
+		{
+			position[]={11125.131,41.375412,14561.503};
+			name="missionMarker_Alikampos";
+			type="Empty";
 		};
 	};
 	class Sensors
