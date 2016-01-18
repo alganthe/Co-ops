@@ -2,21 +2,37 @@ waitUntil {!isNull player};
 
 player createDiarySubject ["rules", "Rules"];
 player createDiarySubject ["teamspeak", "Teamspeak"];
+player createDiarySubject ["credits", "Credits"];
+player createDiarySubject ["current issues", "Current issues"];
 
 //-------------------------------------------------- Rules
-player createDiaryRecord ["rules",
-[
-"Enforcement",
+player createDiaryRecord ["rules", ["Enforcement",
 "your rules here"
 ]];
 
 //-------------------------------------------------- Teamspeak
-player createDiaryRecord ["teamspeak",
-[
-"TS3",
+player createDiaryRecord ["teamspeak", ["TS3",
 "
-<br /> Teamspeak:<br /><br />
-<br /> http://www.teamspeak.com/?page=downloads
-<br /> your adress here
+<br/> Teamspeak:
+<br/> http://www.teamspeak.com/?page=downloads
+<br/> your adress here
+"
+]];
+
+player createDiaryRecord ["credits", ["credits",
+"
+<br/> Credits:
+<br/> base layout: Ahoyworld
+<br/> vehicle pads: ahoyworld
+<br/> garrison script: Zenophon
+<br/> player icons on map: Quicksilver
+<br/> ACE3 ported funcs: see the respective funcs headers
+<br/> the rest: alganthe
+"
+]];
+
+player createDiaryRecord ["current issues", ["current issues",
+"
+<br/> BIS revive system breaks the zeus logic and unnasign the unit linked to it when that unit enter the revive state.
 "
 ]];
