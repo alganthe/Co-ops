@@ -75,7 +75,7 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 	_winTrigger = createTrigger ["EmptyDetector",_markerPos,false];
 	_winTrigger setTriggerArea [PARAM_AOSize,PARAM_AOSize,0,false];
 	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
-	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) > 10)", "missionWin = true;['mission1','Succeeded',true] call BIS_fnc_taskSetState", ""];
+	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true;['mission1','Succeeded',true] call BIS_fnc_taskSetState", ""];
 
 },[_markerPos],30] call derp_fnc_waitAndExec;
 
