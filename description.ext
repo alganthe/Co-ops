@@ -27,6 +27,7 @@ enableDebugConsole = 1; 								// 0 = editor default behavior, 1 = SP / Hosts /
 respawn = 3;
 respawnDelay = 10;
 respawnTemplates[] = {"Revive","MenuPosition"};
+
 reviveDelay = 30;		// The time it takes to revive a unit. Will be halved if you have a Medikit. (Default: 6 seconds.)
 reviveForceRespawnDelay = 3;	// The time it takes to force your respawn while incapacitated. (Default: 3 seconds.)
 reviveBleedOutDelay = 300;	// The time it takes for a unit to bleed out. (Default: 2 minutes.)
@@ -101,6 +102,13 @@ class Params {
 		texts[] ={ "1","2","3","4","5","6","7","8","9","10"};
 		default = 4;
 	};
+
+    class MissionRepetition {
+        title = "Enable mission repetition?";
+		values[] = { 1,2 };
+		texts[] ={ "Yes","No"};
+		default = 1;
+    };
 };
 
 //---------------------------Tasks

@@ -12,10 +12,9 @@
 
 params ["_firstCall"];
 
-if (("EnableRespawn" call BIS_fnc_getParamValue) == 0) then {
+if (PARAM_enableRespawn) then {
     [0] remoteExec ["setPlayerRespawnTime",0,true];
     [{[9999] remoteExec ["setPlayerRespawnTime",0,true]},[],300] call derp_fnc_waitAndExec;
-
 };
 
 if ((!isNil "_firstCall") && {_firstCall}) Then {
@@ -28,10 +27,17 @@ if ((!isNil "_firstCall") && {_firstCall}) Then {
 
 if ((!isNil "derp_missionCounter") && {PARAM_missionAmount == derp_missionCounter}) then {
     [] spawn BIS_fnc_EndMission;
+
 } else {
     private _nextMission = funcs select floor random count funcs;
-    funcs = funcs - [_nextMission];
-    [] call _nextMission;
+
+    if (PARAM_missionRepetition) then {
+        [] call _nextMission;
+
+    } else {
+        funcs = funcs - [_nextMission];
+        [] call _nextMission;
+    };
 };
 
 missionInProgress = false;

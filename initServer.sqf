@@ -11,6 +11,18 @@ PARAM_AOSize = "AOSize" call BIS_fnc_getParamValue;
 PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
 PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;
 
+if (("EnableRespawn" call BIS_fnc_getParamValue) == 0) then {
+    PARAM_enableRespawn = true;
+} else {
+    PARAM_enableRespawn = false;
+};
+
+if (("MissionRepetition" call BIS_fnc_getParamValue) == 1 ) then {
+    PARAM_missionRepetition = true;
+} else {
+    PARAM_missionRepetition = false;
+};
+
 //---------------------------------- EHs
 ["onPlayerDisconnected", {
     if (local HCAOs) then {
