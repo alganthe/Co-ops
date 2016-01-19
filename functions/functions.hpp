@@ -3,12 +3,6 @@ class derp {
         file = "functions\core";
     };
 
-    class FOB {
-        file = "functions\misc\FOB";
-        class FOB_handler {};
-        class FOB_interactions {};
-    };
-
     class misc {
         file = "functions\misc";
         class VA_filter {};
