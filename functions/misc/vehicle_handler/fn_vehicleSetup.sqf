@@ -1,3 +1,13 @@
+/*
+* Author: alganthe
+* Serve as an init for the specified vehicle with whatever variable / code needed.
+*
+* Arguments:
+* 0: Vehicle to be init <OBJECT>
+*
+* Return Value:
+* Nothing
+*/
 params ["_vehicle"];
 
 _type = typeOf _vehicle;
@@ -11,12 +21,6 @@ _uav = ["B_UAV_02_CAS_F","B_UAV_02_F","B_UGV_01_F","B_UGV_01_rcws_F"];			// UAVs
 _fob = [""];
 
 //---------------------------------------------------------- Sorting
-//---------- FOB sorting
-if (_type in _fob) then {
-    [_vehicle,nil,true] remoteExecCall ["derp_fnc_FOB_handler", 2];
-    // AddAction
-};
-
 //---------- Add UAV crew
 if (_type in _uav) then {
     createVehicleCrew _vehicle;
