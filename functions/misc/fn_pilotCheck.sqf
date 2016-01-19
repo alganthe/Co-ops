@@ -1,9 +1,9 @@
 /*
- * Author: alganthe
- * Check if the unit is authorized to enter the pilot / copilot slot of the vehicle, if not they are kicked out.
- * This is called by the getIn eventhandler.
- *
- * Arguments:
+* Author: alganthe
+* Check if the unit is authorized to enter the pilot / copilot slot of the vehicle, if not they are kicked out.
+* This is called by the getIn eventhandler.
+*
+* Arguments:
 * 0: vehicle the getIn action is used on <OBJECT>
 * 1: position in which the unit is entering <driver, gunner or cargo>
 * 2: unit doing the action <OBJECT>

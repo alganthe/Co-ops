@@ -1,15 +1,13 @@
 /*
- * Author: jaynus
- * PFEH to set all Ace Time Variables
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Public: No
- */
+* Author: jaynus
+* PFEH to set all Ace Time Variables
+*
+* Arguments:
+* Nothing
+*
+* Return Value:
+* Nothing
+*/
 private _lastTickTime = derp_diagTime;
 private _lastGameTime = derp_gameTime;
 

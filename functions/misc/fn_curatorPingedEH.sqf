@@ -5,8 +5,8 @@
 * This is called by the curatorPinged eventhandler and thus should only be added to zeus modules.
 *
 * Arguments:
-* 0: curator module <always git_rekt_m8>
-* 1: unit doing the ping <OBJECT>
+* 0: Curator module <always 'git_rekt_m8' cuz reasons>
+* 1: Unit doing the ping <OBJECT>
 *
 * Return Value:
 * Nothing

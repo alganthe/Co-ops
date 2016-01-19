@@ -1,15 +1,13 @@
 /*
- * Author: alganthe
- * Handle the mission selection, this should only be called on server init or after missionTransition
- *
- * Arguments:
- * 0: amount of missions played <NUMBER>
- * 1: If this is the first time the function is called <BOOL>
- *
- * Return Value:
- * nothing
- */
-
+* Author: alganthe
+* Handle the mission selection, this should only be called on server init or after missionTransition
+*
+* Arguments:
+* 0: First call or not <BOOL>
+*
+* Return Value:
+* Nothing
+*/
 params ["_firstCall"];
 
 if (PARAM_enableRespawn) then {

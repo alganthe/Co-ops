@@ -1,3 +1,13 @@
+/*
+* Author: alganthe
+* PFEH handling vehicle respawning / abandon
+*
+* Arguments:
+* Nothing
+*
+* Return Value:
+* Nothing
+*/
 [{
     {
         _x params ["_vehicle","_vehicleClass","_spawnPos","_spawnDir","_timer"];

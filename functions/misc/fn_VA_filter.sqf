@@ -1,18 +1,18 @@
-/*/
- * Author: alganthe
- * Filter the arsenal for a given box
- *
- * Arguments:
- * 0: Box <OBJECT>
- * 1: filter <NUMBER 0: arsenal unavailable, 1: Arsenal available but filtered, 2: arsenal available unfiltered>
- *
- * Return Value:
- * Array of items added in the form of ["item1","item2",......"itemN"]
- *
- * Example:
- *
- * [_this,1] call derp_fnc_VA_filter;
- */
+/*
+* Author: alganthe
+* Filter the arsenal for a given box
+*
+* Arguments:
+* 0: Box <OBJECT>
+* 1: filter <NUMBER 0: arsenal unavailable, 1: Arsenal available but filtered, 2: arsenal available unfiltered>
+*
+* Return Value:
+* Array of items added in the form of ["item1","item2",......"itemN"]
+*
+* Example:
+*
+* [_this,1] call derp_fnc_VA_filter;
+*/
 params ["_box","_filter"];
 
 switch (_filter) do {

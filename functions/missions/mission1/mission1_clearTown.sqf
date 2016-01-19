@@ -1,19 +1,19 @@
 /*
- * Author: alganthe
- *
- * Arguments:
- * NONE
- *
- * Return Value:
- * NONE
- *
- * Mission1: Clear a town out of any enemy presence.
- *
- * Phases: NONE
- *
- * Conditions:
- * Win: No opfor left inside the marker
- * Fail: None
+* Author: alganthe
+*
+* Arguments:
+* Nothing
+*
+* Return Value:
+* Nothing
+*
+* Mission1: Clear a town out of any enemy presence.
+*
+* Phases: NONE
+*
+* Conditions:
+* Win: No opfor left inside the marker
+* Fail: None
  */
 missionInProgress = true;
 publicVariable "missionInProgress";

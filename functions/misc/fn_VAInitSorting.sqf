@@ -3,7 +3,7 @@
 * Set up arsenal boxes / dude depending on mission param
 *
 * Arguments:
-* NONE
+* Nothing
 *
 * Return Value:
 * Nothing

@@ -1,17 +1,15 @@
 /*
- * Author: ACE3 team
- * Ported by: alganthe
- *
- * Initialize required vars for the waitAndExec and execNextFrame PFHs, compile necessary funcs and start the main PFH
- *
- * Arguments:
- * None
- *
- * Return Value:
- * None
- *
- * Public: No
- */
+* Author: ACE3 team
+* Ported by: alganthe
+*
+* Initialize required vars for the waitAndExec and execNextFrame PFHs, compile necessary funcs and start the main PFH
+*
+* Arguments:
+* Nothing
+*
+* Return Value:
+* Nothing
+*/
 derp_waitAndExecArray = [];
 derp_nextFrameNo = diag_frameno;
 derp_nextFrameBufferA = [];

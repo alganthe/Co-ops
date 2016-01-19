@@ -1,3 +1,15 @@
+/*
+* Author: alganthe
+* Pop a hint without the top right corner second one.
+*
+* Arguments:
+* 0: title <STRING>
+* 1: text <STRING>
+*
+* Return Value:
+* nothing
+*/
+
 params ["_title","_text"];
 
 _title hintC _text;

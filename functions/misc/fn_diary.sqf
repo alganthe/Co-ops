@@ -1,3 +1,13 @@
+/*
+* Author: alganthe
+* Adds the required briefing entries.
+*
+* Arguments:
+* >NONE
+*
+* Return Value:
+* nothing
+*/
 waitUntil {!isNull player};
 
 player createDiarySubject ["rules", "Rules"];

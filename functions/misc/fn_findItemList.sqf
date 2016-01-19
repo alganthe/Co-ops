@@ -1,16 +1,15 @@
 /*
- * Author: alganthe
- * Search for CfgWeapons and CfgGlasses entries with scope = 2
- *
- * Arguments:
- * NONE
- *
- * Return Value:
- * Array of strings !!! WARNING VERY LONG ARRAYS !!! <ARRAY>
- *
- * Example:
- *
- * copyToClipboard ([true] call derp_fnc_findItemList);
+* Author: alganthe
+* Search for CfgWeapons and CfgGlasses entries with scope = 2
+*
+* Arguments:
+* Nothing
+*
+* Return Value:
+* Array of strings !!! WARNING VERY LONG ARRAYS !!! <ARRAY>
+*
+* Example:
+* copyToClipboard ([true] call derp_fnc_findItemList);
  */
 private _returnArray = [];
 

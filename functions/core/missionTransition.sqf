@@ -1,15 +1,14 @@
 /*
- * Author: alganthe
- * Handles mission transitions
- *
- * Arguments:
- * 0: position of the previous mission <OBJECT>
- * 1: shape of the previous marker <STRING>
- * 2: size of the previous marker <ARRAY>
- *
- * Return Value:
- * nothing
- */
+* Author: alganthe
+* Handles mission transitions
+*
+* Arguments:
+* 0: Position of the previous mission <OBJECT>
+* 1: Shape of the previous marker <STRING>
+*
+* Return Value:
+* Nothing
+*/
 params ["_markerPos","_markerShape"];
 
 _bluforCheck = createTrigger ["EmptyDetector",_markerPos,false];

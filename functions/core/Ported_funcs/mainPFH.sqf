@@ -1,4 +1,4 @@
-//Singe PFEH to handle execNextFrame, waitAndExec and waitUntilAndExec:
+//Single PFEH to handle execNextFrame, waitAndExec and waitUntilAndExec:
 [{
     //Handle the waitAndExec array:
     while {!(derp_waitAndExecArray isEqualTo []) && {derp_waitAndExecArray select 0 select 0 <= derp_time}} do {

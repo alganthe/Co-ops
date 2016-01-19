@@ -1,14 +1,13 @@
 /*
- * Author: alganthe
- * Set time of the day
- *
- * Arguments:
- * None: this is called via mission parameters and shouldn't be called by anything else.
- *
- * Return Value:
- * nothing
- */
-
+* Author: alganthe
+* Set time of the day
+*
+* Arguments:
+* None: this is called via mission parameters and shouldn't be called by anything else.
+*
+* Return Value:
+* Nothing
+*/
 private ["_hour","_date"];
 _hour = "Daytime" call BIS_fnc_getParamValue;
 
