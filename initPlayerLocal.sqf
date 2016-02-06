@@ -47,6 +47,4 @@ if (!hasInterface) then {
             ["Don't fire at base","Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         };
     }];
-
-    //[true,""]  call compile preprocessFileLineNumbers "functions\misc\FOB\FOB_interactions.sqf"; // Interactions for the FOB
 };

@@ -7,6 +7,7 @@ HCAOsConnected = false;
 HCAmbiantConnected = false;
 derp_missionCounter = 0;
 vehicleHandlingArray = [];
+quadHandlingArray = [];
 PARAM_AOSize = "AOSize" call BIS_fnc_getParamValue;
 PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
 PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;
@@ -51,5 +52,16 @@ _respawnVehicles = [
     _vehicle call derp_fnc_vehicleSetup;
 
 } forEach _respawnVehicles;
-
 [] call derp_fnc_vehiclePFH;
+
+//-------------- quads handling
+_respawnQuads = [
+    [quad1,5], [quad2,5], [quad3,5], [quad4,5], [quad5,5], [quad6,5], [quad7,5]
+];
+{
+    _x params ["_vehicle", "_timer"];
+    [_vehicle, _timer] call derp_fnc_quadInit;
+    _vehicle call derp_fnc_vehicleSetup;
+
+} forEach _respawnQuads;
+[] call derp_fnc_quadPFH;

@@ -38,23 +38,26 @@
                 vehicleHandlingArray deleteAt (vehicleHandlingArray find _x);
 
             } else {
-                _distanceCheckResult = {
-                    if ((_vehicle distance2D _x) > PARAM_VehicleRespawnDistance && {_vehicle distance2D _spawnPos > 5}) exitWith {true};
-                    if (true) exitWith {false};
-                } count allPlayers;
+                if (_vehicleClass in ["B_UAV_02_CAS_F","B_UAV_02_F","B_UGV_01_F","B_UGV_01_rcws_F"]) then {} else {
 
-                if (_distanceCheckResult) then {
-                    [{
-                        params ["_vehicleClass","_spawnPos","_spawnDir","_timer"];
-                        _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
-                        _newVehicle setDir _spawnDir;
+                    _distanceCheckResult = {
+                        if ((_vehicle distance2D _x) > PARAM_VehicleRespawnDistance && {_vehicle distance2D _spawnPos > 5}) exitWith {true};
+                        if (true) exitWith {false};
+                    } count allPlayers;
 
-                        vehicleHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
-                        [_newVehicle] call derp_fnc_vehicleSetup;
+                    if (_distanceCheckResult) then {
+                        [{
+                            params ["_vehicleClass","_spawnPos","_spawnDir","_timer"];
+                            _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
+                            _newVehicle setDir _spawnDir;
 
-                    },[_vehicleClass,_spawnPos,_spawnDir,_timer],_timer] call derp_fnc_waitAndExec;
-                    deleteVehicle _vehicle;
-                    vehicleHandlingArray deleteAt (vehicleHandlingArray find _x);
+                            vehicleHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
+                            [_newVehicle] call derp_fnc_vehicleSetup;
+
+                        },[_vehicleClass,_spawnPos,_spawnDir,_timer],_timer] call derp_fnc_waitAndExec;
+                        deleteVehicle _vehicle;
+                        vehicleHandlingArray deleteAt (vehicleHandlingArray find _x);
+                    };
                 };
             };
         };

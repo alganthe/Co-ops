@@ -1,8 +1,4 @@
 class derp {
-    class core {
-        file = "functions\core";
-    };
-
     class misc {
         file = "functions\misc";
         class VA_filter {};
