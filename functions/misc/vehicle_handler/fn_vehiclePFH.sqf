@@ -42,10 +42,10 @@
 
                     _distanceCheckResult = {
                         if ((_vehicle distance2D _x) > PARAM_VehicleRespawnDistance && {_vehicle distance2D _spawnPos > 5}) exitWith {true};
-                        if (true) exitWith {false};
-                    } count allPlayers;
 
-                    if (_distanceCheckResult) then {
+                    } foreach allPlayers;
+
+                    if ((!isNil "_distanceCheckResult") && {_distanceCheckResult}) then {
                         [{
                             params ["_vehicleClass","_spawnPos","_spawnDir","_timer"];
                             _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
