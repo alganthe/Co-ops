@@ -1,21 +1,17 @@
 //------------------------------ Headless Client
-if (!hasInterface) then {
-
+if !(isServer or hasInterface) then {
     if (local HCAOs) then {
-        diag_log "HC for AOs connected";
+
         HCAOsConnected = true;
         publicVariableServer "HCAOsConnected";
+        diag_log format ["HCAOs connected"];
+    } else {
 
-        //remoteExecCall ["", 2];
-    };
-
-    if (local HCAmbiantAI) then {
-        diag_log "HC for ambiant AI connected";
         HCAmbiantConnected = true;
         publicVariableServer "HCAmbiantConnected";
-
-        //remoteExecCall ["", 2];
+        diag_log format ["HCAmbiantAI connected"];
     };
+
 } else {//-------------------------------- Player stuff
 
     [] call derp_fnc_diary; // Diary
