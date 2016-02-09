@@ -6,8 +6,8 @@ call compile preprocessFileLineNumbers "functions\core\serverSide_functions_comp
 HCAOsConnected = false;
 HCAmbiantConnected = false;
 derp_missionCounter = 0;
-vehicleHandlingArray = [];
-quadHandlingArray = [];
+derp_vehicleHandlingArray = [];
+derp_quadHandlingArray = [];
 PARAM_AOSize = "AOSize" call BIS_fnc_getParamValue;
 PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
 PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;

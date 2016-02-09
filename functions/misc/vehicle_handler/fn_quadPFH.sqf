@@ -18,11 +18,11 @@
                 _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                 _newVehicle setDir _spawnDir;
 
-                quadHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
+                derp_quadHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
                 [_newVehicle] call derp_fnc_vehicleSetup;
 
             },[_vehicleClass,_spawnPos,_spawnDir,_timer],_timer] call derp_fnc_waitAndExec;
-            quadHandlingArray deleteAt (quadHandlingArray find _x);
+            derp_quadHandlingArray deleteAt (derp_quadHandlingArray find _x);
 
         } else {
             if (!alive _vehicle) then {
@@ -31,11 +31,11 @@
                     _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                     _newVehicle setDir _spawnDir;
 
-                    quadHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
+                    derp_quadHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
                     [_newVehicle] call derp_fnc_vehicleSetup;
 
                 },[_vehicleClass,_spawnPos,_spawnDir,_timer],_timer] call derp_fnc_waitAndExec;
-                quadHandlingArray deleteAt (quadHandlingArray find _x);
+                derp_quadHandlingArray deleteAt (derp_quadHandlingArray find _x);
 
             } else {
 
@@ -51,14 +51,14 @@
                         _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                         _newVehicle setDir _spawnDir;
 
-                        quadHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
+                        derp_quadHandlingArray pushBack [_newVehicle,_vehicleClass,_spawnPos,_spawnDir,_timer];
                         [_newVehicle] call derp_fnc_vehicleSetup;
 
                     },[_vehicleClass,_spawnPos,_spawnDir,_timer],_timer] call derp_fnc_waitAndExec;
                     deleteVehicle _vehicle;
-                    quadHandlingArray deleteAt (quadHandlingArray find _x);
+                    derp_quadHandlingArray deleteAt (derp_quadHandlingArray find _x);
                 };
             };
         };
-    } forEach quadHandlingArray;
+    } forEach derp_quadHandlingArray;
 },10,[]] call CBA_fnc_addPerFrameHandler;
