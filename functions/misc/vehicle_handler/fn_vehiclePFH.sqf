@@ -4,7 +4,7 @@
 *
 * Arguments:
 * Nothing
-*
+*''
 * Return Value:
 * Nothing
 */
@@ -41,7 +41,8 @@
                 if (_vehicleClass in ["B_UAV_02_CAS_F","B_UAV_02_F","B_UGV_01_F","B_UGV_01_rcws_F"]) then {} else {
 
                     _distanceCheckResult = {
-                        if ((_vehicle distance2D _x) > PARAM_VehicleRespawnDistance && {_vehicle distance2D _spawnPos > 5}) exitWith {true};
+                        if ((_vehicle distance2D _x) < PARAM_VehicleRespawnDistance || (_vehicle distance2D _spawnPos < 5)) exitWith {false};
+                        true;
 
                     } foreach allPlayers;
 

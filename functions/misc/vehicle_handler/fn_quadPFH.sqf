@@ -40,7 +40,8 @@
             } else {
 
                 _distanceCheckResult = {
-                    if ((_vehicle distance2D _x) > 10 && {_vehicle distance2D _spawnPos > 5}) exitWith {true};
+                    if ((_vehicle distance2D _x) < 10 || (_vehicle distance2D _spawnPos < 5)) exitWith {false};
+                    true;
 
                 } foreach allPlayers;
 
