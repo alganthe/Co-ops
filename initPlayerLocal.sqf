@@ -1,6 +1,8 @@
 //------------------------------ Headless Client
 if !(isServer or hasInterface) then {
-    if (local HCAOs) then {
+    diag_log format ["%1",profileName];
+
+    if (profileName == "HCAOs") then {
 
         HCAOsConnected = true;
         publicVariableServer "HCAOsConnected";
