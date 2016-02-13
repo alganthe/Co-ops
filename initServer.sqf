@@ -3,8 +3,8 @@ call compile preprocessFileLineNumbers "functions\core\Ported_funcs\portedFuncsI
 call compile preprocessFileLineNumbers "functions\core\serverSide_functions_compile.sqf";
 
 //---------------------------------- Mission vars
-HCAOsConnected = false;
-HCAmbiantConnected = false;
+derp_HCAOsConnected = false;
+derp_HCAmbiantConnected = false;
 derp_missionCounter = 0;
 derp_vehicleHandlingArray = [];
 derp_quadHandlingArray = [];
@@ -27,11 +27,11 @@ if (("MissionRepetition" call BIS_fnc_getParamValue) == 1 ) then {
 //---------------------------------- EHs
 ["onPlayerDisconnected", {
     if (local HCAOs) then {
-        HCAOsConnected = false;
+        derp_HCAOsConnected = false;
     };
 
     if (local HCAmbiantAI) then {
-        HCAmbiantConnected = false;
+        derp_HCAmbiantConnected = false;
     };
 }, []] call BIS_fnc_addStackedEventHandler;
 

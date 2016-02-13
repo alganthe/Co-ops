@@ -4,12 +4,12 @@ if !(isServer or hasInterface) then {
 
     if (profileName == "HCAOs") then {
 
-        HCAOsConnected = true;
+        derp_HCAOsConnected = true;
         publicVariableServer "HCAOsConnected";
         diag_log format ["HCAOs connected"];
     } else {
 
-        HCAmbiantConnected = true;
+        derp_HCAmbiantConnected = true;
         publicVariableServer "HCAmbiantConnected";
         diag_log format ["HCAmbiantAI connected"];
     };

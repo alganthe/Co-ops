@@ -37,7 +37,7 @@ _markerPos = getMarkerPos _selectedLocation;
 //------------------- Spawn In enemies
 _DACvalues = ["m1",[1,0,0],[4,4,20,5],[3,2,20,5],[2,2,10,5],[],[0,0,0,0]];
 
-if (HCAOsConnected) then {
+if (derp_HCAOsConnected) then {
 	[_markerPos,PARAM_AOSize,PARAM_AOSize,0,0,_DACvalues] remoteExecCall ["DAC_fNewZone", HCAOs];
 
 } else {
@@ -91,7 +91,12 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 		[{
 			params ["_mission1_UrbanGroup1","_mission1_UrbanGroup2"];
 
-			["m1"] call DAC_fDeleteZone;
+            if (local m1) then {
+                ["m1"] call DAC_fDeleteZone;
+            } else {
+                ["m1"] remoteExecCall ["DAC_fDeleteZone", m1];
+            };
+
 			if (!isNil "_urbanGroup1") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup1)};
 			if (!isNil "_urbanGroup2") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup2)};
 
