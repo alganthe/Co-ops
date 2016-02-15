@@ -15,7 +15,7 @@
 params ["_vehicle","_radius"];
 private ["_flatPos"];
 
- _flatPos = (getPosASL _vehicle) isFlatEmpty
+ _flatPos = (getPosWorld _vehicle) isFlatEmpty
 [
 _radius,	    //--- Minimal distance from another object
 0,				//--- If 0, just check position. If >0, select new one

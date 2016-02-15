@@ -109,6 +109,27 @@ class Params {
 		texts[] ={ "Yes","No"};
 		default = 1;
     };
+
+    class AntiAirAmount {
+        title = "Amount of AA vehicles on the main AO";
+		values[] = { 1,2,3,4,5,6 };
+		texts[] ={ "1","2","3","4","5","6"};
+		default = 3;
+    };
+
+    class MRAPAmount {
+        title = "Amount of MRAPs on the main AO";
+        values[] = { 1,2,3,4,5,6 };
+        texts[] ={ "1","2","3","4","5","6"};
+        default = 3;
+    };
+
+    class InfantryGroupsAmount {
+        title = "Amount of infantry groups on the main AO";
+        values[] = { 1,2,3,4,5,6,7,8,9,10 };
+        texts[] ={ "1","2","3","4","5","6","7","8","9","10"};
+        default = 6;
+    };
 };
 
 //---------------------------Tasks

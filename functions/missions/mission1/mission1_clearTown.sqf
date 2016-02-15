@@ -22,7 +22,7 @@ publicVariable "missionInProgress";
 _missionLocations = ["missionMarker_Athira","missionMarker_Frini","missionMarker_Abdera","missionMarker_Galati","missionMarker_Syrta","missionMarker_Oreokastro","missionMarker_Kore","missionMarker_Negades","missionMarker_Aggelochori","missionMarker_Neri","missionMarker_Panochori","missionMarker_Agios_Dionysios","missionMarker_Zaros","missionMarker_Therisa","missionMarker_Poliakko","missionMarker_Alikampos","missionMarker_Neochori","missionMarker_Rodopoli","missionMarker_Paros","missionMarker_Kalochori","missionMarker_Charkia","missionMarker_Sofia","missionMarker_Molos","missionMarker_Pyrgos","missionMarker_Dorida","missionMarker_Chalkeia","missionMarker_Panagia","missionMarker_Feres","missionMarker_Selakano"];
 
 while {true} do {
-	selectedLocation = (_missionLocations select floor random count _missionLocations);
+	selectedLocation = selectRandom _missionLocations);
 
 	_isAOempty = count ((getMarkerPos selectedLocation) nearEntities ["Man",PARAM_AOSize]);
 	if (_isAOempty == 0) exitWith {
@@ -35,13 +35,12 @@ selectedLocation = nil;
 _markerPos = getMarkerPos _selectedLocation;
 
 //------------------- Spawn In enemies
-_DACvalues = ["m1",[1,0,0],[4,4,20,5],[3,2,20,5],[2,2,10,5],[],[0,0,0,0]];
 
 if (derp_HCAOsConnected) then {
-	[_markerPos,PARAM_AOSize,PARAM_AOSize,0,0,_DACvalues] remoteExecCall ["DAC_fNewZone", HCAOs];
+
 
 } else {
-	[_markerPos,PARAM_AOSize,PARAM_AOSize,0,0,_DACvalues] call DAC_fNewZone;
+    private _mainAOUnits = [_markerPos] call derp_fnc_mainAOSpawnHandler;
 };
 
 _mission1_UrbanGroup1 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
@@ -82,30 +81,30 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 //------------------- PFH checking every 10s if the mission has been completed
 [{
 	if ((!isNil "missionWin") && {missionWin}) then {
-		(_this select 0) params ["_markerPos","_mission1_UrbanGroup1","_mission1_UrbanGroup2"];
+		(_this select 0) params ["_markerPos","_mission1_UrbanGroup1","_mission1_UrbanGroup2","_mainAOUnits"];
 
 		deleteMarker "mission1_mrk";
 		deleteMarker "mission1_1_mrk";
 		missionWin = nil;
 
 		[{
-			params ["_mission1_UrbanGroup1","_mission1_UrbanGroup2"];
+			params ["_mission1_UrbanGroup1","_mission1_UrbanGroup2","_mainAOUnits"];
 
-            if (local m1) then {
-                ["m1"] call DAC_fDeleteZone;
-            } else {
-                ["m1"] remoteExecCall ["DAC_fDeleteZone", m1];
-            };
+			if (!isNil "_mission1_UrbanGroup1") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup1)};
+			if (!isNil "_mission1_UrbanGroup2") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup2)};
 
-			if (!isNil "_urbanGroup1") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup1)};
-			if (!isNil "_urbanGroup2") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup2)};
+            {
+                if (!isNull _x && {alive _x}) then {
+                    deleteVehicle _x;
+                };
+            } foreach _mainAOUnits;
 
 			["mission1",true] call BIS_fnc_deleteTask;
-		},[_mission1_UrbanGroup1,_mission1_UrbanGroup2],300] call derp_fnc_waitAndExec;
+		},[_mission1_UrbanGroup1,_mission1_UrbanGroup2,_mainAOUnits],300] call derp_fnc_waitAndExec;
 
 		[_markerPos,"ELLIPSE"] call derp_fnc_missionTransition;
 		derp_missionCounter = derp_missionCounter + 1;
 
 		[_this select 1] call CBA_fnc_removePerFrameHandler;
 	};
-},10,[_markerPos,_mission1_UrbanGroup1,_mission1_UrbanGroup2]] call CBA_fnc_addPerFrameHandler;
+},10,[_markerPos,_mission1_UrbanGroup1,_mission1_UrbanGroup2,_mainAOUnits]] call CBA_fnc_addPerFrameHandler;

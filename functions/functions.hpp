@@ -12,6 +12,11 @@ class derp {
         class VAInitSorting {};
         class hintC {};
     };
+
+    class AI {
+        file = "functions\core\AI";
+        class mainAOSpawnHandler {};
+    };
 };
 
 class Zen {

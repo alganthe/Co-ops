@@ -27,7 +27,7 @@ if ((!isNil "derp_missionCounter") && {PARAM_missionAmount == derp_missionCounte
     [] spawn BIS_fnc_EndMission;
 
 } else {
-    private _nextMission = funcs select floor random count funcs;
+    private _nextMission = selectRandom funcs;
 
     if (PARAM_missionRepetition) then {
         [] call _nextMission;
