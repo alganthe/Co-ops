@@ -22,7 +22,7 @@ publicVariable "missionInProgress";
 _missionLocations = ["missionMarker_Athira","missionMarker_Frini","missionMarker_Abdera","missionMarker_Galati","missionMarker_Syrta","missionMarker_Oreokastro","missionMarker_Kore","missionMarker_Negades","missionMarker_Aggelochori","missionMarker_Neri","missionMarker_Panochori","missionMarker_Agios_Dionysios","missionMarker_Zaros","missionMarker_Therisa","missionMarker_Poliakko","missionMarker_Alikampos","missionMarker_Neochori","missionMarker_Rodopoli","missionMarker_Paros","missionMarker_Kalochori","missionMarker_Charkia","missionMarker_Sofia","missionMarker_Molos","missionMarker_Pyrgos","missionMarker_Dorida","missionMarker_Chalkeia","missionMarker_Panagia","missionMarker_Feres","missionMarker_Selakano"];
 
 while {true} do {
-	selectedLocation = selectRandom _missionLocations);
+	selectedLocation = selectRandom _missionLocations;
 
 	_isAOempty = count ((getMarkerPos selectedLocation) nearEntities ["Man",PARAM_AOSize]);
 	if (_isAOempty == 0) exitWith {
