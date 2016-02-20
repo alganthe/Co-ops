@@ -37,19 +37,14 @@ _markerPos = getMarkerPos _selectedLocation;
 //------------------- Spawn In enemies
 
 if (derp_HCAOsConnected) then {
-
+[_markerPos,true,true,true,true,true,true] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
+private _mainAOUnits = spawnedUnits;
+spawnedUnits = nil;
 
 } else {
-    private _mainAOUnits = [_markerPos] call derp_fnc_mainAOSpawnHandler;
+    private _mainAOUnits = [_markerPos,true,true,true,true,true,true] call derp_fnc_mainAOSpawnHandler;
+    diag_log format ["%1",_mainAOUnits];
 };
-
-_mission1_UrbanGroup1 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
-{_x disableAI "FSM"} forEach units _mission1_UrbanGroup1;
-[_markerPos,(units _mission1_UrbanGroup1),200,false,true,false,false] call Zen_fnc_occupyHouse;
-
-_mission1_UrbanGroup2 = [_markerPos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
-{_x disableAI "FSM"} forEach units _mission1_UrbanGroup2;
-[_markerPos,(units _mission1_UrbanGroup2),200,false,true,false,false] call Zen_fnc_occupyHouse;
 
 //------------------- AO boundaries + task
 _marker = createMarker ["mission1_mrk", _markerPos];
@@ -81,17 +76,14 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 //------------------- PFH checking every 10s if the mission has been completed
 [{
 	if ((!isNil "missionWin") && {missionWin}) then {
-		(_this select 0) params ["_markerPos","_mission1_UrbanGroup1","_mission1_UrbanGroup2","_mainAOUnits"];
+		(_this select 0) params ["_markerPos","_mainAOUnits"];
 
 		deleteMarker "mission1_mrk";
 		deleteMarker "mission1_1_mrk";
 		missionWin = nil;
 
 		[{
-			params ["_mission1_UrbanGroup1","_mission1_UrbanGroup2","_mainAOUnits"];
-
-			if (!isNil "_mission1_UrbanGroup1") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup1)};
-			if (!isNil "_mission1_UrbanGroup2") then {{deleteVehicle _x} forEach (units _mission1_UrbanGroup2)};
+			params ["_mainAOUnits"];
 
             {
                 if (!isNull _x && {alive _x}) then {
@@ -100,11 +92,11 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
             } foreach _mainAOUnits;
 
 			["mission1",true] call BIS_fnc_deleteTask;
-		},[_mission1_UrbanGroup1,_mission1_UrbanGroup2,_mainAOUnits],300] call derp_fnc_waitAndExec;
+		},[_mainAOUnits],10] call derp_fnc_waitAndExec;
 
 		[_markerPos,"ELLIPSE"] call derp_fnc_missionTransition;
 		derp_missionCounter = derp_missionCounter + 1;
 
 		[_this select 1] call CBA_fnc_removePerFrameHandler;
 	};
-},10,[_markerPos,_mission1_UrbanGroup1,_mission1_UrbanGroup2,_mainAOUnits]] call CBA_fnc_addPerFrameHandler;
+},10,[_markerPos,_mainAOUnits]] call CBA_fnc_addPerFrameHandler;
