@@ -18,19 +18,20 @@
 missionInProgress = true;
 publicVariable "missionInProgress";
 
+private _mainAOUnits = [];
+private _selectedLocation = [];
+
 //------------------- Get random mission loc based on existing markers
 _missionLocations = ["missionMarker_Athira","missionMarker_Frini","missionMarker_Abdera","missionMarker_Galati","missionMarker_Syrta","missionMarker_Oreokastro","missionMarker_Kore","missionMarker_Negades","missionMarker_Aggelochori","missionMarker_Neri","missionMarker_Panochori","missionMarker_Agios_Dionysios","missionMarker_Zaros","missionMarker_Therisa","missionMarker_Poliakko","missionMarker_Alikampos","missionMarker_Neochori","missionMarker_Rodopoli","missionMarker_Paros","missionMarker_Kalochori","missionMarker_Charkia","missionMarker_Sofia","missionMarker_Molos","missionMarker_Pyrgos","missionMarker_Dorida","missionMarker_Chalkeia","missionMarker_Panagia","missionMarker_Feres","missionMarker_Selakano"];
 
 while {true} do {
-	selectedLocation = selectRandom _missionLocations;
+	_selectedLocation = selectRandom _missionLocations;
 
-	_isAOempty = count ((getMarkerPos selectedLocation) nearEntities ["Man",PARAM_AOSize]);
+	_isAOempty = count ((getMarkerPos _selectedLocation) nearEntities ["Man",PARAM_AOSize]);
 	if (_isAOempty == 0) exitWith {
 		false
 	};
 };
-_selectedLocation = selectedLocation;
-selectedLocation = nil;
 
 _markerPos = getMarkerPos _selectedLocation;
 
@@ -38,12 +39,11 @@ _markerPos = getMarkerPos _selectedLocation;
 
 if (derp_HCAOsConnected) then {
 [_markerPos,true,true,true,true,true,true] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
-private _mainAOUnits = spawnedUnits;
+    _mainAOUnits = spawnedUnits;
 spawnedUnits = nil;
 
 } else {
-    private _mainAOUnits = [_markerPos,true,true,true,true,true,true] call derp_fnc_mainAOSpawnHandler;
-    diag_log format ["%1",_mainAOUnits];
+    _mainAOUnits = [_markerPos,true,true,true,true,true,true] call derp_fnc_mainAOSpawnHandler;
 };
 
 //------------------- AO boundaries + task
@@ -86,7 +86,7 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 			params ["_mainAOUnits"];
 
             {
-                if (!isNull _x && {alive _x}) then {
+                if (!(isNull _x) && {alive _x}) then {
                     deleteVehicle _x;
                 };
             } foreach _mainAOUnits;
