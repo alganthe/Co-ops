@@ -23,7 +23,7 @@ if ((!isNil "_firstCall") && {_firstCall}) Then {
 };
 //------------------- Check if the mission amount has been reached.
 
-if ((!isNil "derp_missionCounter") && {PARAM_missionAmount == derp_missionCounter}) then {
+if ((PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {PARAM_missionAmount == derp_missionCounter}) then {
     "Won" call BIS_fnc_EndMissionServer;
 
 } else {
