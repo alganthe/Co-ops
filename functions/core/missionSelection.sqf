@@ -24,7 +24,7 @@ if ((!isNil "_firstCall") && {_firstCall}) Then {
 //------------------- Check if the mission amount has been reached.
 
 if ((!isNil "derp_missionCounter") && {PARAM_missionAmount == derp_missionCounter}) then {
-    [] spawn BIS_fnc_EndMission;
+    "Won" call BIS_fnc_EndMissionServer;
 
 } else {
     private _nextMission = selectRandom funcs;
