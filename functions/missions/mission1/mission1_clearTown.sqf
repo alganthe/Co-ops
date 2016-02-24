@@ -35,10 +35,10 @@ while {true} do {
 
 _markerPos = getMarkerPos _selectedLocation;
 
-if (PARAM_HALOEnabled) then {
+if (PARAM_paraJumpEnabled) then {
     _markerPos params ["_xPos","_yPos"];
-    derp_haloPos = [_xPos,_yPos] apply {_x + PARAM_AOSize + random 300};
-    publicVariable "derp_haloPos";
+    derp_paraPos = [_xPos,_yPos] apply {_x + PARAM_AOSize + random 300};
+    publicVariable "derp_paraPos";
 };
 
 
@@ -89,9 +89,9 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 		deleteMarker "mission1_1_mrk";
 		missionWin = nil;
 
-        if (PARAM_HALOEnabled) then {
-            derp_haloPos = nil;
-            publicVariable "derp_haloPos";
+        if (PARAM_paraJumpEnabled) then {
+            derp_paraPos = nil;
+            publicVariable "derp_paraPos";
         };
 
         missionInProgress = false;

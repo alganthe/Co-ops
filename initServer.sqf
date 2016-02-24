@@ -27,10 +27,10 @@ if (("MissionRepetition" call BIS_fnc_getParamValue) == 1 ) then {
     PARAM_missionRepetition = false;
 };
 
-if (("HALOEnabled" call BIS_fnc_getParamValue) == 1) then {
-    PARAM_HALOEnabled = true;
+if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
+    PARAM_paraJumpEnabled = true;
 } else {
-    PARAM_HALOEnabled = false;
+    PARAM_paraJumpEnabled = false;
 };
 //---------------------------------- EHs
 ["HandleDisconnect", {

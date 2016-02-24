@@ -82,8 +82,8 @@ class Params {
 		function = "derp_fnc_VAInitSorting";
 	};
 
-    class HALOEnabled {
-        title = "Enable HALO jumps?";
+    class paraJumpEnabled {
+        title = "Enable para jumps on AO?";
         texts[] = {"No","Yes"};
         values[] = {0,1};
         default = 0;

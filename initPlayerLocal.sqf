@@ -26,10 +26,10 @@ if !(isServer or hasInterface) then {
         player enableStamina false;
     };
 
-    if (("HALOEnabled" call BIS_fnc_getParamValue) == 1) then {
-        PARAM_HALOEnabled = true;
+    if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
+        PARAM_paraJumpEnabled = true;
     } else {
-        PARAM_HALOEnabled = false;
+        PARAM_paraJumpEnabled = false;
     };
 
     //---------------- class specific stuff
@@ -54,12 +54,12 @@ if !(isServer or hasInterface) then {
         };
     }];
 
-    if (PARAM_HALOEnabled) then {
+    if (PARAM_paraJumpEnabled) then {
         arsenalDude addAction [
-        "<t color='#FF6600'>HALO jump on AO</t>",
+        "<t color='#FF6600'>Paradrop on AO</t>",
         {
             _this params ["","_unit"];
-            derp_haloPos params ["_xPos","_yPos"];
+            derp_paraPos params ["_xPos","_yPos"];
 
             _randomPos = [(_xPos + (random 50)),(_yPos + (random 50)),400];
             _parachute = createVehicle ["Steerable_Parachute_F", _randomPos, [], 10,"FLY"];
@@ -70,7 +70,7 @@ if !(isServer or hasInterface) then {
         false,
         true,
         "",
-        "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_haloPos'}"
+        "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
         ];
     };
 };
