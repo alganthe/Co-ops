@@ -33,7 +33,7 @@ if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
     PARAM_paraJumpEnabled = false;
 };
 //---------------------------------- EHs
-["HandleDisconnect", {
+["HCdisconnectedStackedEH","HandleDisconnect", {
     params ["_unit", "_ID", "_UID", "_name"];
     if (_name == "HCAOs") then {
         derp_HCAOsConnected = false;
