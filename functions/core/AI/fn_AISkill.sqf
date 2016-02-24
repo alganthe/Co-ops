@@ -1,3 +1,13 @@
+/*
+* Author: alganthe
+* Set the mission parameter defined skill values for an array of units.
+*
+* Arguments:
+* 0: Array of units to change <ARRAY>
+*
+* Return Value:
+* NOTHING
+*/
 params ["_AIArray"];
 
 {
