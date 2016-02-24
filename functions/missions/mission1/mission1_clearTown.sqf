@@ -109,7 +109,7 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 			["mission1",true] call BIS_fnc_deleteTask;
 		},[_mainAOUnits],10] call derp_fnc_waitAndExec;
 
-		[_markerPos,"ELLIPSE"] call derp_fnc_missionTransition;
+		false call derp_fnc_missionSelection;
 		derp_missionCounter = derp_missionCounter + 1;
 
 		[_this select 1] call CBA_fnc_removePerFrameHandler;
