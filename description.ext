@@ -60,6 +60,20 @@ class Params {
 		function = "derp_fnc_daytime";
 	};
 
+    class staminaEnabled {
+        title = "Enable player stamina ?";
+        texts[] = {"No","Yes"};
+        values[] = {0,1};
+        default = 1;
+    };
+
+    class EnableRespawn {
+        title = "Enable respawn?";
+        texts[] = {"No","Yes"};
+        values[] = {0,1};
+        default = 1;
+    };
+
 	class ArsenalFilter {
 		title = "Filter mode of the arsenal";
 		texts[] = {"Arsenal disabled","Arsenal enabled but filtered","Arsenal enabled"};
@@ -68,19 +82,12 @@ class Params {
 		function = "derp_fnc_VAInitSorting";
 	};
 
-	class staminaEnabled {
-		title = "Enable player stamina ?";
-		texts[] = {"No","Yes"};
-		values[] = {0,1};
-		default = 1;
-	};
-
-	class EnableRespawn {
-		title = "Enable respawn?";
-		texts[] = {"No","Yes"};
-		values[] = {0,1};
-		default = 1;
-	};
+    class HALOEnabled {
+        title = "Enable HALO jumps?";
+        texts[] = {"No","Yes"};
+        values[] = {0,1};
+        default = 0;
+    };
 
 	class VehicleRespawnDistance {
 		title = "Distance from players that vehicles won't respawn";

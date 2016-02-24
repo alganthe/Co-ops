@@ -27,6 +27,11 @@ if (("MissionRepetition" call BIS_fnc_getParamValue) == 1 ) then {
     PARAM_missionRepetition = false;
 };
 
+if (("HALOEnabled" call BIS_fnc_getParamValue) == 1) then {
+    PARAM_HALOEnabled = true;
+} else {
+    PARAM_HALOEnabled = false;
+};
 //---------------------------------- EHs
 ["HandleDisconnect", {
     params ["_unit", "_ID", "_UID", "_name"];

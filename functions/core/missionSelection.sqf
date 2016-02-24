@@ -37,6 +37,3 @@ if ((PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {PARAM_missio
         [] call _nextMission;
     };
 };
-
-missionInProgress = false;
-publicVariable "missionInProgress";

@@ -26,6 +26,12 @@ if !(isServer or hasInterface) then {
         player enableStamina false;
     };
 
+    if (("HALOEnabled" call BIS_fnc_getParamValue) == 1) then {
+        PARAM_HALOEnabled = true;
+    } else {
+        PARAM_HALOEnabled = false;
+    };
+
     //---------------- class specific stuff
     _pilotsClassnames = ["B_pilot_F","B_Helipilot_F"];
     if ((typeOf player) in _pilotsClassnames) then {
@@ -47,4 +53,24 @@ if !(isServer or hasInterface) then {
             ["Don't fire at base","Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         };
     }];
+
+    if (PARAM_HALOEnabled) then {
+        arsenalDude addAction [
+        "<t color='#FF6600'>HALO jump on AO</t>",
+        {
+            _this params ["","_unit"];
+            derp_haloPos params ["_xPos","_yPos"];
+
+            _randomPos = [(_xPos + (random 50)),(_yPos + (random 50)),400];
+            _parachute = createVehicle ["Steerable_Parachute_F", _randomPos, [], 10,"FLY"];
+            _unit moveInDriver _parachute;
+        },
+        nil,
+        0,
+        false,
+        true,
+        "",
+        "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_haloPos'}"
+        ];
+    };
 };
