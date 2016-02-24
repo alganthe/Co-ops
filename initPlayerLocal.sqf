@@ -19,6 +19,8 @@ if !(isServer or hasInterface) then {
     [] call derp_fnc_diary; // Diary
     execVM "scripts\misc\QS_icons.sqf"; // Icons
 
+    ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
+
     //---------------- mission params
     if (("staminaEnabled" call BIS_fnc_getParamValue) == 0) then {
         player enableStamina false;

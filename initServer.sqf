@@ -2,6 +2,9 @@
 call compile preprocessFileLineNumbers "functions\core\Ported_funcs\portedFuncsInit.sqf";
 call compile preprocessFileLineNumbers "functions\core\serverSide_functions_compile.sqf";
 
+//---------------------------------- Dynamic groups init
+["Initialize"] call BIS_fnc_dynamicGroups;
+
 //---------------------------------- Mission vars
 derp_HCAOsConnected = false;
 derp_HCAmbiantConnected = false;
