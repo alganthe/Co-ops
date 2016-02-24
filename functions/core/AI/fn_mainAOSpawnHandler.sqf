@@ -84,9 +84,22 @@ if !(isNil "_infantry") then {
         _randomPos = [[[_AOpos, PARAM_AOSize],[]],["water","out"]] call BIS_fnc_randomPos;
         _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, PARAM_AOSize] call BIS_fnc_taskPatrol;
+        [_infantryGroup, _AOpos, (PARAM_AOSize / 1.5)] call BIS_fnc_taskPatrol;
 
         {_spawnedUnits pushBack _x} foreach (units _infantryGroup);
+
+        {
+            _x setSkill ["aimingAccuracy", (PARAM_AIAimingAccuracy / 10)];
+            _x setSkill ["aimingShake", (PARAM_AIAimingShake / 10)];
+            _x setSkill ["aimingSpeed", (PARAM_AIAimingSpeed / 10)];
+            _x setSkill ["endurance", (PARAM_AIEndurance / 10)];
+            _x setSkill ["spotDistance", (PARAM_AISpotingDistance / 10)];
+            _x setSkill ["spotTime", (PARAM_AISpottingSpeed / 10)];
+            _x setSkill ["courage", (PARAM_AICourage / 10)];
+            _x setSkill ["reloadSpeed", (PARAM_AIReloadSpeed / 10)];
+            _x setSkill ["commanding", (PARAM_AICommandingSkill / 10)];
+            _x setSkill ["general", (PARAM_AIGeneralSkill / 10)];
+        } foreach (units _infantryGroup);
     };
 };
 
@@ -99,6 +112,19 @@ if !(isNil "_urbanIfantry") then {
         [_AOpos,(units _group),200,false,true,false,false] call Zen_fnc_occupyHouse;
 
         {_spawnedUnits pushBack _x} foreach (units _group);
+
+        {
+            _x setSkill ["aimingAccuracy", (PARAM_AIAimingAccuracy / 10)];
+            _x setSkill ["aimingShake", (PARAM_AIAimingShake / 10)];
+            _x setSkill ["aimingSpeed", (PARAM_AIAimingSpeed / 10)];
+            _x setSkill ["endurance", (PARAM_AIEndurance / 10)];
+            _x setSkill ["spotDistance", (PARAM_AISpotingDistance / 10)];
+            _x setSkill ["spotTime", (PARAM_AISpottingSpeed / 10)];
+            _x setSkill ["courage", (PARAM_AICourage / 10)];
+            _x setSkill ["reloadSpeed", (PARAM_AIReloadSpeed / 10)];
+            _x setSkill ["commanding", (PARAM_AICommandingSkill / 10)];
+            _x setSkill ["general", (PARAM_AIGeneralSkill / 10)];
+        } foreach (units _group);
     };
 };
 
