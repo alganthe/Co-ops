@@ -19,7 +19,7 @@ params ["_AOpos","_AA","_MRAP","_randomVehcs","_infantry","_urbanIfantry","_milb
 #define MRAPList ["O_MRAP_02_gmg_F","O_MRAP_02_hmg_F"]
 #define VehicleList ["O_MBT_02_cannon_F","O_APC_Tracked_02_cannon_F","O_APC_Wheeled_02_rcws_F","O_APC_Tracked_02_cannon_F"]
 #define UrbanUnits ["O_soldierU_A_F","O_soldierU_AAR_F","O_soldierU_AAA_F","O_soldierU_AAT_F","O_soldierU_AR_F","O_soldierU_medic_F","O_engineer_U_F","O_soldierU_exp_F","O_soldierU_GL_F","O_Urban_HeavyGunner_F","O_soldierU_M_F","O_soldierU_AA_F","O_soldierU_AT_F","O_soldierU_repair_F","O_soldierU_F","O_soldierU_LAT_F","O_Urban_Sharpshooter_F","O_soldierU_SL_F","O_soldierU_TL_F"]
-#define InfantryGroupList ["OIA_InfSquad","OIA_InfSquad_Weapons","OIA_InfTeam","OIA_InfTeam_AA","OIA_InfTeam_AT","OI_reconPatrol","OIA_InfAssault","OIA_ReconSquad"]
+#define InfantryGroupList ["OIA_InfSquad","OIA_InfSquad_Weapons","OIA_InfTeam_AA","OIA_InfTeam_AT","OIA_InfAssault","OIA_ReconSquad"]
 #define MilitaryBuildings ["Land_Cargo_House_V1_F","Land_Cargo_House_V2_F","Land_Cargo_House_V3_F","Land_Medevac_house_V1_F","Land_Research_house_V1_F","Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F","Land_Research_HQ_F","Land_Medevac_HQ_V1_F","Land_Cargo_Patrol_V1_F","Land_Cargo_Patrol_V2_F","Land_Cargo_Patrol_V3_F","Land_Cargo_Tower_V1_F","Land_Cargo_Tower_V2_F","Land_Cargo_Tower_V3_F"]
 
 private _spawnedUnits = [];
@@ -31,14 +31,16 @@ if !(isNil "_AA") then {
         _AAVehicle = "O_APC_Tracked_02_AA_F" createVehicle _randomPos;
 
         _AAVehicle allowCrewInImmobile true;
-        _spawnedUnits pushBack _AAVehicle;
 
         _AAVehicle lock 2;
         createVehicleCrew _AAVehicle;
 
+        _spawnedUnits pushBack _AAVehicle;
+        {_spawnedUnits pushBack _x} foreach (crew _AAVehicle);
         _group = group _AAVehicle;
 
         [_group, _AOpos, 500] call BIS_fnc_taskPatrol;
+        _group setSpeedMode "LIMITED";
     };
 };
 
@@ -48,15 +50,16 @@ if !(isNil "_MRAP") then {
         _randomPos = [[[_AOpos, PARAM_AOSize],[]],["water","out"]] call BIS_fnc_randomPos;
         _MRAP = (selectRandom MRAPList) createVehicle _randompos;
 
-        _spawnedUnits pushBack _MRAP;
-
         _MRAP allowCrewInImmobile true;
         _MRAP lock 2;
-        createVehicleCrew _MRAP;
 
+        createVehicleCrew _MRAP;
+        _spawnedUnits pushBack _MRAP;
+        {_spawnedUnits pushBack _x} foreach (crew _MRAP);
         _group = group _MRAP;
 
         [_group, _AOpos, 500] call BIS_fnc_taskPatrol;
+        _group setSpeedMode "LIMITED";
     };
 };
 
@@ -66,15 +69,16 @@ if !(isNil "_randomVehcs") then {
         _randomPos = [[[_AOpos, PARAM_AOSize],[]],["water","out"]] call BIS_fnc_randomPos;
         _vehc = (selectRandom VehicleList) createVehicle _randompos;
 
-        _spawnedUnits pushBack _vehc;
-
         _vehc allowCrewInImmobile true;
         _vehc lock 2;
-        createVehicleCrew _vehc;
 
+        createVehicleCrew _vehc;
+        _spawnedUnits pushBack _vehc;
+        {_spawnedUnits pushBack _x} foreach (crew _vehc);
         _group = group _vehc;
 
         [_group, _AOpos, 700] call BIS_fnc_taskPatrol;
+        _group setSpeedMode "LIMITED";
     };
 };
 
@@ -154,7 +158,7 @@ if !(isNil "_milbuildingInfantry") then {
 
 //-------------------------------------------------- Add every spawned unit to zeus
 {
-    _x addCuratorEditableObjects [_spawnedUnits,true];
+    _x addCuratorEditableObjects [_spawnedUnits,false];
 } forEach allCurators;
 
 if (isServer) then {
