@@ -16,26 +16,23 @@
 *
 * yourVehicle addEventHandler [""GetIn"",{_this call derp_fnc_pilotCheck}];
 */
-params ["_vehicle","_position","_unit","_turretIndex"];
+params ["_vehicle", "_position", "_unit", "_turretIndex"];
 
 _authorizedPilotUnits = ["B_pilot_F","B_Helipilot_F"];
-_isPilot = (typeOf _unit in _authorizedPilotUnits);
 _secondCopilotHelos = ["O_Heli_Transport_04_F", "O_Heli_Transport_04_ammo_F", "O_Heli_Transport_04_bench_F", "O_Heli_Transport_04_box_F", "O_Heli_Transport_04_covered_F", "O_Heli_Transport_04_fuel_F", "O_Heli_Transport_04_repair_F" , "O_Heli_Transport_04_medevac_F"];
 _casHelos = ["B_Heli_Attack_01_F","O_Heli_Attack_02_F", "O_Heli_Attack_02_black_F"];
 
-if !(_isPilot) then {
+if !(typeOf _unit in _authorizedPilotUnits) then {
+
     if (_position == "driver") then {
         moveOut _unit;
         ["What are you doing?","You are not in a pilot slot!"] remoteExecCall ["derp_fnc_hintC",_unit];
+
     } else {
-        if (!(typeof _vehicle in _secondCopilotHelos) && !(typeOf _vehicle in _casHelos) && {0 in _turretIndex}) then {
+
+        if (!(typeOf _vehicle in _casHelos) && {!(typeof _vehicle in _secondCopilotHelos) && {0 in _turretIndex}} || {typeof _vehicle in _secondCopilotHelos && {0 in _turretIndex || {1 in _turretIndex}}}) then {
             moveOut _unit;
-            ["What are you doing?","You are not in a pilot slot!"] remoteExecCall ["derp_fnc_hintC",_unit];
-        } else {
-            if (!(typeOf _vehicle in _casHelos) && {typeof _vehicle in _secondCopilotHelos} && {(0 in _turretIndex) || (1 in _turretIndex)}) then {
-                moveOut _unit;
-                ["What are you doing?","You are not in a pilot slot!"] remoteExecCall ["derp_fnc_hintC",_unit];
-            };
+            ["What are you doing?", "You are not in a pilot slot!"] remoteExecCall ["derp_fnc_hintC", _unit];
         };
     };
 };
