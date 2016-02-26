@@ -23,10 +23,6 @@ private _markerArray = [];
     };
 } foreach _comTowers;
 
-{
-    _x addCuratorEditableObjects [_towerMines, true];
-} forEach allCurators;
-
 //------------------- PFH
 [{
     params ["_args", "_pfhID"];
