@@ -9,11 +9,18 @@ call compile preprocessFileLineNumbers "functions\core\serverSide_functions_comp
 derp_HCAOsConnected = false;
 derp_HCAmbiantConnected = false;
 derp_missionCounter = 0;
+derp_sideMissionInProgress = false;
+derp_airReinforcement = objNull;
+derp_lastAirReinforcementTime = 0;
 derp_vehicleHandlingArray = [];
 derp_quadHandlingArray = [];
+derp_mission1Locations = ["missionMarker_Athira", "missionMarker_Frini", "missionMarker_Abdera", "missionMarker_Galati", "missionMarker_Syrta", "missionMarker_Oreokastro", "missionMarker_Kore", "missionMarker_Negades", "missionMarker_Aggelochori", "missionMarker_Neri", "missionMarker_Panochori", "missionMarker_Agios_Dionysios", "missionMarker_Zaros", "missionMarker_Therisa", "missionMarker_Poliakko", "missionMarker_Alikampos", "missionMarker_Neochori", "missionMarker_Rodopoli", "missionMarker_Paros", "missionMarker_Kalochori", "missionMarker_Charkia", "missionMarker_Sofia", "missionMarker_Molos", "missionMarker_Pyrgos", "missionMarker_Dorida", "missionMarker_Chalkeia", "missionMarker_Panagia", "missionMarker_Feres", "missionMarker_Selakano"];
+derp_SMID = 0;
+derp_mission1ID = 0;
 
 PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
 PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;
+PARAM_airReinforcementTimer = "airReinforcementTimer" call BIS_fnc_getParamValue;
 
 if (("EnableRespawn" call BIS_fnc_getParamValue) == 0) then {
     PARAM_enableRespawn = true;
@@ -33,7 +40,7 @@ if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
     PARAM_paraJumpEnabled = false;
 };
 //---------------------------------- EHs
-["HCdisconnectedStackedEH","HandleDisconnect", {
+["HCdisconnectedStackedEH", "HandleDisconnect", {
     params ["_unit", "_ID", "_UID", "_name"];
     if (_name == "HCAOs") then {
         derp_HCAOsConnected = false;
@@ -45,7 +52,7 @@ if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
 }, []] call BIS_fnc_addStackedEventHandler;
 
 //---------------------------------- Scripts and functions calls.
-[{[true] call derp_fnc_missionSelection},[],30] call derp_fnc_waitAndExec; // STart mission selection
+[{[true] call derp_fnc_missionSelection}, [], 30] call derp_fnc_waitAndExec; // STart mission selection
 
 //-------------- vehicle handling
 _respawnVehicles = [

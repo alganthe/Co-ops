@@ -16,7 +16,7 @@ if (PARAM_enableRespawn) then {
 };
 
 if ((!isNil "_firstCall") && {_firstCall}) Then {
-    funcs =
+    derp_missionSelectionArray =
     [
     derp_fnc_mission_clearTown
     ];
@@ -27,7 +27,7 @@ if ((PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {PARAM_missio
     "Won" call BIS_fnc_EndMissionServer;
 
 } else {
-    private _nextMission = selectRandom funcs;
+    private _nextMission = selectRandom derp_missionSelectionArray;
 
     if (PARAM_missionRepetition) then {
         [] call _nextMission;

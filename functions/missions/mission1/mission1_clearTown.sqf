@@ -12,45 +12,44 @@
 * Phases: NONE
 *
 * Conditions:
-* Win: No opfor left inside the marker
+* Win: No opfor left inside the marker and side mission completed or failed.
 * Fail: None
  */
 missionInProgress = true;
 publicVariable "missionInProgress";
 
 private _mainAOUnits = [];
-private _selectedLocation = [];
+private _selectedLocation = selectRandom derp_mission1Locations;
 
 //------------------- Get random mission loc based on existing markers
-_missionLocations = ["missionMarker_Athira","missionMarker_Frini","missionMarker_Abdera","missionMarker_Galati","missionMarker_Syrta","missionMarker_Oreokastro","missionMarker_Kore","missionMarker_Negades","missionMarker_Aggelochori","missionMarker_Neri","missionMarker_Panochori","missionMarker_Agios_Dionysios","missionMarker_Zaros","missionMarker_Therisa","missionMarker_Poliakko","missionMarker_Alikampos","missionMarker_Neochori","missionMarker_Rodopoli","missionMarker_Paros","missionMarker_Kalochori","missionMarker_Charkia","missionMarker_Sofia","missionMarker_Molos","missionMarker_Pyrgos","missionMarker_Dorida","missionMarker_Chalkeia","missionMarker_Panagia","missionMarker_Feres","missionMarker_Selakano"];
+while {(count ((getMarkerPos _selectedLocation) nearEntities ["Man", PARAM_AOSize])) == 0} do {
+	_selectedLocation = selectRandom derp_mission1Locations;
 
-while {true} do {
-	_selectedLocation = selectRandom _missionLocations;
-
-	_isAOempty = count ((getMarkerPos _selectedLocation) nearEntities ["Man",PARAM_AOSize]);
-	if (_isAOempty == 0) exitWith {
-		false
-	};
 };
 
+//------------------- Sort the AO location
+derp_mission1Locations = derp_mission1Locations - [_selectedLocation];
+if (count derp_mission1Locations <= 6) then {
+    derp_mission1Locations = ["missionMarker_Athira", "missionMarker_Frini", "missionMarker_Abdera", "missionMarker_Galati", "missionMarker_Syrta", "missionMarker_Oreokastro", "missionMarker_Kore", "missionMarker_Negades", "missionMarker_Aggelochori", "missionMarker_Neri", "missionMarker_Panochori", "missionMarker_Agios_Dionysios", "missionMarker_Zaros", "missionMarker_Therisa", "missionMarker_Poliakko", "missionMarker_Alikampos", "missionMarker_Neochori", "missionMarker_Rodopoli", "missionMarker_Paros", "missionMarker_Kalochori", "missionMarker_Charkia", "missionMarker_Sofia", "missionMarker_Molos", "missionMarker_Pyrgos", "missionMarker_Dorida", "missionMarker_Chalkeia", "missionMarker_Panagia", "missionMarker_Feres", "missionMarker_Selakano"];
+};
 _markerPos = getMarkerPos _selectedLocation;
 
+//------------------- Para jump location
 if (PARAM_paraJumpEnabled) then {
-    _markerPos params ["_xPos","_yPos"];
-    derp_paraPos = [_xPos,_yPos] apply {_x + PARAM_AOSize + random 300};
+    _markerPos params ["_xPos", "_yPos"];
+    derp_paraPos = [_xPos, _yPos] apply {_x + PARAM_AOSize + random 300};
     publicVariable "derp_paraPos";
 };
 
 
 //------------------- Spawn In enemies
-
 if (derp_HCAOsConnected) then {
-[_markerPos,true,true,true,true,true,true] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
+[_markerPos, true, true, true, true, true, true] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
     _mainAOUnits = spawnedUnits;
 spawnedUnits = nil;
 
 } else {
-    _mainAOUnits = [_markerPos,true,true,true,true,true,true] call derp_fnc_mainAOSpawnHandler;
+    _mainAOUnits = [_markerPos, true, true, true, true, true, true] call derp_fnc_mainAOSpawnHandler;
 };
 
 //------------------- AO boundaries + task
@@ -61,29 +60,34 @@ _marker = createMarker ["mission1_mrk", _markerPos];
 
 _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 "mission1_1_mrk" setMarkerShape "ELLIPSE";
-"mission1_1_mrk" setMarkerSize [PARAM_AOSize,PARAM_AOSize];
+"mission1_1_mrk" setMarkerSize [PARAM_AOSize, PARAM_AOSize];
 "mission1_1_mrk" setMarkerBrush "Border";
 "mission1_1_mrk" setMarkerColor "ColorOPFOR";
 
-(nearestLocations [_markerPos,["NameCityCapital","NameCity","NameVillage"],200]) params ["_taskTitle"];
+(nearestLocations [_markerPos, ["NameCityCapital", "NameCity", "NameVillage"], 200]) params ["_taskTitle"];
 
-[west,["mission1"],["A town has been occupied, you need to clear it out! Good Luck",["Clear ",(text _taskTitle)] joinString "",_selectedLocation],_selectedLocation,true,5,true,"Attack",true] call BIS_fnc_taskCreate;
+derp_mission1ID = derp_mission1ID + 1;
+_missionID = "mission1" + str derp_mission1ID;
+
+[west, [_missionID], ["A town has been occupied, you need to clear it out! Good Luck", ["Clear ", (text _taskTitle)] joinString "", _selectedLocation], _selectedLocation, true, 5, true, "Attack", true] call BIS_fnc_taskCreate;
 
 //------------------- Trigger for mission end
 [{
-	params ["_markerPos"];
+	params ["_markerPos", "_missionID"];
 
-	_winTrigger = createTrigger ["EmptyDetector",_markerPos,false];
-	_winTrigger setTriggerArea [PARAM_AOSize,PARAM_AOSize,0,false];
+    [_markerPos] call derp_fnc_sideMissionSelection;
+
+	_winTrigger = createTrigger ["EmptyDetector", _markerPos, false];
+	_winTrigger setTriggerArea [PARAM_AOSize, PARAM_AOSize, 0, false];
 	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
-	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true;['mission1','Succeeded',true] call BIS_fnc_taskSetState", ""];
-
-},[_markerPos],30] call derp_fnc_waitAndExec;
+	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true;[_missionID, 'Succeeded', true] call BIS_fnc_taskSetState", ""];
+}, [_markerPos, _missionID], 30] call derp_fnc_waitAndExec;
 
 //------------------- PFH checking every 10s if the mission has been completed
 [{
-	if ((!isNil "missionWin") && {missionWin}) then {
-		(_this select 0) params ["_markerPos","_mainAOUnits"];
+	if ((!isNil "missionWin") && {missionWin} && {!derp_sideMissionInProgress}) then {
+        params ["_args", "_pfhID"];
+        _args params ["_markerPos", "_mainAOUnits", "_missionID"];
 
 		deleteMarker "mission1_mrk";
 		deleteMarker "mission1_1_mrk";
@@ -98,7 +102,7 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
         publicVariable "missionInProgress";
 
 		[{
-			params ["_mainAOUnits"];
+			params ["_mainAOUnits", "_missionID"];
 
             {
                 if (!(isNull _x) && {alive _x}) then {
@@ -106,12 +110,12 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
                 };
             } foreach _mainAOUnits;
 
-			["mission1",true] call BIS_fnc_deleteTask;
-		},[_mainAOUnits],10] call derp_fnc_waitAndExec;
+			[_missionID, true] call BIS_fnc_deleteTask;
+		}, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExec;
 
 		false call derp_fnc_missionSelection;
 		derp_missionCounter = derp_missionCounter + 1;
 
-		[_this select 1] call CBA_fnc_removePerFrameHandler;
+		_pfhID call CBA_fnc_removePerFrameHandler;
 	};
-},10,[_markerPos,_mainAOUnits]] call CBA_fnc_addPerFrameHandler;
+},10,[_markerPos, _mainAOUnits, _missionID]] call CBA_fnc_addPerFrameHandler;
