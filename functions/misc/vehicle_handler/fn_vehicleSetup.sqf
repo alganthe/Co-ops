@@ -37,12 +37,12 @@ if (_type isKindOf ["Air",configFile >> "CfgVehicles"] && !(_type in _uav)) then
 };
 
 _vehicle addEventHandler ["Fired", {
-    params ["_unit","","","","","","_projectile"];
+    params ["_unit", "_weapon", "", "", "", "", "_projectile"];
 
-    if (_unit distance2D (getMarkerPos "BASE") < 300) then {
+    if ((_weapon != "CMFlareLauncher") && {_unit distance2D (getMarkerPos "BASE") < 300}) then {
         deleteVehicle _projectile;
-        ["Warning!","Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
-}}];
+        ["Don't fire at base", "Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
+    }}];
 
 //---------- Add to zeus
 {_x addCuratorEditableObjects [[_vehicle],false]} forEach allCurators;

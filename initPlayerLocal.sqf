@@ -1,6 +1,6 @@
 //------------------------------ Headless Client
 if !(isServer or hasInterface) then {
-    diag_log format ["%1",profileName];
+    diag_log format ["%1", profileName];
 
     if (profileName == "HCAOs") then {
 
@@ -35,7 +35,7 @@ if !(isServer or hasInterface) then {
     //---------------- class specific stuff
     _pilotsClassnames = ["B_pilot_F","B_Helipilot_F"];
     if ((typeOf player) in _pilotsClassnames) then {
-        [player,"pilotRespawn"] call BIS_fnc_addRespawnPosition;
+        [player, "pilotRespawn"] call BIS_fnc_addRespawnPosition;
     };
 
     if (player isKindOf "B_support_Mort_f") then {
@@ -46,23 +46,22 @@ if !(isServer or hasInterface) then {
 
     //---------------- EHs and addactions
     player addEventHandler ["Fired", {
-        params ["_unit","","","","","","_projectile"];
+        params ["_unit", "_weapon", "", "", "", "", "_projectile"];
 
         if (_unit distance2D (getMarkerPos "BASE") < 300) then {
             deleteVehicle _projectile;
-            ["Don't fire at base","Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
-        };
-    }];
+            ["Don't fire at base", "Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
+        }}];
 
     if (PARAM_paraJumpEnabled) then {
         arsenalDude addAction [
         "<t color='#FF6600'>Paradrop on AO</t>",
         {
-            _this params ["","_unit"];
-            derp_paraPos params ["_xPos","_yPos"];
+            _this params ["", "_unit"];
+            derp_paraPos params ["_xPos", "_yPos"];
 
-            _randomPos = [(_xPos + (random 50)),(_yPos + (random 50)),400];
-            _parachute = createVehicle ["Steerable_Parachute_F", _randomPos, [], 10,"FLY"];
+            _randomPos = [(_xPos + (random 50)), (_yPos + (random 50)), 400];
+            _parachute = createVehicle ["Steerable_Parachute_F", _randomPos, [], 10, "FLY"];
             _unit moveInDriver _parachute;
         },
         nil,
