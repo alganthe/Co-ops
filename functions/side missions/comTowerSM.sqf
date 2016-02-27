@@ -28,7 +28,16 @@ private _markerArray = [];
     params ["_args", "_pfhID"];
     _args params ["_comTowers", "_AOPos", "_markerArray", "_towerMines", "_smID"];
 
-    if ({alive _x} count _comTowers == 0) then {
+    {
+        if (!alive _x) then {
+            _arrayPos = (_comTowers find _x);
+            _comTowers deleteAt _arrayPos;
+            deleteMarker (_markerArray select _arrayPos);
+            _markerArray deleteAt _arrayPos;
+        };
+    } foreach _comTowers;
+
+    if (count _comTowers == 0) then {
         derp_sideMissionInProgress = false;
         {deleteMarker _x} foreach _markerArray;
 
