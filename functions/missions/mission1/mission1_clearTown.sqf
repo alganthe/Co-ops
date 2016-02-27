@@ -80,7 +80,7 @@ _missionID = "mission1" + str derp_mission1ID;
 	_winTrigger = createTrigger ["EmptyDetector", _markerPos, false];
 	_winTrigger setTriggerArea [PARAM_AOSize, PARAM_AOSize, 0, false];
 	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
-	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true;[_missionID, 'Succeeded', true] call BIS_fnc_taskSetState", ""];
+	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true", ""];
 }, [_markerPos, _missionID], 30] call derp_fnc_waitAndExec;
 
 //------------------- PFH checking every 10s if the mission has been completed
@@ -91,6 +91,7 @@ _missionID = "mission1" + str derp_mission1ID;
 
 		deleteMarker "mission1_mrk";
 		deleteMarker "mission1_1_mrk";
+        [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
 		missionWin = nil;
         missionInProgress = false;
         publicVariable "missionInProgress";
