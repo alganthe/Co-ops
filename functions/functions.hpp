@@ -17,6 +17,7 @@ class derp {
         file = "functions\core\AI";
         class mainAOSpawnHandler {};
         class AISkill {};
+        class AIOccupyBuilding {};
     };
 };
 
