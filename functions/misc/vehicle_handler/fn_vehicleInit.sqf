@@ -9,6 +9,6 @@
 * Return Value:
 * Nothing
 */
-params ["_vehicle","_timer"];
+params ["_vehicle", "_timer"];
 
-derp_vehicleHandlingArray pushBack [_vehicle, typeOf _vehicle, getPosATL _vehicle, getDir _vehicle,_timer];
+derp_vehicleHandlingArray pushBack [_vehicle, typeOf _vehicle, getPosATL _vehicle, getDir _vehicle, _timer];

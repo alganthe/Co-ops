@@ -13,11 +13,10 @@ params ["_vehicle"];
 _type = typeOf _vehicle;
 
 if (isNull _vehicle) exitWith {};
-
 //---------------------------------------------------------- Arrays
-_ghosthawk = ["B_Heli_Transport_01_camo_F","B_Heli_Transport_01_F"]; 			// ghosthawk
-_noAmmoCargo = ["B_APC_Tracked_01_CRV_F","B_Truck_01_ammo_F"];					// Bobcat CRV
-_uav = ["B_UAV_02_CAS_F","B_UAV_02_F","B_UGV_01_F","B_UGV_01_rcws_F"];			// UAVs
+_ghosthawk = ["B_Heli_Transport_01_camo_F", "B_Heli_Transport_01_F"]; 			// ghosthawk
+_noAmmoCargo = ["B_APC_Tracked_01_CRV_F", "B_Truck_01_ammo_F"];					// Bobcat CRV
+_uav = ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"];		// UAVs
 _fob = [""];
 
 //---------------------------------------------------------- Sorting
@@ -32,8 +31,8 @@ if (_type in _noAmmoCargo) then {
 };
 
 //---------- EH
-if (_type isKindOf ["Air",configFile >> "CfgVehicles"] && !(_type in _uav)) then {
-    _vehicle addEventHandler ["GetIn",{_this call derp_fnc_pilotCheck}];
+if (_type isKindOf ["Air", configFile >> "CfgVehicles"] && !(_type in _uav)) then {
+    _vehicle addEventHandler ["GetIn", {_this call derp_fnc_pilotCheck}];
 };
 
 _vehicle addEventHandler ["Fired", {
@@ -45,4 +44,4 @@ _vehicle addEventHandler ["Fired", {
     }}];
 
 //---------- Add to zeus
-{_x addCuratorEditableObjects [[_vehicle],false]} forEach allCurators;
+{_x addCuratorEditableObjects [[_vehicle], false]} forEach allCurators;

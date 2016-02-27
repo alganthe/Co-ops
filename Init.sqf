@@ -1,4 +1,4 @@
-enableSaving [false,false];
+enableSaving [false, false];
 
 //---------------------------------- Mission vars (for all clients)
 PARAM_AOSize = "AOSize" call BIS_fnc_getParamValue;

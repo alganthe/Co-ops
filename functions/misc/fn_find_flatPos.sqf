@@ -12,7 +12,7 @@
  * Example:
  * [_vehicle,10] call derp_fnc_find_flatPos
  */
-params ["_vehicle","_radius"];
+params ["_vehicle", "_radius"];
 private ["_flatPos"];
 
  _flatPos = (getPosWorld _vehicle) isFlatEmpty

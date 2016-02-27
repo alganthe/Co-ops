@@ -8,10 +8,10 @@
 * Return Value:
 * Nothing
 */
-private ["_hour","_date"];
+private ["_hour", "_date"];
 _hour = "Daytime" call BIS_fnc_getParamValue;
 
 _date = date;
-_date set [3,_hour];
-_date set [4,0];
+_date set [3, _hour];
+_date set [4, 0];
 [_date] call bis_fnc_setDate;

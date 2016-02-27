@@ -13,20 +13,20 @@
 *
 * [_this,1] call derp_fnc_VA_filter;
 */
-params ["_box","_filter"];
+params ["_box", "_filter"];
 
 switch (_filter) do {
 
     case (0): {
-        [_box,[true],true] call BIS_fnc_removeVirtualItemCargo;
-        [_box,[true],true] call BIS_fnc_removeVirtualWeaponCargo;
+        [_box, [true], true] call BIS_fnc_removeVirtualItemCargo;
+        [_box, [true], true] call BIS_fnc_removeVirtualWeaponCargo;
     };
 
     case (1): {
-        ["AmmoboxInit",[_box,true,{true}]] call BIS_fnc_arsenal;
-        [_box,[true],true] call BIS_fnc_removeVirtualItemCargo;
-        [_box,[true],true] call BIS_fnc_removeVirtualWeaponCargo;
-        [_box,[true],true] call BIS_fnc_removeVirtualBackpackCargo;
+        ["AmmoboxInit", [_box, true, {true}]] call BIS_fnc_arsenal;
+        [_box, [true], true] call BIS_fnc_removeVirtualItemCargo;
+        [_box, [true], true] call BIS_fnc_removeVirtualWeaponCargo;
+        [_box, [true], true] call BIS_fnc_removeVirtualBackpackCargo;
 
         _weaponsBlacklist = [
             //------------------------- Weapons with blacklisted scoeps
@@ -262,12 +262,12 @@ switch (_filter) do {
         _availableItems = _availableItems - _weaponsBlacklist;
         _availableItems = _availableItems - _backpackBlackList;
 
-        [_box,_availableItems,true] call BIS_fnc_addVirtualItemCargo;
-        [_box,_availableItems,true] call BIS_fnc_addVirtualWeaponCargo;
-        [_box,_availableItems,true] call BIS_fnc_addVirtualBackpackCargo;
+        [_box,_availableItems, true] call BIS_fnc_addVirtualItemCargo;
+        [_box,_availableItems, true] call BIS_fnc_addVirtualWeaponCargo;
+        [_box,_availableItems, true] call BIS_fnc_addVirtualBackpackCargo;
     };
 
     case (2): {
-        ["AmmoboxInit",[_box,true,{true}]] call BIS_fnc_arsenal;
+        ["AmmoboxInit", [_box, true, {true}]] call BIS_fnc_arsenal;
     };
 };

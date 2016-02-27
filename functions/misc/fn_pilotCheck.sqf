@@ -26,7 +26,7 @@ if !(typeOf _unit in _authorizedPilotUnits) then {
 
     if (_position == "driver") then {
         moveOut _unit;
-        ["What are you doing?","You are not in a pilot slot!"] remoteExecCall ["derp_fnc_hintC",_unit];
+        ["What are you doing?", "You are not in a pilot slot!"] remoteExecCall ["derp_fnc_hintC", _unit];
 
     } else {
 

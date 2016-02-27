@@ -92,14 +92,13 @@ _missionID = "mission1" + str derp_mission1ID;
 		deleteMarker "mission1_mrk";
 		deleteMarker "mission1_1_mrk";
 		missionWin = nil;
+        missionInProgress = false;
+        publicVariable "missionInProgress";
 
         if (PARAM_paraJumpEnabled) then {
             derp_paraPos = nil;
             publicVariable "derp_paraPos";
         };
-
-        missionInProgress = false;
-        publicVariable "missionInProgress";
 
 		[{
 			params ["_mainAOUnits", "_missionID"];
@@ -118,4 +117,4 @@ _missionID = "mission1" + str derp_mission1ID;
 
 		_pfhID call CBA_fnc_removePerFrameHandler;
 	};
-},10,[_markerPos, _mainAOUnits, _missionID]] call CBA_fnc_addPerFrameHandler;
+}, 10, [_markerPos, _mainAOUnits, _missionID]] call CBA_fnc_addPerFrameHandler;
