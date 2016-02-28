@@ -54,7 +54,9 @@ private _evenFillIndexes = [];
 
 if (_topDownFilling) then {
     {
-        _buildingsIndexes pushback (reverse (_x buildingPos -1));
+        _buildingPos = _x buildingPos -1;
+        reverse _buildingPos;
+        _buildingsIndexes pushback _buildingPos;
     } foreach _buildings;
 } else {
     {
@@ -107,8 +109,12 @@ While {count _unitsArray > 0} do {
 
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
             } else {
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
                 breakTo "loop";
             };
         } else {
@@ -139,22 +145,19 @@ While {count _unitsArray > 0} do {
     };
 
     if (count _unitsArray > 0) then {
-        _indexCount = 0;
 
         {
             _cnt = count _x;
 
             if (_cnt == 0) then {
                 _evenFillIndexes deleteAt (_evenFillIndexes find _x);
+            } else {
+                {
+                    if (count (_x nearObjects ["Man", 2]) == 0) then {
+                        _evenFillIndexes deleteAt (_evenFillIndexes find _x);
+                    };
+                } foreach _x
             };
-
-            _indexCount = _indexCount + _cnt;
-
-            {
-                if (count (_x nearObjects ["Man", 2]) == 0) then {
-                    _evenFillIndexes deleteAt (_evenFillIndexes find _x);
-                };
-            } foreach _x
         } foreach _evenFillIndexes;
 
         if (count _evenFillIndexes == 0) then {
