@@ -12,6 +12,9 @@
 
 * Return Value:
 * Array of units not garrisoned
+*
+* Example:
+* [position, nil, [unit1, unit2, unit3, unitN], 200, false, false] call derp_fnc_AIOccupyBuilding
 */
 
 params ["_startingPos", ["_buildingTypes", ["house"]], "_unitsArray", ["_fillingRadius", -1], ["_evenlyFill", false], ["_topDownFilling", false]];
@@ -99,7 +102,7 @@ While {count _unitsArray > 0} do {
 
             _buildingPos = _buildingsPositions select 0;
 
-            if (count (_buildingPos nearObjects ["Man", 2]) == 0) then {
+            if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
                 doStop _unit;
                 commandStop _unit;
                 _unit disableAI "FSM";
@@ -127,7 +130,7 @@ While {count _unitsArray > 0} do {
 
             _buildingPos = selectRandom _buildingsPositions;
 
-            if (count (_buildingPos nearObjects ["Man", 2]) == 0) then {
+            if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
                 doStop _unit;
                 commandStop _unit;
                 _unit disableAI "FSM";
@@ -153,7 +156,7 @@ While {count _unitsArray > 0} do {
                 _evenFillIndexes deleteAt (_evenFillIndexes find _x);
             } else {
                 {
-                    if (count (_x nearObjects ["Man", 2]) == 0) then {
+                    if (count (_x nearObjects ["CAManBase", 2]) == 0) then {
                         _evenFillIndexes deleteAt (_evenFillIndexes find _x);
                     };
                 } foreach _x
