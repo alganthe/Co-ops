@@ -56,21 +56,24 @@ if (_topDownFilling) then {
     {
         _buildingsIndexes pushback (reverse (_x buildingPos -1));
     } foreach _buildings;
-    _evenFillIndexes = _buildingsIndexes;
 } else {
     {
         _buildingsIndexes pushback (_x buildingPos -1);
     } foreach _buildings;
-    _evenFillIndexes = _buildingsIndexes;
 };
 
 private _indexCount = 0;
 {
     _cnt = count _x;
+
+    if (_cnt == 0) then {
+        _buildingsIndexes deleteAt (_buildingsIndexes find _x);
+    };
     _indexCount = _indexCount + _cnt;
 } foreach _buildingsIndexes;
+_evenFillIndexes = _buildingsIndexes;
 
-private _leftOverAINumber = (count _unitsArray) - _indexCount;
+private _leftOverAICount = (count _unitsArray) - _indexCount;
 
 if (_leftOverAINumber > 0) then {
     diag_log "AIOccupyBuilding Warning: Not enough spots to place all units";
@@ -79,9 +82,12 @@ if (_leftOverAINumber > 0) then {
 While {count _unitsArray > 0} do {
     scopeName "Main";
 
-    if (_evenlyFill) then {
+    for "_i" from 0 to (count _unitsArray) do {
         scopeName "loop";
-        {
+        private _unit = _unitsArray select 0;
+
+        if (_evenlyFill) then {
+
             _buildingsPositions = _buildingsIndexes select 0;
 
             if (count _buildingsPositions == 0) then {
@@ -92,45 +98,20 @@ While {count _unitsArray > 0} do {
             _buildingPos = _buildingsPositions select 0;
 
             if (count (_buildingPos nearObjects ["Man", 2]) == 0) then {
-                doStop _x;
-                commandStop _x;
-                _x disableAI "FSM";
-                _x disableAI "AUTOCOMBAT";
+                doStop _unit;
+                commandStop _unit;
+                _unit disableAI "FSM";
+                _unit disableAI "AUTOCOMBAT";
 
-                _x setPos _buildingPos;
+                _unit setPos _buildingPos;
 
-                _unitsArray deleteAt (_unitsArray find _x);
+                _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
             } else {
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
                 breakTo "loop";
             };
-        } foreach _unitsArray;
-
-        if (count _unitsArray > 0) then {
-            {
-                _buildingPositions = _x select 0;
-
-                if (count (_buildingPos nearObjects ["Man", 2]) == 0) then {
-                    _evenFillIndexes deleteAt (_evenFillIndexes find _buildingPos);
-                };
-            } foreach _evenFillIndexes;
-
-            private _availablePos = 0;
-
-            {
-                _cnt = count _x;
-                _availablePos = _availablePos + _cnt;
-            } foreach _evenFillIndexes;
-
-            if (_availablePos > 0) then {
-                _buildingsIndexes = _evenFillIndexes;
-                breakTo "loop";
-            };
-        };
-    } else {
-        scopeName "loop";
-        {
+        } else {
             _buildingsPositions = (selectRandom _buildingsIndexes);
 
             if (count _buildingsPositions == 0) then {
@@ -141,21 +122,46 @@ While {count _unitsArray > 0} do {
             _buildingPos = selectRandom _buildingsPositions;
 
             if (count (_buildingPos nearObjects ["Man", 2]) == 0) then {
-                doStop _x;
-                commandStop _x;
-                _x disableAI "FSM";
-                _x disableAI "AUTOCOMBAT";
+                doStop _unit;
+                commandStop _unit;
+                _unit disableAI "FSM";
+                _unit disableAI "AUTOCOMBAT";
 
-                _x setPos _buildingPos;
+                _unit setPos _buildingPos;
 
-                _unitsArray deleteAt (_unitsArray find _x);
+                _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
             } else {
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
                 breakTo "loop";
             };
-        } foreach _unitsArray;
-        breakOut "Main";
+        };
+    };
+
+    if (count _unitsArray > 0) then {
+        _indexCount = 0;
+
+        {
+            _cnt = count _x;
+
+            if (_cnt == 0) then {
+                _evenFillIndexes deleteAt (_evenFillIndexes find _x);
+            };
+
+            _indexCount = _indexCount + _cnt;
+
+            {
+                if (count (_x nearObjects ["Man", 2]) == 0) then {
+                    _evenFillIndexes deleteAt (_evenFillIndexes find _x);
+                };
+            } foreach _x
+        } foreach _evenFillIndexes;
+
+        if (count _evenFillIndexes == 0) then {
+            breakOut "Main";
+        } else {
+            _buildingsIndexes = _evenFillIndexes;
+        };
     };
 };
 
