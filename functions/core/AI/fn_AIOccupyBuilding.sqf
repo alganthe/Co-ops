@@ -41,7 +41,7 @@ _arrayShuffle = {
 };
 
 if (_fillingRadius == -1) then {
-    _buildings = nearestObjects [_startingPos, _buildingTypes, 30];
+    _buildings = nearestObjects [_startingPos, _buildingTypes, 50];
 } else {
     _buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius];
     _buildings = _buildings call _arrayShuffle;
@@ -132,14 +132,19 @@ While {count _unitsArray > 0} do {
                 breakTo "loop";
             };
         } else {
-            _buildingsPositions = (selectRandom _buildingsIndexes);
+            _buildingsPositions = selectRandom _buildingsIndexes;
 
             if (count _buildingsPositions == 0) then {
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
                 breakTo "loop";
             };
 
-            _buildingPos = selectRandom _buildingsPositions;
+            private "_buildingPos";
+            if (_topDownFilling) then {
+                _buildingPos = _buildingsPositions select 0;
+            } else {
+                _buildingPos = selectRandom _buildingsPositions;
+            };
 
             if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
                 _unit disableAI "FSM";
