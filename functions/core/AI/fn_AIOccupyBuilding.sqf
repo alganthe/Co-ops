@@ -58,7 +58,17 @@ private _evenFillIndexes = [];
 if (_topDownFilling) then {
     {
         _buildingPos = _x buildingPos -1;
-        reverse _buildingPos;
+
+        {
+            reverse _x;
+        } foreach _buildingPos;
+
+        _buildingPos sort false;
+
+        {
+            reverse _x;
+        } foreach _buildingPos;
+
         _buildingsIndexes pushback _buildingPos;
     } foreach _buildings;
 } else {
@@ -103,12 +113,13 @@ While {count _unitsArray > 0} do {
             _buildingPos = _buildingsPositions select 0;
 
             if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                doStop _unit;
-                commandStop _unit;
                 _unit disableAI "FSM";
                 _unit disableAI "AUTOCOMBAT";
 
                 _unit setPos _buildingPos;
+
+                doStop _unit;
+                commandStop _unit;
 
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
@@ -131,12 +142,13 @@ While {count _unitsArray > 0} do {
             _buildingPos = selectRandom _buildingsPositions;
 
             if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                doStop _unit;
-                commandStop _unit;
                 _unit disableAI "FSM";
                 _unit disableAI "AUTOCOMBAT";
 
                 _unit setPos _buildingPos;
+
+                doStop _unit;
+                commandStop _unit;
 
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
