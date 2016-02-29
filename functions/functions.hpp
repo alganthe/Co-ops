@@ -20,9 +20,3 @@ class derp {
         class AIOccupyBuilding {};
     };
 };
-
-class Zen {
-    class functions {
-        class occupyHouse {file = "functions\Zen_OccupyHouse.sqf";};
-    };
-};
