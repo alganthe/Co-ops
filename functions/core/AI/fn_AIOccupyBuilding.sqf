@@ -90,7 +90,7 @@ _evenFillIndexes = _buildingsIndexes;
 
 private _leftOverAICount = (count _unitsArray) - _indexCount;
 
-if (_leftOverAINumber > 0) then {
+if (_leftOverAICount > 0) then {
     diag_log "AIOccupyBuilding Warning: Not enough spots to place all units";
 };
 
