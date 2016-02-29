@@ -15,13 +15,13 @@
 *    2: Amount of vehicles <NUMBER> default: mission param
 * 4: <ARRAY>
 *    1: Create random vehicles <BOOL>
-*    2: Amount of vehicles <NUMBER> default: 2 + 2 random
+*    2: Amount of vehicles <NUMBER> default: 3
 * 5: <ARRAY>
 *    1: Create infantry <BOOL>
 *    2: Amount of groups <NUMBER> default: mission param
 * 6: <ARRAY>
 *    1: Create infantry in houses <BOOL>
-*    2: Amount of groups <NUMBER> default:  2
+*    2: Amount of groups <NUMBER> default: 2
 * 7: Populate military buildings <BOOL> (OPTIONNAL)
 *
 * Return Value:
@@ -37,11 +37,12 @@ params ["_AOpos", "_radiusArray", "_AAArray", "_MRAPArray", "_randomVehcsArray",
 _radiusArray params ["_radiusSetting", ["_radiusSize", PARAM_AOSize]];
 _AAArray params ["_AASetting", ["_AAAmount", PARAM_AntiAirAmount]];
 _MRAPArray params ["_MRAPSetting", ["_MRAPAmount", PARAM_MRAPAmount]];
-_randomVehcsArray params ["_randomVehcsSetting", ["_randomVehcsAmount", 2 + random 2]];
+_randomVehcsArray params ["_randomVehcsSetting", ["_randomVehcsAmount", PARAM_RandomVehcsAmount]];
 _infantryArray params ["_infantrySetting", ["_infantryAmount", PARAM_InfantryGroupsAmount]];
 _urbanIfantryArray params ["_urbanInfantrySetting", ["_urbanInfantryAmount", 2]];
 
 private _spawnedUnits = [];
+private _AISkillUnitsArray = [];
 
 //-------------------------------------------------- AA vehicles
 if (_AASetting) then {
@@ -55,7 +56,11 @@ if (_AASetting) then {
         createVehicleCrew _AAVehicle;
 
         _spawnedUnits pushBack _AAVehicle;
-        {_spawnedUnits pushBack _x} foreach (crew _AAVehicle);
+
+        {
+            _spawnedUnits pushBack _x;
+        } foreach (crew _AAVehicle);
+
         _group = group _AAVehicle;
 
         [_group, _AOpos, 500] call BIS_fnc_taskPatrol;
@@ -74,7 +79,11 @@ if (_MRAPSetting) then {
 
         createVehicleCrew _MRAP;
         _spawnedUnits pushBack _MRAP;
-        {_spawnedUnits pushBack _x} foreach (crew _MRAP);
+
+        {
+            _spawnedUnits pushBack _x;
+        } foreach (crew _MRAP);
+
         _group = group _MRAP;
 
         [_group, _AOpos, 500] call BIS_fnc_taskPatrol;
@@ -93,7 +102,9 @@ if (_randomVehcsSetting) then {
 
         createVehicleCrew _vehc;
         _spawnedUnits pushBack _vehc;
-        {_spawnedUnits pushBack _x} foreach (crew _vehc);
+        {
+            _spawnedUnits pushBack _x;
+        } foreach (crew _vehc);
         _group = group _vehc;
 
         [_group, _AOpos, 700] call BIS_fnc_taskPatrol;
@@ -109,19 +120,9 @@ if (_infantrySetting) then {
 
         [_infantryGroup, _AOpos, (_radiusSize / 1.5)] call BIS_fnc_taskPatrol;
 
-        {_spawnedUnits pushBack _x} foreach (units _infantryGroup);
-
         {
-            _x setSkill ["aimingAccuracy", (PARAM_AIAimingAccuracy / 10)];
-            _x setSkill ["aimingShake", (PARAM_AIAimingShake / 10)];
-            _x setSkill ["aimingSpeed", (PARAM_AIAimingSpeed / 10)];
-            _x setSkill ["endurance", (PARAM_AIEndurance / 10)];
-            _x setSkill ["spotDistance", (PARAM_AISpotingDistance / 10)];
-            _x setSkill ["spotTime", (PARAM_AISpottingSpeed / 10)];
-            _x setSkill ["courage", (PARAM_AICourage / 10)];
-            _x setSkill ["reloadSpeed", (PARAM_AIReloadSpeed / 10)];
-            _x setSkill ["commanding", (PARAM_AICommandingSkill / 10)];
-            _x setSkill ["general", (PARAM_AIGeneralSkill / 10)];
+            _spawnedUnits pushBack _x;
+            _AISkillUnitsArray pushBack _x;
         } foreach (units _infantryGroup);
     };
 };
@@ -131,22 +132,11 @@ if (_urbanInfantrySetting) then {
     for "_x" from 1 to _urbanInfantryAmount do {
 
         _group = [_AOpos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
-        {_x disableAI "FSM"} forEach units _group;
-        [_AOpos,(units _group), 200, false, true, false, false] call Zen_fnc_occupyHouse;
-
-        {_spawnedUnits pushBack _x} foreach (units _group);
+        [_AOpos, nil, (units _group), 150, false, false] call derp_fnc_AIOccupyBuilding;
 
         {
-            _x setSkill ["aimingAccuracy", (PARAM_AIAimingAccuracy / 10)];
-            _x setSkill ["aimingShake", (PARAM_AIAimingShake / 10)];
-            _x setSkill ["aimingSpeed", (PARAM_AIAimingSpeed / 10)];
-            _x setSkill ["endurance", (PARAM_AIEndurance / 10)];
-            _x setSkill ["spotDistance", (PARAM_AISpotingDistance / 10)];
-            _x setSkill ["spotTime", (PARAM_AISpottingSpeed / 10)];
-            _x setSkill ["courage", (PARAM_AICourage / 10)];
-            _x setSkill ["reloadSpeed", (PARAM_AIReloadSpeed / 10)];
-            _x setSkill ["commanding", (PARAM_AICommandingSkill / 10)];
-            _x setSkill ["general", (PARAM_AIGeneralSkill / 10)];
+            _spawnedUnits pushBack _x;
+            _AISkillUnitsArray pushBack _x;
         } foreach (units _group);
     };
 };
@@ -161,15 +151,19 @@ if !(isNil "_milbuildingInfantry") then {
         {
             _x params ["_building"];
             {
-                _x params ["_posX", "_posY", "_posZ"];
-                _unit = _urbanGroup createUnit [(selectRandom UrbanUnits), [_posX, _posY, _posZ], [], 0, "NONE"];
-                doStop _unit;
-                commandStop _unit;
-                _unit disableAI "FSM";
-                _unit disableAI "AUTOCOMBAT";
-                _unit setPos [_posX, _posY, _posZ];
+                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
+                    _x params ["_posX", "_posY", "_posZ"];
 
-                _spawnedUnits pushBack _unit;
+                    _unit = _urbanGroup createUnit [(selectRandom UrbanUnits), [_posX, _posY, _posZ], [], 0, "NONE"];
+
+                    _unit disableAI "FSM";
+                    _unit disableAI "AUTOCOMBAT";
+                    _unit setPos [_posX, _posY, _posZ];
+                    doStop _unit;
+                    commandStop _unit;
+
+                    _spawnedUnits pushBack _unit;
+                };
             } foreach (_building buildingPos -1);
         } foreach _milBuildings;
     };
@@ -179,6 +173,8 @@ if !(isNil "_milbuildingInfantry") then {
 {
     _x addCuratorEditableObjects [_spawnedUnits, false];
 } forEach allCurators;
+
+[_AISkillUnitsArray] call derp_fnc_AISkill;
 
 if (isServer) then {
     _spawnedUnits

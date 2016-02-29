@@ -131,6 +131,13 @@ class Params {
         default = 3;
     };
 
+    class RandomVehcsAmount {
+        title = "Amount of random vehicles on the main AO";
+        values[] = {1, 2, 3, 4, 5, 6};
+        texts[] = {"1", "2", "3", "4", "5", "6"};
+        default = 3;
+    };
+
     class InfantryGroupsAmount {
         title = "Amount of infantry groups on the main AO";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -149,14 +156,14 @@ class Params {
         title = "AI aiming accuracy";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 5;
+        default = 3;
     };
 
     class AIAimingShake {
         title = "AI aiming shake";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 7;
+        default = 5;
     };
 
     class AIAimingSpeed {
@@ -176,14 +183,14 @@ class Params {
         title = "AI spotting distance";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 4;
+        default = 7;
     };
 
     class AISpottingSpeed {
         title = "AI spotting speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 4;
+        default = 6;
     };
 
     class AICourage {
