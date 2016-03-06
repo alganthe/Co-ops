@@ -33,13 +33,8 @@
 #define InfantryGroupList ["OIA_InfSquad", "OIA_InfSquad_Weapons", "OIA_InfTeam_AA", "OIA_InfTeam_AT", "OIA_InfAssault", "OIA_ReconSquad"]
 #define MilitaryBuildings ["Land_Cargo_House_V1_F", "Land_Cargo_House_V2_F", "Land_Cargo_House_V3_F", "Land_Medevac_house_V1_F", "Land_Research_house_V1_F", "Land_Cargo_HQ_V1_F", "Land_Cargo_HQ_V2_F", "Land_Cargo_HQ_V3_F", "Land_Research_HQ_F", "Land_Medevac_HQ_V1_F", "Land_Cargo_Patrol_V1_F", "Land_Cargo_Patrol_V2_F", "Land_Cargo_Patrol_V3_F", "Land_Cargo_Tower_V1_F", "Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F"]
 
-params ["_AOpos", "_radiusArray", "_AAArray", "_MRAPArray", "_randomVehcsArray", "_infantryArray", "_urbanIfantryArray", "_milbuildingInfantry"];
-_radiusArray params ["_radiusSetting", ["_radiusSize", PARAM_AOSize]];
-_AAArray params ["_AASetting", ["_AAAmount", PARAM_AntiAirAmount]];
-_MRAPArray params ["_MRAPSetting", ["_MRAPAmount", PARAM_MRAPAmount]];
-_randomVehcsArray params ["_randomVehcsSetting", ["_randomVehcsAmount", PARAM_RandomVehcsAmount]];
-_infantryArray params ["_infantrySetting", ["_infantryAmount", PARAM_InfantryGroupsAmount]];
-_urbanIfantryArray params ["_urbanInfantrySetting", ["_urbanInfantryAmount", 2]];
+params ["_AOpos", "_settingsArray", ["_radiusSize", PARAM_AOSize], ["_AAAmount", PARAM_AntiAirAmount], ["_MRAPAmount", PARAM_MRAPAmount], ["_randomVehcsAmount", PARAM_RandomVehcsAmount], ["_infantryAmount", PARAM_InfantryGroupsAmount], ["_urbanInfantryAmount", 2]];
+_settingsArray params [["_AASetting", false], ["_MRAPSetting", false], ["_randomVehcsSetting", false], ["_infantrySetting", false], ["_urbanInfantrySetting", false], ["_milbuildingInfantry", false]];
 
 private _spawnedUnits = [];
 private _AISkillUnitsArray = [];
@@ -142,8 +137,8 @@ if (_urbanInfantrySetting) then {
 };
 
 //-------------------------------------------------- Military area
-if !(isNil "_milbuildingInfantry") then {
-    private _milBuildings = nearestObjects [_AOpos, MilitaryBuildings, 1100];
+if (_milbuildingInfantry) then {
+    private _milBuildings = nearestObjects [_AOpos, MilitaryBuildings, (_radiusSize + 100)];
 
     if (count _milBuildings > 0 ) then {
         private _urbanGroup = createGroup east;
@@ -151,7 +146,7 @@ if !(isNil "_milbuildingInfantry") then {
         {
             _x params ["_building"];
             {
-                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
+                if (count (_x nearObjects ["CAManBase", 1]) == 0) then {
                     _x params ["_posX", "_posY", "_posZ"];
 
                     _unit = _urbanGroup createUnit [(selectRandom UrbanUnits), [_posX, _posY, _posZ], [], 0, "NONE"];
