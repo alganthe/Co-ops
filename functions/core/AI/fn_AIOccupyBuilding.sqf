@@ -7,7 +7,7 @@
 * 1: Limit the building search to those type of building <ARRAY>
 * 2: Units that will be garrisoned <ARRAY>
 * 3: Radius to fill building(s) -1 for nearest only <SCALAR> default: -1
-* 4: True to fill building(s) evenly, false for one by one <BOOL> default: false
+* 4: 0: even filling, 1: building by building, 2: random filling <SCALAR> default: 0
 * 5: True to fill building(s) from top to bottom <BOOL> default: false
 
 * Return Value:
@@ -17,7 +17,7 @@
 * [position, nil, [unit1, unit2, unit3, unitN], 200, false, false] call derp_fnc_AIOccupyBuilding
 */
 
-params ["_startingPos", ["_buildingTypes", ["house"]], "_unitsArray", ["_fillingRadius", -1], ["_evenlyFill", false], ["_topDownFilling", false]];
+params ["_startingPos", ["_buildingTypes", ["house"]], "_unitsArray", ["_fillingRadius", -1], ["_fillingType", 0], ["_topDownFilling", false]];
 
 if (_startingPos isEqualTo [0,0,0]) exitWith {
     player sideChat str "AIOccupyBuilding Error : Invalid position given.";
@@ -89,7 +89,6 @@ private _indexCount = 0;
 _evenFillIndexes = _buildingsIndexes;
 
 private _leftOverAICount = (count _unitsArray) - _indexCount;
-
 if (_leftOverAICount > 0) then {
     diag_log "AIOccupyBuilding Warning: Not enough spots to place all units";
 };
@@ -101,89 +100,109 @@ While {count _unitsArray > 0} do {
         scopeName "loop";
         private _unit = _unitsArray select 0;
 
-        if (_evenlyFill) then {
+        switch (_fillingType) do {
+            case (0): {
+                if (count _buildingsIndexes == 0) then {
+                    breakOut "Main";
+                };
 
-            _buildingsPositions = _buildingsIndexes select 0;
+                _buildingsPositions = _buildingsIndexes select 0;
 
-            if (count _buildingsPositions == 0) then {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                breakTo "loop";
-            };
+                if (count _buildingsPositions == 0) then {
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                    breakTo "loop";
+                };
 
-            _buildingPos = _buildingsPositions select 0;
-
-            if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                _unit disableAI "FSM";
-                _unit disableAI "AUTOCOMBAT";
-
-                _unit setPos _buildingPos;
-
-                doStop _unit;
-                commandStop _unit;
-
-                _unitsArray deleteAt (_unitsArray find _unit);
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
-            } else {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
-                breakTo "loop";
-            };
-        } else {
-            _buildingsPositions = selectRandom _buildingsIndexes;
-
-            if (count _buildingsPositions == 0) then {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                breakTo "loop";
-            };
-
-            private "_buildingPos";
-            if (_topDownFilling) then {
                 _buildingPos = _buildingsPositions select 0;
-            } else {
-                _buildingPos = selectRandom _buildingsPositions;
+
+                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
+                    _unit disableAI "FSM";
+                    _unit disableAI "AUTOCOMBAT";
+
+                    _unit setPos _buildingPos;
+
+                    doStop _unit;
+                    commandStop _unit;
+
+                    _unitsArray deleteAt (_unitsArray find _unit);
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                    _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
+                } else {
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                    _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
+                    breakTo "loop";
+                };
             };
 
-            if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                _unit disableAI "FSM";
-                _unit disableAI "AUTOCOMBAT";
+        case (1): {
+                if (count _buildingsIndexes == 0) then {
+                    breakOut "Main";
+                };
 
-                _unit setPos _buildingPos;
+                _buildingsPositions = selectRandom _buildingsIndexes;
 
-                doStop _unit;
-                commandStop _unit;
+                if (count _buildingsPositions == 0) then {
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                    breakTo "loop";
+                };
 
-                _unitsArray deleteAt (_unitsArray find _unit);
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
-            } else {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
-                breakTo "loop";
+                _buildingPos = _buildingsPositions select 0;
+
+                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
+                    _unit disableAI "FSM";
+                    _unit disableAI "AUTOCOMBAT";
+
+                    _unit setPos _buildingPos;
+
+                    doStop _unit;
+                    commandStop _unit;
+
+                    _unitsArray deleteAt (_unitsArray find _unit);
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                } else {
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    breakTo "loop";
+                };
             };
-        };
-    };
 
-    if (count _unitsArray > 0) then {
+            case (2): {
+                if (count _buildingsIndexes == 0) then {
+                    breakOut "Main";
+                };
 
-        {
-            _cnt = count _x;
+                _buildingsPositions = selectRandom _buildingsIndexes;
+                diag_log _buildingsPositions;
 
-            if (_cnt == 0) then {
-                _evenFillIndexes deleteAt (_evenFillIndexes find _x);
-            } else {
-                {
-                    if (count (_x nearObjects ["CAManBase", 2]) == 0) then {
-                        _evenFillIndexes deleteAt (_evenFillIndexes find _x);
-                    };
-                } foreach _x
+                if (count _buildingsPositions == 0) then {
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
+                    breakTo "loop";
+                };
+
+                private "_buildingPos";
+                if (_topDownFilling) then {
+                    _buildingPos = _buildingsPositions select 0;
+                } else {
+                    _buildingPos = selectRandom _buildingsPositions;
+                };
+
+                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
+                    _unit disableAI "FSM";
+                    _unit disableAI "AUTOCOMBAT";
+
+                    _unit setPos _buildingPos;
+
+                    doStop _unit;
+                    commandStop _unit;
+
+                    _unitsArray deleteAt (_unitsArray find _unit);
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                } else {
+                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    breakTo "loop";
+                };
             };
-        } foreach _evenFillIndexes;
-
-        if (count _evenFillIndexes == 0) then {
-            breakOut "Main";
-        } else {
-            _buildingsIndexes = _evenFillIndexes;
         };
     };
 };
