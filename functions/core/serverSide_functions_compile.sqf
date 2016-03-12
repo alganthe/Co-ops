@@ -15,6 +15,5 @@ derp_fnc_mission_clearTown = compile preprocessFileLineNumbers "functions\missio
 
 // Side missions
 derp_fnc_comTowerSM = compile preprocessFileLineNumbers "functions\side missions\comTowerSM.sqf";
-derp_fnc_intelRetrievalSM = compile preprocessFileLineNumbers "functions\side missions\intelRetrievalSM.sqf";
 derp_fnc_officerMurderSM = compile preprocessFileLineNumbers "functions\side missions\officerMurderSM.sqf";
 derp_fnc_truckRetrievalSM = compile preprocessFileLineNumbers "functions\side missions\truckRetrievalSM.sqf";

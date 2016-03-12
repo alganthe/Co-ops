@@ -1,1 +1,0 @@
-derp_sideMissionInProgress = false;

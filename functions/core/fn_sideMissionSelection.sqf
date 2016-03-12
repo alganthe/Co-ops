@@ -13,7 +13,6 @@ params ["_AOPos"];
 derp_sideMissionInProgress = true;
 
 private _sideMissionArray = [
-//derp_fnc_intelRetrievalSM,
 derp_fnc_officerMurderSM,
 derp_fnc_truckRetrievalSM
 ];
