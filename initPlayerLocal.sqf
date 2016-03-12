@@ -7,13 +7,7 @@ if !(isServer or hasInterface) then {
         derp_HCAOsConnected = true;
         publicVariableServer "HCAOsConnected";
         diag_log format ["HCAOs connected"];
-    } else {
-
-        derp_HCAmbiantConnected = true;
-        publicVariableServer "HCAmbiantConnected";
-        diag_log format ["HCAmbiantAI connected"];
     };
-
 } else {//-------------------------------- Player stuff
 
     [] call derp_fnc_diary; // Diary
@@ -50,7 +44,7 @@ if !(isServer or hasInterface) then {
 
         if (_unit distance2D (getMarkerPos "BASE") < 300) then {
             deleteVehicle _projectile;
-            ["Don't fire at base", "Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
+            ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];
 
     if (PARAM_paraJumpEnabled) then {
