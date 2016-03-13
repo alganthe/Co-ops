@@ -18,14 +18,14 @@ params ["_AOPos"];
 derp_SMID = derp_SMID + 1;
 _smID = "officerKill" + str derp_SMID;
 
-[west, _smID, ["We have intel that a CSAT officer is in the AO, find him and take him out.", "Find and kill a CSAT officer", ""], objNull, "Created", 5, true, "Attack", true] call BIS_fnc_taskCreate;
+[west, _smID, ["We have intel that a CSAT officer is in the AO, find him and take him out.", "Kill the CSAT officer", ""], objNull, "Created", 5, true, "Attack", true] call BIS_fnc_taskCreate;
 
 _buildingArray = _AOPos nearObjects ["House", 200];
 
 private "_officerBuilding";
 {
     _buildingPositions = _x buildingPos -1;
-    if ({count (_x nearObjects ["CAManBase", 1]) == 0} count _buildingPositions > 3) exitWith {_officerBuilding = _x};
+    if ({count (_x nearObjects ["CAManBase", 1]) == 0} count _buildingPositions > 5) exitWith {_officerBuilding = _x};
 } foreach _buildingArray;
 
 _officerGroup = createGroup east;
