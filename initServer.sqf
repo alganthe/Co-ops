@@ -40,12 +40,12 @@ if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
     PARAM_paraJumpEnabled = false;
 };
 //---------------------------------- EHs
-["HCdisconnectedStackedEH", "HandleDisconnect", {
+addMissionEventHandler ["HandleDisconnect", {
     params ["_unit", "_ID", "_UID", "_name"];
     if (_name == "HCAOs") then {
         derp_HCAOsConnected = false;
     };
-}, []] call BIS_fnc_addStackedEventHandler;
+}];
 
 //---------------------------------- Scripts and functions calls.
 [{[true] call derp_fnc_missionSelection}, [], 30] call derp_fnc_waitAndExec; // STart mission selection

@@ -1,7 +1,5 @@
 //------------------------------ Headless Client
 if !(isServer or hasInterface) then {
-    diag_log format ["%1", profileName];
-
     if (profileName == "HCAOs") then {
 
         derp_HCAOsConnected = true;
