@@ -5,24 +5,21 @@
 * Arguments:
 * 0: Position of the mission <POSITION>
 * 1: <ARRAY>
-*    1: Use default radius (mission param) <BOOL>
-*    2: Custom radius <NUMBER> default: mission param
-* 2: <ARRAY>
-*    1: Create AA vehicles <BOOL>
-*    2: Amount of vehicles <NUMBER> default: mission param
-* 3: <ARRAY>
-*    1: Create MRAPs <BOOL>
-*    2: Amount of vehicles <NUMBER> default: mission param
-* 4: <ARRAY>
-*    1: Create random vehicles <BOOL>
-*    2: Amount of vehicles <NUMBER> default: 3
-* 5: <ARRAY>
-*    1: Create infantry <BOOL>
-*    2: Amount of groups <NUMBER> default: mission param
-* 6: <ARRAY>
-*    1: Create infantry in houses <BOOL>
-*    2: Amount of groups <NUMBER> default: 2
-* 7: Populate military buildings <BOOL> (OPTIONNAL)
+*    1: Place AA vehicles <BOOL>
+*    2: Place  MRAPS <BOOL>
+*    3: Place random vehcs <BOOL>
+*    4: Place infantry groups <BOOL>
+*    5: Place AA groups <BOOL>
+*    6: Place AT groups <BOOL>
+*    7: Place urban groups <BOOL>
+*    8: Place infantry in milbuildings <BOOL>
+* 2: AA vehicles amount <SCALAR> (OPTIONNAL)
+* 3: MRAPs amount <SCALAR> (OPTIONNAL)
+* 4: Random vehcs amount <SCALAR> (OPTIONNAL)
+* 5: Infantry groups amount <SCALAR> (OPTIONNAL)
+* 6: AA groups amount <SCALAR> (OPTIONNAL)
+* 7: AT groups amount <SCALAR> (OPTIONNAL)
+* 8: Urban groups amount <SCALAR> (OPTIONNAL)
 *
 * Return Value:
 * Array of units created
@@ -30,18 +27,18 @@
 #define MRAPList ["O_MRAP_02_gmg_F", "O_MRAP_02_hmg_F"]
 #define VehicleList ["O_MBT_02_cannon_F", "O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F", "O_APC_Tracked_02_cannon_F"]
 #define UrbanUnits ["O_soldierU_A_F", "O_soldierU_AAR_F", "O_soldierU_AAA_F", "O_soldierU_AAT_F", "O_soldierU_AR_F", "O_soldierU_medic_F", "O_engineer_U_F", "O_soldierU_exp_F", "O_soldierU_GL_F", "O_Urban_HeavyGunner_F", "O_soldierU_M_F", "O_soldierU_AA_F", "O_soldierU_AT_F", "O_soldierU_repair_F", "O_soldierU_F", "O_soldierU_LAT_F", "O_Urban_Sharpshooter_F", "O_soldierU_SL_F", "O_soldierU_TL_F"]
-#define InfantryGroupList ["OIA_InfSquad", "OIA_InfSquad_Weapons", "OIA_InfTeam_AA", "OIA_InfTeam_AT", "OIA_InfAssault", "OIA_ReconSquad"]
+#define InfantryGroupList ["OIA_InfSquad", "OIA_InfSquad_Weapons", "OIA_InfAssault", "OIA_ReconSquad"]
 #define MilitaryBuildings ["Land_Cargo_House_V1_F", "Land_Cargo_House_V2_F", "Land_Cargo_House_V3_F", "Land_Medevac_house_V1_F", "Land_Research_house_V1_F", "Land_Cargo_HQ_V1_F", "Land_Cargo_HQ_V2_F", "Land_Cargo_HQ_V3_F", "Land_Research_HQ_F", "Land_Medevac_HQ_V1_F", "Land_Cargo_Patrol_V1_F", "Land_Cargo_Patrol_V2_F", "Land_Cargo_Patrol_V3_F", "Land_Cargo_Tower_V1_F", "Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F"]
 
-params ["_AOpos", "_settingsArray", ["_radiusSize", PARAM_AOSize], ["_AAAmount", PARAM_AntiAirAmount], ["_MRAPAmount", PARAM_MRAPAmount], ["_randomVehcsAmount", PARAM_RandomVehcsAmount], ["_infantryAmount", PARAM_InfantryGroupsAmount], ["_urbanInfantryAmount", 2]];
-_settingsArray params [["_AASetting", false], ["_MRAPSetting", false], ["_randomVehcsSetting", false], ["_infantrySetting", false], ["_urbanInfantrySetting", false], ["_milbuildingInfantry", false]];
+params ["_AOpos", "_settingsArray", ["_radiusSize", PARAM_AOSize], ["_AAAVehcAmount", PARAM_AntiAirAmount], ["_MRAPAmount", PARAM_MRAPAmount], ["_randomVehcsAmount", PARAM_RandomVehcsAmount], ["_infantryGroupsAmount", PARAM_InfantryGroupsAmount], ["_AAGroupsAmount", PARAM_AAGroupsAmount], ["_ATGroupsAmount", PARAM_ATGroupsAmount], ["_urbanInfantryAmount", 2]];
+_settingsArray params [["_AAAVehcSetting", false], ["_MRAPSetting", false], ["_randomVehcsSetting", false], ["_infantryGroupsSetting", false], ["_AAGroupsSetting", false], ["_ATGroupsSetting", false] ["_urbanInfantrySetting", false], ["_milbuildingInfantry", false]];
 
 private _spawnedUnits = [];
 private _AISkillUnitsArray = [];
 
 //-------------------------------------------------- AA vehicles
-if (_AASetting) then {
-    for "_x" from 1 to _AAAmount do {
+if (_AAAVehcSetting) then {
+    for "_x" from 1 to _AAAVehcAmount do {
         _randomPos = [[[_AOpos, (_radiusSize / 1.5)], []], ["water", "out"]] call BIS_fnc_randomPos;
         _AAVehicle = "O_APC_Tracked_02_AA_F" createVehicle _randomPos;
 
@@ -81,7 +78,7 @@ if (_MRAPSetting) then {
 
         _group = group _MRAP;
 
-        [_group, _AOpos, 500] call BIS_fnc_taskPatrol;
+        [_group, _AOpos, 300] call BIS_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
     };
 };
@@ -102,18 +99,48 @@ if (_randomVehcsSetting) then {
         } foreach (crew _vehc);
         _group = group _vehc;
 
-        [_group, _AOpos, 700] call BIS_fnc_taskPatrol;
+        [_group, _AOpos, 500] call BIS_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
     };
 };
 
 //-------------------------------------------------- main infantry groups
-if (_infantrySetting) then {
-    for "_x" from 1 to _infantryAmount do {
+if (_infantryGroupsSetting) then {
+    for "_x" from 1 to _infantryGroupsAmount do {
         _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
         _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, (_radiusSize / 1.5)] call BIS_fnc_taskPatrol;
+        [_infantryGroup, _AOpos, 500] call BIS_fnc_taskPatrol;
+
+        {
+            _spawnedUnits pushBack _x;
+            _AISkillUnitsArray pushBack _x;
+        } foreach (units _infantryGroup);
+    };
+};
+
+//-------------------------------------------------- AA groups
+if (_AAGroupsSetting) then {
+    for "_x" from 1 to _AAGroupsAmount do {
+        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam_AA")] call BIS_fnc_spawnGroup;
+
+        [_infantryGroup, _AOpos, 500] call BIS_fnc_taskPatrol;
+
+        {
+            _spawnedUnits pushBack _x;
+            _AISkillUnitsArray pushBack _x;
+        } foreach (units _infantryGroup);
+    };
+};
+
+//-------------------------------------------------- AT groups
+if (_ATGroupsSetting) then {
+    for "_x" from 1 to _ATGroupsAmount do {
+        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam_AT")] call BIS_fnc_spawnGroup;
+
+        [_infantryGroup, _AOpos, 500] call BIS_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;

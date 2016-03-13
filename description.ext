@@ -145,6 +145,20 @@ class Params {
         default = 6;
     };
 
+    class AAGroupsAmount {
+        title = "Amount of AA groups on the main AO";
+        values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        default = 2;
+    };
+
+    class ATGroupsAmount {
+        title = "Amount of AT groups on the main AO";
+        values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        default = 2;
+    };
+
     class airReinforcementTimer {
         title = "Enemy air reinforcements timer";
         values[] = {300, 600, 900};
