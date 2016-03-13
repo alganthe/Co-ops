@@ -45,10 +45,6 @@ if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
     if (_name == "HCAOs") then {
         derp_HCAOsConnected = false;
     };
-
-    if (_name == "HCAmbiantAI") then {
-        derp_HCAmbiantConnected = false;
-    };
 }, []] call BIS_fnc_addStackedEventHandler;
 
 //---------------------------------- Scripts and functions calls.
