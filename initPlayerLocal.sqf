@@ -9,7 +9,6 @@ if !(isServer or hasInterface) then {
 } else {//-------------------------------- Player stuff
 
     [] call derp_fnc_diary; // Diary
-    execVM "scripts\misc\QS_icons.sqf"; // Icons
 
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
