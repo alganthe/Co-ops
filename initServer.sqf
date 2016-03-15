@@ -41,9 +41,10 @@ if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
 };
 //---------------------------------- EHs
 addMissionEventHandler ["HandleDisconnect", {
-    params ["_unit", "_ID", "_UID", "_name"];
+    _this params ["", "", "", "_name"];
     if (_name == "HCAOs") then {
         derp_HCAOsConnected = false;
+        diag_log format ["HCAOs connected: %1", derp_HCAOsConnected];
     };
 }];
 

@@ -4,7 +4,7 @@ if !(isServer or hasInterface) then {
 
         derp_HCAOsConnected = true;
         publicVariableServer "HCAOsConnected";
-        diag_log format ["HCAOs connected"];
+        format ["HCAOs connected: %1", derp_HCAOsConnected] remoteExec ["diag_log", 2];
     };
 } else {//-------------------------------- Player stuff
 

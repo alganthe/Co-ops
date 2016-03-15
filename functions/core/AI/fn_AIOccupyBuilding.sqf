@@ -173,7 +173,6 @@ While {count _unitsArray > 0} do {
                 };
 
                 _buildingsPositions = selectRandom _buildingsIndexes;
-                diag_log _buildingsPositions;
 
                 if (count _buildingsPositions == 0) then {
                     _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
