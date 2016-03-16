@@ -45,6 +45,8 @@ corpseRemovalMinTime = 10;
 corpseRemovalMaxTime = 600;
 
 //-------------------------Functions
+#include "functions\misc\taw_vd\GUI.h"
+
 class CfgFunctions {
 	#include "functions\functions.hpp"
 };
