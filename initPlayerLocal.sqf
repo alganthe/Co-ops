@@ -63,4 +63,9 @@ if !(isServer or hasInterface) then {
         "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
         ];
     };
+
+    [] spawn {
+        waitUntil {!isNull findDisplay 46};
+        call derp_fnc_playerTracker;
+    };
 };
