@@ -18,7 +18,7 @@ params ["_AOPos", "_missionID"];
 derp_SMID = derp_SMID + 1;
 _smID = "officerKill" + str derp_SMID;
 
-[west, [_smID, _missionID], ["We have intel that a CSAT officer is in the AO, find him and take him out. We currently have no information on his location, good luck.", "Kill the CSAT officer", ""], objNull, "Created", 5, true, "Attack", true] call BIS_fnc_taskCreate;
+[west, [_smID, _missionID], ["We have intel that a CSAT officer is in the AO, find him and take him out. We currently have no information on his exact location, good luck.", "Kill the CSAT officer", ""], objNull, "Created", 5, true, "Attack", true] call BIS_fnc_taskCreate;
 
 _buildingArray = _AOPos nearObjects ["House", 200];
 
