@@ -3,7 +3,6 @@ class derp {
         file = "functions\misc";
         class VA_filter {};
         class daytime {};
-        class find_flatPos {};
         class diary {};
         class findItemList {};
         class globalHint_handler {};
@@ -11,7 +10,6 @@ class derp {
         class curatorPingedEH {};
         class VAInitSorting {};
         class hintC {};
-        class playerTracker {};
     };
 
     class AI {

@@ -12,6 +12,7 @@ if !(isServer or hasInterface) then {
 
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
+    [] execVM "scripts\misc\QS_icons.sqf";
     //---------------- mission params
     if (("staminaEnabled" call BIS_fnc_getParamValue) == 0) then {
         player enableStamina false;
@@ -62,10 +63,5 @@ if !(isServer or hasInterface) then {
         "",
         "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
         ];
-    };
-
-    [] spawn {
-        waitUntil {!isNull findDisplay 46};
-        call derp_fnc_playerTracker;
     };
 };
