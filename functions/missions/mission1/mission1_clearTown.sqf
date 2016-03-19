@@ -64,18 +64,18 @@ _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 "mission1_1_mrk" setMarkerBrush "Border";
 "mission1_1_mrk" setMarkerColor "ColorOPFOR";
 
-(nearestLocations [_markerPos, ["NameCityCapital", "NameCity", "NameVillage"], 200]) params ["_taskTitle"];
+(nearestLocations [_markerPos, ["NameCityCapital", "NameCity", "NameVillage"], 200]) params ["_townName"];
 
 derp_mission1ID = derp_mission1ID + 1;
 _missionID = "mission1" + str derp_mission1ID;
 
-[west, [_missionID], ["A town has been occupied, you need to clear it out! Good Luck", ["Clear ", (text _taskTitle)] joinString "", _selectedLocation], _selectedLocation, true, 5, true, "Attack", true] call BIS_fnc_taskCreate;
+[west, _missionID, [format ["%1 has been captured, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.",(text _townName)], ["Clear ", (text _townName)] joinString "", _selectedLocation], _selectedLocation, true, 5, true, "Attack", true] call BIS_fnc_taskCreate;
 
 //------------------- Trigger for mission end
 [{
 	params ["_markerPos", "_missionID"];
 
-    [_markerPos] call derp_fnc_sideMissionSelection;
+    [_markerPos, _missionID] call derp_fnc_sideMissionSelection;
 
 	_winTrigger = createTrigger ["EmptyDetector", _markerPos, false];
 	_winTrigger setTriggerArea [PARAM_AOSize, PARAM_AOSize, 0, false];

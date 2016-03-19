@@ -12,20 +12,26 @@
 * Win: Bring the truck to the recover point.
 * Fail: Truck destroyed.
  */
-params ["_AOPos"];
+params ["_AOPos", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
 _smID = "truckRetrieval" + str derp_SMID;
 
-[west, _smID, ["A truck full of rockets and other types of ammunitions got spotted in the AO, recover it.", "Retrieve ammo truck", ""], objNull, "Created", 5, true, "Default", true] call BIS_fnc_taskCreate;
+[west, [_smID, _missionID], ["A truck full GBUs got spotted in the AO, secure it and bring it back to the return point so we can dismantle them. The destruction of the vehicle will result in the failure of the mission.", "Retrieve ammo truck", ""], objNull, "Created", 5, true, "Default", true] call BIS_fnc_taskCreate;
 
 _spawnPos = _AOPos findEmptyPosition [10,200,"O_Truck_03_ammo_F"];
 _ammoTruck = "O_Truck_03_ammo_F" createVehicle _spawnPos;
+_ammoTruck setAmmoCargo 0;
 
 {
     _x addCuratorEditableObjects [[_ammoTruck], false];
 } forEach allCurators;
+
+_ammoTruck addEventHandler ["Killed", {
+    params ["_vehicle"];
+    "Bo_GBU12_LGB" createVehicle (getPos _vehicle);
+}];
 
 //------------------- PFH
 [{
@@ -36,6 +42,9 @@ _ammoTruck = "O_Truck_03_ammo_F" createVehicle _spawnPos;
         derp_sideMissionInProgress = false;
 
         [_smID, 'SUCCEEDED', true] call BIS_fnc_taskSetState;
+
+        {moveOut _x} foreach (crew _ammoTruck);
+        _ammoTruck lock 2;
 
         [{
             params ["_ammoTruck", "_smID"];

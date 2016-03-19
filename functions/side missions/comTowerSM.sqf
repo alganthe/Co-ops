@@ -13,13 +13,13 @@
 * Win: Destroy all communication antennas.
 * Fail: None
  */
-params ["_AOPos", "_comTowers"];
+params ["_AOPos", "_comTowers", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
 _smID = "antennaTask" + str derp_SMID;
 
-[west, _smID, ["The CSAT have took control of a few antennas, destroy them or they'll call air support.", "Destroy enemy AO com array", ""], objNull, "Created", 5, true, "Destroy", true] call BIS_fnc_taskCreate;
+[west, [_smID, _missionID], ["The CSAT have took control of a few antennas, destroy them or they'll call air support. We've marked their locations on your map.", "Destroy enemy AO com array", ""], objNull, "Created", 5, true, "Destroy", true] call BIS_fnc_taskCreate;
 
 //------------------- Markers + mines
 private _towerMines = [];
