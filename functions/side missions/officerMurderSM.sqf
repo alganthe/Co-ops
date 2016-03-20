@@ -4,6 +4,7 @@
 *
 * Arguments:
 * 0: Position of the AO marker <ARRAY>
+* 1: ID of the main mission <STRING>
 *
 * Return Value:
 * Nothing
@@ -11,7 +12,7 @@
 * Conditions:
 * Win: Kill the officer.
 * Fail: none.
- */
+*/
 params ["_AOPos", "_missionID"];
 
 //------------------- Task

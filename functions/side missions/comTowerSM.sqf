@@ -5,6 +5,7 @@
 * Arguments:
 * 0: Position of the AO marker <ARRAY>
 * 1: Com towers array <ARRAY>
+* 1: ID of the main mission <STRING>
 *
 * Return Value:
 * Nothing
@@ -12,7 +13,7 @@
 * Conditions:
 * Win: Destroy all communication antennas.
 * Fail: None
- */
+*/
 params ["_AOPos", "_comTowers", "_missionID"];
 
 //------------------- Task

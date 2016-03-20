@@ -4,6 +4,7 @@
 *
 * Arguments:
 * 0: Position of the AO marker <ARRAY>
+* 1: ID of the main mission <STRING>
 *
 * Return Value:
 * Nothing
@@ -11,7 +12,7 @@
 * Conditions:
 * Win: Bring the truck to the recover point.
 * Fail: Truck destroyed.
- */
+*/
 params ["_AOPos", "_missionID"];
 
 //------------------- Task

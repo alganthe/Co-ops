@@ -4,6 +4,7 @@
 *
 * Arguments:
 * 0: Position of the AO marker <ARRAY>
+* 1: ID of the main mission <STRING>
 *
 * Return Value:
 * Nothing
@@ -14,7 +15,8 @@ derp_sideMissionInProgress = true;
 
 private _sideMissionArray = [
 derp_fnc_officerMurderSM,
-derp_fnc_truckRetrievalSM
+derp_fnc_truckRetrievalSM,
+derp_fnc_cachesSM
 ];
 
 _nearComTowers = nearestObjects [_AOPos, ["Land_Communication_F", "Land_TTowerBig_1_F", "Land_TTowerBig_2_F"], PARAM_AOSize * 1.5];
