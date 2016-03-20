@@ -14,7 +14,7 @@
 * Conditions:
 * Win: No opfor left inside the marker and side mission completed or failed.
 * Fail: None
- */
+*/
 missionInProgress = true;
 publicVariable "missionInProgress";
 

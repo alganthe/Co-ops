@@ -10,7 +10,7 @@
 *
 * Example:
 * copyToClipboard ([true] call derp_fnc_findItemList);
- */
+*/
 private _returnArray = [];
 
 _cfgArray = "getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgWeapons");
