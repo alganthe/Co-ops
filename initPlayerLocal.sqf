@@ -13,6 +13,10 @@ if !(isServer or hasInterface) then {
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
     [] execVM "scripts\misc\QS_icons.sqf";
+
+    {
+        _x addCuratorEditableObjects [[player], false];
+    } forEach allCurators;
     //---------------- mission params
     if (("staminaEnabled" call BIS_fnc_getParamValue) == 0) then {
         player enableStamina false;
