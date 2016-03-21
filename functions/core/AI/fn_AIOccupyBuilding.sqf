@@ -100,7 +100,6 @@ While {count _unitsArray > 0} do {
 
         switch (_fillingType) do {
             case 0: {
-                diag_log format ["%1: CASE 1",diag_tickTime];
                 if (count _buildingsIndexes == 0) then {
                     breakOut "Main";
                 };
@@ -134,7 +133,6 @@ While {count _unitsArray > 0} do {
             };
 
             case 1: {
-                diag_log format ["%1: CASE 1",diag_tickTime];
                 if (count _buildingsIndexes == 0) then {
                     breakOut "Main";
                 };
@@ -167,7 +165,6 @@ While {count _unitsArray > 0} do {
             };
 
             case 2: {
-                diag_log format ["%1: CASE 2",diag_tickTime];
                 if (count _buildingsIndexes == 0) then {
                     breakOut "Main";
                 };
