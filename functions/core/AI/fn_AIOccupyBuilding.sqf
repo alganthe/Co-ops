@@ -53,7 +53,6 @@ if (count _buildings == 0) exitWith {
 };
 
 private _buildingsIndexes = [];
-private _evenFillIndexes = [];
 
 if (_topDownFilling) then {
     {
@@ -86,7 +85,6 @@ private _indexCount = 0;
     };
     _indexCount = _indexCount + _cnt;
 } foreach _buildingsIndexes;
-_evenFillIndexes = _buildingsIndexes;
 
 private _leftOverAICount = (count _unitsArray) - _indexCount;
 if (_leftOverAICount > 0) then {
@@ -101,7 +99,8 @@ While {count _unitsArray > 0} do {
         private _unit = _unitsArray select 0;
 
         switch (_fillingType) do {
-            case (0): {
+            case 0: {
+                diag_log format ["%1: CASE 1",diag_tickTime];
                 if (count _buildingsIndexes == 0) then {
                     breakOut "Main";
                 };
@@ -125,23 +124,22 @@ While {count _unitsArray > 0} do {
                     commandStop _unit;
 
                     _unitsArray deleteAt (_unitsArray find _unit);
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
                     _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
                     _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
                 } else {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
                     _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
                     _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
                     breakTo "loop";
                 };
             };
 
-        case (1): {
+            case 1: {
+                diag_log format ["%1: CASE 1",diag_tickTime];
                 if (count _buildingsIndexes == 0) then {
                     breakOut "Main";
                 };
 
-                _buildingsPositions = selectRandom _buildingsIndexes;
+                _buildingsPositions = _buildingsIndexes select 0;
 
                 if (count _buildingsPositions == 0) then {
                     _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
@@ -149,6 +147,7 @@ While {count _unitsArray > 0} do {
                 };
 
                 _buildingPos = _buildingsPositions select 0;
+
 
                 if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
                     _unit disableAI "FSM";
@@ -160,14 +159,15 @@ While {count _unitsArray > 0} do {
                     commandStop _unit;
 
                     _unitsArray deleteAt (_unitsArray find _unit);
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
                 } else {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
                     breakTo "loop";
                 };
             };
 
-            case (2): {
+            case 2: {
+                diag_log format ["%1: CASE 2",diag_tickTime];
                 if (count _buildingsIndexes == 0) then {
                     breakOut "Main";
                 };
@@ -196,9 +196,9 @@ While {count _unitsArray > 0} do {
                     commandStop _unit;
 
                     _unitsArray deleteAt (_unitsArray find _unit);
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
                 } else {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingPos);
+                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
                     breakTo "loop";
                 };
             };
