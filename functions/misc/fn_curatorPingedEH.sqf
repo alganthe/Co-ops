@@ -12,23 +12,23 @@
 * Nothing
 *
 * Example:
-* this addEventHandler [""GetIn"",{_this call derp_fnc_curatorPingedEH}]; // in the zeus module init field
+* this addEventHandler ["curatorPinged",{_this call derp_fnc_curatorPingedEH}]; // in the zeus module init field
 */
 params ["_curator", "_unit"];
 
-private _pingCount = _unit getVariable "curatorPingCount";
-private _lastPingTime = _unit getVariable "lastPingTime";
+private _pingCount = _unit getVariable "derp_curatorPingCount";
+private _lastPingTime = _unit getVariable "derp_lastPingTime";
 
 if (isnil "_pingCount") then {
-    _unit setVariable ["curatorPingCount", 1, false];
-    _unit setVariable ["lastPingTime", time, false];
+    _unit setVariable ["derp_curatorPingCount", 1, false];
+    _unit setVariable ["derp_lastPingTime", time, false];
 
 } else {
     _pingCount = _pingCount + 1;
 
     if (_lastPingTime <= time - 15) then {
-        _unit setVariable ["lastPingTime", time, false];
-        _unit setVariable ["curatorPingCount", 1, false];
+        _unit setVariable ["derp_lastPingTime", time, false];
+        _unit setVariable ["derp_curatorPingCount", 1, false];
 
     } else {
         if (_pingCount == 4) then {
@@ -36,12 +36,12 @@ if (isnil "_pingCount") then {
         };
         if (_pingCount >= 5) then {
             _unit setDamage 1;
-            _unit setVariable ["curatorPingCount", nil, false];
-            _unit setVariable ["lastPingTime", nil, false];
+            _unit setVariable ["derp_curatorPingCount", nil, false];
+            _unit setVariable ["derp_lastPingTime", nil, false];
 
         } else {
-            _unit setVariable ["lastPingTime", time, false];
-            _unit setVariable ["curatorPingCount", _pingCount, false];
+            _unit setVariable ["derp_lastPingTime", time, false];
+            _unit setVariable ["derp_curatorPingCount", _pingCount, false];
 
         };
     };
