@@ -119,13 +119,6 @@ class Params {
 		default = 2;
     };
 
-    class MissionRepetition {
-        title = "Enable mission repetition?";
-		values[] = {1, 2};
-		texts[] = {"Yes", "No"};
-		default = 1;
-    };
-
     class AntiAirAmount {
         title = "Amount of AA vehicles on the main AO";
 		values[] = {1, 2, 3, 4, 5, 6};

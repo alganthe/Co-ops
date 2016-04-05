@@ -30,12 +30,6 @@ if (("EnableRespawn" call BIS_fnc_getParamValue) == 0) then {
     PARAM_enableRespawn = false;
 };
 
-if (("MissionRepetition" call BIS_fnc_getParamValue) == 1 ) then {
-    PARAM_missionRepetition = true;
-} else {
-    PARAM_missionRepetition = false;
-};
-
 if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
     PARAM_paraJumpEnabled = true;
 } else {

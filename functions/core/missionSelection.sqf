@@ -29,11 +29,6 @@ if ((PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {PARAM_missio
 } else {
     private _nextMission = selectRandom derp_missionSelectionArray;
 
-    if (PARAM_missionRepetition) then {
-        [] call _nextMission;
-
-    } else {
-        funcs = funcs - [_nextMission];
-        [] call _nextMission;
-    };
+    funcs = funcs - [_nextMission];
+    [] call _nextMission;
 };
