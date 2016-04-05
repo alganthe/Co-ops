@@ -54,7 +54,7 @@ addMissionEventHandler ["HandleDisconnect", {
     _vehicle call derp_fnc_vehicleSetup;
 
 } forEach [
-    [hummy1, 60], [ghostHawk1, 60], [ghostHawk2, 60], [mohawk1, 60], [huron1, 60],[greyhawk1, 900], [buzzard1, 600], // Air
+    [hummy1, 60], [ghostHawk1, 60], [ghostHawk2, 60], [mohawk1, 60], [huron1, 60],[greyhawk1, 900], // Air
     [stomper1, 30], [stomper2, 30], [hunter1, 30], [hunter2, 30], [hunter3, 30], [hunter4, 30], [hunter5, 30], [hunter6, 30], [armedTechnical1, 30], [armedTechnical2, 30], // Cars
     [truck1, 30], [truck2, 30], [truck3, 30], [truck4, 30], [truck5, 30], // Trucks
     [armored1, 30], [armored2, 30], [armored3, 30], [armored4, 30], // Armored
