@@ -107,10 +107,10 @@ if (_randomVehcsSetting) then {
 //-------------------------------------------------- main infantry groups
 if (_infantryGroupsSetting) then {
     for "_x" from 1 to _infantryGroupsAmount do {
-        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        _randomPos = [[[_AOpos, _radiusSize * 1.2], []], ["water", "out"]] call BIS_fnc_randomPos;
         _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, 500] call BIS_fnc_taskPatrol;
+        [_infantryGroup, _AOpos, 650] call BIS_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;
@@ -125,7 +125,7 @@ if (_AAGroupsSetting) then {
         _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
         _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam_AA")] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, 500] call BIS_fnc_taskPatrol;
+        [_infantryGroup, _AOpos, 650] call BIS_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;
@@ -140,7 +140,7 @@ if (_ATGroupsSetting) then {
         _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
         _infantryGroup = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam_AT")] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, 500] call BIS_fnc_taskPatrol;
+        [_infantryGroup, _AOpos, 650] call BIS_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;
