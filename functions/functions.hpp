@@ -10,6 +10,7 @@ class derp {
         class curatorPingedEH {};
         class VAInitSorting {};
         class hintC {};
+        class arrayShuffle {};
     };
 
     class AI {

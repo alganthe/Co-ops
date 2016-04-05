@@ -31,20 +31,11 @@ if (count _unitsArray == 0 || {isNull (_unitsArray select 0)}) exitWith {
 
 private _buildings = [];
 
-_arrayShuffle = {
-    private "_cnt";
-    _cnt = count _this;
-    for "_i" from 1 to _cnt do {
-        _this pushBack (_this deleteAt floor random _cnt);
-    };
-    _this
-};
-
 if (_fillingRadius == -1) then {
     _buildings = nearestObjects [_startingPos, _buildingTypes, 50];
 } else {
     _buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius];
-    _buildings = _buildings call _arrayShuffle;
+    _buildings = _buildings call derp_fnc_arrayShuffle;
 };
 
 if (count _buildings == 0) exitWith {

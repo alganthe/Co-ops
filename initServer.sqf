@@ -9,6 +9,7 @@ call compile preprocessFileLineNumbers "functions\core\serverSide_functions_comp
 derp_HCAOsConnected = false;
 derp_HCAmbiantConnected = false;
 derp_missionCounter = 0;
+derp_successfulSMs = 0;
 derp_sideMissionInProgress = false;
 derp_airReinforcement = objNull;
 derp_lastAirReinforcementTime = 0;
@@ -19,6 +20,7 @@ derp_SMID = 0;
 derp_mission1ID = 0;
 
 PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
+PARAM_smRewardAfter = "smRewardAfter" call BIS_fnc_getParamValue;
 PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;
 PARAM_airReinforcementTimer = "airReinforcementTimer" call BIS_fnc_getParamValue;
 

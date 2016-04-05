@@ -1,7 +1,7 @@
-// Mission selection
+// Core functions
 derp_fnc_missionSelection = compile preprocessFileLineNumbers "functions\core\missionSelection.sqf";
-derp_fnc_missionTransition = compile preprocessFileLineNumbers "functions\core\missionTransition.sqf";
 derp_fnc_sideMissionSelection = compile preprocessFileLineNumbers "functions\core\fn_sideMissionSelection.sqf";
+derp_fnc_smRewards = compile preprocessFileLineNumbers "functions\core\smRewards.sqf";
 
 // Vehicle handling
 derp_fnc_vehiclePFH = compile preprocessFileLineNumbers "functions\misc\vehicle_handler\fn_vehiclePFH.sqf";

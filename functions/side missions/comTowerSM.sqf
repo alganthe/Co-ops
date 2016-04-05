@@ -67,6 +67,9 @@ private _markerArray = [];
             [_smID, true] call BIS_fnc_deleteTask;
 
         }, [_towerMines, _smID], 300] call derp_fnc_waitAndExec;
+
+        derp_successfulSMs = derp_successfulSMs + 1;
+        call derp_fnc_smRewards;
         _pfhID call CBA_fnc_removePerFrameHandler;
 
     } else {
