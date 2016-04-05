@@ -1,3 +1,5 @@
+disableRemoteSensors true;
+
 //------------------------------ Headless Client
 if !(isServer or hasInterface) then {
     if (profileName == "HCAOs") then {
