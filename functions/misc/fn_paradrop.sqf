@@ -25,24 +25,19 @@ _marker setMarkerAlphaLocal 0.5;
 derp_jumped = false;
 openMap true;
 
-[_unit, _radius] onMapSingleClick {
+["derp_paradrop_mapclick", "onMapSingleClick", {
     _dist = _pos distance2D derp_paraPos;
     if(_dist > _this select 1) then {
         hint "Select position within the marked area.";
     } else {
         _parachute = createVehicle ["Steerable_Parachute_F", _pos, [], 20, "FLY"];
         (_this select 0) moveInDriver _parachute;
-        derp_jumped = true;
         openMap false;
     };
-    true
-};
+}, [_unit, _radius]] call BIS_fnc_addStackedEventHandler;
 
-waitUntil {derp_jumped || !visiblemap};
-
-if (!visibleMap) then {
-    hint "Parajump canceled.";
-};
-
-onMapSingleClick "";
-deleteMarkerLocal format["max_range_%1", name _unit];
+["derp_paradrop_mapvisible", "onEachFrame", {
+    deleteMarkerLocal format["max_range_%1", name _unit];
+    ["derp_paradrop_mapclick", "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
+    ["derp_paradrop_mapvisible", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+}]  call BIS_fnc_addStackedEventHandler;
