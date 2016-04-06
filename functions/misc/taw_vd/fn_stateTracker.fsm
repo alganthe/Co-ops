@@ -54,7 +54,7 @@ class FSM
        "tawvd_object = profileNamespace getVariable [""tawvd_object"",viewDistance];" \n
        "" \n
        "tawvd_syncObject = true;" \n
-       "_actionID = player addAction[""<t color='#FF0000'>TAW_VD</t>"",TAWVD_fnc_openMenu,[],-99,false,false,"""",''];"/*%FSM</STATEINIT""">*/;
+       "_actionID = player addAction[""<t color='#FF0000'>View Settings</t>"",TAWVD_fnc_openMenu,[],-99,false,false,"""",''];"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {
@@ -128,7 +128,7 @@ class FSM
     class Re_add_my_action
     {
       name = "Re_add_my_action";
-      init = /*%FSM<STATEINIT""">*/"_actionID = player addAction[""<t color='#FF0000'>Settings</t>"",TAWVD_fnc_openMenu,[],-99,false,false,"""",''];"/*%FSM</STATEINIT""">*/;
+      init = /*%FSM<STATEINIT""">*/"_actionID = player addAction[""<t color='#FF0000'>View Settings</t>"",TAWVD_fnc_openMenu,[],-99,false,false,"""",''];"/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
       class Links
       {

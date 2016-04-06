@@ -76,7 +76,7 @@ private _markerArray = [];
         if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - PARAM_airReinforcementTimer)}) then {
             _AOPos params ["_xPos", "_yPos"];
 
-            derp_airReinforcement = createVehicle ["O_Heli_Light_02_F", getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];
+            derp_airReinforcement = createVehicle [["O_Plane_CAS_02_F", "O_Heli_Light_02_F", "O_Heli_Attack_02_F"] call BIS_fnc_selectRandom, getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];
             createVehicleCrew derp_airReinforcement;
 
             {_x addCuratorEditableObjects [[derp_airReinforcement], true]} forEach allCurators;
