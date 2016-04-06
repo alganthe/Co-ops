@@ -113,8 +113,8 @@ _missionID = "mission1" + str derp_mission1ID;
 			[_missionID, true] call BIS_fnc_deleteTask;
 		}, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExec;
 
+        derp_missionCounter = derp_missionCounter + 1;
 		false call derp_fnc_missionSelection;
-		derp_missionCounter = derp_missionCounter + 1;
 
 		_pfhID call CBA_fnc_removePerFrameHandler;
 	};

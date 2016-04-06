@@ -29,6 +29,5 @@ if ((PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {PARAM_missio
 } else {
     private _nextMission = selectRandom derp_missionSelectionArray;
 
-    funcs = funcs - [_nextMission];
     [] call _nextMission;
 };
