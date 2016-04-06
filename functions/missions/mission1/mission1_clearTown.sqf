@@ -36,8 +36,7 @@ _markerPos = getMarkerPos _selectedLocation;
 
 //------------------- Para jump location
 if (PARAM_paraJumpEnabled) then {
-    _markerPos params ["_xPos", "_yPos"];
-    derp_paraPos = [_xPos, _yPos] apply {_x + PARAM_AOSize + random 300};
+    derp_paraPos = _markerPos;
     publicVariable "derp_paraPos";
 };
 

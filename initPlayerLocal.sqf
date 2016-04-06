@@ -55,16 +55,13 @@ if !(isServer or hasInterface) then {
         arsenalDude addAction [
         "<t color='#FF6600'>Paradrop on AO</t>",
         {
-            _this params ["", "_unit"];
-            derp_paraPos params ["_xPos", "_yPos"];
-
-            _randomPos = [(_xPos + (random 50)), (_yPos + (random 50)), 400];
-            _parachute = createVehicle ["Steerable_Parachute_F", _randomPos, [], 10, "FLY"];
-            _unit moveInDriver _parachute;
+            [ _this select 1,
+              2 * ("AOSize" call BIS_fnc_getParamValue)
+            ] call derp_fnc_paradrop;
         },
         nil,
         0,
-        false,
+        true,
         true,
         "",
         "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"

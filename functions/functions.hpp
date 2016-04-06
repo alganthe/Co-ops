@@ -11,6 +11,7 @@ class derp {
         class VAInitSorting {};
         class hintC {};
         class arrayShuffle {};
+        class paradrop {};
     };
 
     class AI {
