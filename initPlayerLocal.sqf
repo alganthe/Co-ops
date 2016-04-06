@@ -55,7 +55,7 @@ if !(isServer or hasInterface) then {
         arsenalDude addAction [
         "<t color='#FF6600'>Paradrop on AO</t>",
         {
-            [ _this select 1,
+            [player,
               2 * ("AOSize" call BIS_fnc_getParamValue)
             ] call derp_fnc_paradrop;
         },

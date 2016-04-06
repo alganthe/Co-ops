@@ -40,7 +40,6 @@ if (PARAM_paraJumpEnabled) then {
     publicVariable "derp_paraPos";
 };
 
-
 //------------------- Spawn In enemies
 if (derp_HCAOsConnected) then {
 [_markerPos, [true, true, true, true, true, true, true, true]] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
