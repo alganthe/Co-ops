@@ -48,5 +48,5 @@ if (derp_successfulSMs != 0 && {derp_successfulSMs == PARAM_smRewardAfter}) then
 
     derp_successfulSMs = 0;
 
-    format ["The HQ has delivered a reward: <br/> %1", getText (configFile >> "CfgVehicles" >> _reward >> "displayName")] call derp_fnc_globalHint_handler;
+    format ["The HQ has delivered a reward: <br/> %1", getText (configFile >> "CfgVehicles" >> _reward >> "displayName")] remoteExec ["derp_fnc_globalHint_Handler", -2];
 };
