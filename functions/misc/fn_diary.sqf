@@ -33,11 +33,13 @@ player createDiaryRecord ["credits", ["credits",
 "
 <br/> Credits:
 <br/> base layout: Ahoyworld
-<br/> vehicle pads: ahoyworld
-<br/> garrison script: Zenophon
+<br/> vehicle pad scripts: Ahoyworld
 <br/> player icons on map: Quicksilver
 <br/> ACE3 ported funcs: see the respective funcs headers
 <br/> the rest: alganthe
+<br/>
+<br/> Contributors:
+<br/> yourstruly
 "
 ]];
 
