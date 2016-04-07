@@ -12,6 +12,7 @@ class derp {
         class hintC {};
         class arrayShuffle {};
         class paradrop {};
+        class gearLimitations {};
     };
 
     class AI {

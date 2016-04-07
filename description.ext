@@ -257,6 +257,7 @@ class CfgRemoteExec {
         class BIS_fnc_effectKilledSecondaries {};
         class BIS_fnc_objectVar {};
         class derp_fnc_hintC { allowedTargets=1; };
+        class bis_fnc_arsenal {};
     };
     class Commands {
         mode = 0;
