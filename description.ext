@@ -246,3 +246,19 @@ class CfgTaskEnhancements {
    	share        = 0;            //0: do not count assigned players (default), 1: count how many players have the task assigned
    	propagate    = 0;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
 };
+
+class CfgRemoteExec {
+    class Functions {
+        // State of remoteExec: 0-turned off, 1-turned on, taking whitelist into account, 2-turned on, however, ignoring whitelists (default because of backward compatibility)
+        mode = 1;
+        // Ability to send jip messages: 0-disabled, 1-enabled (default)
+        jip = 0;
+        class BIS_fnc_effectKilledAirDestruction {};
+        class BIS_fnc_effectKilledSecondaries {};
+        class BIS_fnc_objectVar {};
+        class derp_fnc_hintC { allowedTargets=1; };
+    };
+    class Commands {
+        mode = 0;
+    };
+};
