@@ -103,28 +103,28 @@ switch (_mode) do {
         _ITEM_MACRO_assignedItem = {
             params ["_unit", "_X", "_testedClass", "_item", "_container"];
             _unit unlinkItem _X;
-            _container addItem _item;
+            _container addItemCargoGlobal [_item, 1];
             systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
         };
 
         _ITEM_MACRO_weapon = {
             params ["_unit", "_X", "_testedClass", "_item", "_container"];
             _unit removeWeapon _X;
-            _container addItem _item;
+            _container addItemCargoGlobal [_item, 1];
             systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
         };
 
         _ITEM_MACRO_weaponItem = {
             params ["_unit", "_X", "_testedClass", "_item", "_container"];
             _unit removePrimaryWeaponItem _X;
-            _container addItem _item;
+            _container addItemCargoGlobal [_item, 1];
             systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
         };
 
         _ITEM_MACRO_item = {
             params ["_unit", "_X", "_testedClass", "_item", "_container"];
             _unit removeItem _X;
-            _container addItem _item;
+            _container addItemCargoGlobal [_item, 1];
             systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
         };
     };

@@ -79,4 +79,6 @@ if !(isServer or hasInterface) then {
         "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
         ];
     };
+
+    call derp_fnc_VAInitSorting;
 };

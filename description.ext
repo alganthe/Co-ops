@@ -81,7 +81,6 @@ class Params {
 		texts[] = {"Arsenal disabled", "Arsenal enabled but filtered", "Arsenal enabled"};
 		values[] = {0, 1, 2};
 		default = 1;
-		function = "derp_fnc_VAInitSorting";
 	};
 
     class paraJumpEnabled {
@@ -257,7 +256,6 @@ class CfgRemoteExec {
         class BIS_fnc_effectKilledSecondaries {};
         class BIS_fnc_objectVar {};
         class derp_fnc_hintC { allowedTargets=1; };
-        class bis_fnc_arsenal {};
     };
     class Commands {
         mode = 0;
