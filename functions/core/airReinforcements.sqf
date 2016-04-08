@@ -1,0 +1,15 @@
+params ["_AOPos"];
+
+if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - PARAM_airReinforcementTimer)}) then {
+    _AOPos params ["_xPos", "_yPos"];
+
+    derp_airReinforcement = createVehicle [(selectRandom derp_airReinforcementVehicle), getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];
+    createVehicleCrew derp_airReinforcement;
+
+    {_x addCuratorEditableObjects [[derp_airReinforcement], true]} forEach allCurators;
+
+    _wp = (group derp_airReinforcement) addWaypoint [[_xPos, _yPos, 1000], 0];
+    _wp setWaypointType "SAD";
+
+    derp_lastAirReinforcementTime = time;
+};

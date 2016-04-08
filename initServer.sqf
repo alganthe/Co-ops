@@ -12,6 +12,7 @@ derp_missionCounter = 0;
 derp_successfulSMs = 0;
 derp_sideMissionInProgress = false;
 derp_airReinforcement = objNull;
+derp_airReinforcementVehicle = ["O_Heli_Light_02_F"];
 derp_lastAirReinforcementTime = 0;
 derp_vehicleHandlingArray = [];
 derp_quadHandlingArray = [];

@@ -84,18 +84,6 @@ commandStop _officer;
         _pfhID call CBA_fnc_removePerFrameHandler;
 
     } else {
-        if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - PARAM_airReinforcementTimer)}) then {
-            _AOPos params ["_xPos", "_yPos"];
-
-            derp_airReinforcement = createVehicle ["O_Heli_Light_02_F", getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];
-            createVehicleCrew derp_airReinforcement;
-
-            {_x addCuratorEditableObjects [[derp_airReinforcement], true]} forEach allCurators;
-
-            _wp = (group derp_airReinforcement) addWaypoint [[_xPos, _yPos, 1000], 0];
-            _wp setWaypointType "SAD";
-
-            derp_lastAirReinforcementTime = time;
-        };
+        [_AOPos] call derp_fnc_airReinforcements;
     };
 }, 10, [_AOPos, _officer, _officerGroup, _smID]] call CBA_fnc_addPerFrameHandler;
