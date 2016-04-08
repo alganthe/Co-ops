@@ -59,8 +59,6 @@ switch (_filter) do {
             "optic_Nightstalker",
             "optic_tws",
             "optic_tws_mg",
-            "optic_LRPS",
-            "optic_SOS",
 
             //------------------------- UAV terminals
             "O_UavTerminal",
@@ -277,7 +275,7 @@ switch (_filter) do {
 
                     uiSleep 2;
                     (uinamespace getvariable "bis_fnc_arsenal_display") displayAddEventHandler ["Unload", {
-                        [player] call derp_fnc_gearLimitations;
+                        [player, 0] call derp_fnc_gearLimitations;
                     }];
                 };
             },

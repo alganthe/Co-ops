@@ -1,4 +1,20 @@
-params ["_unit"];
+/*
+* Author: alganthe
+* Enforce gear restriction, check and remove whatever need to be removed from the unit's inventory.
+*
+* Arguments:
+* 0: unit to check <OBJECT>
+* 1: Mode to run in, 0: Called from arsenal / inventoryClosed EH 1: Called from take EH.
+* 2: Item <OBJECT> (OPTIONNAL)
+* 3: Container the item was taken from <CONTAINER>
+*
+* Return Value:
+* Nothing
+*
+* Example:
+*
+*/
+params ["_unit", ["_mode", 0], ["_item", objNull], ["_container", objNull]];
 
 _unitClass = typeof _unit;
 
@@ -27,6 +43,10 @@ _grenadierRestricted = [["B_Soldier_GL_F"], [
     "arifle_Katiba_GL_F", "arifle_Katiba_GL_ACO_F", "arifle_Katiba_GL_ARCO_pointer_F", "arifle_Katiba_GL_ACO_pointer_F", "arifle_Katiba_GL_Nstalker_pointer_F", "arifle_Katiba_GL_ACO_pointer_snds_F", "arifle_Mk20_GL_F", "arifle_Mk20_GL_plain_F", "arifle_Mk20_GL_MRCO_pointer_F", "arifle_Mk20_GL_ACO_F", "arifle_MX_GL_F", "arifle_MX_GL_ACO_F", "arifle_MX_GL_ACO_pointer_F", "arifle_MX_GL_Hamr_pointer_F", "arifle_MX_GL_Holo_pointer_snds_F", "arifle_MX_GL_Black_F", "arifle_MX_GL_Black_Hamr_pointer_F", "arifle_TRG21_GL_F", "arifle_TRG21_GL_MRCO_F", "arifle_TRG21_GL_ACO_pointer_F"
 ], "Grenadier"];
 
+_gitGudM8 = [[],[
+    "optic_Nightstalker", "optic_tws", "optic_tws_mg"
+], "Git gud m8"];
+
 _restrictedItems = [];
 _restrictedItems pushBack _marksmenRestricted;
 _restrictedItems pushBack _ATRestricted;
@@ -34,12 +54,13 @@ _restrictedItems pushBack _sniperRestricted;
 _restrictedItems pushBack _machinegunRestricted;
 _restrictedItems pushBack _uavOperatorRestricted;
 _restrictedItems pushBack _grenadierRestricted;
+_restrictedItems pushBack _gitGudM8,
 
 _assignedItems = assignedItems _unit;
 _weapons = [];
 _weapons pushBack (primaryWeapon _unit);
 _weapons pushBack (secondaryWeapon _unit);
-_primaryWeaponItems = primaryWeaponItems _unit;
+{_weapons pushBack _x} foreach (primaryWeaponItems _unit);
 
 _items = [];
 _items = _items + (uniformItems _unit);
@@ -47,35 +68,90 @@ _items = _items + (vestItems _unit);
 _items = _items + (backpackItems _unit);
 _items = _items + _assignedItems;
 _items = _items + _weapons;
-_items = _items + _primaryWeaponItems;
+{_items pushBack _x} foreach _primaryWeaponItems;
+
+private ["_ITEM_MACRO_assignedItem", "_ITEM_MACRO_weapon", "_ITEM_MACRO_weaponItem", "_ITEM_MACRO_item"];
+switch (_mode) do {
+    case 0: {
+        _ITEM_MACRO_assignedItem = {
+            params ["_unit", "_X", "_testedClass"];
+            _unit unlinkItem _X;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+
+        _ITEM_MACRO_weapon = {
+            params ["_unit", "_X", "_testedClass"];
+            _unit removeWeapon _X;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+
+        _ITEM_MACRO_weaponItem = {
+            params ["_unit", "_X", "_testedClass"];
+            _unit removePrimaryWeaponItem _X;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+
+        _ITEM_MACRO_item = {
+            params ["_unit", "_X", "_testedClass"];
+            _unit removeItem _X;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+    };
+
+    case 1: {
+
+        _ITEM_MACRO_assignedItem = {
+            params ["_unit", "_X", "_testedClass", "_item", "_container"];
+            _unit unlinkItem _X;
+            _container addItem _item;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+
+        _ITEM_MACRO_weapon = {
+            params ["_unit", "_X", "_testedClass", "_item", "_container"];
+            _unit removeWeapon _X;
+            _container addItem _item;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+
+        _ITEM_MACRO_weaponItem = {
+            params ["_unit", "_X", "_testedClass", "_item", "_container"];
+            _unit removePrimaryWeaponItem _X;
+            _container addItem _item;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+
+        _ITEM_MACRO_item = {
+            params ["_unit", "_X", "_testedClass", "_item", "_container"];
+            _unit removeItem _X;
+            _container addItem _item;
+            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+        };
+    };
+};
 
 {
     _x params ["_classArray", "_testedArray", "_testedClass"];
 
     if !(_unitClass in _classArray) then {
-
         {
             if (_x in _testedArray) then {
                 if (_x in _assignedItems) then {
-                    _unit unlinkItem _x;
-                    systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _x >> "displayName"), _testedClass];
+                    [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_assignedItem
                 } else {
                     if (_x in _weapons) then {
                         if (_unitClass in (_sniperRestricted select 0) && {_testedClass == (_marksmenRestricted select 2)}) then {
                         } else {
                             if (_x == (primaryWeapon _unit) || {_x == (secondaryWeapon _unit)}) then {
-                                _unit removeWeapon _x;
-                                systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _x >> "displayName"), _testedClass];
+                                [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_weapon
                             } else {
-                                if (_x in _primaryWeaponItems) then {
-                                    _unit removePrimaryWeaponItem _x;
-                                    systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _x >> "displayName"), _testedClass];
-                                } else {
-                                    _unit removeItem _x;
-                                    systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _x >> "displayName"), _testedClass];
+                                if (_x in (primaryWeaponItems _unit)) then {
+                                    [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_weaponItem
                                 };
                             };
                         };
+                    } else {
+                        [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_item
                     };
                 };
             };
