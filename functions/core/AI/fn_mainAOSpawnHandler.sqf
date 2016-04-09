@@ -191,16 +191,16 @@ if (_milbuildingInfantry) then {
     };
 };
 
-//-------------------------------------------------- Add every spawned unit to zeus
-{
-    _x addCuratorEditableObjects [_spawnedUnits, false];
-} forEach allCurators;
-
+//-------------------------------------------------- SetSkill + network operations
 [_AISkillUnitsArray] call derp_fnc_AISkill;
 
 if (isServer) then {
+    {
+        _x addCuratorEditableObjects [_spawnedUnits, true];
+    } foreach allCurators;
     _spawnedUnits
 } else {
+    [_spawnedUnits, true] remoteExec ["derp_fnc_remoteAddCuratorEditableObjects", 2];
     spawnedUnits = _spawnedUnits;
     publicVariableServer "spawnedUnits";
     spawnedUnits = nil;

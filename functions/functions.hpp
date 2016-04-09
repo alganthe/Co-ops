@@ -13,6 +13,7 @@ class derp {
         class arrayShuffle {};
         class paradrop {};
         class gearLimitations {};
+        class remoteAddCuratorEditableObjects {};
     };
 
     class AI {

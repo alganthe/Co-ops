@@ -16,9 +16,7 @@ if !(isServer or hasInterface) then {
 
     [] execVM "scripts\misc\QS_icons.sqf";
 
-    {
-        _x addCuratorEditableObjects [[player], false];
-    } forEach allCurators;
+    [[player], false] call derp_fnc_remoteAddCuratorEditableObjects;
     //---------------- mission params
     if (("staminaEnabled" call BIS_fnc_getParamValue) == 0) then {
         player enableStamina false;

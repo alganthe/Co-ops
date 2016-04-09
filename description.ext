@@ -252,10 +252,16 @@ class CfgRemoteExec {
         mode = 1;
         // Ability to send jip messages: 0-disabled, 1-enabled (default)
         jip = 0;
-        class BIS_fnc_effectKilledAirDestruction {};
-        class BIS_fnc_effectKilledSecondaries {};
-        class BIS_fnc_objectVar {};
+        // BIS stuff
+        class bis_fnc_curatorrespawn { jip = 1; };
+        class bis_fnc_reviveinit { jip = 1; };
+        class BIS_fnc_effectKilledAirDestruction { jip = 1; };
+        class BIS_fnc_effectKilledSecondaries { jip = 1; };
+        class BIS_fnc_objectVar { jip = 1; };
+
+        // Co-ops functions
         class derp_fnc_hintC { allowedTargets=1; };
+        class derp_fnc_remoteAddCuratorEditableObjects { allowedTargets = 2; };
     };
     class Commands {
         mode = 0;
