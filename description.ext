@@ -3,7 +3,7 @@ author = "alganthe";								// Visible when loading mission
 onLoadName = "Co-Ops";								// Visible when loading mission
 OnLoadMission = "";
 loadScreen = "";
-overviewPicture = "";
+overviewPicture = "Data\Co_ops_loadingImage.paa";
 
 onLoadIntro = "";										// Displays a message while the intro is loading.
 onLoadIntroTime = 0;									// Time and date displayed while the intro loads. 1 visible, 0 hidden.
