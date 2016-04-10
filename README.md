@@ -4,11 +4,11 @@
 
 <p align="center">
     <a href="https://github.com/alganthe/Co-ops-an-arma3-vanilla-mission/releases">
-        <img src="https://img.shields.io/badge/version-beta__4-green.svg">
+        <img src="https://img.shields.io/github/release/alganthe/Co-ops.svg">
     </a>
 
     <a href="https://github.com/alganthe/Co-ops-an-arma3-vanilla-mission/issues">
-        <img src="https://img.shields.io/badge/Issue%20tracker-click%20here-orange.svg">
+        <img src="https://img.shields.io/github/issues/alganthe/Co-ops.svg">
     </a>
 
     <a href="https://github.com/alganthe/Co-ops/wiki">
