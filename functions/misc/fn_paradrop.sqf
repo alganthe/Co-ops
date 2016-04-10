@@ -33,7 +33,7 @@ openMap true;
         hint "Select position within the marked area.";
 
     } else {
-        _parachute = createVehicle ["Steerable_Parachute_F", [_pos select 0, _pos select 1, 500], [], 20, "FLY"];
+        _parachute = createVehicle ["Steerable_Parachute_F", [_pos select 0, _pos select 1, 1000], [], 20, "FLY"];
         _unit moveInDriver _parachute;
         openMap false;
 
