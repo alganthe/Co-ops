@@ -11,7 +11,7 @@
         <img src="https://img.shields.io/badge/Issue%20tracker-click%20here-orange.svg">
     </a>
 
-    <a href="">
+    <a href="https://github.com/alganthe/Co-ops/wiki">
         <img src="https://img.shields.io/badge/documentation-click%20here-red.svg">
     </a>
 </p>
