@@ -11,8 +11,6 @@
 * Return Value:
 * Nothing
 *
-* Example:
-*
 */
 params ["_unit", ["_mode", 0], ["_item", objNull], ["_container", objNull]];
 
@@ -137,21 +135,21 @@ switch (_mode) do {
         {
             if (_x in _testedArray) then {
                 if (_x in _assignedItems) then {
-                    [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_assignedItem
+                    [_unit, _x, _testedClass, _item, _container] call _ITEM_MACRO_assignedItem;
                 } else {
                     if (_x in _weapons) then {
                         if (_unitClass in (_sniperRestricted select 0) && {_testedClass == (_marksmenRestricted select 2)}) then {
                         } else {
                             if (_x == (primaryWeapon _unit) || {_x == (secondaryWeapon _unit)}) then {
-                                [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_weapon
+                                [_unit, _x, _testedClass, _item, _container] call _ITEM_MACRO_weapon;
                             } else {
                                 if (_x in (primaryWeaponItems _unit)) then {
-                                    [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_weaponItem
+                                    [_unit, _x, _testedClass, _item, _container] call _ITEM_MACRO_weaponItem;
                                 };
                             };
                         };
                     } else {
-                        [_unit, _X, _testedClass, _item, _container] call _ITEM_MACRO_item
+                        [_unit, _x, _testedClass, _item, _container] call _ITEM_MACRO_item;
                     };
                 };
             };

@@ -20,21 +20,21 @@ derp_mission1Locations = ["missionMarker_Athira", "missionMarker_Frini", "missio
 derp_SMID = 0;
 derp_mission1ID = 0;
 
-PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
-PARAM_smRewardAfter = "smRewardAfter" call BIS_fnc_getParamValue;
-PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;
-PARAM_airReinforcementTimer = "airReinforcementTimer" call BIS_fnc_getParamValue;
+derp_PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
+derp_PARAM_smRewardAfter = "smRewardAfter" call BIS_fnc_getParamValue;
+derp_PARAM_vehicleRespawnDistance = "VehicleRespawnDistance" call BIS_fnc_getParamValue;
+derp_PARAM_airReinforcementTimer = "airReinforcementTimer" call BIS_fnc_getParamValue;
 
 if (("EnableRespawn" call BIS_fnc_getParamValue) == 0) then {
-    PARAM_enableRespawn = true;
+    derp_PARAM_enableRespawn = true;
 } else {
-    PARAM_enableRespawn = false;
+    derp_PARAM_enableRespawn = false;
 };
 
 if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
-    PARAM_paraJumpEnabled = true;
+    derp_PARAM_paraJumpEnabled = true;
 } else {
-    PARAM_paraJumpEnabled = false;
+    derp_PARAM_paraJumpEnabled = false;
 };
 //---------------------------------- EHs
 addMissionEventHandler ["HandleDisconnect", {

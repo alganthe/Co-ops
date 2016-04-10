@@ -10,4 +10,4 @@
 */
 params ["_parsedText"];
 
-hint parseText format["%1", _parsedText];
+hint parseText format ["%1", _parsedText];

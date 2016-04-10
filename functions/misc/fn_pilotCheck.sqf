@@ -18,9 +18,9 @@
 */
 params ["_vehicle", "_position", "_unit", "_turretIndex"];
 
-_authorizedPilotUnits = ["B_pilot_F","B_Helipilot_F"];
-_secondCopilotHelos = ["O_Heli_Transport_04_F", "O_Heli_Transport_04_ammo_F", "O_Heli_Transport_04_bench_F", "O_Heli_Transport_04_box_F", "O_Heli_Transport_04_covered_F", "O_Heli_Transport_04_fuel_F", "O_Heli_Transport_04_repair_F" , "O_Heli_Transport_04_medevac_F"];
-_casHelos = ["B_Heli_Attack_01_F","O_Heli_Attack_02_F", "O_Heli_Attack_02_black_F"];
+_authorizedPilotUnits = ["B_pilot_F", "B_Helipilot_F"];
+_secondCopilotHelos = ["O_Heli_Transport_04_F", "O_Heli_Transport_04_ammo_F", "O_Heli_Transport_04_bench_F", "O_Heli_Transport_04_box_F", "O_Heli_Transport_04_covered_F", "O_Heli_Transport_04_fuel_F", "O_Heli_Transport_04_repair_F", "O_Heli_Transport_04_medevac_F"];
+_casHelos = ["B_Heli_Attack_01_F", "O_Heli_Attack_02_F", "O_Heli_Attack_02_black_F"];
 
 if !(typeOf _unit in _authorizedPilotUnits) then {
 

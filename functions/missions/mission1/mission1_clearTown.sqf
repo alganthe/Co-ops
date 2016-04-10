@@ -22,7 +22,7 @@ private _mainAOUnits = [];
 private _selectedLocation = selectRandom derp_mission1Locations;
 
 //------------------- Get random mission loc based on existing markers
-while {(count ((getMarkerPos _selectedLocation) nearEntities ["CAManBase", PARAM_AOSize])) == 0} do {
+while {(count ((getMarkerPos _selectedLocation) nearEntities [["CAManBase", "Air", "Car", "Tank"], derp_PARAM_AOSize])) == 0} do {
 	_selectedLocation = selectRandom derp_mission1Locations;
 
 };
@@ -35,7 +35,7 @@ if (count derp_mission1Locations <= 6) then {
 _markerPos = getMarkerPos _selectedLocation;
 
 //------------------- Para jump location
-if (PARAM_paraJumpEnabled) then {
+if (derp_PARAM_paraJumpEnabled) then {
     derp_paraPos = _markerPos;
     publicVariable "derp_paraPos";
 };
@@ -58,7 +58,7 @@ _marker = createMarker ["mission1_mrk", _markerPos];
 
 _marker2 = createMarker ["mission1_1_mrk", _markerPos];
 "mission1_1_mrk" setMarkerShape "ELLIPSE";
-"mission1_1_mrk" setMarkerSize [PARAM_AOSize, PARAM_AOSize];
+"mission1_1_mrk" setMarkerSize [derp_PARAM_AOSize, derp_PARAM_AOSize];
 "mission1_1_mrk" setMarkerBrush "Border";
 "mission1_1_mrk" setMarkerColor "ColorOPFOR";
 
@@ -76,7 +76,7 @@ _missionID = "mission1" + str derp_mission1ID;
     [_markerPos, _missionID] call derp_fnc_sideMissionSelection;
 
 	_winTrigger = createTrigger ["EmptyDetector", _markerPos, false];
-	_winTrigger setTriggerArea [PARAM_AOSize, PARAM_AOSize, 0, false];
+	_winTrigger setTriggerArea [derp_PARAM_AOSize, derp_PARAM_AOSize, 0, false];
 	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
 	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true", ""];
 }, [_markerPos, _missionID], 30] call derp_fnc_waitAndExec;
@@ -94,7 +94,7 @@ _missionID = "mission1" + str derp_mission1ID;
         missionInProgress = false;
         publicVariable "missionInProgress";
 
-        if (PARAM_paraJumpEnabled) then {
+        if (derp_PARAM_paraJumpEnabled) then {
             derp_paraPos = nil;
             publicVariable "derp_paraPos";
         };

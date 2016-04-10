@@ -1,6 +1,7 @@
 /*
 * Author: alganthe
 * PFEH handling quads respawning / abandon
+* DO NOT CALL THIS. This should only be called once on server init.
 *
 * Arguments:
 * Nothing

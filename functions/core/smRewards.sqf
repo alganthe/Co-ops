@@ -1,4 +1,14 @@
-if (derp_successfulSMs != 0 && {derp_successfulSMs == PARAM_smRewardAfter}) then {
+/*
+* Author: alganthe
+* Called only after a successful side mission, this gives a reward if the number of successfully completed SMs is equal to the mission param
+*
+* Arguments:
+* None
+*
+* Return Value:
+* Nothing
+*/
+if (derp_successfulSMs != 0 && {derp_successfulSMs == derp_PARAM_smRewardAfter}) then {
     _smRewardList = [
         ["B_Heli_Light_01_armed_F", 2],
         ["B_Heli_Attack_01_F", 2],
@@ -17,7 +27,7 @@ if (derp_successfulSMs != 0 && {derp_successfulSMs == PARAM_smRewardAfter}) then
     private _selectRandomArray = [];
 
     _smRewardList apply {
-        _x params ["_element" , "_amount"];
+        _x params ["_element", "_amount"];
 
         for "_i" from 1 to _amount do {
             _selectRandomArray pushback _element;

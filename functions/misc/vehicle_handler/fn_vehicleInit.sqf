@@ -1,6 +1,6 @@
 /*
 * Author: alganthe
-* Add a vehicle with the required parameters to the vehicle handling pfh.
+* Add a vehicle with the required parameters to the vehicle handling PFH.
 *
 * Arguments:
 * 0: Vehicle to be added <OBJECT>

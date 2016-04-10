@@ -1,17 +1,16 @@
 /*
 * Author: alganthe
-* Filter the arsenal for a given box
+* Filter the arsenal for a given box and add an unfucked arsenal action
 *
 * Arguments:
-* 0: Box <OBJECT>
+* 0: Array of objects <ARRAY>
 * 1: filter <NUMBER 0: arsenal unavailable, 1: Arsenal available but filtered, 2: arsenal available unfiltered>
 *
 * Return Value:
-* Array of items added in the form of ["item1","item2",......"itemN"]
+* Nothing
 *
 * Example:
-*
-* [_this,1] call derp_fnc_VA_filter;
+* [_this, 1] call derp_fnc_VA_filter;
 */
 params ["_arsenalBoxes", "_filter"];
 
@@ -301,6 +300,6 @@ switch (_filter) do {
     case 2: {
         {
             ["AmmoboxInit", [_x, true, {true}]] call BIS_fnc_arsenal;
-        } foreach _arsenalBoxes
+        } foreach _arsenalBoxes;
     };
 };

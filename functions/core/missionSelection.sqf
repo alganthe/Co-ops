@@ -1,6 +1,6 @@
 /*
 * Author: alganthe
-* Handle the mission selection, this should only be called on server init or after missionTransition
+* Handle the mission selection, this should only be called on server init, or in a mission PFH.
 *
 * Arguments:
 * 0: First call or not <BOOL>
@@ -10,9 +10,9 @@
 */
 params ["_firstCall"];
 
-if (PARAM_enableRespawn) then {
-    [0] remoteExec ["setPlayerRespawnTime",0,true];
-    [{[9999] remoteExec ["setPlayerRespawnTime",0,true]},[],300] call derp_fnc_waitAndExec;
+if (derp_PARAM_enableRespawn) then {
+    [0] remoteExec ["setPlayerRespawnTime", 0, true];
+    [{[9999] remoteExec ["setPlayerRespawnTime", 0, true]}, [], 300] call derp_fnc_waitAndExec;
 };
 
 if ((!isNil "_firstCall") && {_firstCall}) Then {
@@ -23,7 +23,7 @@ if ((!isNil "_firstCall") && {_firstCall}) Then {
 };
 //------------------- Check if the mission amount has been reached.
 
-if ((PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {PARAM_missionAmount == derp_missionCounter}) then {
+if ((derp_PARAM_missionAmount > 0) && {!isNil "derp_missionCounter"} && {derp_PARAM_missionAmount == derp_missionCounter}) then {
     "Won" call BIS_fnc_EndMissionServer;
 
 } else {

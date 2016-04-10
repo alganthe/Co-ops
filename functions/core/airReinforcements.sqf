@@ -1,6 +1,17 @@
+/*
+* Author: alganthe
+* Handles the CSAT air support.
+*
+* Arguments:
+* 0: The AO position <POSITION>
+*
+* Return Value:
+* nothing
+*
+*/
 params ["_AOPos"];
 
-if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - PARAM_airReinforcementTimer)}) then {
+if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - derp_PARAM_airReinforcementTimer)}) then {
     _AOPos params ["_xPos", "_yPos"];
 
     derp_airReinforcement = createVehicle [(selectRandom derp_airReinforcementVehicle), getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];

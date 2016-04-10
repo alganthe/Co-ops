@@ -14,27 +14,27 @@ if !(isServer or hasInterface) then {
 
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
-    [] execVM "scripts\misc\QS_icons.sqf";
+    [] execVM "scripts\misc\QS_icons.sqf";  // Map icons
 
-    [[player], false] call derp_fnc_remoteAddCuratorEditableObjects;
+    [[player], false] call derp_fnc_remoteAddCuratorEditableObjects; // Add unit to zeus.
     //---------------- mission params
     if (("staminaEnabled" call BIS_fnc_getParamValue) == 0) then {
         player enableStamina false;
     };
 
     if (("paraJumpEnabled" call BIS_fnc_getParamValue) == 1) then {
-        PARAM_paraJumpEnabled = true;
+        derp_PARAM_paraJumpEnabled = true;
     } else {
-        PARAM_paraJumpEnabled = false;
+        derp_PARAM_paraJumpEnabled = false;
     };
 
     //---------------- class specific stuff
-    _pilotsClassnames = ["B_pilot_F","B_Helipilot_F"];
+    _pilotsClassnames = ["B_pilot_F", "B_Helipilot_F"];
     if ((typeOf player) in _pilotsClassnames) then {
         [player, "pilotRespawn"] call BIS_fnc_addRespawnPosition;
     };
 
-    if (player isKindOf "B_support_Mort_f") then {
+    if (player isKindOf "B_support_Mort_f") then { // Disable arty computer if needed.
     	enableEngineArtillery true;
     } else {
     	enableEngineArtillery false;
@@ -61,7 +61,7 @@ if !(isServer or hasInterface) then {
         [_unit, 0] call derp_fnc_gearLimitations;
     }];
 
-    if (PARAM_paraJumpEnabled) then {
+    if (derp_PARAM_paraJumpEnabled) then {
         arsenalDude addAction [
         "<t color='#FF6600'>Paradrop on AO</t>",
         {
@@ -78,5 +78,5 @@ if !(isServer or hasInterface) then {
         ];
     };
 
-    call derp_fnc_VAInitSorting;
+    call derp_fnc_VAInitSorting;  // Init arsenal boxes.
 };

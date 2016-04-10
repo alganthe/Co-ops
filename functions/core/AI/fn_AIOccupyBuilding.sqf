@@ -14,9 +14,8 @@
 * Array of units not garrisoned
 *
 * Example:
-* [position, nil, [unit1, unit2, unit3, unitN], 200, false, false] call derp_fnc_AIOccupyBuilding
+* [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call derp_fnc_AIOccupyBuilding
 */
-
 params ["_startingPos", ["_buildingTypes", ["house"]], "_unitsArray", ["_fillingRadius", -1], ["_fillingType", 0], ["_topDownFilling", false]];
 
 if (_startingPos isEqualTo [0,0,0]) exitWith {

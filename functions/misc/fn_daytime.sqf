@@ -1,6 +1,6 @@
 /*
 * Author: alganthe
-* Set time of the day
+* Set time of the day.
 *
 * Arguments:
 * None: this is called via mission parameters and shouldn't be called by anything else.

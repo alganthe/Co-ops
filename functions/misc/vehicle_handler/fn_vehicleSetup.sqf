@@ -10,28 +10,26 @@
 */
 params ["_vehicle"];
 
-_type = typeOf _vehicle;
+_vehicleType = typeOf _vehicle;
 
 if (isNull _vehicle) exitWith {};
 //---------------------------------------------------------- Arrays
-_ghosthawk = ["B_Heli_Transport_01_camo_F", "B_Heli_Transport_01_F"]; 			// ghosthawk
-_noAmmoCargo = ["B_APC_Tracked_01_CRV_F", "B_Truck_01_ammo_F"];					// Bobcat CRV
+_noAmmoCargo = ["B_APC_Tracked_01_CRV_F", "B_Truck_01_ammo_F"];					// Bobcat CRV / ammoTruck
 _uav = ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"];		// UAVs
-_fob = [""];
 
 //---------------------------------------------------------- Sorting
 //---------- Add UAV crew
-if (_type in _uav) then {
+if (_vehicleType in _uav) then {
     createVehicleCrew _vehicle;
 };
 
 //---------- remove ammo cargo
-if (_type in _noAmmoCargo) then {
+if (_vehicleType in _noAmmoCargo) then {
 	_vehicle setAmmoCargo 0;
 };
 
 //---------- EH
-if (_type isKindOf ["Air", configFile >> "CfgVehicles"] && !(_type in _uav)) then {
+if (_vehicleType isKindOf ["Air", configFile >> "CfgVehicles"] && !(_vehicleType in _uav)) then {
     _vehicle addEventHandler ["GetIn", {_this call derp_fnc_pilotCheck}];
 };
 
@@ -40,7 +38,7 @@ _vehicle addEventHandler ["Fired", {
 
     if ((_weapon != "CMFlareLauncher") && {_unit distance2D (getMarkerPos "BASE") < 300}) then {
         deleteVehicle _projectile;
-        ["Don't fire at base", "Hold your fire soldier, don't throw or fire anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
+        ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
     }}];
 
 //---------- Add to zeus
