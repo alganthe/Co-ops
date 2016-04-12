@@ -42,9 +42,9 @@ if (derp_PARAM_paraJumpEnabled) then {
 
 //------------------- Spawn In enemies
 if (derp_HCAOsConnected) then {
-[_markerPos, [true, true, true, true, true, true, true, true]] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
+    [_markerPos, [true, true, true, true, true, true, true, true]] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
     _mainAOUnits = spawnedUnits;
-spawnedUnits = nil;
+    spawnedUnits = nil;
 
 } else {
     _mainAOUnits = [_markerPos, [true, true, true, true, true, true, true, true]] call derp_fnc_mainAOSpawnHandler;
