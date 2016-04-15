@@ -52,7 +52,7 @@ _restrictedItems pushBack _sniperRestricted;
 _restrictedItems pushBack _machinegunRestricted;
 _restrictedItems pushBack _uavOperatorRestricted;
 _restrictedItems pushBack _grenadierRestricted;
-_restrictedItems pushBack _gitGudM8,
+_restrictedItems pushBack _gitGudM8;
 
 _assignedItems = assignedItems _unit;
 _weapons = [];
