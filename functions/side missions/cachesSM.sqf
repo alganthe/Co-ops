@@ -21,7 +21,7 @@ params ["_AOPos", "_missionID"];
 derp_SMID = derp_SMID + 1;
 _smID = "caches" + str derp_SMID;
 
-[west, [_smID, _missionID], ["The CSAT has found three ammo caches around the town, find and destroy them in order to stop the CSAT from retrieving their content.", "Find and destroy ammo caches", ""], objNull, "Created", 5, true, "Destroy", true] call BIS_fnc_taskCreate;
+[west, [_smID, _missionID], ["The CSAT has found three ammo caches around the town, find and destroy them in order to stop the CSAT from retrieving their content.", "Find and destroy ammo caches", ""], objNull, "Created", 5, true, "destroy", true] call BIS_fnc_taskCreate;
 
 private _buildingArray = nearestObjects [_AOpos, ["Land_i_House_Small_01_V1_F", "Land_i_House_Small_01_V2_F", "Land_i_House_Small_01_V3_F","Land_i_House_Small_02_V1_F", "Land_i_House_Small_02_V2_F","Land_i_House_Small_02_V3_F", "Land_i_Stone_HouseSmall_V1_F", "Land_i_Stone_HouseSmall_V2_F", "Land_i_Stone_HouseSmall_V3_F", "Land_i_Stone_HouseBig_V1_F", "Land_i_Stone_HouseBig_V2_F", "Land_i_Stone_HouseBig_V3_F", "Land_i_House_Big_01_V1_F", "Land_i_House_Big_01_V2_F", "Land_i_House_Big_01_V3_F", "Land_i_House_Big_02_V1_F", "Land_i_House_Big_02_V2_F", "Land_i_House_Big_02_V3_F"], 200];
 
