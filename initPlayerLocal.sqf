@@ -78,5 +78,5 @@ if !(isServer or hasInterface) then {
         ];
     };
 
-    call derp_fnc_VAInitSorting;  // Init arsenal boxes.
+    [[arsenalBox1, arsenalBox2, arsenalDude], ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter;;  // Init arsenal boxes.
 };

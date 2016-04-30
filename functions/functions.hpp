@@ -8,7 +8,6 @@ class derp {
         class globalHint_handler {};
         class pilotCheck {};
         class curatorPingedEH {};
-        class VAInitSorting {};
         class hintC {};
         class arrayShuffle {};
         class paradrop {};
