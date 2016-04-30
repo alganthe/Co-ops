@@ -109,8 +109,7 @@ While {count _unitsArray > 0} do {
 
                     _unit setPos _buildingPos;
 
-                    doStop _unit;
-                    commandStop _unit;
+                    _unit forceSpeed 0;
 
                     _unitsArray deleteAt (_unitsArray find _unit);
                     _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
@@ -143,8 +142,7 @@ While {count _unitsArray > 0} do {
 
                     _unit setPos _buildingPos;
 
-                    doStop _unit;
-                    commandStop _unit;
+                    _unit forceSpeed 0;
 
                     _unitsArray deleteAt (_unitsArray find _unit);
                     _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
@@ -179,8 +177,7 @@ While {count _unitsArray > 0} do {
 
                     _unit setPos _buildingPos;
 
-                    doStop _unit;
-                    commandStop _unit;
+                    _unit forceSpeed 0;
 
                     _unitsArray deleteAt (_unitsArray find _unit);
                     _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};

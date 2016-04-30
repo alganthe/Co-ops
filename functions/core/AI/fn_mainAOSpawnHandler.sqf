@@ -186,8 +186,8 @@ if (_milbuildingInfantry) then {
                     _unit disableAI "FSM";
                     _unit disableAI "AUTOCOMBAT";
                     _unit setPos [_posX, _posY, _posZ];
-                    doStop _unit;
-                    commandStop _unit;
+
+                    _unit forceSpeed 0;
 
                     _spawnedUnits pushBack _unit;
                 };
