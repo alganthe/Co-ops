@@ -178,22 +178,16 @@ class Params {
         title = "AI aiming shake";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 5;
+        default = 2;
     };
 
     class AIAimingSpeed {
         title = "AI aiming speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 5;
+        default = 3;
     };
 
-    class AIEndurance {
-        title = "AI endurance";
-        values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 8;
-    };
     class AISpotingDistance {
         title = "AI spotting distance";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -205,35 +199,35 @@ class Params {
         title = "AI spotting speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 6;
+        default = 4;
     };
 
     class AICourage {
         title = "AI courage";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 6;
+        default = 10;
     };
 
     class AIReloadSpeed {
         title = "AI reload speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 4;
+        default = 10;
     };
 
     class AICommandingSkill {
         title = "AI commanding skill";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 7;
+        default = 10;
     };
 
     class AIGeneralSkill {
         title = "AI general skill";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 7;
+        default = 10;
     };
 };
 

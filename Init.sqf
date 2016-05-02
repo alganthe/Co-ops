@@ -12,7 +12,6 @@ derp_PARAM_RandomVehcsAmount = "RandomVehcsAmount" call BIS_fnc_getParamValue;
 derp_PARAM_AIAimingAccuracy = "AIAimingAccuracy" call BIS_fnc_getParamValue;
 derp_PARAM_AIAimingShake = "AIAimingShake" call BIS_fnc_getParamValue;
 derp_PARAM_AIAimingSpeed = "AIAimingSpeed" call BIS_fnc_getParamValue;
-derp_PARAM_AIEndurance = "AIEndurance" call BIS_fnc_getParamValue;
 derp_PARAM_AISpotingDistance = "AISpotingDistance" call BIS_fnc_getParamValue;
 derp_PARAM_AISpottingSpeed = "AISpottingSpeed" call BIS_fnc_getParamValue;
 derp_PARAM_AICourage = "AICourage" call BIS_fnc_getParamValue;
