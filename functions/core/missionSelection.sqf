@@ -12,7 +12,7 @@ params ["_firstCall"];
 
 if (derp_PARAM_enableRespawn) then {
     [0] remoteExec ["setPlayerRespawnTime", 0, true];
-    [{[9999] remoteExec ["setPlayerRespawnTime", 0, true]}, [], 300] call derp_fnc_waitAndExec;
+    [{[9999] remoteExec ["setPlayerRespawnTime", 0, true]}, [], 300] call derp_fnc_waitAndExecute;
 };
 
 if ((!isNil "_firstCall") && {_firstCall}) Then {

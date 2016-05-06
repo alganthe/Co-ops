@@ -66,13 +66,13 @@ private _markerArray = [];
 
             [_smID, true] call BIS_fnc_deleteTask;
 
-        }, [_towerMines, _smID], 300] call derp_fnc_waitAndExec;
+        }, [_towerMines, _smID], 300] call derp_fnc_waitAndExecute;
 
         derp_successfulSMs = derp_successfulSMs + 1;
         call derp_fnc_smRewards;
-        _pfhID call CBA_fnc_removePerFrameHandler;
+        _pfhID call derp_fnc_removePerFrameHandler;
 
     } else {
         [_AOPos] call derp_fnc_airReinforcements;
     };
-}, 10, [_comTowers, _AOPos, _markerArray, _towerMines, _smID]] call CBA_fnc_addPerFrameHandler;
+}, 10, [_comTowers, _AOPos, _markerArray, _towerMines, _smID]] call derp_fnc_addPerFrameHandler;

@@ -1,5 +1,4 @@
 //---------------------------------- Functions compiling
-call compile preprocessFileLineNumbers "functions\core\Ported_funcs\portedFuncsInit.sqf";
 call compile preprocessFileLineNumbers "functions\core\serverSide_functions_compile.sqf";
 
 //---------------------------------- Dynamic groups init
@@ -46,7 +45,7 @@ addMissionEventHandler ["HandleDisconnect", {
 }];
 
 //---------------------------------- Scripts and functions calls.
-[{[true] call derp_fnc_missionSelection}, [], 30] call derp_fnc_waitAndExec; // STart mission selection
+[{[true] call derp_fnc_missionSelection}, [], 30] call derp_fnc_waitAndExecute; // STart mission selection
 
 //-------------- vehicle handling
 {

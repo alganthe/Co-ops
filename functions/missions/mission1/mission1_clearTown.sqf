@@ -79,7 +79,7 @@ _missionID = "mission1" + str derp_mission1ID;
 	_winTrigger setTriggerArea [derp_PARAM_AOSize, derp_PARAM_AOSize, 0, false];
 	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
 	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true", ""];
-}, [_markerPos, _missionID], 30] call derp_fnc_waitAndExec;
+}, [_markerPos, _missionID], 30] call derp_fnc_waitAndExecute;
 
 //------------------- PFH checking every 10s if the mission has been completed
 [{
@@ -109,11 +109,11 @@ _missionID = "mission1" + str derp_mission1ID;
             } foreach _mainAOUnits;
 
 			[_missionID, true] call BIS_fnc_deleteTask;
-		}, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExec;
+		}, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExecute;
 
         derp_missionCounter = derp_missionCounter + 1;
 		false call derp_fnc_missionSelection;
 
-		_pfhID call CBA_fnc_removePerFrameHandler;
+		_pfhID call derp_fnc_removePerFrameHandler;
 	};
-}, 10, [_markerPos, _mainAOUnits, _missionID]] call CBA_fnc_addPerFrameHandler;
+}, 10, [_markerPos, _mainAOUnits, _missionID]] call derp_fnc_addPerFrameHandler;

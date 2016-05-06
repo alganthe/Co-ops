@@ -26,7 +26,7 @@
                     derp_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
                     [_newVehicle] call derp_fnc_vehicleSetup;
 
-                }, [_vehicleClass, _spawnPos, _spawnDir, _timer], _timer] call derp_fnc_waitAndExec;
+                }, [_vehicleClass, _spawnPos, _spawnDir, _timer], _timer] call derp_fnc_waitAndExecute;
                 derp_vehicleHandlingArray deleteAt (derp_vehicleHandlingArray find _x);
 
             } else {
@@ -44,7 +44,7 @@
                         derp_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
                         [_newVehicle] call derp_fnc_vehicleSetup;
 
-                    }, [_vehicle, _vehicleClass, _spawnPos, _spawnDir, _timer], _timer] call derp_fnc_waitAndExec;
+                    }, [_vehicle, _vehicleClass, _spawnPos, _spawnDir, _timer], _timer] call derp_fnc_waitAndExecute;
                     derp_vehicleHandlingArray deleteAt (derp_vehicleHandlingArray find _x);
 
                 } else {
@@ -65,7 +65,7 @@
                                 derp_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
                                 [_newVehicle] call derp_fnc_vehicleSetup;
 
-                            }, [_vehicleClass, _spawnPos, _spawnDir, _timer], _timer] call derp_fnc_waitAndExec;
+                            }, [_vehicleClass, _spawnPos, _spawnDir, _timer], _timer] call derp_fnc_waitAndExecute;
                             deleteVehicle _vehicle;
                             derp_vehicleHandlingArray deleteAt (derp_vehicleHandlingArray find _x);
                         };
@@ -75,4 +75,4 @@
         };
     } forEach derp_vehicleHandlingArray;
 
-}, 10, []] call CBA_fnc_addPerFrameHandler;
+}, 10, []] call derp_fnc_addPerFrameHandler;
