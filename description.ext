@@ -24,10 +24,24 @@ joinUnassigned = 1;                                     // 0 = players forced in
 enableDebugConsole = 1;                                 // 0 = editor default behavior, 1 = SP / Hosts / Logged admin, 2 = everyone
 
 //-------------------------Respawn
+class CfgRespawnTemplates {
+    class derp_revive {
+        // Function or script executed upon death. Parameters passed into it are the same as are passed into onPlayerKilled.sqf file
+        onPlayerKilled = "derp_fnc_onPlayerKilled";
+        // Function or script executed upon respawn. Parameters passed into it are the same as are passed into onPlayerRespawn.sqf file
+        onPlayerRespawn = "derp_fnc_onPlayerRespawn";
+        // Default respawn delay (can be overwitten by description.ext entry of the same name)
+        respawnDelay = 10;
+        // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types
+        // Can be overridden by description.ext attribute of the same name
+        respawnOnStart = -1;
+    };
+};
+
 respawn = 3;
 respawnDelay = 10;
 respawnOnStart = 0;
-respawnTemplates[] = {"MenuPosition"};
+respawnTemplates[] = {"derp_revive", "MenuPosition"};
 
 //-------------------------Wreck Manager
 wreckManagerMode = 1;
@@ -43,6 +57,7 @@ corpseRemovalMaxTime = 600;
 
 //-------------------------Functions
 #include "functions\misc\taw_vd\GUI.h"
+#include "functions\portedFuncs\ace3\progressBarGUI.hpp"
 
 class CfgFunctions {
     #include "functions\functions.hpp"
@@ -253,6 +268,9 @@ class CfgRemoteExec {
         // Co-ops functions
         class derp_fnc_hintC { allowedTargets=1; };
         class derp_fnc_remoteAddCuratorEditableObjects { allowedTargets = 2; };
+        class derp_fnc_reviveActions { allowedTargets = 1; jip = 1; };
+        class derp_fnc_switchState { allowedTargets = 1; };
+        class derp_fnc_remoteRemoveAction { allowedTargets = 1;}
     };
     class Commands {
         mode = 0;

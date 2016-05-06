@@ -11,6 +11,11 @@ class derp {
         class pfhPostInit { postInit = 1; };
     };
 
+    class ACE3 {
+        file = "functions\portedFuncs\ace3";
+        class progressBar {};
+    };
+
     class misc {
         file = "functions\misc";
         class VA_filter {};
