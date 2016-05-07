@@ -1,4 +1,5 @@
 derp_reviveKeyDownID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
+    systemChat "keyPressed";
     if (_this select 1 != 57) exitWith {}; // Not space
 
     if !(isNil "derp_revive_keyDown") exitWith {}; // PFH already present
@@ -22,5 +23,6 @@ derp_reviveKeyDownID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 }];
 
 derp_reviveKeyUpID = (findDisplay 46) displayAddEventHandler ["KeyUp", {
+    systemChat "keyUp";
     derp_revive_keyDown = nil;
 }];

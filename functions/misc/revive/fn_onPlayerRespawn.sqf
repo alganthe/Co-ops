@@ -8,7 +8,7 @@ if !(isNil "derp_reviveKeyDownID") then {
 [player] call derp_revive_fnc_reviveActions; // Add back the action, since we can't fucking keep it
 
 if (_newUnit getVariable ["derp_revive_downed", false]) then {
-    cutText ["", "BLACK"];
+
     // Saving corpse pos and dir
     _dir = getDir _corpse;
     _pos = getPosWorld _corpse;

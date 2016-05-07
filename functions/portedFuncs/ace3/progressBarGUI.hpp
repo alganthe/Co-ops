@@ -163,7 +163,7 @@ class derp_ProgressBar_Dialog {
 class derp_DisableMouse_Dialog {
     idd = -1;
     movingEnable = false;
-    onLoad = "uiNamespace setVariable [['derp_dlgDisableMouse', _this select 0]];";
+    onLoad = "uiNamespace setVariable ['derp_dlgDisableMouse', _this select 0];";
     objects[] = {};
     class controlsBackground {
         class Background {

@@ -14,6 +14,7 @@ class derp {
     class ACE3 {
         file = "functions\portedFuncs\ace3";
         class progressBar {};
+        class disableUserInput {};
     };
 
     class misc {

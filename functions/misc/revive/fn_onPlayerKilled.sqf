@@ -20,4 +20,8 @@ _unit setVariable ["derp_revive_downed", true, true];
 // Save loadout
 [_unit, [_unit, "derp_revive_loadout"]] call bis_fnc_saveInventory;
 
+//fade out
+{inGameUISetEventHandler [_x, "true"]} forEach ["PrevAction", "Action", "NextAction"];
+titleCut ["","BLACK OUT",1];
+
 [{setPlayerRespawnTime 0}, [], 2] call derp_fnc_waitAndExecute;

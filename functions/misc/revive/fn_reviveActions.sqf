@@ -20,7 +20,7 @@ _unit addAction [
             {}, // Code executed upon action failure
             format ["Reviving %1", name cursorObject], // Title text
             {
-                (alive cursorObject) && {cursorObject getVariable ["derp_revive_downed", false]} && {isNull objectParent ((_this select 0) select 0)}
+                (alive cursorObject) && {cursorObject getVariable ["derp_revive_downed", false]} && {isNull objectParent ((_this select 0) select 0)} && {!(cursorObject getVariable ['derp_revive_isDragged', false]) || {!(cursorObject getVariable ['derp_revive_isCarried', false])}}
             } // Code to check each frame
         ] call derp_fnc_progressBar;
     },
