@@ -27,9 +27,9 @@ enableDebugConsole = 1;                                 // 0 = editor default be
 class CfgRespawnTemplates {
     class derp_revive {
         // Function or script executed upon death. Parameters passed into it are the same as are passed into onPlayerKilled.sqf file
-        onPlayerKilled = "derp_fnc_onPlayerKilled";
+        onPlayerKilled = "derp_revive_fnc_onPlayerKilled";
         // Function or script executed upon respawn. Parameters passed into it are the same as are passed into onPlayerRespawn.sqf file
-        onPlayerRespawn = "derp_fnc_onPlayerRespawn";
+        onPlayerRespawn = "derp_revive_fnc_onPlayerRespawn";
         // Default respawn delay (can be overwitten by description.ext entry of the same name)
         respawnDelay = 10;
         // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types

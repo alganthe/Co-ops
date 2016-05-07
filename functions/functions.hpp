@@ -38,6 +38,9 @@ class derp {
         class AISkill {};
         class AIOccupyBuilding {};
     };
+};
+
+class derp_revive {
 
     class Revive {
         file = "functions\misc\revive";
@@ -47,6 +50,11 @@ class derp {
         class switchState {};
         class reviveTimer {};
         class reviveActions {};
+        class startDragging {};
+        class startCarrying {};
+        class dragging {};
+        class carrying {};
+        class dropPerson {};
     };
 };
 

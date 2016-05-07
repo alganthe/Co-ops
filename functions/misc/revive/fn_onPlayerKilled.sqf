@@ -5,14 +5,14 @@ private _time = missionNamespace getVariable ["RscDisplayMPInterrupt_respawnTime
 if (time - _time < 1 || {_unit getVariable ["derp_revive_downed", false]}) exitWith {
 
     _unit setVariable ["derp_revive_downed", false, true];
-    player call derp_fnc_executeTemplates;
+    player call derp_revive_fnc_executeTemplates;
 };
 
 // Exit if player is respawned via respanwOnStart or if he was in a vehicle or underwater
 if (_unit == objNull || {!isNull objectParent _unit} || {(getPosASL _unit) select 2 < 0}) exitWith {
 
     _unit setVariable ["derp_revive_downed", false, true];
-    player call derp_fnc_executeTemplates;
+    player call derp_revive_fnc_executeTemplates;
 };
 
 _unit setVariable ["derp_revive_downed", true, true];
