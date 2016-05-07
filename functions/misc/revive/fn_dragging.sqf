@@ -1,6 +1,8 @@
 #include "reviveDefines.hpp"
 params ["_dragger", "_dragged"];
 
+[_dragger] allowGetIn false;
+
 _dragged setDir (getDir _dragger + 180);
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMultiply 1.5));
 
@@ -13,18 +15,17 @@ _dragged playMove "AinjPpneMrunSnonWnonDb_grab";
 
     // handle aborting drag
     if !(_dragger getVariable ["derp_revive_isDragging", false]) exitWith {
+        [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
     if (!alive _dragged || {!alive _dragger}) then {
-        _dragger setVariable ["derp_revive_isDragging", false ,true];
-        _dragged setVariable ["derp_revive_isDragged", false ,true];
+        [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
     if (derp_missionTime > _timeOut) exitWith {
-        _dragger setVariable ["derp_revive_isDragging", false ,true];
-        _dragged setVariable ["derp_revive_isDragged", false ,true];
+        [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
