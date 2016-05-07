@@ -24,7 +24,7 @@ derp_revive_bleedOutTimer = 0;
 
     } else {
         // draw timer
-        titleText [["Timer:", str (_timerLength - derp_revive_bleedOutTimer)] joinString " ", "PLAIN DOWN", 0.1];
+        99 cutText [format ["Timer: %1 \n Hold space to respawn", _timerLength -  derp_revive_bleedOutTimer], "PLAIN DOWN", 0.1];
 
         derp_revive_bleedOutTimer = derp_revive_bleedOutTimer + 1;
     };

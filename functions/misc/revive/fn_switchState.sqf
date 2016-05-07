@@ -28,6 +28,7 @@ switch (_state) do {
             [_unit, [_unit, "derp_revive_loadout"], nil, true] call bis_fnc_saveInventory;
 
             [_unit] call derp_revive_fnc_reviveTimer;
+            call derp_revive_fnc_hotkeyHandler;
         }, [_unit], 2] call derp_fnc_waitAndExecute;
     };
 

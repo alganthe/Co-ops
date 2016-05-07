@@ -1,5 +1,10 @@
 params ["_newUnit", "_corpse", "_respawn", "_respawnDelay"];
 
+if !(isNil "derp_reviveKeyDownID") then {
+    (findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID];
+    (findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID];
+
+}; // remove the KeyDown and KeyUp events if they exists
 [player] call derp_revive_fnc_reviveActions; // Add back the action, since we can't fucking keep it
 
 if (_newUnit getVariable ["derp_revive_downed", false]) then {
