@@ -19,13 +19,13 @@ _timer = derp_missionTime + 15;
 
     // handle aborting carry
     if !(_dragger getVariable ["derp_revive_isCarrying", false]) exitWith {
-        [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
+        [_dragger, _dragged, "CARRYING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
     // same as dragObjectPFH, checks if object is deleted or dead OR (target moved away from carrier (weapon disasembled))
     if (!alive _dragged || {_dragger distance _dragged > 10}) then {
-        [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
+        [_dragger, _dragged, "CARRYING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
