@@ -1,5 +1,3 @@
-#include "reviveDefines.hpp"
-
 params ["_dragger", "_dragged"];
 
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMultiply 1.5));

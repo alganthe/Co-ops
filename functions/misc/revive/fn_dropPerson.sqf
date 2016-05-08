@@ -1,4 +1,3 @@
-#include "reviveDefines.hpp"
 params ["_dragger", "_dragged", "_state"];
 
 _state = toUpper _state;

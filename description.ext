@@ -43,6 +43,8 @@ respawnDelay = 10;
 respawnOnStart = 0;
 respawnTemplates[] = {"derp_revive", "MenuPosition"};
 
+derp_revive_bleedOutTimer = 500;
+
 //-------------------------Wreck Manager
 wreckManagerMode = 1;
 wreckLimit = 5;

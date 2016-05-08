@@ -74,6 +74,6 @@ switch (_state) do {
         _unit setCaptive false;
         _unit setVariable ["derp_revive_downed", false, true];
 
-        _unit switchMove DERP_REVIVE_WAKEUPANIM;
+        _unit switchMove "amovppnemstpsnonwnondnon";
     };
 };

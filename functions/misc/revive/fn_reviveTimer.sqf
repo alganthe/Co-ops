@@ -1,5 +1,3 @@
-#include "reviveDefines.hpp"
-
 params ["_unit"];
 
 derp_revive_bleedOutTimer = 0;
@@ -28,4 +26,4 @@ derp_revive_bleedOutTimer = 0;
 
         derp_revive_bleedOutTimer = derp_revive_bleedOutTimer + 1;
     };
-}, 1, [_unit, DERP_REVIVE_TIMER]] call derp_fnc_addPerFrameHandler;
+}, 1, [_unit, (getMissionConfigValue ["derp_revive_bleedOutTimer", 300])]] call derp_fnc_addPerFrameHandler;

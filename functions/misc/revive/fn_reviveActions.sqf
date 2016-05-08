@@ -1,5 +1,3 @@
-#include "reviveDefines.hpp"
-
 params ["_unit"];
 
 // Revive
@@ -7,9 +5,10 @@ _unit addAction [
     "<t color='#ff0000'> Revive </t>",
     {
         params ["", "_caller", "", "_args"];
-        _args params ["_medicAnim"];
 
-        _caller playAction _medicAnim;
+        _caller removeItem "FirstAidKit";
+
+        _caller playAction "MedicOther";
 
         [
             10, // Time the action takes to complete
@@ -24,12 +23,12 @@ _unit addAction [
             } // Code to check each frame
         ] call derp_fnc_progressBar;
     },
-    [DERP_REVIVE_MEDICANIM],
+    [],
     10,
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} && {_this getUnitTrait 'medic'} && {'FirstAidKit' in items _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
 ];
 
 // Dragging

@@ -1,4 +1,3 @@
-#include "reviveDefines.hpp"
 params ["_dragger", "_dragged"];
 
 [_dragger] allowGetIn false;
