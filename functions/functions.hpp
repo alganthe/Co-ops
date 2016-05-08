@@ -56,6 +56,7 @@ class derp_revive {
         class carrying {};
         class dropPerson {};
         class hotkeyHandler {};
+        class uiElements {};
     };
 };
 
