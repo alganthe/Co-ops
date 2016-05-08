@@ -28,8 +28,15 @@ switch (_state) do {
             [_unit, [_unit, "derp_revive_loadout"], nil, true] call bis_fnc_saveInventory;
 
             [_unit] call derp_revive_fnc_reviveTimer;
-            [true] call derp_fnc_disableUserInput;
             call derp_revive_fnc_hotkeyHandler;
+
+            derp_revive_animChangedID = _unit addEventHandler ["AnimChanged", {
+                params ["_unit", "_anim"];
+
+                if (_unit getVariable ["derp_revive_downed", false] && {isNull objectParent _unit} && {!(_unit getVariable ["derp_revive_isDragged",false]) || {!(_unit getVariable ["derp_revive_isCarried", false])}}) then {
+                    _unit switchMove "acts_injuredlyingrifle02_180";
+                };
+            }];
 
             //fade in
             _unit switchCamera "external";
@@ -42,7 +49,13 @@ switch (_state) do {
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
 
-        [false] call derp_fnc_disableUserInput;
+         // Remove revive EHs
+        if !(isNil "derp_reviveKeyDownID") then {
+            (findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID];
+            (findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID];
+            _unit removeEventHandler ["AnimChanged",derp_revive_animChangedID];
+        };
+
         _unit setCaptive false;
         _unit setVariable ["derp_revive_downed", false, true];
     };
@@ -51,14 +64,14 @@ switch (_state) do {
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
 
+        // Remove revive EHs
         if !(isNil "derp_reviveKeyDownID") then {
             (findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID];
             (findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID];
+            _unit removeEventHandler ["AnimChanged",derp_revive_animChangedID];
         };
 
-        [false] call derp_fnc_disableUserInput;
         _unit setCaptive false;
-        _unit setDamage 0.5;
         _unit setVariable ["derp_revive_downed", false, true];
 
         _unit switchMove DERP_REVIVE_WAKEUPANIM;
