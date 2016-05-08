@@ -80,7 +80,8 @@ switch (_state) do {
        derp_revive_ppBlur ppEffectAdjust [0.7];
        {_x ppEffectCommit 1} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur];
 
-        _unit setCaptive false;
-        _unit switchMove "amovppnemstpsnonwnondnon";
+       _unit setDamage 0.4;
+       _unit setCaptive false;
+       _unit switchMove "amovppnemstpsnonwnondnon";
     };
 };
