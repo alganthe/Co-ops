@@ -122,7 +122,7 @@ _unit addAction [
 
         {
             moveOut _x;
-            _x playMove "acts_injuredlyingrifle02_180";
+            [_x, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
         } foreach ((crew cursorObject) select {(_x getVariable ['derp_revive_downed', false])});
     },
     [],
@@ -141,7 +141,7 @@ _unit addAction [
 
         {
             moveOut _x;
-            _x playMove "acts_injuredlyingrifle02_180";
+            [_x, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
         } foreach ((crew _caller) select {(_x getVariable ['derp_revive_downed', false])});
     },
     [],

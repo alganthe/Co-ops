@@ -18,7 +18,7 @@ switch (_state) do {
         [{
             params ["_unit"];
 
-            _unit playMove "acts_injuredlyingrifle02_180";
+            [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
 
             [_unit, [_unit, "derp_revive_loadout"]] call bis_fnc_loadInventory;
             [_unit, [_unit, "derp_revive_loadout"], nil, true] call bis_fnc_saveInventory;
@@ -31,7 +31,7 @@ switch (_state) do {
                 params ["_unit", "_anim"];
 
                 if (_unit getVariable ["derp_revive_downed", false] && {isNull objectParent _unit} && {!(_unit getVariable ["derp_revive_isDragged",false]) || {!(_unit getVariable ["derp_revive_isCarried", false])}}) then {
-                    _unit playMove "acts_injuredlyingrifle02_180";
+                    [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
                 };
             }];
 
@@ -56,7 +56,7 @@ switch (_state) do {
         if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
         if !(isNil "derp_revive_drawIcon3DID") then {["derp_revive_drawIcon3DID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler};
 
-    if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
+        if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
         _unit setCaptive false;
     };
@@ -80,6 +80,6 @@ switch (_state) do {
 
        _unit setDamage 0.4;
        _unit setCaptive false;
-       _unit playMove "amovppnemstpsnonwnondnon";
+       [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
     };
 };

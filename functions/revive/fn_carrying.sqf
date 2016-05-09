@@ -7,8 +7,8 @@ private _timer = derp_missionTime + 5;
 _dragged setDir (getDir _dragger + 180);
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger));
 
-_dragger playMove "AcinPknlMstpSnonWnonDnon_AcinPercMrunSnonWnonDnon";
-_dragged playMove "AinjPfalMstpSnonWrflDnon_carried_Up";
+[_dragger, "AcinPknlMstpSnonWnonDnon_AcinPercMrunSnonWnonDnon"] call derp_fnc_syncAnim;
+[_dragged, "AinjPfalMstpSnonWrflDnon_carried_Up"] call derp_fnc_syncAnim;
 
 _timer = derp_missionTime + 15;
 

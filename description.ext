@@ -269,11 +269,13 @@ class CfgRemoteExec {
 
         // Co-ops functions
         class derp_fnc_hintC { allowedTargets=1; };
+        class derp_fnc_syncAnim { allowedTargets=1; };
         class derp_fnc_remoteAddCuratorEditableObjects { allowedTargets = 2; };
         class derp_fnc_revive_reviveActions { allowedTargets = 1; jip = 1; };
         class derp_revive_fnc_switchstate { allowedTargets = 1; };
     };
     class Commands {
         mode = 0;
+        class switchMove { allowedTargets = 1; };
     };
 };

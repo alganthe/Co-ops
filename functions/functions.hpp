@@ -30,6 +30,7 @@ class derp {
         class paradrop {};
         class gearLimitations {};
         class remoteAddCuratorEditableObjects {};
+        class syncAnim {};
     };
 
     class AI {

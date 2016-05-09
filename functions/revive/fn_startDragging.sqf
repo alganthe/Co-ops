@@ -4,7 +4,7 @@ _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMulti
 
 _dragged attachTo [_dragger, [0, 1, 0]];
 _dragged setDir (getDir _dragger + 180);
-_dragged playMove "AinjPpneMrunSnonWnonDb_still";
+[_dragged, "AinjPpneMrunSnonWnonDb_still"] call derp_fnc_syncAnim;
 
 [{
     params ["_args", "_idPFH"];

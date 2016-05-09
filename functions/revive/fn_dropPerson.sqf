@@ -9,7 +9,7 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragger && {isNull objectParent _dragged}) then {
-            _dragged playMove "acts_injuredlyingrifle02_180";
+            [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
@@ -24,7 +24,7 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragger && {isNull objectParent _dragged}) then {
-            _dragged playMove "acts_injuredlyingrifle02_180";
+            [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
