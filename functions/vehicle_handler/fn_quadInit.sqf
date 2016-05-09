@@ -11,4 +11,4 @@
 */
 params ["_vehicle", "_timer"];
 
-derp_quadHandlingArray pushBack [_vehicle, typeOf _vehicle, getPosATL _vehicle, getDir _vehicle, _timer];
+derp_vehicleHandler_quadHandlingArray pushBack [_vehicle, typeOf _vehicle, getPosATL _vehicle, getDir _vehicle, _timer];

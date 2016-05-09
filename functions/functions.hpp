@@ -43,7 +43,7 @@ class derp {
 class derp_revive {
 
     class Revive {
-        file = "functions\misc\revive";
+        file = "functions\revive";
         class onPlayerKilled {};
         class onPlayerRespawn {};
         class executeTemplates {};
@@ -60,11 +60,23 @@ class derp_revive {
     };
 };
 
+class derp_vehicleHandler {
+
+    class vehicleHandler {
+        file = "functions\vehicle_handler";
+        class quadInit {};
+        class quadPFH {};
+        class vehicleInit {};
+        class vehiclePFH {};
+        class vehicleSetup {};
+    };
+};
+
 class TAW_VD {
     tag = "TAWVD";
 
     class Initialize {
-        file = "functions\misc\taw_vd";
+        file = "functions\taw_vd";
         class stateTracker {
             ext = ".fsm";
             postInit = 1;

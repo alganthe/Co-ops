@@ -58,7 +58,7 @@ corpseRemovalMinTime = 10;
 corpseRemovalMaxTime = 600;
 
 //-------------------------Functions
-#include "functions\misc\taw_vd\GUI.h"
+#include "functions\taw_vd\GUI.h"
 #include "functions\portedFuncs\ace3\progressBarGUI.hpp"
 
 class CfgFunctions {

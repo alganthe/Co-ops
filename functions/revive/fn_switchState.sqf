@@ -19,8 +19,6 @@ switch (_state) do {
             params ["_unit"];
 
             _unit switchMove "acts_injuredlyingrifle02_180";
-            _unit setPosWorld (_unit getVariable "derp_revive_corpsePos");
-            _unit setDir (_unit getVariable "derp_revive_corpseDir");
 
             [_unit, [_unit, "derp_revive_loadout"]] call bis_fnc_loadInventory;
             [_unit, [_unit, "derp_revive_loadout"], nil, true] call bis_fnc_saveInventory;

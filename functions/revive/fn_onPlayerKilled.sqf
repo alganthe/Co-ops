@@ -15,15 +15,9 @@ if (_unit == objNull || {!isNull objectParent _unit} || {(getPosASL _unit) selec
     player call derp_revive_fnc_executeTemplates;
 };
 
-// Set as downed
-_unit setVariable ["derp_revive_downed", true, true];
 
 // Save loadout
 [_unit, [_unit, "derp_revive_loadout"]] call bis_fnc_saveInventory;
-
-//fade out
-{inGameUISetEventHandler [_x, "true"]} forEach ["PrevAction", "Action", "NextAction"];
-titleCut ["","BLACK OUT",1];
 
 // Remove corpse weapons
 if (primaryWeapon _unit != "") then {
@@ -34,5 +28,12 @@ if (secondaryWeapon _unit != "") then {
     _unit removeWeapon (secondaryWeapon _unit);
 };
 
+//fade out
+{inGameUISetEventHandler [_x, "true"]} forEach ["PrevAction", "Action", "NextAction"];
+titleCut ["","BLACK OUT",1];
+
+// Set as downed
+_unit setVariable ["derp_revive_downed", true, true];
+
 // Force respawn
-[{setPlayerRespawnTime 0}, [], 2] call derp_fnc_waitAndExecute;
+[{setPlayerRespawnTime 0}, [], 1] call derp_fnc_waitAndExecute;

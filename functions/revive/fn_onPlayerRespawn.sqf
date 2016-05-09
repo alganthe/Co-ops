@@ -5,17 +5,21 @@ params ["_newUnit", "_corpse", "_respawn", "_respawnDelay"];
 if (_newUnit getVariable ["derp_revive_downed", false]) then {
 
     // Saving corpse pos and dir
-    _dir = getDir _corpse;
-    _pos = getPosWorld _corpse;
-    // Saving the above
-    _newUnit setVariable ["derp_revive_corpseDir", _dir];
-    _newUnit setVariable ["derp_revive_corpsePos", _pos];
 
-    // Prep the new unit
-    [_newUnit, "DOWNED"] call derp_revive_fnc_switchState;
+
+    [{
+        (velocity (_this select 1)) distance [0,0,0] < 0.1;
+    },
+    {
+        params ["_unit", "_corpse"];
+        _unit setPosWorld (getPosWorld _corpse);
+        _unit setDir (getDir _corpse);
+        [_unit, "DOWNED"] call derp_revive_fnc_switchState;
+        _corpse setPos [0,0,0];
+    }, [_newUnit, _corpse]] call derp_fnc_waitUntilAndExecute;
 
     // Move the corpse, because deleting it fuck over zeus.
-    _corpse setPos [0,0,0];
+
 } else {
     [_newUnit, "ALIVE"] call derp_revive_fnc_switchState;
 };
