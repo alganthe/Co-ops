@@ -73,10 +73,7 @@ switch (_state) do {
        if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
        if !(isNil "derp_revive_drawIcon3DID") then {["derp_revive_drawIcon3DID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler};
 
-       derp_revive_ppColor ppEffectAdjust [1,1,0,[0.3,0.3,0.3,0],[0.2,0.2,0.2,0.2],[1,1,1,1]];
-       derp_revive_ppVig ppEffectAdjust [1,1,0,[0.15,0,0,1],[1.0,0.5,0.5,1],[0.587,0.199,0.114,0],[0.6,0.6,0,0,0,0.2,1]];
-       derp_revive_ppBlur ppEffectAdjust [0.7];
-       {_x ppEffectCommit 1} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur];
+      if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
        _unit setDamage 0.4;
        _unit setCaptive false;
