@@ -20,8 +20,8 @@ switch (_state) do {
 
             [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
 
-            [_unit, [_unit, "derp_revive_loadout"]] call bis_fnc_loadInventory;
-            [_unit, [_unit, "derp_revive_loadout"], nil, true] call bis_fnc_saveInventory;
+            _unit setUnitLoadout (_unit getVariable "derp_revive_loadout");
+            _unit setVariable ["derp_revive_loadout", nil];
 
             [_unit] call derp_revive_fnc_reviveTimer;
             call derp_revive_fnc_hotkeyHandler;
