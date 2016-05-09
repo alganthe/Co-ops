@@ -1,8 +1,8 @@
 params ["_dragger", "_dragged"];
 
 
-_dragger switchMove "AcinPercMstpSnonWnonDnon";
-_dragged switchMove "AinjPfalMstpSnonWnonDf_carried_dead";
+_dragger playMove "AcinPercMstpSnonWnonDnon";
+_dragged playMove "AinjPfalMstpSnonWnonDf_carried_dead";
 
  _dragged attachTo [_dragger, [0, 0, -1.2], "LeftShoulder"];
 

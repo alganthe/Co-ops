@@ -2,7 +2,7 @@ derp_revive_drawIcon3DID = ["derp_revive_drawIcon3DID", "onEachFrame", {
     {
         drawIcon3D [
             "\A3\ui_f\data\igui\cfg\actions\heal_ca.paa",
-            [1, 1, 1, 1],
+            [0.1, 0.47, 0.83, 1],
             visiblePosition _x,
             1,
             1,

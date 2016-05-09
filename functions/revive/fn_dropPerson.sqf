@@ -9,7 +9,7 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragger && {isNull objectParent _dragged}) then {
-            _dragged switchMove "acts_injuredlyingrifle02_180";
+            _dragged playMove "acts_injuredlyingrifle02_180";
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
@@ -24,11 +24,11 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragger && {isNull objectParent _dragged}) then {
-            _dragged switchMove "acts_injuredlyingrifle02_180";
+            _dragged playMove "acts_injuredlyingrifle02_180";
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            _dragger switchMove "";
+            _dragger playMove "";
         };
 
         _dragger setVariable ["derp_revive_isCarrying", false, true];
@@ -39,7 +39,7 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            _dragger switchMove "";
+            _dragger playMove "";
         };
 
         _dragged moveInCargo cursorObject;

@@ -101,7 +101,10 @@ _unit addAction [
     {
         params ["", "_caller", "", "_args"];
 
-        [_caller, (attachedObjects _caller) select 0, "VEHICLE"] call derp_revive_fnc_dropPerson;
+        _unit = (attachedObjects _caller) select 0;
+
+        [_caller, _unit, "VEHICLE"] call derp_revive_fnc_dropPerson;
+        cursorObject moveInCargo _unit;
     },
     [],
     10,
@@ -119,7 +122,7 @@ _unit addAction [
 
         {
             moveOut _x;
-            _x switchMove "acts_injuredlyingrifle02_180";
+            _x playMove "acts_injuredlyingrifle02_180";
         } foreach ((crew cursorObject) select {(_x getVariable ['derp_revive_downed', false])});
     },
     [],
@@ -138,7 +141,7 @@ _unit addAction [
 
         {
             moveOut _x;
-            _x switchMove "acts_injuredlyingrifle02_180";
+            _x playMove "acts_injuredlyingrifle02_180";
         } foreach ((crew _caller) select {(_x getVariable ['derp_revive_downed', false])});
     },
     [],
