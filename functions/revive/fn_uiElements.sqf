@@ -59,3 +59,5 @@ derp_revive_ppBlur ppEffectAdjust [0];
         _pfhID call derp_fnc_removePerFrameHandler;
     };
 }, 1, [(getMissionConfigValue ["derp_revive_bleedOutTimer", 300])]] call derp_fnc_addPerFrameHandler;
+
+showHUD [true, false, false, false, false, false, false, true];

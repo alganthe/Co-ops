@@ -58,6 +58,8 @@ switch (_state) do {
 
         if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
+        showHUD [true, true, true, true, false, true, true, true];
+
         _unit setCaptive false;
     };
 
@@ -74,6 +76,8 @@ switch (_state) do {
        if !(isNil "derp_revive_drawIcon3DID") then {["derp_revive_drawIcon3DID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler};
 
       if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
+
+      showHUD [true, true, true, true, false, true, true, true];
 
        _unit setDamage 0.4;
        _unit setCaptive false;
