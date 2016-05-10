@@ -13,7 +13,7 @@ switch (_state) do {
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            _dragger playAction "released";
+            _dragger playActionNow "released";
         };
 
         _dragger setVariable ["derp_revive_isDragging", false, true];

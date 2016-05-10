@@ -27,14 +27,7 @@ switch (_state) do {
             call derp_revive_fnc_hotkeyHandler;
             call derp_revive_fnc_uiElements;
 
-            derp_revive_animChangedID = _unit addEventHandler ["AnimChanged", {
-                params ["_unit", "_anim"];
-
-                if (_unit getVariable ["derp_revive_downed", false] && {isNull objectParent _unit} && {!(_unit getVariable ["derp_revive_isDragged",false]) || {!(_unit getVariable ["derp_revive_isCarried", false])}}) then {
-                    [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
-                };
-            }];
-
+            [_unit, true] remoteExecCall ["derp_revive_fnc_animChanged", -2, (str _unit + "animChangedJIPID")];
             //fade in
             _unit switchCamera "external";
             titleCut ["","BLACK IN",1];
@@ -61,6 +54,7 @@ switch (_state) do {
         showHUD [true, true, true, true, false, true, true, true];
 
         _unit setCaptive false;
+        remoteExec ["", (str _unit + "animChangedJIPID")];
     };
 
     case "REVIVED": {
@@ -82,5 +76,8 @@ switch (_state) do {
        _unit setDamage 0.4;
        _unit setCaptive false;
        [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
+
+       [_unit, false] remoteExecCall ["derp_revive_fnc_animChanged", -2];
+       remoteExec ["", (str _unit + "animChangedJIPID")];
     };
 };

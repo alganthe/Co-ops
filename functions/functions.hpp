@@ -58,6 +58,7 @@ class derp_revive {
         class dropPerson {};
         class hotkeyHandler {};
         class uiElements {};
+        class animChanged {};
     };
 };
 

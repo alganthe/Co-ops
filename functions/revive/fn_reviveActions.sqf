@@ -104,7 +104,6 @@ _unit addAction [
         _unit = (attachedObjects _caller) select 0;
 
         [_caller, _unit, "VEHICLE"] call derp_revive_fnc_dropPerson;
-        cursorObject moveInCargo _unit;
     },
     [],
     10,
