@@ -28,7 +28,7 @@ switch (_state) do {
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            _dragger playMove "";
+            [_dragger, ""] call derp_fnc_syncAnim;
         };
 
         _dragger setVariable ["derp_revive_isCarrying", false, true];
@@ -39,10 +39,10 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            _dragger playMove "";
+            [_dragger, ""] call derp_fnc_syncAnim;
         };
 
-        _dragged moveInCargo cursorObject;
+        [_dragged, cursorObject] remoteExec ["moveInCargo", _dragged];
 
         _dragger setVariable ["derp_revive_isCarrying", false, true];
         _dragged setVariable ["derp_revive_isCarried", false, true];

@@ -75,9 +75,9 @@ switch (_state) do {
 
        _unit setDamage 0.4;
        _unit setCaptive false;
-       [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
-
        [_unit, false] remoteExecCall ["derp_revive_fnc_animChanged", -2];
        remoteExec ["", (str _unit + "animChangedJIPID")];
+
+       [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
     };
 };
