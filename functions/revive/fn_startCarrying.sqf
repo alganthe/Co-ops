@@ -6,7 +6,6 @@ params ["_dragger", "_dragged"];
 
  _dragged attachTo [_dragger, [0, 0, -1.2], "LeftShoulder"];
 
-_dragged setDir 0;
 [{
     params ["_args", "_idPFH"];
     _args params ["_dragger","_dragged", "_startTime"];
