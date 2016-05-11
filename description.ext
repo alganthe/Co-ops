@@ -278,5 +278,6 @@ class CfgRemoteExec {
     class Commands {
         mode = 1;
         class switchMove { allowedTargets = 0; };
+        class moveInCargo { allowedTargets = 0; };
     };
 };
