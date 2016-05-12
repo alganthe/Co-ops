@@ -1,7 +1,5 @@
 params ["_unit", "_animation"];
 
-systemChat "syncAnim called";
-
 // Try playMoveNow
 if (_unit == vehicle _unit) then {
     _unit playMoveNow _animation;
