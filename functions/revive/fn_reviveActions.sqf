@@ -131,22 +131,3 @@ _unit addAction [
     "",
     "!(vehicle cursorObject isKindOf 'CAManBase') && {{(_x getVariable ['derp_revive_downed', false])} count (crew cursorObject) > 0} && {_this distance cursorObject < 5}"
 ];
-
-// Putting outside vehicle (vehicle)
-_unit addAction [
-    "<t color='#DEB887'> Eject wounded </t>",
-    {
-        params ["", "_caller", "", "_args"];
-
-        {
-            moveOut _x;
-            [_x, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
-        } foreach ((crew _caller) select {(_x getVariable ['derp_revive_downed', false])});
-    },
-    [],
-    10,
-    true,
-    true,
-    "",
-    "!(vehicle _this isKindOf 'CAManBase') && {{(_x getVariable ['derp_revive_downed', false])} count (crew vehicle _this) > 0} && {_this distance cursorObject < 5}"
-];
