@@ -34,11 +34,14 @@ player createDiaryRecord ["Co-ops", ["FAQ",
 <br/> Q: How do I paradrop?
 <br/> A: If it's enabled talk to the arsenal guy when an AO is up, an action will show up.
 <br/>
-<br/> Q: Why is my view distance is really low even when my video options says it's high?
+<br/> Q: Why is my view distance really low even when my video options says it's high?
 <br/> A: Scroll down and click on view settings.
 <br/>
 <br/> Q: How long do vehicles take to respawn?
 <br/> A: It can vary from server to server, it's highly configurable, ask on side chat.
+<br/>
+<br/> Q: I can't revive my comrades, how can I do that?
+<br/> A: You need to be a medic, just get close to the unit, scroll down and click revive.
 "
 ]];
 
@@ -58,6 +61,9 @@ player createDiaryRecord ["Co-ops", ["credits",
 
 player createDiaryRecord ["Co-ops", ["current issues",
 "
-<br/> BIS revive system breaks the zeus logic and unnasign the unit linked to it when that unit enter the revive state.
+<br/> Ammo caches number is kinda random, some of them don't spawn properly and explode, modelToWorld being kinda iffy I can't do anything about it
+<br/>
+<br/> You have more issues to report?
+<br/> Go here ----> https://github.com/alganthe/Co-ops/issues
 "
 ]];

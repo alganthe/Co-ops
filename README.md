@@ -15,3 +15,15 @@
         <img src="https://img.shields.io/badge/documentation-click%20here-red.svg">
     </a>
 </p>
+
+Co-ops is a vanilla mission based on PFHs being ported to vanilla.
+Features:
+   - A custom revive system
+   - A custom vehicle handler
+   - A custom set of functions to limit equipment
+   - Easy to install
+   - Highly customizable
+   - 29 Main AOs
+   - 4 different types of side missions (working on adding more)
+   - Easy to port to other maps
+   - Made with performance in mind
