@@ -1,5 +1,15 @@
+/*
+* Author: alganthe
+* Actually start the carrying
+*
+* Arguments:
+* 0: Unit doing the carrying <OBJECT>
+* 1: Unit being carried <OBJECT>
+*
+* Return Value:
+* Nothing
+*/
 params ["_dragger", "_dragged"];
-
 
 [_dragger, "AcinPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
 [_dragged, "AinjPfalMstpSnonWnonDf_carried_dead"] call derp_fnc_syncAnim;

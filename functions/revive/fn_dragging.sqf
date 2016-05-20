@@ -1,3 +1,14 @@
+/*
+* Author: alganthe
+* Initiate dragging animations, when done will call the proper function to actually start the dragging
+*
+* Arguments:
+* 0: Unit doing the dragging <OBJECT>
+* 1: Unit being dragged <OBJECT>
+*
+* Return Value:
+* Nothing
+*/
 params ["_dragger", "_dragged"];
 
 [_dragger] allowGetIn false;

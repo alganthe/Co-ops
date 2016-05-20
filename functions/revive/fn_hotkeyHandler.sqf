@@ -1,3 +1,12 @@
+/*
+* Author: alganthe
+* Handles hotkey presses in the downed state
+*
+* Arguments:
+*
+* Return Value:
+* Nothing
+*/
 derp_reviveKeyDownID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
     params ["", "_key"];
 

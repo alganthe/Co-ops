@@ -1,3 +1,13 @@
+/*
+* Author: alganthe
+* Handles the bleeding timer
+*
+* Arguments:
+* Unit the timer follows, should always be the local player <OBJECT>
+*
+* Return Value:
+* Nothing
+*/
 params ["_unit"];
 
 derp_revive_bleedOutTimer = 0;

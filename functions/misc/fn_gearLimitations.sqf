@@ -10,7 +10,6 @@
 *
 * Return Value:
 * Nothing
-*
 */
 params ["_unit", ["_mode", 0], ["_item", objNull], ["_container", objNull]];
 

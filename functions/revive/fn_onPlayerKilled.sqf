@@ -15,10 +15,8 @@ if (_unit == objNull || {!isNull objectParent _unit} || {(getPosASL _unit) selec
     player call derp_revive_fnc_executeTemplates;
 };
 
-
 // Save loadout
-/*_unit setVariable ["derp_revive_loadout", (getUnitLoadout _unit)]; NOT FUNCTIONAL AS IN 1.58 FUCKING BROKEN */
-[_unit, [_unit, "derp_revive_loadout"]] call bis_fnc_saveInventory;
+_unit setVariable ["derp_revive_loadout", (getUnitLoadout _unit)];
 
 // Remove corpse weapons
 if (primaryWeapon _unit != "") then {

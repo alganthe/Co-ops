@@ -1,3 +1,12 @@
+/*
+* Author: alganthe
+* Handles UI elements such as medic icons on medics and PP effects
+*
+* Arguments:
+*
+* Return Value:
+* Nothing
+*/
 derp_revive_drawIcon3DID = ["derp_revive_drawIcon3DID", "onEachFrame", {
     {
         drawIcon3D [

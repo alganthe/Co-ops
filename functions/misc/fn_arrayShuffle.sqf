@@ -8,7 +8,6 @@
 * Return Value:
 * Shuffled array
 */
-
 private _cnt = count _this;
 
 for "_i" from 1 to _cnt do {

@@ -1,3 +1,14 @@
+/*
+* Author: alganthe
+* Handles the revive states
+*
+* Arguments:
+* 0: Unit to switch state <OBJECT>
+* 1: State <ALIVE, DOWNED, REVIVED>
+*
+* Return Value:
+* Nothing
+*/
 params ["_unit", "_state"];
 
 if (isNull _unit) exitWith {};
@@ -20,11 +31,8 @@ switch (_state) do {
 
             [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
 
-            /*_unit setUnitLoadout (_unit getVariable "derp_revive_loadout");
-            _unit setVariable ["derp_revive_loadout", nil]; NOT FUNCTIONAL AS IN 1.58, FUCKING BROKEN*/
-            [_unit, [_unit, "derp_revive_loadout"]] call BIS_fnc_loadInventory;
-            [_unit, [_unit, "derp_revive_loadout"], nil, true] call BIS_fnc_saveInventory;
-
+            _unit setUnitLoadout (_unit getVariable "derp_revive_loadout");
+            _unit setVariable ["derp_revive_loadout", nil];
 
             [_unit] call derp_revive_fnc_reviveTimer;
             call derp_revive_fnc_hotkeyHandler;

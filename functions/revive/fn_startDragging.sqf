@@ -1,3 +1,14 @@
+/*
+* Author: alganthe
+* Actually start the dragging
+*
+* Arguments:
+* 0: Unit doing the dragging <OBJECT>
+* 1: Unit being dragged <OBJECT>
+*
+* Return Value:
+* Nothing
+*/
 params ["_dragger", "_dragged"];
 
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMultiply 1.5));

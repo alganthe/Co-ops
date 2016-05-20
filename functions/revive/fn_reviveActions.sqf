@@ -1,3 +1,13 @@
+/*
+* Author: alganthe
+* Add the proper actions on unit init, those use cursorObject and are added to the player, no need to add them back after death
+*
+* Arguments:
+* 0: Unit the actions are added to <OBJECT>
+*
+* Return Value:
+* Nothing
+*/
 params ["_unit"];
 
 // Revive

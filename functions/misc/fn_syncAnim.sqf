@@ -1,3 +1,14 @@
+/*
+* Author: alganthe
+* Sync an animation across all clients
+*
+* Arguments:
+* 0: Unit on which the action is going to be played <OBJECT>
+* 1: Animation to be played <STRING>
+*
+* Return Value:
+* Nothing
+*/
 params ["_unit", "_animation"];
 
 // Try playMoveNow

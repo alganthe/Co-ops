@@ -1,3 +1,14 @@
+/*
+* Author: alganthe
+* Handles the animChanged revive event in MP
+*
+* Arguments:
+* 0: Unit to add the EH to <OBJECT>
+* 1: Mode to run in <BOOL> (true to add, false to remove)
+*
+* Return Value:
+* Nothing
+*/
 params ["_unit", "_mode"];
 
 if (_mode) then {
