@@ -22,7 +22,7 @@
                 [{
                     params ["_vehicleClass", "_spawnPos", "_spawnDir", "_timer"];
 
-                    _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "NONE"];
+                    _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                     _newVehicle setDir _spawnDir;
 
                     derp_vehicleHandler_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
@@ -40,7 +40,7 @@
                             deleteVehicle _oldVehicle;
                         };
 
-                        _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "NONE"];
+                        _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                         _newVehicle setDir _spawnDir;
 
                         derp_vehicleHandler_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
@@ -61,7 +61,7 @@
                         if ((!isNil "_distanceCheckResult") && {_distanceCheckResult}) then {
                             [{
                                 params ["_vehicleClass", "_spawnPos", "_spawnDir", "_timer"];
-                                _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "NONE"];
+                                _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                                 _newVehicle setDir _spawnDir;
 
                                 derp_vehicleHandler_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
