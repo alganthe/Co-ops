@@ -12,7 +12,7 @@ onLoadMissionTime = 0;                                  // Time and date display
 class Header {
     gameType = COOP;                                    // Unknown, COOP, DM, TDM, CTF, SC, CTI, RPG, Sandbox, Seize, Defend.
     minPlayers = 1;                                     // Min # of players the MISSION supports
-    maxPlayers = 62;                                    // Max # of players the MISSION supports, not server slots. Make sure # is greater than server slots.
+    maxPlayers = 69;                                    // Max # of players the MISSION supports, not server slots. Make sure # is greater than server slots.
 };
 
 //-------------------------Misc
