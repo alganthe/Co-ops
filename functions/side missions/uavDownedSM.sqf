@@ -66,7 +66,6 @@ _uav setPos (_dirtHump modelToWorld [-1, -1]);
     };
 
     if (!alive _uav && {!(isNil "derp_uavSM_isDownloadDone")}) then {
-        [[west, "HQ"], format ["mission Finished %1",derp_uavSM_isDownloadDone]] remoteExec ["sideChat", -2];
         derp_sideMissionInProgress = false;
         derp_uavSM_isDownloadDone = nil;
 
@@ -87,7 +86,6 @@ _uav setPos (_dirtHump modelToWorld [-1, -1]);
         _pfhID call derp_fnc_removePerFrameHandler;
     } else {
         if (!alive _uav && {isNil "derp_uavSM_isDownloadDone"}) then {
-            [[west, "HQ"], format ["mission Finished %1",derp_uavSM_isDownloadDone]] remoteExec ["sideChat", -2];
             derp_sideMissionInProgress = false;
             derp_uavSM_isDownloadDone = nil;
 

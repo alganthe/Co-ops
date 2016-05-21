@@ -24,6 +24,6 @@ Features:
    - Easy to install
    - Highly customizable
    - 29 Main AOs
-   - 4 different types of side missions (working on adding more)
+   - 5 different types of side missions
    - Easy to port to other maps
    - Made with performance in mind
