@@ -48,10 +48,10 @@ player createDiaryRecord ["Co-ops", ["FAQ",
 player createDiaryRecord ["Co-ops", ["credits",
 "
 <br/> Credits:
-<br/> base layout: Ahoyworld
 <br/> vehicle pad scripts: Ahoyworld
 <br/> player icons on map: Quicksilver
 <br/> ACE3 ported funcs: see the respective funcs headers
+<br/> CBA_A3 for the glorious PFHs
 <br/> the rest: alganthe
 <br/>
 <br/> Contributors:
