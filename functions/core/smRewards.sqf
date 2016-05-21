@@ -56,6 +56,8 @@ if (derp_successfulSMs != 0 && {derp_successfulSMs == derp_PARAM_smRewardAfter})
         _landReward call derp_fnc_vehicleSetup;
     };
 
+    {_x addCuratorEditableObjects [[_reward], false]} forEach allCurators;
+
     derp_successfulSMs = 0;
 
     format ["The HQ has delivered a reward: <br/> %1", getText (configFile >> "CfgVehicles" >> _reward >> "displayName")] remoteExec ["derp_fnc_globalHint_Handler", -2];
