@@ -16,7 +16,8 @@ derp_sideMissionInProgress = true;
 private _sideMissionArray = [
 derp_fnc_officerMurderSM,
 derp_fnc_truckRetrievalSM,
-derp_fnc_cachesSM
+derp_fnc_cachesSM,
+derp_fnc_uavDownedSM
 ];
 
 _nearComTowers = nearestObjects [_AOPos, ["Land_Communication_F", "Land_TTowerBig_1_F", "Land_TTowerBig_2_F"], derp_PARAM_AOSize * 1.5];
