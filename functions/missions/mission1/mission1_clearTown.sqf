@@ -22,7 +22,7 @@ private _mainAOUnits = [];
 private _selectedLocation = selectRandom derp_mission1Locations;
 
 //------------------- Get random mission loc based on existing markers
-while {(count ((getMarkerPos _selectedLocation) nearEntities [["CAManBase", "Air", "Car", "Tank"], derp_PARAM_AOSize])) == 0} do {
+while {(count ((getMarkerPos _selectedLocation) nearEntities [["CAManBase", "Air", "Car", "Tank"], derp_PARAM_AOSize])) > 0} do {
 	_selectedLocation = selectRandom derp_mission1Locations;
 
 };
