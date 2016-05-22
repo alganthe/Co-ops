@@ -36,26 +36,26 @@ if (derp_successfulSMs != 0 && {derp_successfulSMs == derp_PARAM_smRewardAfter})
 
     _smRewardList call derp_fnc_arrayShuffle;
 
-    _reward = selectRandom _selectRandomArray;
+    private _reward = selectRandom _selectRandomArray;
 
     if (_reward isKindOf "Helicopter") then {
-        _heloReward = createVehicle [_reward, getMarkerPos "smReward_Helo", [], 0, "NONE"];
-        _heloReward setDir (markerDir "smReward_Helo");
-        _heloReward call derp_fnc_vehicleSetup;
+        _reward = createVehicle [_reward, getMarkerPos "smReward_Helo", [], 0, "NONE"];
+        _reward setDir (markerDir "smReward_Helo");
+        _reward call derp_fnc_vehicleSetup;
+    } else {
+        if (_reward isKindOf "Plane") then {
+            _reward = createVehicle [_reward, getMarkerPos "smReward_Plane", [], 0, "NONE"];
+            _reward setDir (markerDir "smReward_Plane");
+            _reward call derp_fnc_vehicleSetup;
+        } else {
+            if (_reward isKindOf "LandVehicle") then {
+                _reward = createVehicle [_reward, getMarkerPos "smReward_Ground", [], 20, "NONE"];
+                _reward setDir (random 360);
+                _reward call derp_fnc_vehicleSetup;
+            };
+        };
     };
-
-    if (_reward isKindOf "Plane") then {
-        _planeReward = createVehicle [_reward, getMarkerPos "smReward_Plane", [], 0, "NONE"];
-        _planeReward setDir (markerDir "smReward_Plane");
-        _planeReward call derp_fnc_vehicleSetup;
-    };
-
-    if (_reward isKindOf "LandVehicle") then {
-        _landReward = createVehicle [_reward, getMarkerPos "smReward_Ground", [], 20, "NONE"];
-        _landReward setDir (random 360);
-        _landReward call derp_fnc_vehicleSetup;
-    };
-
+    
     {_x addCuratorEditableObjects [[_reward], false]} forEach allCurators;
 
     derp_successfulSMs = 0;
