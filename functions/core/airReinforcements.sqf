@@ -1,3 +1,4 @@
+#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Handles the CSAT air support.
@@ -14,7 +15,7 @@ params ["_AOPos"];
 if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - derp_PARAM_airReinforcementTimer)}) then {
     _AOPos params ["_xPos", "_yPos"];
 
-    derp_airReinforcement = createVehicle [(selectRandom derp_airReinforcementVehicle), getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];
+    derp_airReinforcement = createVehicle [(selectRandom AirReinforcementVehicleList), getMarkerPos "opforAirSpawn_marker1", ["opforAirSpawn_marker2", "opforAirSpawn_marker3", "opforAirSpawn_marker4"], 50, "FLY"];
     createVehicleCrew derp_airReinforcement;
 
     {_x addCuratorEditableObjects [[derp_airReinforcement], true]} forEach allCurators;

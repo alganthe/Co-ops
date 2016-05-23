@@ -1,3 +1,4 @@
+#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Caches side mission
@@ -13,97 +14,20 @@
 * Win: Destroy all the caches.
 * Fail: None
 */
-#include "cachesSM_defines.hpp"
-
 params ["_AOPos", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
 _smID = "caches" + str derp_SMID;
 
-[west, [_smID, _missionID], ["The CSAT has found three ammo caches around the town, find and destroy them in order to stop the CSAT from retrieving their content.", "Find and destroy ammo caches", ""], objNull, "Created", 5, true, "destroy", true] call BIS_fnc_taskCreate;
-
-private _buildingArray = nearestObjects [_AOpos, ["Land_i_House_Small_01_V1_F", "Land_i_House_Small_01_V2_F", "Land_i_House_Small_01_V3_F","Land_i_House_Small_02_V1_F", "Land_i_House_Small_02_V2_F","Land_i_House_Small_02_V3_F", "Land_i_Stone_HouseSmall_V1_F", "Land_i_Stone_HouseSmall_V2_F", "Land_i_Stone_HouseSmall_V3_F", "Land_i_Stone_HouseBig_V1_F", "Land_i_Stone_HouseBig_V2_F", "Land_i_Stone_HouseBig_V3_F", "Land_i_House_Big_01_V1_F", "Land_i_House_Big_01_V2_F", "Land_i_House_Big_01_V3_F", "Land_i_House_Big_02_V1_F", "Land_i_House_Big_02_V2_F", "Land_i_House_Big_02_V3_F"], 200];
+[west, [_smID, _missionID], ["Our enemies have found three ammo caches around the town, find and destroy them.", "Find and destroy ammo caches", ""], objNull, "Created", 5, true, "destroy", true] call BIS_fnc_taskCreate;
 
 private _ammoCaches = [];
 
 for "_i" from 1 to 3 do {
-    _building = selectRandom _buildingArray;
-    _buildingArray deleteAt (_buildingArray find _building);
+    _box = (selectRandom CACHESMCacheArray) createVehicle ([[[_AOpos, 150], []], ["water", "out"]] call BIS_fnc_randomPos);
 
-    switch (typeOf _building) do {
-        case "Land_i_House_Small_01_V1_F": {
-            Land_i_House_Small_01_variant
-        };
-
-        case "Land_i_House_Small_01_V2_F": {
-            Land_i_House_Small_01_variant
-        };
-
-        case "Land_i_House_Small_01_V3_F": {
-            Land_i_House_Small_01_variant
-        };
-
-        case "Land_i_House_Small_02_V1_F": {
-            Land_i_House_Small_02_variant
-        };
-
-        case "Land_i_House_Small_02_V2_F": {
-            Land_i_House_Small_02_variant
-        };
-
-        case "Land_i_House_Small_02_V3_F": {
-            Land_i_House_Small_02_variant
-        };
-
-        case "Land_i_Stone_HouseSmall_V1_F": {
-            Land_i_Stone_HouseSmall_variant
-        };
-
-        case "Land_i_Stone_HouseSmall_V2_F": {
-            Land_i_Stone_HouseSmall_variant
-        };
-
-        case "Land_i_Stone_HouseSmall_V3_F": {
-            Land_i_Stone_HouseSmall_variant
-        };
-
-        case "Land_i_Stone_HouseBig_V1_F": {
-            Land_i_Stone_HouseBig_variant
-        };
-
-        case "Land_i_Stone_HouseBig_V2_F": {
-            Land_i_Stone_HouseBig_variant
-        };
-
-        case "Land_i_Stone_HouseBig_V3_F": {
-            Land_i_Stone_HouseBig_variant
-        };
-
-        case "Land_i_House_Big_01_V1_F": {
-            Land_i_House_Big_01_variant
-        };
-
-        case "Land_i_House_Big_01_V2_F": {
-            Land_i_House_Big_01_variant
-        };
-
-        case "Land_i_House_Big_01_V3_F": {
-            Land_i_House_Big_01_variant
-        };
-
-        case "Land_i_House_Big_02_V1_F": {
-            Land_i_House_Big_02_variant
-        };
-
-        case "Land_i_House_Big_02_V2_F": {
-            Land_i_House_Big_02_variant
-        };
-
-        case "Land_i_House_Big_02_V3_F": {
-            Land_i_House_Big_02_variant
-        };
-    };
+    _ammoCaches pushback _box;
 };
 
 {

@@ -1,3 +1,4 @@
+#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Download intel from a downed uav and destroy it
@@ -21,9 +22,9 @@ _smID = "uavDownloadAndKill" + str derp_SMID;
 
 [west, [_smID, _missionID], ["We have shot down an enemy UAV above the current AO but we got intel that it is still in one piece. We may be able to recover some intel from it. Download the intel and then destroy the UAV", "Download intel from the UAV"], objNull, "Created", 5, true, "upload", true] call BIS_fnc_taskCreate;
 
-_spawnPos = _AOPos findEmptyPosition [10,200,"CraterLong"];
+_spawnPos = _AOPos findEmptyPosition [10, 200, "CraterLong"];
 _dirtHump = "CraterLong" createVehicle _spawnPos;
-_uav = "O_UAV_02_F" createVehicle _spawnPos;
+_uav = (selectRandom UAVSMUav) createVehicle _spawnPos;
 _uav setDamage 0.5;
 
 _uav setPos (_dirtHump modelToWorld [-1, -1]);

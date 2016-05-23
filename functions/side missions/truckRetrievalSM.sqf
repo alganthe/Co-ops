@@ -1,3 +1,4 @@
+#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Retrieve a truck full of ammo.
@@ -21,8 +22,9 @@ _smID = "truckRetrieval" + str derp_SMID;
 
 [west, [_smID, _missionID], ["A truck full GBUs got spotted in the AO, secure it and bring it back to the return point so we can dismantle them. The destruction of the vehicle will result in the failure of the mission.", "Retrieve ammo truck", ""], objNull, "Created", 5, true, "search", true] call BIS_fnc_taskCreate;
 
-_spawnPos = _AOPos findEmptyPosition [10,200,"O_Truck_03_ammo_F"];
-_ammoTruck = "O_Truck_03_ammo_F" createVehicle _spawnPos;
+_usedTruck = selectRandom TRUCKSMTruck;
+_spawnPos = _AOPos findEmptyPosition [10, 200, _usedTruck];
+_ammoTruck = _usedTruck createVehicle _spawnPos;
 _ammoTruck setAmmoCargo 0;
 
 {

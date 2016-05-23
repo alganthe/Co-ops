@@ -1,3 +1,4 @@
+#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Called only after a successful side mission, this gives a reward if the number of successfully completed SMs is equal to the mission param
@@ -9,20 +10,7 @@
 * Nothing
 */
 if (derp_successfulSMs != 0 && {derp_successfulSMs == derp_PARAM_smRewardAfter}) then {
-    _smRewardList = [
-        ["B_Heli_Light_01_armed_F", 2],
-        ["B_Heli_Attack_01_F", 2],
-        ["I_Heli_light_03_F", 2],
-        ["O_Heli_Attack_02_black_F", 2],
-        ["O_Heli_Transport_04_covered_F", 3],
-        ["B_MBT_01_TUSK_F", 5],
-        ["B_MBT_01_cannon_F", 5],
-        ["I_Plane_Fighter_03_AA_F", 2],
-        ["B_APC_Tracked_01_AA_F", 5],
-        ["I_APC_tracked_03_cannon_F", 5],
-        ["I_APC_Wheeled_03_cannon_F", 5],
-        ["I_MBT_03_cannon_F", 5]
-    ];
+    _smRewardList = [ SMRewards ];
 
     private _selectRandomArray = [];
 
@@ -37,26 +25,27 @@ if (derp_successfulSMs != 0 && {derp_successfulSMs == derp_PARAM_smRewardAfter})
     _smRewardList call derp_fnc_arrayShuffle;
 
     private _reward = selectRandom _selectRandomArray;
+    private _rewardVehicle = "";
 
     if (_reward isKindOf "Helicopter") then {
-        _reward = createVehicle [_reward, getMarkerPos "smReward_Helo", [], 0, "NONE"];
-        _reward setDir (markerDir "smReward_Helo");
-        _reward call derp_fnc_vehicleSetup;
+        _rewardVehicle = createVehicle [_reward, getMarkerPos "smReward_Helo", [], 0, "NONE"];
+        _rewardVehicle setDir (markerDir "smReward_Helo");
+        _rewardVehicle call derp_vehicleHandler_fnc_vehicleSetup;
     } else {
         if (_reward isKindOf "Plane") then {
-            _reward = createVehicle [_reward, getMarkerPos "smReward_Plane", [], 0, "NONE"];
-            _reward setDir (markerDir "smReward_Plane");
-            _reward call derp_fnc_vehicleSetup;
+            _rewardVehicle = createVehicle [_reward, getMarkerPos "smReward_Plane", [], 0, "NONE"];
+            _rewardVehicle setDir (markerDir "smReward_Plane");
+            _rewardVehicle call derp_vehicleHandler_fnc_vehicleSetup;
         } else {
             if (_reward isKindOf "LandVehicle") then {
-                _reward = createVehicle [_reward, getMarkerPos "smReward_Ground", [], 20, "NONE"];
-                _reward setDir (random 360);
-                _reward call derp_fnc_vehicleSetup;
+                _rewardVehicle = createVehicle [_reward, getMarkerPos "smReward_Ground", [], 20, "NONE"];
+                _rewardVehicle setDir (random 360);
+                _rewardVehicle call derp_vehicleHandler_fnc_vehicleSetup;
             };
         };
     };
-    
-    {_x addCuratorEditableObjects [[_reward], false]} forEach allCurators;
+
+    {_x addCuratorEditableObjects [[_rewardVehicle], false]} forEach allCurators;
 
     derp_successfulSMs = 0;
 
