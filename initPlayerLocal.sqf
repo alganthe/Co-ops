@@ -49,17 +49,19 @@ if !(isServer or hasInterface) then {
             ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];
 
-    player addEventHandler ["Take", {
-        params ["_unit", "_container", "_item"];
+    if ("ArsenalFilter" call BIS_fnc_getParamValue == 1) then {
+        player addEventHandler ["Take", {
+            params ["_unit", "_container", "_item"];
 
-        [_unit, 1, _item, _container] call derp_fnc_gearLimitations;
-    }];
+            [_unit, 1, _item, _container] call derp_fnc_gearLimitations;
+        }];
 
-    player addEventHandler ["InventoryClosed", {
-        params ["_unit"];
+        player addEventHandler ["InventoryClosed", {
+            params ["_unit"];
 
-        [_unit, 0] call derp_fnc_gearLimitations;
-    }];
+            [_unit, 0] call derp_fnc_gearLimitations;
+        }];
+    };
 
     if (derp_PARAM_paraJumpEnabled) then {
         arsenalDude addAction [
