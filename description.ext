@@ -43,7 +43,8 @@ respawnDelay = 10;
 respawnOnStart = 0;
 respawnTemplates[] = {"derp_revive", "MenuPosition"};
 
-derp_revive_bleedOutTimer = 500;
+derp_revive_bleedOutTimer = 300;
+derp_revive_everyoneCanRevive = false; // BOOL, false = medics only, true = everyone
 
 //-------------------------Wreck Manager
 wreckManagerMode = 1;
@@ -129,7 +130,7 @@ class Params {
         title = "Amount of side missions before recieving a reward";
         values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"Rewards disabled", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-        default = 2;
+        default = 1;
     };
 
     class AntiAirAmount {
@@ -143,14 +144,14 @@ class Params {
         title = "Amount of MRAPs on the main AO";
         values[] = {1, 2, 3, 4, 5, 6};
         texts[] = {"1", "2", "3", "4", "5", "6"};
-        default = 3;
+        default = 2;
     };
 
     class RandomVehcsAmount {
         title = "Amount of random vehicles on the main AO";
         values[] = {1, 2, 3, 4, 5, 6};
         texts[] = {"1", "2", "3", "4", "5", "6"};
-        default = 3;
+        default = 2;
     };
 
     class InfantryGroupsAmount {
