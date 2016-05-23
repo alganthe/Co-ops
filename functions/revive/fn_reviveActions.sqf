@@ -11,7 +11,7 @@
 params ["_unit"];
 
 private _whoCanRevive = "";
-if !(getMissionConfigValue ["derp_revive_everyoneCanRevive", false]) then {
+if (getMissionConfigValue ["derp_revive_everyoneCanRevive", 0] == 0) then {
     _whoCanRevive = "{_this getUnitTrait 'medic'}";
 };
 
