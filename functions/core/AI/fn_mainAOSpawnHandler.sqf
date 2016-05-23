@@ -155,7 +155,7 @@ if (_urbanInfantrySetting) then {
     for "_x" from 1 to _urbanInfantryAmount do {
 
         _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
-        [_AOpos, nil, (units _group), 150, 2, false] call derp_fnc_AIOccupyBuilding;
+        [_AOpos, nil, (units _group), (_radiusSize / 3), 2, false] call derp_fnc_AIOccupyBuilding;
 
         {
             _spawnedUnits pushBack _x;

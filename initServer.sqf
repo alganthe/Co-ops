@@ -14,7 +14,7 @@ derp_airReinforcement = objNull;
 derp_lastAirReinforcementTime = 0;
 derp_vehicleHandler_vehicleHandlingArray = [];
 derp_vehicleHandler_quadHandlingArray = [];
-derp_mission1Locations = ["missionMarker_Athira", "missionMarker_Frini", "missionMarker_Abdera", "missionMarker_Galati", "missionMarker_Syrta", "missionMarker_Oreokastro", "missionMarker_Kore", "missionMarker_Negades", "missionMarker_Aggelochori", "missionMarker_Neri", "missionMarker_Panochori", "missionMarker_Agios_Dionysios", "missionMarker_Zaros", "missionMarker_Therisa", "missionMarker_Poliakko", "missionMarker_Alikampos", "missionMarker_Neochori", "missionMarker_Rodopoli", "missionMarker_Paros", "missionMarker_Kalochori", "missionMarker_Charkia", "missionMarker_Sofia", "missionMarker_Molos", "missionMarker_Pyrgos", "missionMarker_Dorida", "missionMarker_Chalkeia", "missionMarker_Panagia", "missionMarker_Feres", "missionMarker_Selakano"];
+derp_mission1Locations = call derp_fnc_getAllTownsAndVillages;
 derp_SMID = 0;
 derp_mission1ID = 0;
 

@@ -3,7 +3,7 @@ derp_fnc_missionSelection = compileFinal preprocessFileLineNumbers "functions\co
 derp_fnc_sideMissionSelection = compileFinal preprocessFileLineNumbers "functions\core\fn_sideMissionSelection.sqf";
 derp_fnc_smRewards = compileFinal preprocessFileLineNumbers "functions\core\smRewards.sqf";
 derp_fnc_airReinforcements = compileFinal preprocessFileLineNumbers "functions\core\airReinforcements.sqf";
-
+derp_fnc_getAllTownsAndVillages = compile preprocessFileLineNumbers "functions\core\getAllTownsAndVillages.sqf";
 // Missions
 derp_fnc_mission_clearTown = compileFinal preprocessFileLineNumbers "functions\missions\mission1\mission1_clearTown.sqf";
 
