@@ -22,7 +22,7 @@ _smID = "officerKill" + str derp_SMID;
 
 [west, [_smID, _missionID], ["We have intel that an enemy officer is in the AO, find him and take him out. We currently have no information on his exact location, good luck.", "Kill the enemy officer", ""], objNull, "Created", 5, true, "kill", true] call BIS_fnc_taskCreate;
 
-_buildingArray = _AOPos nearObjects ["House", 200];
+_buildingArray = _AOPos nearObjects ["House", 350];
 
 private "_officerBuilding";
 {
