@@ -168,27 +168,19 @@ if (_urbanInfantrySetting) then {
 if (_milbuildingInfantry) then {
     private _milBuildings = nearestObjects [_AOpos, MilitaryBuildings, (_radiusSize + 100)];
 
-    if (count _milBuildings > 0 ) then {
-        private _urbanGroup = createGroup east;
+    _milBuildingCount = count _milBuildings;
+    if (_milBuildingCount > 0 ) then {
 
-        {
-            _x params ["_building"];
+        for "_x" from 1 to 3 do {
+
+            _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
+            [_AOpos, MilitaryBuildings, (units _group), (_radiusSize + 100), 2, false] call derp_fnc_AIOccupyBuilding;
+
             {
-                if (count (_x nearObjects ["CAManBase", 1]) == 0) then {
-                    _x params ["_posX", "_posY", "_posZ"];
-
-                    _unit = _urbanGroup createUnit [(selectRandom UrbanUnits), [_posX, _posY, _posZ], [], 0, "NONE"];
-
-                    _unit disableAI "FSM";
-                    _unit disableAI "AUTOCOMBAT";
-                    _unit setPos [_posX, _posY, _posZ];
-
-                    _unit forceSpeed 0;
-
-                    _spawnedUnits pushBack _unit;
-                };
-            } foreach (_building buildingPos -1);
-        } foreach _milBuildings;
+                _spawnedUnits pushBack _x;
+                _AISkillUnitsArray pushBack _x;
+            } foreach (units _group);
+        };
     };
 };
 
