@@ -106,16 +106,6 @@ switch (_filter) do {
             "U_C_Driver_1_white",
             "U_C_Driver_1_yellow",
 
-            //------------------------- Guerilla clothes
-            "U_BG_Guerilla1_1",
-            "U_BG_Guerilla2_1",
-            "U_BG_Guerilla2_2",
-            "U_BG_Guerilla2_3",
-            "U_BG_Guerilla3_1",
-            "U_BG_Guerilla3_2",
-            "U_BG_Guerrilla_6_1",
-            "U_BG_leader",
-
             //------------------------- random
             "U_C_HunterBody_grn",
             "U_OrestesBody",
