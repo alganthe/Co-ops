@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=65;
+	toggles=577;
 	class ItemIDProvider
 	{
 		nextID=1190;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=196;
+		nextID=198;
 	};
 	class Camera
 	{
-		pos[]={15317.871,111.56538,17166.705};
-		dir[]={-0.62978494,-0.57392389,0.52360892};
-		up[]={-0.44137517,0.81885517,0.36696282};
-		aside[]={0.63937014,-6.0163438e-007,0.76902759};
+		pos[]={15259.738,62.982315,17197.834};
+		dir[]={-0.59023702,-0.5000639,0.63386422};
+		up[]={-0.34086746,0.86590934,0.36605778};
+		aside[]={0.73192865,3.0280789e-006,0.68156058};
 	};
 };
 binarizationWanted=0;
@@ -219,7 +219,7 @@ class AddonsMetaData
 		class Item18
 		{
 			className="A3_Drones_F";
-			name="Arma 3 Beta - Autonomous vehicles";
+			name="Arma 3 Beta - Drones";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};

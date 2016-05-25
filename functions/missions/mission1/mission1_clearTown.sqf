@@ -23,7 +23,7 @@ private _selectedLocation = selectRandom derp_mission1Locations;
 
 //------------------- Get random mission loc based on existing markers
 while {(count ((_selectedLocation select 1) nearEntities [["CAManBase", "Air", "Car", "Tank"], derp_PARAM_AOSize * 2])) > 0 || {((getMarkerPos "BASE") distance2D (_selectedLocation select 1)) < (derp_PARAM_AOSize * 2)}} do {
-	_selectedLocation = selectRandom derp_mission1Locations;
+    _selectedLocation = selectRandom derp_mission1Locations;
 
 };
 
@@ -69,26 +69,26 @@ _missionID = "mission1" + str derp_mission1ID;
 
 //------------------- Trigger for mission end
 [{
-	params ["_pos", "_missionID"];
+    params ["_pos", "_missionID"];
 
     [_pos, _missionID] call derp_fnc_sideMissionSelection;
 
-	_winTrigger = createTrigger ["EmptyDetector", _pos, false];
-	_winTrigger setTriggerArea [derp_PARAM_AOSize, derp_PARAM_AOSize, 0, false];
-	_winTrigger setTriggerActivation ["EAST", "PRESENT", false];
-	_winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true", ""];
+    _winTrigger = createTrigger ["EmptyDetector", _pos, false];
+    _winTrigger setTriggerArea [derp_PARAM_AOSize, derp_PARAM_AOSize, 0, false];
+    _winTrigger setTriggerActivation ["EAST", "PRESENT", false];
+    _winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true", ""];
 }, [_pos, _missionID], 30] call derp_fnc_waitAndExecute;
 
 //------------------- PFH checking every 10s if the mission has been completed
 [{
-	if ((!isNil "missionWin") && {missionWin} && {!derp_sideMissionInProgress}) then {
+    if ((!isNil "missionWin") && {missionWin} && {!derp_sideMissionInProgress}) then {
         params ["_args", "_pfhID"];
         _args params ["_pos", "_mainAOUnits", "_missionID"];
 
-		deleteMarker "mission1_mrk";
-		deleteMarker "mission1_1_mrk";
+        deleteMarker "mission1_mrk";
+        deleteMarker "mission1_1_mrk";
         [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
-		missionWin = nil;
+        missionWin = nil;
         missionInProgress = false;
         publicVariable "missionInProgress";
 
@@ -97,8 +97,8 @@ _missionID = "mission1" + str derp_mission1ID;
             publicVariable "derp_paraPos";
         };
 
-		[{
-			params ["_mainAOUnits", "_missionID"];
+        [{
+            params ["_mainAOUnits", "_missionID"];
 
             {
                 if (!(isNull _x) && {alive _x}) then {
@@ -106,12 +106,12 @@ _missionID = "mission1" + str derp_mission1ID;
                 };
             } foreach _mainAOUnits;
 
-			[_missionID, true] call BIS_fnc_deleteTask;
-		}, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExecute;
+            [_missionID, true] call BIS_fnc_deleteTask;
+        }, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExecute;
 
         derp_missionCounter = derp_missionCounter + 1;
-		false call derp_fnc_missionSelection;
+        false call derp_fnc_missionSelection;
 
-		_pfhID call derp_fnc_removePerFrameHandler;
-	};
+        _pfhID call derp_fnc_removePerFrameHandler;
+    };
 }, 10, [_pos, _mainAOUnits, _missionID]] call derp_fnc_addPerFrameHandler;
