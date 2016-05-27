@@ -20,7 +20,7 @@ derp_revive_drawIcon3DID = ["derp_revive_drawIcon3DID", "onEachFrame", {
             2,
             0.04
         ];
-    } foreach ((player nearEntities ["Man", 1000]) select {side _x == west && {_x getUnitTrait "Medic"}});
+    } foreach ((player nearEntities ["Man", 1000]) select {side _x == playerSide && {_x getUnitTrait "Medic"}});
 },[]] call BIS_fnc_addStackedEventHandler;
 
 if (isNil "derp_revive_ppColor") then {
