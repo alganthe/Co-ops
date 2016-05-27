@@ -23,7 +23,7 @@ Features:
    - A custom set of functions to limit equipment
    - Easy to install
    - Highly customizable
-   - 29 Main AOs
+   - Automatic AO generation using towns, cities and villages already present on the map
    - 5 different types of side missions
    - Easy to port to other maps
    - Made with performance in mind
