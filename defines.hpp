@@ -33,7 +33,7 @@
 #define TRUCKSMTruck ["O_Truck_03_ammo_F"]
 #define UAVSMUav ["O_UAV_02_F"]
 
-// first element of the array: vehicle classname, second element: chance to be picked
+// first element of the array: vehicle classname, second element: chance to be picked, higher is better, highest should be 10 (for performances)
 #define SMRewards ["B_Heli_Light_01_armed_F", 2], \
 ["B_Heli_Attack_01_F", 2], \
 ["I_Heli_light_03_F", 2], \

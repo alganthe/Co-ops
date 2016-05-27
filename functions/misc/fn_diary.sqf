@@ -8,8 +8,6 @@
 * Return Value:
 * nothing
 */
-waitUntil {!isNull player};
-
 player createDiarySubject ["rules", "Rules"];
 player createDiarySubject ["teamspeak", "Teamspeak"];
 player createDiarySubject ["Co-ops", "Co-ops"];
@@ -61,9 +59,7 @@ player createDiaryRecord ["Co-ops", ["credits",
 
 player createDiaryRecord ["Co-ops", ["current issues",
 "
-<br/> Ammo caches number is kinda random, some of them don't spawn properly and explode, modelToWorld being kinda iffy I can't do anything about it
-<br/>
-<br/> You have more issues to report?
+<br/> You have issues to report?
 <br/> Go here ----> https://github.com/alganthe/Co-ops/issues
 "
 ]];
