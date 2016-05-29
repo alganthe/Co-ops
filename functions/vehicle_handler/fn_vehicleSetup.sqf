@@ -14,8 +14,8 @@ _vehicleType = typeOf _vehicle;
 
 if (isNull _vehicle) exitWith {};
 //---------------------------------------------------------- Arrays
-_noAmmoCargo = ["B_APC_Tracked_01_CRV_F", "B_Truck_01_ammo_F"];					// Bobcat CRV / ammoTruck
-_uav = ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"];		// UAVs
+_noAmmoCargo = ["B_APC_Tracked_01_CRV_F", "B_Truck_01_ammo_F"];                  // Bobcat CRV / ammoTruck
+_uav = ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"];        // UAVs
 
 //---------------------------------------------------------- Sorting
 //---------- Add UAV crew
@@ -25,14 +25,10 @@ if (_vehicleType in _uav) then {
 
 //---------- remove ammo cargo
 if (_vehicleType in _noAmmoCargo) then {
-	_vehicle setAmmoCargo 0;
+    _vehicle setAmmoCargo 0;
 };
 
 //---------- EH
-if (_vehicleType isKindOf ["Air", configFile >> "CfgVehicles"] && !(_vehicleType in _uav)) then {
-    _vehicle addEventHandler ["GetIn", {_this call derp_fnc_pilotCheck}];
-};
-
 _vehicle addEventHandler ["Fired", {
     params ["_unit", "_weapon", "", "", "", "", "_projectile"];
 

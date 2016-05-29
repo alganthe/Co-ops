@@ -29,18 +29,30 @@ if !(isServer or hasInterface) then {
     };
 
     //---------------- class specific stuff
-    _pilotsClassnames = ["B_pilot_F", "B_Helipilot_F"];
-    if ((typeOf player) in _pilotsClassnames) then {
+    if (player getUnitTrait "derp_pilot") then {
         [player, "pilotRespawn"] call BIS_fnc_addRespawnPosition;
     };
 
-    if (player isKindOf "B_support_Mort_f") then { // Disable arty computer if needed.
-    	enableEngineArtillery true;
+     // Disable arty computer for non FSG members
+    if (player getUnitTrait "derp_mortar") then {
+        enableEngineArtillery true;
     } else {
-    	enableEngineArtillery false;
+        enableEngineArtillery false;
     };
 
     //---------------- EHs and addactions
+    player addEventHandler ["GetInMan", {
+        _this call derp_fnc_pilotCheck;
+    }];
+
+    player addEventHandler ["SeatSwitchedMan", {
+        if !((_this select 3) isKindOf "Air") exitWith {};
+        _this params ["_unit1", "", "_vehicle"];
+        _seat = ((fullCrew _vehicle) select {_x select 0 == _unit1}) select 0;
+        [(_seat select 0), (_seat select 1), _vehicle, (_seat select 3)] call derp_fnc_pilotCheck;
+
+    }];
+
     player addEventHandler ["Fired", {
         params ["_unit", "_weapon", "", "", "", "", "_projectile"];
 

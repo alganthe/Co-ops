@@ -1,6 +1,6 @@
 class derp {
 
-    class PFH {
+    class CBA {
         file = "functions\portedFuncs\cba";
         class pfhPreInit { preInit = 1; };
         class addPerFrameHandler {};
@@ -9,6 +9,7 @@ class derp {
         class waitAndExecute {};
         class waitUntilAndExecute {};
         class pfhPostInit { postInit = 1; };
+        class getTurret {};
     };
 
     class ACE3 {
