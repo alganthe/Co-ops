@@ -5,8 +5,7 @@
 
 
  **Server mods:**
- - `@CBA_A3`
-  - **CBA version** `2.xx`
+
 
 **Description:**
 - Add a detailed description of the error. Pleeeeease add details.
