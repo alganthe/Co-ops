@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=198;
+		nextID=202;
 	};
 	class Camera
 	{
-		pos[]={15259.738,62.982315,17197.834};
-		dir[]={-0.59023702,-0.5000639,0.63386422};
-		up[]={-0.34086746,0.86590934,0.36605778};
-		aside[]={0.73192865,3.0280789e-006,0.68156058};
+		pos[]={15381.981,159.7704,17120.611};
+		dir[]={-0.7272892,-0.37515885,0.57492471};
+		up[]={-0.29443318,0.92688948,0.23274611};
+		aside[]={0.62021536,4.39203e-006,0.78459233};
 	};
 };
 binarizationWanted=0;
@@ -310,7 +310,7 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="Co-ops beta 4";
+		briefingName="Co-ops 1.0.201";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=28800;
@@ -9197,7 +9197,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={15163.778,17.871439,17327.059};
-						angles[]={0,5.821054,0};
+						angles[]={0,5.8210568,0};
 					};
 					side="West";
 					flags=4;
@@ -9205,12 +9205,36 @@ class Mission
 					{
 						skill=0.44999999;
 						rank="CORPORAL";
+						init="this setUnitTrait ['derp_mortar', true, true]";
 						name="s7";
 						description="FSG Gunner";
 						isPlayable=1;
 					};
 					id=479;
 					type="B_support_Mort_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -9307,6 +9331,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="LIEUTENANT";
+						init="this setUnitTrait ['derp_pilot', true, true]";
 						name="s1";
 						isPlayer=1;
 						isPlayable=1;
@@ -9342,8 +9367,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={15117.101,17.911438,17248.471};
-						angles[]={0,0.78539819,6.2822089};
+						position[]={15117.1,17.911438,17248.471};
+						angles[]={0,0.78539819,6.282208};
 					};
 					side="West";
 					flags=4;
@@ -9351,11 +9376,35 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
+						init="this setUnitTrait ['derp_pilot', true, true]";
 						name="s3";
 						isPlayable=1;
 					};
 					id=483;
 					type="B_Helipilot_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item2
 				{
@@ -9363,18 +9412,42 @@ class Mission
 					class PositionInfo
 					{
 						position[]={15116.882,17.911438,17250.248};
-						angles[]={0,2.0943952,6.2822089};
+						angles[]={0,2.0943952,6.282208};
 					};
 					side="West";
 					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait ['derp_pilot', true, true]";
 						name="s4";
 						isPlayable=1;
 					};
 					id=484;
 					type="B_Helipilot_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item3
 				{
@@ -9382,7 +9455,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={15118.792,17.911438,17251.918};
-						angles[]={0,3.1415927,6.2822089};
+						angles[]={0,3.1415927,6.282208};
 					};
 					side="West";
 					flags=4;
@@ -9390,11 +9463,35 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait ['derp_pilot', true, true]";
 						name="s5";
 						isPlayable=1;
 					};
 					id=485;
 					type="B_Helipilot_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item4
 				{
@@ -9408,11 +9505,35 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait ['derp_pilot', true, true]";
 						name="s2";
 						isPlayable=1;
 					};
 					id=486;
 					type="B_Helipilot_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 			};
 			class Attributes
