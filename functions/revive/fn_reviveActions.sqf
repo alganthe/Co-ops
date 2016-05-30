@@ -12,7 +12,7 @@ params ["_unit"];
 
 private _whoCanRevive = "";
 if (getMissionConfigValue ["derp_revive_everyoneCanRevive", 0] == 0) then {
-    _whoCanRevive = "{_this getUnitTrait 'medic'}";
+    _whoCanRevive = "{_this getUnitTrait 'medic'} &&";
 };
 
 // Revive
@@ -43,7 +43,7 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} &&" + _whoCanRevive + "&& {'FirstAidKit' in items _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} &&" + _whoCanRevive + "{'FirstAidKit' in items _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
 ];
 
 // Dragging
