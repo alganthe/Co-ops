@@ -18,7 +18,7 @@
 */
 params ["_unit", "_position", "_vehicle", "_turretIndex"];
 
-if !(_vehicle isKindOf "Air") exitwith {};
+if !(_vehicle isKindOf "Air" && {!(_vehicle isKindOf "ParachuteBase")}) exitwith {};
 
 if (!(player getUnitTrait "derp_pilot")) then {
     if (_position == "driver") then {
