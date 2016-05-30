@@ -40,7 +40,7 @@ switch (_state) do {
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            [_dragger, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+            [_dragger, ""] call derp_fnc_syncAnim;
         };
 
         _dragger setVariable ["derp_revive_isCarrying", false, true];

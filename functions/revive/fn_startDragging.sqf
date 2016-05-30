@@ -21,6 +21,10 @@ _dragged attachTo [_dragger, [0, 1, 0]];
     params ["_args", "_idPFH"];
     _args params ["_dragger","_dragged", "_startTime"];
 
+    if !(_dragged getVariable "derp_revive_isDragged") then {
+        [_idPFH] call derp_fnc_removePerFrameHandler;
+    };
+
     if (!alive _dragged || {!alive _dragger} || {!(isNull objectParent _dragger)} || {_dragger distance _dragged > 10}) then {
         if ((_dragger distance _dragged > 10) && {(derp_missionTime - _startTime) < 1}) exitWith {};
         [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
