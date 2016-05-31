@@ -88,7 +88,7 @@ if !(isServer or hasInterface) then {
         true,
         true,
         "",
-        "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
+        "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'} && { { !isNull (((fullCrew [_x, 'driver']) select 0) select 0) && {side (((fullCrew [_x, 'driver']) select 0) select 0) == playerside} && {count (fullCrew [_x, 'cargo', true]) > 0 } } count (position player nearEntities ['Helicopter', 300]) == 0}"
         ];
     };
 

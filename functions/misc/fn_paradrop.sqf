@@ -28,11 +28,12 @@ openMap true;
 ["derp_paradrop_mapclick", "onMapSingleClick", {
     _this params ["_unit", "_radius"];
 
-    _dist = _pos distance2D derp_paraPos;
-    if (_dist > _radius) then {
-        hint "Select position within the marked area.";
+    if (leader group _unit == _unit) then {
+        _dist = _pos distance2D derp_paraPos;
 
-    } else {
+        if (_dist > _radius) exitWith {hint "Select position within the marked area."};
+        if ({side ((crew _x) select 0) == playerSide && {alive ((crew _x ) select 0)} && {speed _x > 10}} count (derp_paraPos nearEntities ["Helicopter", _radius]) == 0) exitWith {hint "No helicopter near the AO"};
+
         _unit setPos [_pos select 0, _pos select 1, 1000];
         _unit addAction [
             "Open parachute",
@@ -42,19 +43,53 @@ openMap true;
                 _parachute = createVehicle ["Steerable_Parachute_F", [(getPos _target) select 0, (getPos _target) select 1, ((getPos _target )select 2) + 1], [], 0, "NONE"];
                 _target moveInDriver _parachute;
                 _target removeAction _id;
-
             }
         ];
         openMap false;
 
+    } else {
+        _dist = _pos distance2D derp_paraPos;
+
+        if (_dist > _radius) exitWith {hint "Select position within the marked area."};
+        if ((leader _unit distance2D derp_paraPos) > _radius) exitWith {hint "your leader isn't near the AO"};
+        if ({side ((crew _x) select 0) == playerSide && {alive ((crew _x ) select 0)} && {speed _x > 10}} count (derp_paraPos nearEntities ["Helicopter", _radius]) == 0) exitWith {hint "No helicopter near the AO"};
+        if (leader _unit getVariable ["derp_revive_downed", false] || {!alive leader _unit}) exitWith {hint "Your leader is downed or dead"};
+
+
+
+        _pos = getPos leader _unit;
+        _unit setPos [_pos select 0, _pos select 1, 1000];
+        _unit addAction [
+            "Open parachute",
+            {
+                _this params ["_target", "", "_id"];
+
+                _parachute = createVehicle ["Steerable_Parachute_F", [(getPos _target) select 0, (getPos _target) select 1, ((getPos _target )select 2) + 1], [], 0, "NONE"];
+                _target moveInDriver _parachute;
+                _target removeAction _id;
+            }
+        ];
+        openMap false;
+
+        hint "We're dropping you near your leader.";
     };
 }, [_unit, _radius]] call BIS_fnc_addStackedEventHandler;
 
-["derp_paradrop_visibleMap", "onEachFrame", {
-    if !(visibleMap) then {
-        deleteMarkerLocal (_this select 0);
-        ["derp_paradrop_mapclick", "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
-        ["derp_paradrop_visibleMap", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+[{
+    params ["_args", "_pfhID"];
+    _args params ["_markerName"];
 
+    if (!missionInProgress) then {
+        deleteMarkerLocal _markerName;
+        ["derp_paradrop_mapclick", "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
+        openMap false;
+        hint "The AO changed";
+        _pfhID call derp_fnc_removePerFrameHandler;
     };
-}, [_markerName]]  call BIS_fnc_addStackedEventHandler;
+
+    if !(visibleMap) then {
+        deleteMarkerLocal _markerName;
+        ["derp_paradrop_mapclick", "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
+        _pfhID call derp_fnc_removePerFrameHandler;
+    };
+}, 0, [_markerName]] call derp_fnc_addPerFrameHandler;
