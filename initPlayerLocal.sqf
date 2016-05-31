@@ -92,6 +92,14 @@ if !(isServer or hasInterface) then {
         ];
     };
 
+    arsenalDude addAction [
+        "<t color='#006bb3'>Save gear</t>",
+        {
+            player setVariable ["derp_savedGear", (getUnitLoadout player)];
+            systemChat "gear saved";
+        }
+    ];
+
     if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
 
     [[arsenalBox1, arsenalBox2, arsenalDude], ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter;;  // Init arsenal boxes.
