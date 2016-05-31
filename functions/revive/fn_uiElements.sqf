@@ -7,7 +7,7 @@
 * Return Value:
 * Nothing
 */
-derp_revive_drawIcon3DID = ["derp_revive_drawIcon3DID", "onEachFrame", {
+derp_revive_drawIcon3DID = addMissionEventHandler ["Draw3D", {
     {
         drawIcon3D [
             "\A3\ui_f\data\igui\cfg\actions\heal_ca.paa",
@@ -21,7 +21,7 @@ derp_revive_drawIcon3DID = ["derp_revive_drawIcon3DID", "onEachFrame", {
             0.04
         ];
     } foreach ((player nearEntities ["Man", 1000]) select {side _x == playerSide && {_x getUnitTrait "Medic"}});
-},[]] call BIS_fnc_addStackedEventHandler;
+}];
 
 if (isNil "derp_revive_ppColor") then {
     derp_revive_ppColor = ppEffectCreate ["ColorCorrections", 1632]
