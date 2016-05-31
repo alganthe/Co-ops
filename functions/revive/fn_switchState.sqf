@@ -32,7 +32,6 @@ switch (_state) do {
             [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
 
             _unit setUnitLoadout (_unit getVariable "derp_revive_loadout");
-            _unit setVariable ["derp_revive_loadout", nil];
 
             [_unit] call derp_revive_fnc_reviveTimer;
             call derp_revive_fnc_hotkeyHandler;
@@ -58,7 +57,7 @@ switch (_state) do {
         if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
         if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]};
         if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
-        if !(isNil "derp_revive_drawIcon3DID") then {["derp_revive_drawIcon3DID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler};
+        if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
 
         if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
@@ -78,7 +77,7 @@ switch (_state) do {
        if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
        if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]};
        if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
-       if !(isNil "derp_revive_drawIcon3DID") then {["derp_revive_drawIcon3DID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler};
+       if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
 
       if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
