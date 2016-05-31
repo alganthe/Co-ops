@@ -13,6 +13,8 @@ params ["_vehicle"];
 if (_vehicle isKindOf "Helicopter") then {
 
     _vehicle setFuel 0;
+    _vehicle vehicleChat "Servicing started, this process should be finished in 45s";
+
     //---------- RE-ARMING
     sleep 10;
     _vehicle vehicleChat "Re-arming ...";

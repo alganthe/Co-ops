@@ -13,6 +13,7 @@ params ["_vehicle"];
 if (_vehicle isKindOf "Plane") then {
 
     _vehicle setFuel 0;
+    _vehicle vehicleChat "Servicing started, this process should be finished in 5 minutes";
 
     //---------- RE-ARMING
     sleep 100;

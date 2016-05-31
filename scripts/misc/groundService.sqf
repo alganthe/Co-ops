@@ -13,6 +13,7 @@ params ["_vehicle"];
 if (_vehicle isKindOf "Car" || _vehicle isKindOf "Tank") then {
 
     _vehicle setFuel 0;
+    _vehicle vehicleChat "Servicing started, this process should be finished in 45s";
 
     //---------- RE-ARMING
     sleep 10;
