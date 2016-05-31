@@ -71,3 +71,4 @@ addMissionEventHandler ["HandleDisconnect", {
     [quad1, 5], [quad2, 5], [quad3, 5], [quad4, 5], [quad5, 5], [quad6, 5], [quad7, 5]
 ];
 [] call derp_vehicleHandler_fnc_quadPFH;
+call derp_fnc_mapLinesHandler;

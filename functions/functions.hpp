@@ -32,6 +32,7 @@ class derp {
         class gearLimitations {};
         class remoteAddCuratorEditableObjects {};
         class syncAnim {};
+        class mapLinesHandler {};
     };
 
     class AI {

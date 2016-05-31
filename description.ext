@@ -105,6 +105,13 @@ class Params {
         default = 0;
     };
 
+    class mapDrawingEnabled {
+        title = "Enable map drawing?";
+        texts[] = {"No", "Yes"};
+        values[] = {0, 1};
+        default = 0;
+    };
+
     class VehicleRespawnDistance {
         title = "Distance from players that vehicles won't respawn";
         values[] = {10, 50, 100, 200, 300, 400, 500, 1000, 2000, 5000, 10000};
