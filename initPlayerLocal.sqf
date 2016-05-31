@@ -102,6 +102,13 @@ if !(isServer or hasInterface) then {
     ];
 
     if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
+    if (getMissionConfigValue "derp_revive_everyoneCanRevive" == 0) then {
+        if (player getUnitTrait "medic") then {
+            call derp_revive_fnc_drawDowned;
+        };
+    } else {
+            call derp_revive_fnc_drawDowned;
+    };
 
     [[arsenalBox1, arsenalBox2, arsenalDude], ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter;;  // Init arsenal boxes.
 };

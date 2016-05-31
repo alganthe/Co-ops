@@ -61,6 +61,7 @@ class derp_revive {
         class hotkeyHandler {};
         class uiElements {};
         class animChanged {};
+        class drawDowned {};
     };
 };
 
