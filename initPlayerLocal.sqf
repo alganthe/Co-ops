@@ -11,6 +11,7 @@ if !(isServer or hasInterface) then {
 } else {//-------------------------------- Player stuff
 
     [] call derp_fnc_diary; // Diary
+    call derp_fnc_mapLinesHandler; // No more penii
 
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
