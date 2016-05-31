@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=203;
+		nextID=206;
 	};
 	class Camera
 	{
-		pos[]={15294.676,114.54046,17188.516};
-		dir[]={-0.62233669,-0.56706583,0.53978634};
-		up[]={-0.42846859,0.82358539,0.37162921};
-		aside[]={0.65530699,3.1704403e-006,0.75553411};
+		pos[]={15282.301,114.54046,17156.951};
+		dir[]={-0.54143882,-0.66586769,0.51351202};
+		up[]={-0.48319912,0.74598247,0.45827058};
+		aside[]={0.68822992,2.1160522e-006,0.7256695};
 	};
 };
 binarizationWanted=0;
@@ -6054,6 +6054,7 @@ class Mission
 			};
 			id=341;
 			type="B_Truck_01_Repair_F";
+			atlOffset=-3.8146973e-005;
 		};
 		class Item136
 		{
@@ -6072,6 +6073,7 @@ class Mission
 			};
 			id=342;
 			type="B_Truck_01_covered_F";
+			atlOffset=-0.00011062622;
 		};
 		class Item137
 		{
