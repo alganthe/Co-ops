@@ -10,6 +10,8 @@ if !(isServer or hasInterface) then {
     };
 } else {//-------------------------------- Player stuff
 
+    enableSentences false;
+    enableRadio false;
     [] call derp_fnc_diary; // Diary
     call derp_fnc_mapLinesHandler; // No more penii
 
