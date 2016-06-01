@@ -54,9 +54,9 @@ wreckRemovalMaxTime = 150;
 
 //-------------------------Corpse Manager
 corpseManagerMode = 1;
-corpseLimit = 20;
+corpseLimit = 10;
 corpseRemovalMinTime = 10;
-corpseRemovalMaxTime = 600;
+corpseRemovalMaxTime = 150;
 
 //-------------------------Functions
 #include "functions\taw_vd\GUI.h"
@@ -102,7 +102,7 @@ class Params {
         title = "Enable para jumps on AO?";
         texts[] = {"No", "Yes"};
         values[] = {0, 1};
-        default = 0;
+        default = 1;
     };
 
     class mapDrawingEnabled {
@@ -144,7 +144,7 @@ class Params {
         title = "Amount of AA vehicles on the main AO";
         values[] = {1, 2, 3, 4, 5, 6};
         texts[] = {"1", "2", "3", "4", "5", "6"};
-        default = 3;
+        default = 2;
     };
 
     class MRAPAmount {
@@ -207,7 +207,7 @@ class Params {
         title = "AI aiming speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 3;
+        default = 2;
     };
 
     class AISpotingDistance {
@@ -221,7 +221,7 @@ class Params {
         title = "AI spotting speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 3;
+        default = 2;
     };
 
     class AICourage {
@@ -235,21 +235,21 @@ class Params {
         title = "AI reload speed";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 10;
+        default = 5;
     };
 
     class AICommandingSkill {
         title = "AI commanding skill";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 10;
+        default = 7;
     };
 
     class AIGeneralSkill {
         title = "AI general skill";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
-        default = 10;
+        default = 8;
     };
 };
 
