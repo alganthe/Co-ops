@@ -33,6 +33,7 @@ class derp {
         class remoteAddCuratorEditableObjects {};
         class syncAnim {};
         class mapLinesHandler {};
+        class baseCleaning {};
     };
 
     class AI {
