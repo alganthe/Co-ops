@@ -66,125 +66,80 @@ if (_topDownFilling) then {
     } foreach _buildings;
 };
 
-private _indexCount = 0;
+// Remove buildings without pos
 {
-    _cnt = count _x;
+    _buildingsIndexes deleteAt (_buildingsIndexes find _x);
+} foreach (_buildingsIndexes select {count _x == 0});
 
-    if (_cnt == 0) then {
-        _buildingsIndexes deleteAt (_buildingsIndexes find _x);
-    };
-    _indexCount = _indexCount + _cnt;
-} foreach _buildingsIndexes;
-
-private _leftOverAICount = (count _unitsArray) - _indexCount;
+private _cnt = 0;
+{_cnt = _cnt + count _x} foreach _buildingsIndexes;
+private _leftOverAICount = (count _unitsArray) - _cnt;
 if (_leftOverAICount > 0) then {
     diag_log "AIOccupyBuilding Warning: Not enough spots to place all units";
 };
 
-While {count _unitsArray > 0} do {
-    scopeName "Main";
+switch (_fillingType) do {
+    case 0: {
+        scopeName "main";
+        for "_i" from 0 to (count _unitsArray) do {
+            if (count _buildingsIndexes == 0) exitWith {breakOut "main"};
 
-    for "_i" from 0 to (count _unitsArray) do {
-        scopeName "loop";
-        private _unit = _unitsArray select 0;
+            _building = _buildingsIndexes select 0;
+            _pos = _building select 0;
 
-        switch (_fillingType) do {
-            case 0: {
-                if (count _buildingsIndexes == 0) then {
-                    breakOut "Main";
-                };
-
-                _buildingsPositions = _buildingsIndexes select 0;
-
-                if (count _buildingsPositions == 0) then {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                    breakTo "loop";
-                };
-
-                _buildingPos = _buildingsPositions select 0;
-
-                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                    _unit disableAI "FSM";
-                    _unit disableAI "AUTOCOMBAT";
-
-                    _unit setPos _buildingPos;
-
-                    _unit forceSpeed 0;
-
-                    _unitsArray deleteAt (_unitsArray find _unit);
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                    _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
-                } else {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                    _buildingsIndexes pushback (_buildingsPositions - _buildingPos);
-                    breakTo "loop";
-                };
+            if ( count (_pos nearEntities ["CAManBase", 2]) > 0) then {
+                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+            } else {
+                _unit = _unitsArray select 0;
+                _unit disableAI "FSM";
+                _unit disableAI "AUTOCOMBAT";
+                _unit forceSpeed 0;
+                _unit setPos _pos;
+                _unitsArray deleteAt (_unitsArray find _unit);
+                _building deleteAt 0;
+                _buildingsIndexes pushbackUnique _building;
             };
+        };
+    };
 
-            case 1: {
-                if (count _buildingsIndexes == 0) then {
-                    breakOut "Main";
-                };
+    case 1: {
+        scopeName "main";
+        for "_i" from 0 to (count _unitsArray) do {
+            if (count _buildingsIndexes == 0) exitWith {breakOut "main"};
 
-                _buildingsPositions = _buildingsIndexes select 0;
+            _pos = (_buildingsIndexes select 0) select 0;
 
-                if (count _buildingsPositions == 0) then {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                    breakTo "loop";
-                };
-
-                _buildingPos = _buildingsPositions select 0;
-
-
-                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                    _unit disableAI "FSM";
-                    _unit disableAI "AUTOCOMBAT";
-
-                    _unit setPos _buildingPos;
-
-                    _unit forceSpeed 0;
-
-                    _unitsArray deleteAt (_unitsArray find _unit);
-                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
-                } else {
-                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
-                    breakTo "loop";
-                };
+            if ( count (_pos nearEntities ["CAManBase", 2]) > 0) then {
+                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+            } else {
+                _unit = _unitsArray select 0;
+                _unit disableAI "FSM";
+                _unit disableAI "AUTOCOMBAT";
+                _unit forceSpeed 0;
+                _unit setPos _pos;
+                _unitsArray deleteAt (_unitsArray find _unit);
+                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
             };
+        };
+    };
 
-            case 2: {
-                if (count _buildingsIndexes == 0) then {
-                    breakOut "Main";
-                };
+    case 2: {
+        scopeName "main";
+        for "_i" from 0 to (count _unitsArray) do {
+            if (count _buildingsIndexes == 0) exitWith {breakOut "main"};
 
-                _buildingsPositions = selectRandom _buildingsIndexes;
+            _pos = selectRandom (selectRandom _buildingsIndexes);
 
-                if (count _buildingsPositions == 0) then {
-                    _buildingsIndexes deleteAt (_buildingsIndexes find _buildingsPositions);
-                    breakTo "loop";
-                };
-
-                private "_buildingPos";
-                if (_topDownFilling) then {
-                    _buildingPos = _buildingsPositions select 0;
-                } else {
-                    _buildingPos = selectRandom _buildingsPositions;
-                };
-
-                if (count (_buildingPos nearObjects ["CAManBase", 2]) == 0) then {
-                    _unit disableAI "FSM";
-                    _unit disableAI "AUTOCOMBAT";
-
-                    _unit setPos _buildingPos;
-
-                    _unit forceSpeed 0;
-
-                    _unitsArray deleteAt (_unitsArray find _unit);
-                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
-                } else {
-                    _buildingsIndexes = _buildingsIndexes apply {_x select {!(_x isEqualTo _buildingPos)}};
-                    breakTo "loop";
-                };
+            if ( count (_pos nearEntities ["CAManBase", 2]) > 0) then {
+                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+            } else {
+                _unit = _unitsArray select 0;
+                _unit disableAI "FSM";
+                _unit disableAI "AUTOCOMBAT";
+                _unit forceSpeed 0;
+                _unit setPos _pos;
+                _unitsArray deleteAt (_unitsArray find _unit);
+                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
             };
         };
     };
