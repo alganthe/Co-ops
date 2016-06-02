@@ -12,7 +12,6 @@ if !(isServer or hasInterface) then {
 
     #include "defines.hpp"
     enableSentences false;
-    enableRadio false;
     [] call derp_fnc_diary; // Diary
     call derp_fnc_mapLinesHandler; // No more penii
 
