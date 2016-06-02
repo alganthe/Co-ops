@@ -43,12 +43,14 @@ if !(isServer or hasInterface) then {
         enableEngineArtillery false;
     };
 
-    if (getMissionConfigValue "derp_revive_everyoneCanRevive" == 0) then {
-        if (player getUnitTrait "medic") then {
-            call derp_revive_fnc_drawDowned;
+    if ("derp_revive" in (getMissionConfigValue "respawnTemplates")) then {
+        if (getMissionConfigValue "derp_revive_everyoneCanRevive" == 0) then {
+            if (player getUnitTrait "medic") then {
+                call derp_revive_fnc_drawDowned;
+            };
+        } else {
+                call derp_revive_fnc_drawDowned;
         };
-    } else {
-            call derp_revive_fnc_drawDowned;
     };
 
     //---------------- EHs and addactions
