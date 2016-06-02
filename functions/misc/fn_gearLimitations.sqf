@@ -41,7 +41,7 @@ _grenadierRestricted = [{_unit getUnitTrait 'derp_grenadier'}, [
 ], "Grenadier"];
 
 _gitGudM8 = [{_unit getUnitTrait 'gud'}, [
-    "optic_Nightstalker", "optic_tws", "optic_tws_mg"
+    "U_B_Protagonist_VR", "U_O_Protagonist_VR", "U_I_Protagonist_VR", "optic_Nightstalker", "optic_tws", "optic_tws_mg"
 ], "Git gud m8"];
 
 _restrictedItems = [];
