@@ -184,8 +184,6 @@ switch (_filter) do {
 
         _backpackBlackList = [
             //------------------------- Backpacks
-            "B_Mortar_01_weapon_F",
-            "B_Mortar_01_support_F",
             "O_Mortar_01_weapon_F",
             "O_Mortar_01_support_F",
             "I_Mortar_01_weapon_F",
