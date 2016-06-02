@@ -10,6 +10,7 @@ if !(isServer or hasInterface) then {
     };
 } else {//-------------------------------- Player stuff
 
+    #include "defines.hpp"
     enableSentences false;
     enableRadio false;
     [] call derp_fnc_diary; // Diary
@@ -43,6 +44,14 @@ if !(isServer or hasInterface) then {
         enableEngineArtillery false;
     };
 
+    if (getMissionConfigValue "derp_revive_everyoneCanRevive" == 0) then {
+        if (player getUnitTrait "medic") then {
+            call derp_revive_fnc_drawDowned;
+        };
+    } else {
+            call derp_revive_fnc_drawDowned;
+    };
+
     //---------------- EHs and addactions
     player addEventHandler ["GetInMan", {
         _this call derp_fnc_pilotCheck;
@@ -64,6 +73,8 @@ if !(isServer or hasInterface) then {
             ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];
 
+    if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
+
     if ("ArsenalFilter" call BIS_fnc_getParamValue == 1) then {
         player addEventHandler ["Take", {
             params ["_unit", "_container", "_item"];
@@ -78,39 +89,32 @@ if !(isServer or hasInterface) then {
         }];
     };
 
-    if (derp_PARAM_paraJumpEnabled) then {
-        arsenalDude addAction [
-        "<t color='#FF6600'>Paradrop on AO</t>",
-        {
-            [player,
-              2 * ("AOSize" call BIS_fnc_getParamValue)
-            ] call derp_fnc_paradrop;
-        },
-        nil,
-        0,
-        true,
-        true,
-        "",
-        "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'} && { { !isNull (((fullCrew [_x, 'driver']) select 0) select 0) && {side (((fullCrew [_x, 'driver']) select 0) select 0) == playerside} && {count (fullCrew [_x, 'cargo', true]) > 0 } } count (position player nearEntities ['Helicopter', 300]) == 0}"
+    {
+        _x addAction [
+            "<t color='#006bb3'>Save gear</t>",
+            {
+                player setVariable ["derp_savedGear", (getUnitLoadout player)];
+                systemChat "gear saved";
+            }
         ];
-    };
 
-    arsenalDude addAction [
-        "<t color='#006bb3'>Save gear</t>",
-        {
-            player setVariable ["derp_savedGear", (getUnitLoadout player)];
-            systemChat "gear saved";
-        }
-    ];
-
-    if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
-    if (getMissionConfigValue "derp_revive_everyoneCanRevive" == 0) then {
-        if (player getUnitTrait "medic") then {
-            call derp_revive_fnc_drawDowned;
+        if (derp_PARAM_paraJumpEnabled) then {
+            _x addAction [
+            "<t color='#FF6600'>Paradrop on AO</t>",
+            {
+                [player,
+                  2 * ("AOSize" call BIS_fnc_getParamValue)
+                ] call derp_fnc_paradrop;
+            },
+            nil,
+            0,
+            true,
+            true,
+            "",
+            "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'} && { { !isNull (((fullCrew [_x, 'driver']) select 0) select 0) && {side (((fullCrew [_x, 'driver']) select 0) select 0) == playerside} && {count (fullCrew [_x, 'cargo', true]) > 0 } } count (position player nearEntities ['Helicopter', 300]) == 0}"
+            ];
         };
-    } else {
-            call derp_revive_fnc_drawDowned;
-    };
+    } foreach ArsenalBoxes;
 
-    [[arsenalBox1, arsenalBox2, arsenalDude], ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter;;  // Init arsenal boxes.
+    [ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter;;  // Init arsenal boxes.
 };
