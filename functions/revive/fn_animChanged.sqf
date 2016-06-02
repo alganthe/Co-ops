@@ -16,7 +16,7 @@ if (_mode) then {
         params ["_unit", "_anim"];
 
         if (_unit getVariable ["derp_revive_downed", false] && {isNull objectParent _unit} && {!(_unit getVariable ["derp_revive_isDragged",false]) || {!(_unit getVariable ["derp_revive_isCarried", false])}}) then {
-            _unit switchMove "acts_injuredlyingrifle02_180";
+            [_unit, "acts_injuredlyingrifle02_180"] remoteExec ["switchMove", 0];
         };
     }];
 
