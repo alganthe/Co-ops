@@ -18,7 +18,7 @@ params ["_AOPos", "_comTowers", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
-_smID = "antennaTask" + str derp_SMID;
+private _smID = "antennaTask" + str derp_SMID;
 
 [west, [_smID, _missionID], ["Our enemies have took control of a few antennas, destroy them or they'll call air support. We've marked their locations on your map.", "Destroy enemy com array", ""], objNull, "Created", 5, true, "destroy", true] call BIS_fnc_taskCreate;
 
@@ -27,14 +27,14 @@ private _towerMines = [];
 private _markerNumber = 0;
 private _markerArray = [];
 {
-    _markerNumber = _markerNumber + 1;
-    _marker = createMarker ["comTowerMarker" + str _markerNumber, (getPosWorld _x)];
+    private _markerNumber = _markerNumber + 1;
+    private _marker = createMarker ["comTowerMarker" + str _markerNumber, (getPosWorld _x)];
     _marker setMarkerShape "ICON";
     _marker setMarkerType "loc_Transmitter";
     _markerArray pushback _marker;
 
     for "_x" from 0 to 19 do {
-        _mine = createMine ["APERSBoundingMine", (getMarkerPos _marker), [_marker], 20];
+        private _mine = createMine ["APERSBoundingMine", (getMarkerPos _marker), [_marker], 20];
         _towerMines pushback _mine;
     };
 } foreach _comTowers;
@@ -46,7 +46,7 @@ private _markerArray = [];
 
     {
         if (!alive _x) then {
-            _arrayPos = (_comTowers find _x);
+            private arrayPos = (_comTowers find _x);
             _comTowers deleteAt _arrayPos;
             deleteMarker (_markerArray select _arrayPos);
             _markerArray deleteAt _arrayPos;

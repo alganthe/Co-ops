@@ -18,14 +18,14 @@ params ["_AOPos", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
-_smID = "caches" + str derp_SMID;
+private _smID = "caches" + str derp_SMID;
 
 [west, [_smID, _missionID], ["Our enemies have found three ammo caches around the town, find and destroy them.", "Find and destroy ammo caches", ""], objNull, "Created", 5, true, "destroy", true] call BIS_fnc_taskCreate;
 
 private _ammoCaches = [];
 
 for "_i" from 1 to 3 do {
-    _box = (selectRandom CACHESMCacheArray) createVehicle ([[[_AOpos, 150], []], ["water", "out"]] call BIS_fnc_randomPos);
+    private _box = (selectRandom CACHESMCacheArray) createVehicle ([[[_AOpos, 150], []], ["water", "out"]] call BIS_fnc_randomPos);
 
     _ammoCaches pushback _box;
 };

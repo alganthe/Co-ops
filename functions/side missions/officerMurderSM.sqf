@@ -18,40 +18,15 @@ params ["_AOPos", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
-_smID = "officerKill" + str derp_SMID;
+private _smID = "officerKill" + str derp_SMID;
 
 [west, [_smID, _missionID], ["We have intel that an enemy officer is in the AO, find him and take him out. We currently have no information on his exact location, good luck.", "Kill the enemy officer", ""], objNull, "Created", 5, true, "kill", true] call BIS_fnc_taskCreate;
 
-_buildingArray = _AOPos nearObjects ["House", 350];
-
-private "_officerBuilding";
-{
-    _buildingPositions = _x buildingPos -1;
-    if ({count (_x nearObjects ["CAManBase", 1]) == 0} count _buildingPositions > 5) exitWith {_officerBuilding = _x};
-} foreach _buildingArray;
-
-_officerGroup = createGroup east;
-_officerPos = selectRandom (_officerBuilding buildingPos -1);
-_officer = _officerGroup createUnit [(selectRandom OFFICERSMTarget), _officerPos, [], 0, "NONE"];
-_officer disableAI "FSM";
-_officer disableAI "AUTOCOMBAT";
-_officer setPos _officerPos;
-doStop _officer;
-commandStop _officer;
-
-{
-    if (count (_x nearObjects ["CAManBase", 1]) == 0) then {
-
-        _unit = _officerGroup createUnit [(selectRandom OFFICERSMGuards), _x, [], 0, "NONE"];
-        _unit disableAI "FSM";
-        _unit disableAI "AUTOCOMBAT";
-
-        _unit setPos _x;
-
-        doStop _unit;
-        commandStop _unit;
-    };
-} foreach (_officerBuilding buildingPos -1);
+private _randomPos = [[[_AOpos, 600], []], ["water", "out"]] call BIS_fnc_randomPos;
+private _officerGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
+private _officer = _officerGroup createUnit [(selectRandom OFFICERSMTarget), _randomPos, [], 0, "NONE"];
+_officerGroup setLeader _officer;
+[_officerGroup, _AOpos, 600] call BIS_fnc_taskPatrol;
 
 {
     _x addCuratorEditableObjects [(units _officerGroup), false];
