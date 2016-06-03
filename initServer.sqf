@@ -17,6 +17,7 @@ derp_vehicleHandler_quadHandlingArray = [];
 derp_mission1Locations = call derp_fnc_getAllTownsAndVillages;
 derp_SMID = 0;
 derp_mission1ID = 0;
+derp_cleaner_bodyArray = [];
 
 derp_PARAM_missionAmount = "MissionAmount" call BIS_fnc_getParamValue;
 derp_PARAM_smRewardAfter = "smRewardAfter" call BIS_fnc_getParamValue;
@@ -78,3 +79,4 @@ addMissionEventHandler ["HandleDisconnect", {
 [] call derp_vehicleHandler_fnc_quadPFH;
 
 call derp_fnc_baseCleaning;
+call derp_fnc_cleaner;

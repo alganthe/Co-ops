@@ -34,6 +34,7 @@ class derp {
         class syncAnim {};
         class mapLinesHandler {};
         class baseCleaning {};
+        class cleaner {};
     };
 
     class AI {
