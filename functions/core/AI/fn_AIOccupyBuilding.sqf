@@ -16,7 +16,7 @@
 * Example:
 * [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call derp_fnc_AIOccupyBuilding
 */
-params ["_startingPos", ["_buildingTypes", ["house"]], "_unitsArray", ["_fillingRadius", -1], ["_fillingType", 0], ["_topDownFilling", false]];
+params ["_startingPos", ["_buildingTypes", ["Building"]], "_unitsArray", ["_fillingRadius", -1], ["_fillingType", 0], ["_topDownFilling", false]];
 
 if (_startingPos isEqualTo [0,0,0]) exitWith {
     player sideChat str "AIOccupyBuilding Error : Invalid position given.";
@@ -46,7 +46,7 @@ private _buildingsIndexes = [];
 
 if (_topDownFilling) then {
     {
-        _buildingPos = _x buildingPos -1;
+        private _buildingPos = _x buildingPos -1;
 
         {
             reverse _x;
@@ -80,66 +80,98 @@ if (_leftOverAICount > 0) then {
 
 switch (_fillingType) do {
     case 0: {
-        scopeName "main";
-        for "_i" from 0 to (count _unitsArray) do {
-            if (count _buildingsIndexes == 0) exitWith {breakOut "main"};
+        while {count _unitsArray > 0} do {
+            scopeName "derp";
+            if (count _buildingsIndexes == 0) exitWith {breakOut "derp"};
 
-            _building = _buildingsIndexes select 0;
-            _pos = _building select 0;
+            private _building = _buildingsIndexes select 0;
 
-            if ( count (_pos nearEntities ["CAManBase", 2]) > 0) then {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+            // Remove building if all pos are used
+            if (_building isEqualTo []) then {
+                _buildingsIndexes deleteAt 0;
+                breakTo "derp";
+            };
+
+            private _pos = _building select 0;
+
+            if ( count (_pos nearEntities ["CAManBase", 1]) > 0) then {
+                _buildingsIndexes set [0,  _building - [_pos]];
+                breakTo "derp";
+
             } else {
-                _unit = _unitsArray select 0;
+                private _unit = _unitsArray select 0;
                 _unit disableAI "FSM";
                 _unit disableAI "AUTOCOMBAT";
                 _unit forceSpeed 0;
                 _unit setPos _pos;
                 _unitsArray deleteAt (_unitsArray find _unit);
                 _building deleteAt 0;
+                _buildingsIndexes deleteAt 0;
                 _buildingsIndexes pushbackUnique _building;
             };
         };
     };
 
     case 1: {
-        scopeName "main";
-        for "_i" from 0 to (count _unitsArray) do {
-            if (count _buildingsIndexes == 0) exitWith {breakOut "main"};
+        while {count _unitsArray > 0} do {
+            scopeName "derp";
+            if (count _buildingsIndexes == 0) exitWith {breakOut "derp"};
 
-            _pos = (_buildingsIndexes select 0) select 0;
+            private _building = _buildingsIndexes select 0;
 
-            if ( count (_pos nearEntities ["CAManBase", 2]) > 0) then {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+            // Remove building if all pos are used
+            if (_building isEqualTo []) then {
+                _buildingsIndexes deleteAt 0;
+                breakTo "derp";
+            };
+
+            private _pos = _building select 0;
+
+            // Remove building if all pos are used
+            if ( count (_pos nearEntities ["CAManBase", 1]) > 0) then {
+                _buildingsIndexes set [0, _building - [_pos]];
+                breakTo "derp";
+
             } else {
-                _unit = _unitsArray select 0;
+                private _unit = _unitsArray select 0;
                 _unit disableAI "FSM";
                 _unit disableAI "AUTOCOMBAT";
                 _unit forceSpeed 0;
                 _unit setPos _pos;
                 _unitsArray deleteAt (_unitsArray find _unit);
-                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+                _buildingsIndexes set [0,  _building - [_pos]];
             };
         };
     };
 
     case 2: {
-        scopeName "main";
-        for "_i" from 0 to (count _unitsArray) do {
-            if (count _buildingsIndexes == 0) exitWith {breakOut "main"};
+        while {count _unitsArray > 0} do {
+            scopeName "derp";
+            if (count _buildingsIndexes == 0) exitWith {breakOut "derp"};
 
-            _pos = selectRandom (selectRandom _buildingsIndexes);
+            private _building = selectRandom _buildingsIndexes;
 
-            if ( count (_pos nearEntities ["CAManBase", 2]) > 0) then {
-                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+            // Remove building if all pos are used
+            if (_building isEqualTo []) then {
+                _buildingsIndexes deleteAt (_buildingsIndexes find _building);
+                breakTo "derp";
+            };
+
+            private _pos = selectRandom _building;
+
+            // Remove pos if unit nearby
+            if ( count (_pos nearEntities ["CAManBase", 1]) > 0) then {
+                _buildingsIndexes set [(_buildingsIndexes find _building), _building - [_pos]];
+                breakTo "derp";
+
             } else {
-                _unit = _unitsArray select 0;
+                private _unit = _unitsArray select 0;
                 _unit disableAI "FSM";
                 _unit disableAI "AUTOCOMBAT";
                 _unit forceSpeed 0;
                 _unit setPos _pos;
                 _unitsArray deleteAt (_unitsArray find _unit);
-                _buildingsIndexes deleteAt (_buildingsIndexes find _pos);
+                _buildingsIndexes set [(_buildingsIndexes find _building),  _building - [_pos]];
             };
         };
     };
