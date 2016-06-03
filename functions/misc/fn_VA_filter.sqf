@@ -31,7 +31,7 @@ switch (_filter) do {
             [_x, [true], true] call BIS_fnc_removeVirtualBackpackCargo;
         } foreach _arsenalBoxes;
 
-        _weaponsBlacklist = [
+        private _weaponsBlacklist = [
             //------------------------- Weapons with blacklisted scoeps
             "srifle_DMR_01_SOS_F",
             "srifle_EBR_SOS_F",
@@ -53,7 +53,7 @@ switch (_filter) do {
             "srifle_DMR_05_SOS_F"
         ];
 
-        _itemBlackList = [
+        private _itemBlackList = [
             //------------------------- Optics
             "optic_Nightstalker",
             "optic_tws",
@@ -182,7 +182,7 @@ switch (_filter) do {
             "V_PlateCarrierIA2_dgtl"
         ];
 
-        _backpackBlackList = [
+        private _backpackBlackList = [
             //------------------------- Backpacks
             "O_Mortar_01_weapon_F",
             "O_Mortar_01_support_F",
@@ -236,7 +236,7 @@ switch (_filter) do {
             "B_Respawn_TentDome_F"
         ];
 
-        _availableItems = [] call derp_fnc_findItemList;
+        private _availableItems = [] call derp_fnc_findItemList;
 
         _availableItems = _availableItems - _itemBlackList;
         _availableItems = _availableItems - _weaponsBlacklist;

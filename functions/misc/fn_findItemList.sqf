@@ -13,7 +13,7 @@
 */
 private _returnArray = [];
 
-_cfgArray = "getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgWeapons");
+private _cfgArray = "getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgWeapons");
 {_returnArray pushBack (configName _x)} forEach _cfgArray;
 
 _cfgArray = "getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgGlasses");

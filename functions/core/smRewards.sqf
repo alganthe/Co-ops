@@ -10,7 +10,7 @@
 * Nothing
 */
 if (derp_successfulSMs != 0 && {derp_successfulSMs == derp_PARAM_smRewardAfter}) then {
-    _smRewardList = [ SMRewards ];
+    private _smRewardList = [ SMRewards ];
 
     private _selectRandomArray = [];
 

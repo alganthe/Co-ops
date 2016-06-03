@@ -40,6 +40,16 @@ if (derp_PARAM_paraJumpEnabled) then {
     publicVariable "derp_paraPos";
 };
 
+//------------------- Spawn In enemies
+if (derp_HCAOsConnected) then {
+    [_pos, [true, true, true, true, true, true, true, true]] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
+    _mainAOUnits = spawnedUnits;
+    spawnedUnits = nil;
+
+} else {
+    _mainAOUnits = [_pos, [true, true, true, true, true, true, true, true]] call derp_fnc_mainAOSpawnHandler;
+};
+
 //------------------- AO boundaries + task
 _marker = createMarker ["mission1_mrk", _pos];
 "mission1_mrk" setMarkerShape "ICON";
@@ -56,17 +66,6 @@ derp_mission1ID = derp_mission1ID + 1;
 _missionID = "mission1" + str derp_mission1ID;
 
 [west, _missionID, [format ["%1 has been captured, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.",_townName ], ["Clear ", _townName] joinString "", ""], _pos, true, 5, true, "Attack", true] call BIS_fnc_taskCreate;
-
-//------------------- Spawn In enemies
-if (derp_HCAOsConnected) then {
-    [_pos, [true, true, true, true, true, true, true, true]] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
-    _mainAOUnits = spawnedUnits;
-    spawnedUnits = nil;
-
-} else {
-    _mainAOUnits = [_pos, [true, true, true, true, true, true, true, true]] call derp_fnc_mainAOSpawnHandler;
-};
-
 
 //------------------- Trigger for mission end
 [{

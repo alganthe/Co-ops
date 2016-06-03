@@ -40,8 +40,8 @@ private _AISkillUnitsArray = [];
 //-------------------------------------------------- AA vehicles
 if (_AAAVehcSetting) then {
     for "_x" from 1 to _AAAVehcAmount do {
-        _randomPos = [[[_AOpos, (_radiusSize / 1.5)], []], ["water", "out"]] call BIS_fnc_randomPos;
-        _AAVehicle = (selectRandom AAVehicleList) createVehicle _randomPos;
+        private _randomPos = [[[_AOpos, (_radiusSize / 1.5)], []], ["water", "out"]] call BIS_fnc_randomPos;
+        private _AAVehicle = (selectRandom AAVehicleList) createVehicle _randomPos;
 
         _AAVehicle allowCrewInImmobile true;
 
@@ -54,7 +54,7 @@ if (_AAAVehcSetting) then {
             _spawnedUnits pushBack _x;
         } foreach (crew _AAVehicle);
 
-        _group = group _AAVehicle;
+        private _group = group _AAVehicle;
 
         [_group, _AOpos, _radiusSize / 2] call BIS_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
@@ -64,8 +64,8 @@ if (_AAAVehcSetting) then {
 //-------------------------------------------------- MRAP
 if (_MRAPSetting) then {
     for "_x" from 1 to _MRAPAmount do {
-        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
-        _MRAP = (selectRandom MRAPList) createVehicle _randompos;
+        private _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        private _MRAP = (selectRandom MRAPList) createVehicle _randompos;
 
         _MRAP allowCrewInImmobile true;
         _MRAP lock 2;
@@ -77,7 +77,7 @@ if (_MRAPSetting) then {
             _spawnedUnits pushBack _x;
         } foreach (crew _MRAP);
 
-        _group = group _MRAP;
+        private _group = group _MRAP;
 
         [_group, _AOpos, _radiusSize / 3] call BIS_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
@@ -87,8 +87,8 @@ if (_MRAPSetting) then {
 //-------------------------------------------------- random vehcs
 if (_randomVehcsSetting) then {
     for "_x" from 1 to _randomVehcsAmount do {
-        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
-        _vehc = (selectRandom RandomVehicleList) createVehicle _randompos;
+        private _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        private _vehc = (selectRandom RandomVehicleList) createVehicle _randompos;
 
         _vehc allowCrewInImmobile true;
         _vehc lock 2;
@@ -98,7 +98,7 @@ if (_randomVehcsSetting) then {
         {
             _spawnedUnits pushBack _x;
         } foreach (crew _vehc);
-        _group = group _vehc;
+        private _group = group _vehc;
 
         [_group, _AOpos, _radiusSize / 2] call BIS_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
@@ -108,8 +108,8 @@ if (_randomVehcsSetting) then {
 //-------------------------------------------------- main infantry groups
 if (_infantryGroupsSetting) then {
     for "_x" from 1 to _infantryGroupsAmount do {
-        _randomPos = [[[_AOpos, _radiusSize * 1.2], []], ["water", "out"]] call BIS_fnc_randomPos;
-        _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
+        private _randomPos = [[[_AOpos, _radiusSize * 1.2], []], ["water", "out"]] call BIS_fnc_randomPos;
+        private _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 
         [_infantryGroup, _AOpos, _radiusSize / 1.6] call BIS_fnc_taskPatrol;
 
@@ -123,8 +123,8 @@ if (_infantryGroupsSetting) then {
 //-------------------------------------------------- AA groups
 if (_AAGroupsSetting) then {
     for "_x" from 1 to _AAGroupsAmount do {
-        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
-        _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom AAGroupsList))] call BIS_fnc_spawnGroup;
+        private _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        private _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom AAGroupsList))] call BIS_fnc_spawnGroup;
 
         [_infantryGroup, _AOpos, _radiusSize / 1.6] call BIS_fnc_taskPatrol;
 
@@ -138,8 +138,8 @@ if (_AAGroupsSetting) then {
 //-------------------------------------------------- AT groups
 if (_ATGroupsSetting) then {
     for "_x" from 1 to _ATGroupsAmount do {
-        _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
-        _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom ATGroupsList))] call BIS_fnc_spawnGroup;
+        private _randomPos = [[[_AOpos, _radiusSize], []], ["water", "out"]] call BIS_fnc_randomPos;
+        private _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom ATGroupsList))] call BIS_fnc_spawnGroup;
 
         [_infantryGroup, _AOpos, _radiusSize / 1.6] call BIS_fnc_taskPatrol;
 
@@ -154,7 +154,7 @@ if (_ATGroupsSetting) then {
 if (_urbanInfantrySetting) then {
     for "_x" from 1 to _urbanInfantryAmount do {
 
-        _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
+        private _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
         [_AOpos, nil, (units _group), (_radiusSize / 3), 2, false] call derp_fnc_AIOccupyBuilding;
 
         {
@@ -173,7 +173,7 @@ if (_milbuildingInfantry) then {
 
         for "_x" from 1 to 3 do {
 
-            _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
+            private _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
             [_AOpos, MilitaryBuildings, (units _group), (_radiusSize + 100), 2, false] call derp_fnc_AIOccupyBuilding;
 
             {

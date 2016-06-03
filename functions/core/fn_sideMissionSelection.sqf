@@ -21,7 +21,7 @@ derp_fnc_cachesSM,
 derp_fnc_uavDownedSM
 ];
 
-_nearComTowers = nearestObjects [_AOPos, COMTOWERSMArray, derp_PARAM_AOSize * 1.5];
+private _nearComTowers = nearestObjects [_AOPos, COMTOWERSMArray, derp_PARAM_AOSize * 1.5];
 if ({alive _x} count _nearComTowers > 0) then {
     [_AOPos, _nearComTowers, _missionID] call derp_fnc_comTowerSM;
 

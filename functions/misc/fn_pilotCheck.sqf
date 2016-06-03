@@ -26,7 +26,7 @@ if (!(player getUnitTrait "derp_pilot")) then {
         ["What are you doing?", "You're not a pilot, you're not allowed to do that."] remoteExec ["derp_fnc_hintC", _unit];
 
     } else {
-        _coPilotTurret = [_vehicle] call {
+        private _coPilotTurret = [_vehicle] call {
 
             params [["_vehicle", objNull, [objNull]]];
 
