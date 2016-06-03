@@ -25,7 +25,7 @@ private _smID = "officerKill" + str derp_SMID;
 private _randomPos = [[[_AOpos, 600], []], ["water", "out"]] call BIS_fnc_randomPos;
 private _officerGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 private _officer = _officerGroup createUnit [(selectRandom OFFICERSMTarget), _randomPos, [], 0, "NONE"];
-_officerGroup setLeader _officer;
+_officerGroup selectLeader _officer;
 [_officerGroup, _AOpos, 600] call BIS_fnc_taskPatrol;
 
 {

@@ -27,7 +27,7 @@ private _towerMines = [];
 private _markerNumber = 0;
 private _markerArray = [];
 {
-    private _markerNumber = _markerNumber + 1;
+    _markerNumber = _markerNumber + 1;
     private _marker = createMarker ["comTowerMarker" + str _markerNumber, (getPosWorld _x)];
     _marker setMarkerShape "ICON";
     _marker setMarkerType "loc_Transmitter";
