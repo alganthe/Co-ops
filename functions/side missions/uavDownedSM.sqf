@@ -55,7 +55,7 @@ _uav setPos (_dirtHump modelToWorld [-1, -1]);
                 [[west, "HQ"],"Intel download completed, destroy the uav"] remoteExec ["sideChat", 0];
 
             } else {
-                [[west, "HQ"],(format ["Intel download at: %1",derp_uavSM_downloadProgress]) + "%"] remoteExec ["sideChat", -2];
+                [[west, "HQ"],(format ["Intel download at: %1",derp_uavSM_downloadProgress]) + "%"] remoteExec ["sideChat", 0];
             };
 
         } else { // Players aren't near the objective anymore
