@@ -46,7 +46,7 @@ private _markerArray = [];
 
     {
         if (!alive _x) then {
-            private arrayPos = (_comTowers find _x);
+            private _arrayPos = (_comTowers find _x);
             _comTowers deleteAt _arrayPos;
             deleteMarker (_markerArray select _arrayPos);
             _markerArray deleteAt _arrayPos;
