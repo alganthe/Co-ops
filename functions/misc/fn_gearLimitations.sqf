@@ -60,6 +60,7 @@ _weapons pushBack (secondaryWeapon _unit);
 {_weapons pushBack _x} foreach (primaryWeaponItems _unit);
 
 private _items = [];
+_items pushback (uniform _unit);
 _items = _items + (uniformItems _unit);
 _items = _items + (vestItems _unit);
 _items = _items + (backpackItems _unit);
@@ -148,7 +149,12 @@ switch (_mode) do {
                             };
                         };
                     } else {
-                        [_unit, _x, _testedClass, _item, _container] call _ITEM_MACRO_item;
+                        if (_x == uniform _unit) then {
+                            removeUniform _unit;
+                            systemChat format ["%1 was removed, switch to %2 to use it.", getText (configFile >> "CfgWeapons" >> _X >> "displayName"), _testedClass];
+                        } else {
+                            [_unit, _x, _testedClass, _item, _container] call _ITEM_MACRO_item;
+                        };
                     };
                 };
             };
