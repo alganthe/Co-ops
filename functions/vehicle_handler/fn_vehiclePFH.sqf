@@ -14,7 +14,7 @@
     {
         _x params ["_vehicle", "_vehicleClass", "_spawnPos", "_spawnDir", "_timer"];
 
-        _distanceCheckResult = {
+        private _distanceCheckResult = {
             {
                 if ((_vehicle distance2D _x) < derp_PARAM_VehicleRespawnDistance || {_vehicle distance2D _spawnPos < 5}) exitWith {false};
                     true;
@@ -24,7 +24,7 @@
         if (call _distanceCheckResult) then {
             [{
                 params ["_vehicleClass", "_spawnPos", "_spawnDir", "_timer"];
-                _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
+                private _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                 _newVehicle setDir _spawnDir;
 
                 derp_vehicleHandler_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
@@ -41,7 +41,7 @@
                     deleteVehicle _oldVehicle;
                 };
 
-                _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
+                private _newVehicle = createVehicle [_vehicleClass, _spawnPos, [], 0, "CAN_COLLIDE"];
                 _newVehicle setDir _spawnDir;
 
                 derp_vehicleHandler_vehicleHandlingArray pushBack [_newVehicle, _vehicleClass, _spawnPos, _spawnDir, _timer];
@@ -54,7 +54,7 @@
     } forEach (derp_vehicleHandler_vehicleHandlingArray select {
         _x params ["_vehicle", "_vehicleClass", "_spawnPos", "_spawnDir", "_timer"];
 
-        _distanceCheckResult = {
+        private _distanceCheckResult = {
             {
                 if ((_vehicle distance2D _x) < derp_PARAM_VehicleRespawnDistance || {_vehicle distance2D _spawnPos < 5}) exitWith {false};
                     true;

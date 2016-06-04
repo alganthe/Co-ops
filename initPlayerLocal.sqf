@@ -61,7 +61,7 @@ if !(isServer or hasInterface) then {
     player addEventHandler ["SeatSwitchedMan", {
         if !((_this select 3) isKindOf "Air") exitWith {};
         _this params ["_unit1", "", "_vehicle"];
-        _seat = ((fullCrew _vehicle) select {_x select 0 == _unit1}) select 0;
+        private _seat = ((fullCrew _vehicle) select {_x select 0 == _unit1}) select 0;
         [(_seat select 0), (_seat select 1), _vehicle, (_seat select 3)] call derp_fnc_pilotCheck;
 
     }];

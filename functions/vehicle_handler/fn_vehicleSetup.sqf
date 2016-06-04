@@ -11,7 +11,7 @@
 */
 params ["_vehicle"];
 
-_vehicleType = typeOf _vehicle;
+private _vehicleType = typeOf _vehicle;
 
 if (isNull _vehicle) exitWith {};
 

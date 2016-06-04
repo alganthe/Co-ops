@@ -21,7 +21,7 @@ _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger));
 [_dragger, "AcinPknlMstpSnonWnonDnon_AcinPercMrunSnonWnonDnon"] call derp_fnc_syncAnim;
 [_dragged, "AinjPfalMstpSnonWrflDnon_carried_Up"] call derp_fnc_syncAnim;
 
-_timer = derp_missionTime + 15;
+private _timer = derp_missionTime + 15;
 
 [{
     params ["_args", "_idPFH"];
