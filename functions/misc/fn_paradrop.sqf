@@ -28,11 +28,18 @@ openMap true;
 ["derp_paradrop_mapclick", "onMapSingleClick", {
     _this params ["_unit", "_radius"];
 
+    scopeName "main";
     if (leader group _unit == _unit) then {
         private _dist = _pos distance2D derp_paraPos;
 
         if (_dist > _radius) exitWith {hint "Select position within the marked area."};
-        if ({side ((crew _x) select 0) == playerSide && {alive ((crew _x ) select 0)} && {speed _x > 10}} count (derp_paraPos nearEntities ["Helicopter", _radius]) == 0) exitWith {hint "No helicopter near the AO"};
+
+        if ({_x getUnitTrait "derp_pilot"}count allPlayers > 0) then {
+            if ({side ((crew _x) select 0) == playerSide && {alive ((crew _x ) select 0)} && {speed _x > 10}} count (derp_paraPos nearEntities ["Helicopter", _radius]) == 0) then {
+                hint "No helicopter near the AO";
+                breakOut "main";
+            };
+        };
 
         _unit setPos [_pos select 0, _pos select 1, 1000];
         _unit addAction [
@@ -52,8 +59,14 @@ openMap true;
 
         if (_dist > _radius) exitWith {hint "Select position within the marked area."};
         if ((leader _unit distance2D derp_paraPos) > _radius) exitWith {hint "your leader isn't near the AO"};
-        if ({side ((crew _x) select 0) == playerSide && {alive ((crew _x ) select 0)} && {speed _x > 10}} count (derp_paraPos nearEntities ["Helicopter", _radius]) == 0) exitWith {hint "No helicopter near the AO"};
         if (leader _unit getVariable ["derp_revive_downed", false] || {!alive leader _unit}) exitWith {hint "Your leader is downed or dead"};
+
+        if ({_x getUnitTrait "derp_pilot"}count allPlayers > 0) then {
+            if ({side ((crew _x) select 0) == playerSide && {alive ((crew _x ) select 0)} && {speed _x > 10}} count (derp_paraPos nearEntities ["Helicopter", _radius]) == 0) then {
+                hint "No helicopter near the AO";
+                breakOut "main";
+            };
+        };
 
         _pos = getPos leader _unit;
         _unit setPos [_pos select 0, _pos select 1, 1000];
