@@ -35,6 +35,7 @@ class derp {
         class mapLinesHandler {};
         class baseCleaning {};
         class cleaner {};
+        class crewNames {};
     };
 
     class AI {

@@ -56,6 +56,7 @@ if !(isServer or hasInterface) then {
     //---------------- EHs and addactions
     player addEventHandler ["GetInMan", {
         _this call derp_fnc_pilotCheck;
+        call derp_fnc_crewNames;
     }];
 
     player addEventHandler ["SeatSwitchedMan", {

@@ -49,6 +49,7 @@ derp_revive_everyoneCanRevive = 0; // 0 = medics only, 1 = everyone
 //-------------------------Functions
 #include "functions\taw_vd\GUI.h"
 #include "functions\portedFuncs\ace3\progressBarGUI.hpp"
+#include "functions\misc\common.hpp"
 
 class CfgFunctions {
     #include "functions\functions.hpp"
@@ -239,6 +240,11 @@ class Params {
         texts[] = {"0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"};
         default = 8;
     };
+};
+
+//-------------------------UI stuff
+class RscTitles {
+    #include "functions\misc\crewNameDefines.hpp"   // Occupants HUD for vehicles
 };
 
 //---------------------------Tasks
