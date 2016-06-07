@@ -9,7 +9,7 @@
 */
 if !(getMissionConfigValue ["mapDrawingEnabled", false]) then {
 
-    [{
+    ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["draw", {
         {if (markerShape _x == 'POLYLINE') then {deleteMarker _x}} forEach allMapMarkers;
-    }, 0, []] call derp_fnc_addPerFrameHandler;
+    }];
 };
