@@ -40,7 +40,7 @@ _uav setPos (_dirtHump modelToWorld [-1, -1]);
     private _isPlayersNear = count ((_uav nearEntities ["CAManBase", 15]) select {isPlayer _x});
 
     // Download not started, players near start it.
-    if (_isPlayersNear > 0 && {isNil "derp_uavSM_downloadProgress"}) then {
+    if (_isPlayersNear > 0 && {isNil "derp_uavSM_downloadProgress"} && {isNil "derp_uavSM_isDownloadDone"}) then {
         derp_uavSM_downloadProgress = 0;
         [[west, "HQ"], "Intel download started"] remoteExec ["sideChat", 0];
     } else {
