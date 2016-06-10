@@ -85,7 +85,16 @@ _unit addAction [
     "<t color='#DEB887'> Stop dragging </t>",
     {
         params ["", "_caller", "", "_args"];
-        [_caller, (attachedObjects _caller) select 0, "DRAGGING"] call derp_revive_fnc_dropPerson;
+        {
+            detach _x;
+        } foreach ((attachedObjects _caller) select {isNull _x});
+
+        private _dragged = ((attachedObjects _caller) select {_x isKindOf "CAManBase"});
+        if (_dragged isEqualTo []) then {
+            _caller setVariable ["derp_revive_isCarrying", false ,true];
+        } else {
+            [_caller, _dragged select 0, "DRAGGING"] call derp_revive_fnc_dropPerson;
+        };
     },
     [],
     10,
@@ -100,7 +109,17 @@ _unit addAction [
     "<t color='#DEB887'> Stop carrying </t>",
     {
         params ["", "_caller", "", "_args"];
-        [_caller, (attachedObjects _caller) select 0, "CARRYING"] call derp_revive_fnc_dropPerson;
+        {
+            detach _x;
+        } foreach ((attachedObjects _caller) select {isNull _x});
+
+        private _dragged = ((attachedObjects _caller) select {_x isKindOf "CAManBase"});
+        if (_dragged isEqualTo []) then {
+            _caller setVariable ["derp_revive_isCarrying", false ,true];
+        } else {
+            [_caller, _dragged select 0, "CARRYING"] call derp_revive_fnc_dropPerson;
+        };
+
     },
     [],
     10,

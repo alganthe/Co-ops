@@ -14,7 +14,7 @@ params ["_dragger", "_dragged"];
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMultiply 1.5));
 
 _dragged attachTo [_dragger, [0, 1, 0]];
-_dragged setDir 180;
+[_dragged, 180] remoteExec ["setDir", _dragged];
 [_dragged, "AinjPpneMrunSnonWnonDb_still"] call derp_fnc_syncAnim;
 
 [{

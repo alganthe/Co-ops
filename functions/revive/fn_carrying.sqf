@@ -15,7 +15,8 @@ params ["_dragger", "_dragged"];
 
 private _timer = derp_missionTime + 5;
 
-_dragged setDir (getDir _dragger + 180);
+
+[_dragged, ((getDir _dragger) + 180)] remoteExec ["setDir", _dragged];
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger));
 
 [_dragger, "AcinPknlMstpSnonWnonDnon_AcinPercMrunSnonWnonDnon"] call derp_fnc_syncAnim;
@@ -28,13 +29,18 @@ private _timer = derp_missionTime + 15;
     _args params ["_dragger", "_dragged", "_timeOut"];
 
     if !(_dragger getVariable ["derp_revive_isCarrying", false]) exitWith {
-        [_dragger, _dragged, "CARRYING"] call derp_revive_fnc_dropPerson;
+        _dragger setVariable ["derp_revive_isCarrying", false, true];
+        _dragged setVariable ["derp_revive_isCarried", false, true];
+        [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+        _dragger playActionNow "released";
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
-
     if (!alive _dragged || {_dragger distance _dragged > 10}) then {
-        [_dragger, _dragged, "CARRYING"] call derp_revive_fnc_dropPerson;
+        _dragger setVariable ["derp_revive_isCarrying", false, true];
+        _dragged setVariable ["derp_revive_isCarried", false, true];
+        [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+        _dragger playActionNow "released";
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
