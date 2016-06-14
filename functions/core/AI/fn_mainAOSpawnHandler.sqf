@@ -155,7 +155,9 @@ if (_urbanInfantrySetting) then {
     for "_x" from 1 to _urbanInfantryAmount do {
 
         private _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
-        [_AOpos, nil, (units _group), (_radiusSize / 3), 2, false] call derp_fnc_AIOccupyBuilding;
+        private _returnedUnits = [_AOpos, nil, (units _group), (_radiusSize / 3), 2, false] call derp_fnc_AIOccupyBuilding;
+
+        { deleteVehicle _x } foreach _returnedUnits;
 
         {
             _spawnedUnits pushBack _x;
@@ -174,7 +176,9 @@ if (_milbuildingInfantry) then {
         for "_x" from 1 to 3 do {
 
             private _group = [_AOpos, east, (configfile UrbanGroupsCFGPATH (selectRandom UrbanGroupsList))] call BIS_fnc_spawnGroup;
-            [_AOpos, MilitaryBuildings, (units _group), (_radiusSize + 100), 2, false] call derp_fnc_AIOccupyBuilding;
+            private _returnedUnits= [_AOpos, MilitaryBuildings, (units _group), (_radiusSize + 100), 2, false] call derp_fnc_AIOccupyBuilding;
+
+            { deleteVehicle _x } foreach _returnedUnits;
 
             {
                 _spawnedUnits pushBack _x;
