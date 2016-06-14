@@ -1,3 +1,4 @@
+#include "defines.hpp"
 disableRemoteSensors true;
 
 //------------------------------ Headless Client
@@ -34,7 +35,7 @@ if !(isServer or hasInterface) then {
 
     //---------------- class specific stuff
     if (player getUnitTrait "derp_pilot") then {
-        [player, "pilotRespawn"] call BIS_fnc_addRespawnPosition;
+        [player, pilotRespawnMarker] call BIS_fnc_addRespawnPosition;
     };
 
      // Disable arty computer for non FSG members
