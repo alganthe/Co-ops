@@ -52,6 +52,17 @@
 #define AirReinforcementVehicleList ["O_Heli_Light_02_F"]
 #define NoAmmoCargoVehc ["B_APC_Tracked_01_CRV_F", "B_Truck_01_ammo_F"] // The vehicles that should have their ammoCargo set to 0 on respawn, avoid people abusing them to rearm planes outside of the service pad
 #define VHCrewedVehicles  ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"] // Respawned vehicles that should have crew aka UAVs
+
+// Vehicle handler array, arguments are [vehicle, respawn timer (in seconds)]
+#define VehicleHandlerArray [[hummy1, 60], [ghostHawk1, 60], [ghostHawk2, 60], [mohawk1, 60], [huron1, 60],[greyhawk1, 900], \
+[stomper1, 30], [stomper2, 30], [hunter1, 30], [hunter2, 30], [hunter3, 30], [hunter4, 30], [hunter5, 30], [armedTechnical1, 30], [armedTechnical2, 30], \
+[truck1, 30], [truck2, 30], [truck3, 30], [truck4, 30], [truck5, 30], \
+[armored1, 30], [armored2, 30], [armored3, 30], [armored4, 30], \
+[sdv1, 30], [boat1, 30], [boat2, 30], [boat3, 30]]
+
+// Vehicle handler array for quads (different loop), same arguments as above
+#define VehicleHandlerArrayQuads [[quad1, 5], [quad2, 5], [quad3, 5], [quad4, 5], [quad5, 5], [quad6, 5], [quad7, 5]]
+
 #define ArsenalBoxes [arsenalBox1, arsenalBox2, arsenalDude] // Vars of the arsenal boxes
 
 // Arsenal blacklist and gear limitations

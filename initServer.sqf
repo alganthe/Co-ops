@@ -59,13 +59,7 @@ addMissionEventHandler ["HandleDisconnect", {
     [_vehicle, _timer] call derp_vehicleHandler_fnc_vehicleInit;
     _vehicle call derp_vehicleHandler_fnc_vehicleSetup;
 
-} forEach [
-    [hummy1, 60], [ghostHawk1, 60], [ghostHawk2, 60], [mohawk1, 60], [huron1, 60],[greyhawk1, 900], // Air
-    [stomper1, 30], [stomper2, 30], [hunter1, 30], [hunter2, 30], [hunter3, 30], [hunter4, 30], [hunter5, 30], [armedTechnical1, 30], [armedTechnical2, 30], // Cars
-    [truck1, 30], [truck2, 30], [truck3, 30], [truck4, 30], [truck5, 30], // Trucks
-    [armored1, 30], [armored2, 30], [armored3, 30], [armored4, 30], // Armored
-    [sdv1, 30], [boat1, 30], [boat2, 30], [boat3, 30] // water stuff
-];
+} forEach VehicleHandlerArray;
 [] call derp_vehicleHandler_fnc_vehiclePFH;
 
 //-------------- quads handling
@@ -74,9 +68,7 @@ addMissionEventHandler ["HandleDisconnect", {
     [_vehicle, _timer] call derp_vehicleHandler_fnc_quadInit;
     _vehicle call derp_vehicleHandler_fnc_vehicleSetup;
 
-} forEach [
-    [quad1, 5], [quad2, 5], [quad3, 5], [quad4, 5], [quad5, 5], [quad6, 5], [quad7, 5]
-];
+} forEach VehicleHandlerArrayQuads;
 [] call derp_vehicleHandler_fnc_quadPFH;
 
 call derp_fnc_baseCleaning;
