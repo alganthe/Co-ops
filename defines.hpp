@@ -326,7 +326,7 @@
 ], "Marksman"]
 
 #define GearLimitationAT  [{_unit getUnitTrait 'derp_AT'}, [ \
-    "launch_B_Titan_F", "launch_I_Titan_F", "launch_O_Titan_F", "launch_B_Titan_short_F", "launch_I_Titan_short_F", "launch_O_Titan_short_F" \
+    "launch_B_Titan_F", "launch_I_Titan_F", "launch_O_Titan_F", "launch_B_Titan_short_F", "launch_I_Titan_short_F", "launch_O_Titan_short_F", "launch_O_Titan_ghex_F", "launch_B_Titan_tna_F", "launch_O_Titan_short_ghex_F", "launch_B_Titan_short_tna_F" \
 ], "AT specialist"]
 
 #define GearLimitationSniper [{_unit getUnitTrait 'derp_sniper'}, [ \
