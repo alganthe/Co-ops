@@ -1,3 +1,4 @@
+#include "defines.hpp"
 //---------------------------------- Functions compiling
 call compile preprocessFileLineNumbers "functions\core\serverSide_functions_compile.sqf";
 
