@@ -39,7 +39,9 @@
 ["O_Heli_Transport_04_covered_F", 3], \
 ["B_T_MBT_01_TUSK_F", 5], \
 ["B_T_MBT_01_cannon_F", 5], \
-["I_Plane_Fighter_03_AA_F", 2]
+["I_Plane_Fighter_03_AA_F", 2], \
+["B_T_APC_Wheeled_01_cannon_F", 5], \
+["O_T_VTOL_02_infantry_grey_F", 3]
 
 
 //------------------------------------ Random stuff
@@ -49,9 +51,10 @@
 #define VHCrewedVehicles  ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"] // Respawned vehicles that should have crew aka UAVs
 
 // Vehicle handler array, arguments are [vehicle, respawn timer (in seconds)]
-#define VehicleHandlerArray [[hummy1, 30], [ghost1, 30], [huron1, 30], [blackfish1, 30], \
+#define VehicleHandlerArray [[hummy1, 30], [ghost1, 30], [huron1, 30], [blackfish1, 30], [blackfish2, 30], \
 [greyhawk1, 900], [ugv1, 30], [ugv2, 30], \
-[prowler1, 30], [prowler2, 30], [prowler3, 30], [prowler4, 30], [prowler5, 30], [prowler6, 30], [prowler7, 30]]
+[prowler1, 30], [prowler2, 30], [prowler3, 30], [prowler4, 30], [prowler5, 30], [prowler6, 30], [prowler7, 30], \
+[sdv1, 30], [sdv2, 30], [boat1, 30], [boat2, 30], [boat3, 30], [boat4, 30], [jetski1, 30], [jetski2, 30], [jetski3, 30], [jetski4, 30]]
 
 // Vehicle handler array for quads (different loop), same arguments as above
 #define VehicleHandlerArrayQuads []
