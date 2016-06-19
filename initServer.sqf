@@ -74,3 +74,8 @@ addMissionEventHandler ["HandleDisconnect", {
 
 call derp_fnc_baseCleaning;
 call derp_fnc_cleaner;
+setTimeMultiplier ("DayDuration" call BIS_fnc_getParamValue);
+
+if ("ShortNights" call BIS_fnc_getParamValue == 1) then {
+    call derp_fnc_shortNights;
+};

@@ -66,6 +66,20 @@ class Params {
         function = "derp_fnc_daytime";
     };
 
+    class DayDuration {
+        title = "Day duration";
+        values[] = {1, 2, 3, 4, 6, 8, 12, 16, 24, 36, 48};
+        texts[] = {"24 hours", "12 hours", "8 hours", "6 hours", "4 hours", "3 hours", "2 hours", "1 hour 30 minutes", "1 hour", "40 minutes", "30 minutes"};
+        default = 6;
+    };
+
+    class ShortNights {
+        title = "Enable shorter nights?";
+        texts[] = {"No", "Yes"};
+        values[] = {0, 1};
+        default = 0;
+    };
+
     class staminaEnabled {
         title = "Enable player stamina ?";
         texts[] = {"No", "Yes"};
