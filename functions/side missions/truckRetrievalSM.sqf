@@ -25,7 +25,10 @@ private _smID = "truckRetrieval" + str derp_SMID;
 private _usedTruck = selectRandom TRUCKSMTruck;
 private _spawnPos = _AOPos findEmptyPosition [10, 200, _usedTruck];
 private _ammoTruck = _usedTruck createVehicle _spawnPos;
-_ammoTruck setAmmoCargo 0;
+private _box1 = TRUCKSMBox createVehicle [0,0,0];
+private _box2 = TRUCKSMBox createVehicle [0,0,0];
+_box1 attachTo [_ammoTruck, [0,-1,0.4]];
+_box2 attachTo [_ammoTruck, [0,-2.6,0.4]];
 
 {
     _x addCuratorEditableObjects [[_ammoTruck], false];
@@ -39,7 +42,7 @@ _ammoTruck addEventHandler ["Killed", {
 //------------------- PFH
 [{
     params ["_args", "_pfhID"];
-    _args params ["_AOPos", "_ammoTruck", "_smID"];
+    _args params ["_AOPos", "_ammoTruck", "_box1", "_box2", "_smID"];
 
     if (alive _ammoTruck && {_ammoTruck distance2D (getMarkerPos "returnPointMarker") < 2}) then {
         derp_sideMissionInProgress = false;
@@ -50,15 +53,17 @@ _ammoTruck addEventHandler ["Killed", {
         _ammoTruck lock 2;
 
         [{
-            params ["_ammoTruck", "_smID"];
+            params ["_ammoTruck", "_box1", "_box2",  "_smID"];
 
             if (!isNull _ammoTruck) then {
                 deleteVehicle _ammoTruck;
+                deleteVehicle _box1;
+                deleteVehicle _box2;
             };
 
             [_smID, true] call BIS_fnc_deleteTask;
 
-        }, [_ammoTruck, _smID], 300] call derp_fnc_waitAndExec;
+        }, [_ammoTruck, _box1, _box2, _smID], 300] call derp_fnc_waitAndExec;
 
         derp_successfulSMs = derp_successfulSMs + 1;
         call derp_fnc_smRewards;
@@ -71,15 +76,17 @@ _ammoTruck addEventHandler ["Killed", {
         [_smID, 'FAILED', true] call BIS_fnc_taskSetState;
 
         [{
-            params ["_ammoTruck", "_smID"];
+            params ["_ammoTruck", "_box1", "_box2","_smID"];
 
             if (!isNull _ammoTruck) then {
                 deleteVehicle _ammoTruck;
+                deleteVehicle _box1;
+                deleteVehicle _box2;
             };
 
             [_smID, true] call BIS_fnc_deleteTask;
 
-        }, [_ammoTruck, _smID], 300] call derp_fnc_waitAndExecute;
+        }, [_ammoTruck, _box1, _box2, _smID], 300] call derp_fnc_waitAndExecute;
         _pfhID call derp_fnc_removePerFrameHandler;
     };
-}, 10, [_AOPos, _ammoTruck, _smID]] call derp_fnc_addPerFrameHandler;
+}, 10, [_AOPos, _ammoTruck, _box1, _box2, _smID]] call derp_fnc_addPerFrameHandler;

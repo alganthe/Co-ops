@@ -30,7 +30,8 @@
 #define COMTOWERSMArray ["Land_Communication_F", "Land_TTowerBig_1_F", "Land_TTowerBig_2_F"]
 #define OFFICERSMTarget ["O_T_officer_F"]
 #define OFFICERSMGuards ["O_T_soldier_F"]
-#define TRUCKSMTruck ["O_T_Truck_03_ammo_ghex_F"]
+#define TRUCKSMTruck ["I_C_Van_01_transport_F"]
+#define TRUCKSMBox "Land_WoodenCrate_01_stack_x5_F"
 #define UAVSMUav ["O_T_UAV_04_CAS_F"]
 
 // first element of the array: vehicle classname, second element: chance to be picked, higher is better, highest should be 10 (for performances)
