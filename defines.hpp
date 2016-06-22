@@ -30,6 +30,7 @@
 #define COMTOWERSMArray ["Land_Communication_F", "Land_TTowerBig_1_F", "Land_TTowerBig_2_F"]
 #define OFFICERSMTarget ["O_T_officer_F"]
 #define OFFICERSMGuards ["O_T_soldier_F"]
+#define SPECOPSSMGroup >> "CfgGroups" >> "East" >> "OPF_T_F" >> "SpecOps" >> "O_T_ViperTeam"
 #define TRUCKSMTruck ["I_C_Van_01_transport_F"]
 #define TRUCKSMBox "Land_CargoBox_V1_F"
 #define UAVSMUav ["O_T_UAV_04_CAS_F"]
@@ -282,16 +283,10 @@
     "O_UAV_01_backpack_F", \
     "B_Carryall_ghex_F", \
     "B_FieldPack_ghex_F", \
-    "B_ViperHarness_blk_F", \
     "B_ViperHarness_ghex_F", \
     "B_ViperHarness_hex_F", \
-    "B_ViperHarness_khk_F", \
-    "B_ViperHarness_oli_F", \
-    "B_ViperLightHarness_blk_F", \
     "B_ViperLightHarness_ghex_F", \
-    "B_ViperLightHarness_hex_F", \
-    "B_ViperLightHarness_khk_F", \
-    "B_ViperLightHarness_oli_F" \
+    "B_ViperLightHarness_hex_F" \
 ]
 
 #define ArsenalBlacklistedGlasses [ \

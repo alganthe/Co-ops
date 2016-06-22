@@ -13,3 +13,4 @@ derp_fnc_officerMurderSM = compileFinal preprocessFileLineNumbers "functions\sid
 derp_fnc_truckRetrievalSM = compileFinal preprocessFileLineNumbers "functions\side missions\truckRetrievalSM.sqf";
 derp_fnc_cachesSM = compileFinal preprocessFileLineNumbers "functions\side missions\cachesSM.sqf";
 derp_fnc_uavDownedSM = compileFinal preprocessFileLineNumbers "functions\side missions\uavDownedSM.sqf";
+derp_fnc_specOpsSM = compileFinal preprocessFileLineNumbers "functions\side missions\specOpsSM.sqf";

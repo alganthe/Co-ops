@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={11763.316,142.11433,13256.446};
-		dir[]={-0.23234405,-0.69502527,-0.68056178};
-		up[]={-0.22460625,0.71881354,-0.65789974};
-		aside[]={-0.94648218,1.4398538e-006,0.32312733};
+		pos[]={11771.27,128.31154,13243.331};
+		dir[]={-0.20234899,-0.55785722,-0.80503166};
+		up[]={-0.13604183,0.82976943,-0.54123342};
+		aside[]={-0.96995378,1.085049e-006,0.24379934};
 	};
 };
 binarizationWanted=0;
@@ -220,6 +220,259 @@ class ScenarioData
 {
 	author="alganthe";
 };
+class CustomAttributes
+{
+	class Category0
+	{
+		name="Multiplayer";
+		class Attribute0
+		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"ARRAY"
+						};
+					};
+					class value
+					{
+						items=1;
+						class Item0
+						{
+							class data
+							{
+								class type
+								{
+									type[]=
+									{
+										"STRING"
+									};
+								};
+								value="None";
+							};
+						};
+					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="ReviveRequiredTrait";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		class Attribute2
+		{
+			property="ReviveMode";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		class Attribute3
+		{
+			property="ReviveRequiredItemsFakConsumed";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"BOOL"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute4
+		{
+			property="SharedObjectives";
+			expression="if (isMultiplayer) then {[_value] spawn bis_fnc_sharedObjectives;};";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		class Attribute5
+		{
+			property="ReviveMedicSpeedMultiplier";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=2;
+				};
+			};
+		};
+		class Attribute6
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute7
+		{
+			property="ReviveForceRespawnDelay";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=3;
+				};
+			};
+		};
+		class Attribute8
+		{
+			property="ReviveBleedOutDelay";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=20;
+				};
+			};
+		};
+		class Attribute9
+		{
+			property="ReviveDelay";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=6;
+				};
+			};
+		};
+		class Attribute10
+		{
+			property="ReviveUnconsciousStateMode";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		class Attribute11
+		{
+			property="ReviveRequiredItems";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		nAttributes=12;
+	};
+};
 class Mission
 {
 	class Intel
@@ -227,11 +480,14 @@ class Mission
 		timeOfChanges=1800.0002;
 		startWeather=0;
 		startWind=0.1;
-		startWaves=0.1;
+		startWaves=0.099359043;
 		forecastWeather=0;
 		forecastWind=0.1;
-		forecastWaves=0.1;
-		forecastLightnings=0.1;
+		forecastWaves=0.10212199;
+		rainForced=1;
+		lightningsForced=1;
+		wavesForced=1;
+		windForced=1;
 		year=2035;
 		month=6;
 		day=6;
@@ -3516,14 +3772,14 @@ class Mission
 		class Item16
 		{
 			dataType="Marker";
-			position[]={11867.154,6.950038,13063.254};
+			position[]={11877.546,6.9499512,13060.455};
 			name="smReward_Plane";
 			text="SM rewards: planes";
 			type="mil_circle";
 			colorName="ColorWEST";
 			angle=343.72;
 			id=84;
-			atlOffset=3.8146973e-005;
+			atlOffset=-4.863739e-005;
 		};
 		class Item17
 		{
@@ -3539,13 +3795,14 @@ class Mission
 		class Item18
 		{
 			dataType="Marker";
-			position[]={11889.425,6.9499998,13066.335};
+			position[]={11901.815,6.9499512,13069.532};
 			name="smReward_Helo";
 			text="SM rewards: helicopters";
 			type="mil_circle";
 			colorName="ColorWEST";
 			angle=21.414854;
 			id=86;
+			atlOffset=-4.863739e-005;
 		};
 		class Item19
 		{
@@ -8781,7 +9038,7 @@ class Mission
 			};
 			id=532;
 			type="C_Boat_Transport_02_F";
-			atlOffset=9.8620253;
+			atlOffset=9.8691177;
 		};
 		class Item147
 		{
@@ -8798,7 +9055,7 @@ class Mission
 			};
 			id=533;
 			type="C_Boat_Transport_02_F";
-			atlOffset=7.6109772;
+			atlOffset=7.6180696;
 		};
 		class Item148
 		{
