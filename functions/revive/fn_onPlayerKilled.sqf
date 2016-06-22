@@ -15,6 +15,8 @@ if (_unit == objNull || {!isNull objectParent _unit} || {(getPosASL _unit) selec
     player call derp_revive_fnc_executeTemplates;
 };
 
+player addPlayerScores [0, 0, 0, 0, -1];
+
 // Save loadout
 _unit setVariable ["derp_revive_loadout", (getUnitLoadout _unit)];
 
