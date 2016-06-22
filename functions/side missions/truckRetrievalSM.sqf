@@ -25,6 +25,7 @@ private _smID = "truckRetrieval" + str derp_SMID;
 private _usedTruck = selectRandom TRUCKSMTruck;
 private _spawnPos = _AOPos findEmptyPosition [10, 200, _usedTruck];
 private _ammoTruck = _usedTruck createVehicle _spawnPos;
+{_ammoTruck lockCargo [_x, true]} foreach [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 private _box1 = TRUCKSMBox createVehicle [0,0,0];
 private _box2 = TRUCKSMBox createVehicle [0,0,0];
 _box1 attachTo [_ammoTruck, [0,-1,0.4]];
