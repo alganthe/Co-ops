@@ -36,13 +36,23 @@ switch (_filter) do {
 
         private _availableItems = [] call derp_fnc_findItemList;
 
-        _availableItems = _availableItems - ArsenalWeaponBlacklist;
-        _availableItems = _availableItems - ArsenalBlacklistedItems;
-        _availableItems = _availableItems - ArsenalBlacklistedUniforms;
-        _availableItems = _availableItems - ArsenalBlacklistedHelmets;
-        _availableItems = _availableItems - ArsenalBlacklistedBackpacks;
-        _availableItems = _availableItems - ArsenalBlacklistedGlasses;
-        _availableItems = _availableItems - ArsenalBlacklistedVests;
+        _availableItems = (((((((_availableItems - ArsenalWeaponBlacklist)  - ArsenalBlacklistedItems) - ArsenalBlacklistedUniforms) - ArsenalBlacklistedHelmets) - ArsenalBlacklistedGlasses) - ArsenalBlacklistedBackpacks) - ArsenalBlacklistedVests);
+
+        private _restrictedItems = [];
+        _restrictedItems pushBack GearLimitationMarksman;
+        _restrictedItems pushBack GearLimitationAT;
+        _restrictedItems pushBack GearLimitationSniper;
+        _restrictedItems pushBack GearLimitationMMG;
+        _restrictedItems pushBack GearLimitationUAVOperator;
+        _restrictedItems pushBack GearLimitationGrenadier;
+
+        {
+            _x params ["_classCode", "_testedArray"];
+            private _unit = player;
+            if !(call _classCode) then {
+                _availableItems = _availableItems - _testedArray;
+            };
+        } foreach _restrictedItems;
 
         {
             [_x, _availableItems, true] call BIS_fnc_addVirtualItemCargo;
