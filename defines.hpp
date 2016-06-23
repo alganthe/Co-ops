@@ -22,7 +22,7 @@
 #define ATGroupsList ["O_T_InfTeam_AT"]
 
 // Buildings that are always going to be filled when present in the AO
-#define MilitaryBuildings ["Land_Cargo_House_V1_F", "Land_Cargo_House_V2_F", "Land_Cargo_House_V3_F", "Land_Cargo_House_V4_F", "Land_Medevac_house_V1_F", "Land_Research_house_V1_F", "Land_Cargo_HQ_V1_F", "Land_Cargo_HQ_V2_F", "Land_Cargo_HQ_V3_F", "Land_Cargo_HQ_V4_F", "Land_Research_HQ_F", "Land_Medevac_HQ_V1_F", "Land_Cargo_Patrol_V1_F", "Land_Cargo_Patrol_V2_F", "Land_Cargo_Patrol_V3_F", "Land_Cargo_Patrol_V3_F", "Land_Cargo_Tower_V1_F", "Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F", "Land_Cargo_Tower_V4_F", "Land_i_Barracks_V1_F","Land_Barracks_01_dilapidated_F", "Land_Barracks_01_grey_F", "Land_i_Barracks_V2_F", "Land_PillboxBunker_01_big_F", "Land_PillboxBunker_01_hex_F", "Land_PillboxBunker_01_rectangle_F"]
+#define MilitaryBuildings ["Land_Cargo_House_V1_F", "Land_Cargo_House_V2_F", "Land_Cargo_House_V3_F", "Land_Cargo_House_V4_F", "Land_Medevac_house_V1_F", "Land_Research_house_V1_F", "Land_Cargo_HQ_V1_F", "Land_Cargo_HQ_V2_F", "Land_Cargo_HQ_V3_F", "Land_Cargo_HQ_V4_F", "Land_Research_HQ_F", "Land_Medevac_HQ_V1_F", "Land_Cargo_Patrol_V1_F", "Land_Cargo_Patrol_V2_F", "Land_Cargo_Patrol_V3_F", "Land_Cargo_Patrol_V3_F", "Land_Cargo_Tower_V1_F", "Land_Cargo_Tower_V2_F", "Land_Cargo_Tower_V3_F", "Land_Cargo_Tower_V4_F", "Land_i_Barracks_V1_F","Land_Barracks_01_dilapidated_F", "Land_Barracks_01_grey_F", "Land_i_Barracks_V2_F"]
 
 //------------------------------------ Side missions
 
