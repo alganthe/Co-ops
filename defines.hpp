@@ -55,7 +55,7 @@
 // Vehicle handler array, arguments are [vehicle, respawn timer (in seconds)]
 #define VehicleHandlerArray [[hummy1, 30], [ghost1, 30], [huron1, 30], [blackfish1, 30], [blackfish2, 30], \
 [greyhawk1, 900], [ugv1, 30], [ugv2, 30], \
-[prowler1, 30], [prowler2, 30], [prowler3, 30], [prowler4, 30], [prowler5, 30], [prowler6, 30], [prowler7, 30], \
+[prowler1, 30], [prowler2, 30], [prowler3, 30], [prowler4, 30], [prowler5, 30], [prowler6, 30], [prowler7, 30], [truck1, 30], [truck2, 30], [truck3, 30], [truck4, 30], \
 [sdv1, 30], [sdv2, 30], [boat1, 30], [boat2, 30], [boat3, 30], [boat4, 30], [jetski1, 30], [jetski2, 30], [jetski3, 30], [jetski4, 30]]
 
 // Vehicle handler array for quads (different loop), same arguments as above
