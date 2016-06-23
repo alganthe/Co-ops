@@ -1,4 +1,3 @@
-#include "defines.hpp"
 disableRemoteSensors true;
 
 //------------------------------ Headless Client
