@@ -269,7 +269,7 @@ class CfgTaskEnhancements {
     share        = 0;            //0: do not count assigned players (default), 1: count how many players have the task assigned
     propagate    = 0;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
 };
-
+/*
 class CfgRemoteExec {
     class Functions {
         // State of remoteExec: 0-turned off, 1-turned on, taking whitelist into account, 2-turned on, however, ignoring whitelists (default because of backward compatibility)
@@ -298,3 +298,4 @@ class CfgRemoteExec {
         class setDir { allowedTargets = 0; };
     };
 };
+*/
