@@ -15,18 +15,30 @@ if (getMissionConfigValue ["derp_revive_everyoneCanRevive", 0] == 0) then {
     _whoCanRevive = "{_this getUnitTrait 'medic'} &&";
 };
 
+private _itemUsed = "{('FirstAidKit' in items _this) || {'FirstAidKit' in items cursorObject}} &&";
+
+if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
+    _itemUsed = "{'Medikit' in items _this} &&";
+};
+
 // Revive
 _unit addAction [
     "<t color='#ff0000'> Revive </t>",
     {
         params ["", "_caller", "", "_args"];
 
-        _caller removeItem "FirstAidKit";
+        if (getMissionConfigValue ["derp_revive_removeFAKOnUse", 1] == 1 && {getMissionConfigValue ["derp_revive_reviveItem", 0] == 0}) then {
+            if ('FirstAidKit' in items _caller) then {
+                _caller removeItem "FirstAidKit";
+            } else {
+                cursorObject removeItem "FirstAidKit";
+            };
+        };
 
         _caller playAction "MedicOther";
 
         [
-            10, // Time the action takes to complete
+            6, // Time the action takes to complete
             [_caller], // Args passed to the code
             {
                 [cursorObject, "REVIVED"] remoteExecCall ["derp_revive_fnc_switchState", cursorObject];
@@ -43,7 +55,7 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} &&" + _whoCanRevive + "{'FirstAidKit' in items _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
 ];
 
 // Dragging

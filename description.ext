@@ -45,6 +45,8 @@ respawnTemplates[] = {"derp_revive", "MenuPosition"};
 
 derp_revive_bleedOutTimer = 300;
 derp_revive_everyoneCanRevive = 0; // 0 = medics only, 1 = everyone
+derp_revive_reviveItem = 0; // 0 = first aid kit, 1 = medikit
+derp_revive_removeFAKOnUse = 1; // 0 = don't remove on use, 1 = remove on use
 
 //-------------------------Functions
 #include "functions\taw_vd\GUI.h"
