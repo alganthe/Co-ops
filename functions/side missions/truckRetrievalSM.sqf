@@ -22,14 +22,22 @@ private _smID = "truckRetrieval" + str derp_SMID;
 
 [west, [_smID, _missionID], ["A truck full GBUs got spotted in the AO, secure it and bring it back to the return point so we can dismantle them. The destruction of the vehicle will result in the failure of the mission.", "Retrieve ammo truck", ""], objNull, "Created", 5, true, "search", true] call BIS_fnc_taskCreate;
 
-private _usedTruck = selectRandom TRUCKSMTruck;
-private _spawnPos = _AOPos findEmptyPosition [10, 200, _usedTruck];
-private _ammoTruck = _usedTruck createVehicle _spawnPos;
-{_ammoTruck lockCargo [_x, true]} foreach [2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-private _box1 = TRUCKSMBox createVehicle [0,0,0];
-private _box2 = TRUCKSMBox createVehicle [0,0,0];
-_box1 attachTo [_ammoTruck, [0,-1,0.4]];
-_box2 attachTo [_ammoTruck, [0,-2.6,0.4]];
+private _spawnPos = _AOPos findEmptyPosition [10, 200, TRUCKSMTruck];
+private _ammoTruck = TRUCKSMTruck createVehicle _spawnPos;
+private _boxes = [];
+
+if !(TRUCKSMBoxes isEqualTo []) then {
+    {
+        _x params ["_boxType", "_offset"];
+        private _box = _boxType createVehicle [0,0,0];
+        _box attachTo [_ammoTruck, _offset];
+        _boxes pushback _box;
+    } foreach TRUCKSMBoxes;
+};
+
+if !(TRUCKSMLockedCargoSeats isEqualTo []) then {
+    {_ammoTruck lockCargo [_x, true]} foreach TRUCKSMLockedCargoSeats;
+};
 
 {
     _x addCuratorEditableObjects [[_ammoTruck], false];
@@ -43,7 +51,7 @@ _ammoTruck addEventHandler ["Killed", {
 //------------------- PFH
 [{
     params ["_args", "_pfhID"];
-    _args params ["_AOPos", "_ammoTruck", "_box1", "_box2", "_smID"];
+    _args params ["_AOPos", "_ammoTruck", "_boxes", "_smID"];
 
     if (alive _ammoTruck && {_ammoTruck distance2D (getMarkerPos "returnPointMarker") < 2}) then {
         derp_sideMissionInProgress = false;
@@ -54,17 +62,17 @@ _ammoTruck addEventHandler ["Killed", {
         _ammoTruck lock 2;
 
         [{
-            params ["_ammoTruck", "_box1", "_box2",  "_smID"];
+            params ["_ammoTruck", "_boxes",  "_smID"];
 
             {
                 if !(isNull _x) then {
                     deleteVehicle _x;
                 };
-            } foreach [_ammoTruck, _box1, _box2];
+            } foreach (_boxes + _ammoTruck);
 
             [_smID, true] call BIS_fnc_deleteTask;
 
-        }, [_ammoTruck, _box1, _box2, _smID], 300] call derp_fnc_waitAndExec;
+        }, [_ammoTruck, _boxes, _smID], 300] call derp_fnc_waitAndExec;
 
         derp_successfulSMs = derp_successfulSMs + 1;
         call derp_fnc_smRewards;
@@ -77,15 +85,15 @@ _ammoTruck addEventHandler ["Killed", {
         [_smID, 'FAILED', true] call BIS_fnc_taskSetState;
 
         [{
-            params ["_ammoTruck", "_box1", "_box2","_smID"];
+            params ["_ammoTruck", "_boxes", "_smID"];
 
             {
                 deleteVehicle _x;
-            } foreach [_ammoTruck, _box1, _box2];
+            } foreach (_boxes + _ammoTruck);
 
             [_smID, true] call BIS_fnc_deleteTask;
 
-        }, [_ammoTruck, _box1, _box2, _smID], 300] call derp_fnc_waitAndExecute;
+        }, [_ammoTruck, _boxes, _smID], 300] call derp_fnc_waitAndExecute;
         _pfhID call derp_fnc_removePerFrameHandler;
     };
-}, 10, [_AOPos, _ammoTruck, _box1, _box2, _smID]] call derp_fnc_addPerFrameHandler;
+}, 10, [_AOPos, _ammoTruck, _boxes, _smID]] call derp_fnc_addPerFrameHandler;

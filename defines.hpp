@@ -31,8 +31,11 @@
 #define OFFICERSMTarget ["O_T_officer_F"]
 #define OFFICERSMGuards ["O_T_soldier_F"]
 #define SPECOPSSMGroup >> "CfgGroups" >> "East" >> "OPF_T_F" >> "SpecOps" >> "O_T_ViperTeam"
-#define TRUCKSMTruck ["I_C_Van_01_transport_F"]
-#define TRUCKSMBox "Land_CargoBox_V1_F"
+#define TRUCKSMTruck "I_C_Van_01_transport_F"
+// Array of arrays in the format [classname, attachTo offset] leave empty if you don't want boxes
+#define TRUCKSMBoxes [["Land_CargoBox_V1_F", [0, -1, 0.4]], ["Land_CargoBox_V1_F", [0, -2.6, 0.4]]]
+// index of the cargo seats that you want locked, leave empty if you don't want that.
+#define TRUCKSMLockedCargoSeats [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 #define UAVSMUav ["O_T_UAV_04_CAS_F"]
 
 // first element of the array: vehicle classname, second element: chance to be picked, higher is better, highest should be 10 (for performances)
