@@ -27,6 +27,5 @@ class HudNames {
 				align = "left";
 			};
 		};
-
 	};
 };
