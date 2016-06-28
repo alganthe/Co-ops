@@ -22,11 +22,11 @@ private _smID = "officerKill" + str derp_SMID;
 
 [west, [_smID, _missionID], ["We have intel that an enemy officer is in the AO, find him and take him out. We currently have no information on his exact location, good luck.", "Kill the enemy officer", ""], objNull, "Created", 5, true, "kill", true] call BIS_fnc_taskCreate;
 
-private _randomPos = [[[_AOpos, 600], []], ["water", "out"]] call BIS_fnc_randomPos;
+private _randomPos = [_AOPos, derp_PARAM_AOSize / 2, "(1 - sea)"] call derp_fnc_randomPos;
 private _officerGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 private _officer = _officerGroup createUnit [(selectRandom OFFICERSMTarget), _randomPos, [], 0, "NONE"];
 _officerGroup selectLeader _officer;
-[_officerGroup, _AOpos, 600] call BIS_fnc_taskPatrol;
+[_AOpos, derp_PARAM_AOSize, _officerGroup, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
 
 {
     _x addCuratorEditableObjects [(units _officerGroup), false];

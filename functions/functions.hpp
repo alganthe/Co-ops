@@ -38,6 +38,7 @@ class derp {
         class crewNames {};
         class shortNights {};
         class randomPos {};
+        class taskPatrol {};
     };
 
     class AI {

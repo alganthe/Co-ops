@@ -68,7 +68,7 @@ _ammoTruck addEventHandler ["Killed", {
                 if !(isNull _x) then {
                     deleteVehicle _x;
                 };
-            } foreach (_boxes + _ammoTruck);
+            } foreach (_boxes + [_ammoTruck]);
 
             [_smID, true] call BIS_fnc_deleteTask;
 
@@ -89,7 +89,7 @@ _ammoTruck addEventHandler ["Killed", {
 
             {
                 deleteVehicle _x;
-            } foreach (_boxes + _ammoTruck);
+            } foreach (_boxes + [_ammoTruck]);
 
             [_smID, true] call BIS_fnc_deleteTask;
 

@@ -56,7 +56,7 @@ if (_AAAVehcSetting) then {
 
         private _group = group _AAVehicle;
 
-        [_group, _AOpos, _radiusSize / 2] call BIS_fnc_taskPatrol;
+        [_AOpos, _radiusSize * 1.2, _group, (random [2, 3, 4]), "(1 - sea) * (1 - forest) * (1 - trees)"] call derp_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
     };
 };
@@ -79,7 +79,7 @@ if (_MRAPSetting) then {
 
         private _group = group _MRAP;
 
-        [_group, _AOpos, _radiusSize / 3] call BIS_fnc_taskPatrol;
+        [_AOpos, _radiusSize * 1.2, _group, (random [2, 3, 4]), "(1 - sea) * (1 - forest) * (1 - trees)"] call derp_fnc_taskPatrol;
         _group setSpeedMode "LIMITED";
     };
 };
@@ -100,8 +100,7 @@ if (_randomVehcsSetting) then {
         } foreach (crew _vehc);
         private _group = group _vehc;
 
-        [_group, _AOpos, _radiusSize / 2] call BIS_fnc_taskPatrol;
-        _group setSpeedMode "LIMITED";
+        [_AOpos, _radiusSize * 1.2, _group, (random [2, 3, 4]), "(1 - sea) * (1 - forest) * (1 - trees)"] call derp_fnc_taskPatrol;
     };
 };
 
@@ -111,7 +110,7 @@ if (_infantryGroupsSetting) then {
         private _randomPos = [_AOpos, _radiusSize / 1.2, "(1 - sea)"] call derp_fnc_randomPos;
         private _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, _radiusSize / 1.6] call BIS_fnc_taskPatrol;
+        [_AOpos, _radiusSize * 1.4, _infantryGroup, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;
@@ -126,7 +125,7 @@ if (_AAGroupsSetting) then {
         private _randomPos = [_AOpos, _radiusSize / 1.2, "(1 - sea)"] call derp_fnc_randomPos;
         private _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom AAGroupsList))] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, _radiusSize / 1.6] call BIS_fnc_taskPatrol;
+        [_AOpos, _radiusSize * 1.4, _infantryGroup, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;
@@ -141,7 +140,7 @@ if (_ATGroupsSetting) then {
         private _randomPos = [_AOpos, _radiusSize / 1.2, "(1 - sea)"] call derp_fnc_randomPos;
         private _infantryGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom ATGroupsList))] call BIS_fnc_spawnGroup;
 
-        [_infantryGroup, _AOpos, _radiusSize / 1.6] call BIS_fnc_taskPatrol;
+        [_AOpos, _radiusSize * 1.4, _infantryGroup, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
 
         {
             _spawnedUnits pushBack _x;

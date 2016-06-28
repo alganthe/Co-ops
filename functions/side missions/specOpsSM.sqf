@@ -22,9 +22,9 @@ private _smID = "specOps" + str derp_SMID;
 
 [west, [_smID, _missionID], ["An enemy spec-ops squad has been spotted around the AO, you'll have to deal with them, good luck", "Defeat spec-ops squad"], objNull, "Created", 5, true, "kill", true] call BIS_fnc_taskCreate;
 
-private _randomPos = [[[_AOpos, 600], []], ["water", "out"]] call BIS_fnc_randomPos;
+private _randomPos = [_AOPos, derp_PARAM_AOSize / 2, "(1 - sea)"] call derp_fnc_randomPos;
 private _squad = [_randomPos, EAST, (configfile SPECOPSSMGroup)] call BIS_fnc_spawnGroup;
-[_squad, _AOpos, 600] call BIS_fnc_taskPatrol;
+[_AOpos, derp_PARAM_AOSize, _squad, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
 
 {
     _x addCuratorEditableObjects [(units _squad), false];
