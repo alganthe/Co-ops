@@ -24,7 +24,7 @@ private _smID = "specOps" + str derp_SMID;
 
 private _randomPos = [_AOPos, derp_PARAM_AOSize / 2, "(1 - sea)"] call derp_fnc_randomPos;
 private _squad = [_randomPos, EAST, (configfile SPECOPSSMGroup)] call BIS_fnc_spawnGroup;
-[_AOpos, derp_PARAM_AOSize, _squad, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
+[_squad, _AOpos, derp_PARAM_AOSize / 2] call BIS_fnc_taskPatrol;
 
 {
     _x addCuratorEditableObjects [(units _squad), false];

@@ -26,7 +26,7 @@ private _randomPos = [_AOPos, derp_PARAM_AOSize / 2, "(1 - sea)"] call derp_fnc_
 private _officerGroup = [_randomPos, EAST, (configfile InfantryGroupsCFGPATH (selectRandom InfantryGroupList))] call BIS_fnc_spawnGroup;
 private _officer = _officerGroup createUnit [(selectRandom OFFICERSMTarget), _randomPos, [], 0, "NONE"];
 _officerGroup selectLeader _officer;
-[_AOpos, derp_PARAM_AOSize, _officerGroup, (random [2, 3, 4]), "(1 - sea)"] call derp_fnc_taskPatrol;
+[_officerGroup, _AOpos, derp_PARAM_AOSize / 2] call BIS_fnc_taskPatrol;
 
 {
     _x addCuratorEditableObjects [(units _officerGroup), false];
