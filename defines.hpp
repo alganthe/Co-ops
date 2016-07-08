@@ -40,13 +40,15 @@
 
 // first element of the array: vehicle classname, second element: chance to be picked, higher is better, highest should be 10 (for performances)
 #define SMRewards ["B_Heli_Light_01_armed_F", 2], \
-["I_Heli_light_03_F", 2], \
-["O_Heli_Transport_04_covered_F", 3], \
 ["B_T_MBT_01_TUSK_F", 5], \
 ["B_T_MBT_01_cannon_F", 5], \
-["I_Plane_Fighter_03_AA_F", 2], \
 ["B_T_APC_Wheeled_01_cannon_F", 5], \
-["O_T_VTOL_02_infantry_grey_F", 3]
+["O_Heli_Transport_04_covered_F", 3], \
+["O_T_VTOL_02_infantry_grey_F", 2], \
+["I_Plane_Fighter_03_AA_F", 2], \
+["I_Heli_light_03_F", 2], \
+["I_APC_Wheeled_03_cannon_F", 5], \
+["I_MBT_03_cannon_F", 5]
 
 
 //------------------------------------ Random stuff
