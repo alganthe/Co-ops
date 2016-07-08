@@ -484,6 +484,7 @@ class Mission
 {
 	class Intel
 	{
+		briefingName="Co-ops 1.3.294";
 		timeOfChanges=1800.0002;
 		startWeather=0;
 		startWind=0.1;
