@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={11763.855,114.94654,13204.553};
-		dir[]={-0.18186945,-0.71659565,-0.67352772};
-		up[]={-0.18684636,0.69730985,-0.69195771};
-		aside[]={-0.96554297,5.6052522e-007,0.26071778};
+		pos[]={11768.185,95.673569,13279.454};
+		dir[]={-0.22977866,-0.4901993,-0.84092569};
+		up[]={-0.12927352,0.87142473,-0.47309151};
+		aside[]={-0.96476859,1.9278959e-006,0.26362109};
 	};
 };
 binarizationWanted=0;
@@ -454,6 +454,30 @@ class CustomAttributes
 			};
 		};
 		nAttributes=12;
+	};
+	class Category1
+	{
+		name="Scenario";
+		class Attribute0
+		{
+			property="EnableDebugConsole";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
+		nAttributes=1;
 	};
 };
 class Mission
@@ -7006,7 +7030,7 @@ class Mission
 			};
 			id=167;
 			type="B_T_LSV_01_armed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item88
 		{
@@ -7024,7 +7048,7 @@ class Mission
 			};
 			id=168;
 			type="B_T_LSV_01_armed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item89
 		{
@@ -7042,7 +7066,7 @@ class Mission
 			};
 			id=169;
 			type="B_T_LSV_01_unarmed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item90
 		{
@@ -7060,7 +7084,7 @@ class Mission
 			};
 			id=170;
 			type="B_T_LSV_01_unarmed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item91
 		{
@@ -7078,7 +7102,7 @@ class Mission
 			};
 			id=171;
 			type="B_T_LSV_01_unarmed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item92
 		{
@@ -7096,7 +7120,7 @@ class Mission
 			};
 			id=172;
 			type="B_T_LSV_01_unarmed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item93
 		{
@@ -7114,7 +7138,7 @@ class Mission
 			};
 			id=173;
 			type="B_T_LSV_01_unarmed_F";
-			atlOffset=-4.7683716e-007;
+			atlOffset=-6.6757202e-006;
 		};
 		class Item94
 		{
@@ -7150,6 +7174,7 @@ class Mission
 			};
 			id=181;
 			type="B_T_Truck_01_medical_F";
+			atlOffset=-4.7683716e-007;
 		};
 		class Item96
 		{
@@ -9058,7 +9083,7 @@ class Mission
 			};
 			id=534;
 			type="C_Scooter_Transport_01_F";
-			atlOffset=6.4745436;
+			atlOffset=6.4844313;
 		};
 		class Item149
 		{
@@ -9075,7 +9100,7 @@ class Mission
 			};
 			id=535;
 			type="C_Scooter_Transport_01_F";
-			atlOffset=5.2017636;
+			atlOffset=5.2116513;
 		};
 		class Item150
 		{
@@ -9092,7 +9117,7 @@ class Mission
 			};
 			id=536;
 			type="C_Scooter_Transport_01_F";
-			atlOffset=6.3176169;
+			atlOffset=6.3275046;
 		};
 		class Item151
 		{
@@ -9109,7 +9134,7 @@ class Mission
 			};
 			id=539;
 			type="C_Scooter_Transport_01_F";
-			atlOffset=5.5233841;
+			atlOffset=5.5332718;
 		};
 		class Item152
 		{

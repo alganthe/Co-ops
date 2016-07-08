@@ -34,8 +34,5 @@ derp_revive_bleedOutTimer = 0;
         // draw timer
         99 cutText [format ["Timer: %1 \n Hold space to respawn", _timerLength - derp_revive_bleedOutTimer], "PLAIN DOWN", 0.1];
         derp_revive_bleedOutTimer = derp_revive_bleedOutTimer + 1;
-
-        // Make sure the unit stays bloody.
-        _unit setDamage 0.4;
     };
 }, 1, [_unit, (getMissionConfigValue ["derp_revive_bleedOutTimer", 300])]] call derp_fnc_addPerFrameHandler;
