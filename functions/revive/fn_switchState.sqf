@@ -37,7 +37,7 @@ switch (_state) do {
             call derp_revive_fnc_hotkeyHandler;
             call derp_revive_fnc_uiElements;
 
-            //[_unit, true] call derp_revive_fnc_animChanged;
+            [_unit, true] call derp_revive_fnc_animChanged;
             //fade in
             _unit switchCamera "external";
             titleCut ["","BLACK IN",1];
