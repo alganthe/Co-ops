@@ -79,3 +79,5 @@ setTimeMultiplier ("DayDuration" call BIS_fnc_getParamValue);
 if ("ShortNights" call BIS_fnc_getParamValue == 1) then {
     call derp_fnc_shortNights;
 };
+
+[ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter; // Init arsenal boxes.

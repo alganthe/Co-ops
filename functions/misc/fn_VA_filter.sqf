@@ -19,20 +19,23 @@ switch (_filter) do {
 
     case 0: {
         {
-            [_x , [true], true] call BIS_fnc_removeVirtualItemCargo;
-            [_x, [true], true] call BIS_fnc_removeVirtualWeaponCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualItemCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualWeaponCargo;
         } foreach _arsenalBoxes;
     };
 
     case 1: {
         {
-            ["AmmoboxInit", [_x, true, {true}]] call BIS_fnc_arsenal;
-            [_x, [true], true] call BIS_fnc_removeVirtualItemCargo;
-            [_x, [true], true] call BIS_fnc_removeVirtualWeaponCargo;
-            [_x, [true], true] call BIS_fnc_removeVirtualBackpackCargo;
+            if (isServer) then {
+                ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
+            };
+
+            [_x, [true], false] call BIS_fnc_removeVirtualItemCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualWeaponCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualBackpackCargo;
         } foreach _arsenalBoxes;
 
-
+        if (isServer) exitWith {};
 
         private _availableItems = [] call derp_fnc_findItemList;
 
@@ -55,9 +58,9 @@ switch (_filter) do {
         } foreach _restrictedItems;
 
         {
-            [_x, _availableItems, true] call BIS_fnc_addVirtualItemCargo;
-            [_x, _availableItems, true] call BIS_fnc_addVirtualWeaponCargo;
-            [_x, _availableItems, true] call BIS_fnc_addVirtualBackpackCargo;
+            [_x, _availableItems, false] call BIS_fnc_addVirtualItemCargo;
+            [_x, _availableItems, false] call BIS_fnc_addVirtualWeaponCargo;
+            [_x, _availableItems, false] call BIS_fnc_addVirtualBackpackCargo;
         } foreach _arsenalBoxes;
 
         {
@@ -99,7 +102,9 @@ switch (_filter) do {
 
     case 2: {
         {
-            ["AmmoboxInit", [_x, true, {true}]] call BIS_fnc_arsenal;
+            if (isServer) then {
+                ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
+            };
         } foreach _arsenalBoxes;
     };
 };
