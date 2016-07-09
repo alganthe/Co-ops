@@ -340,7 +340,7 @@
 ], "Sniper"]
 
 #define GearLimitationMMG [{_unit getUnitTrait 'derp_machinegunner'}, [ \
-    "MMG_01_hex_F", "MMG_01_tan_F", "MMG_01_hex_ARCO_LP_F", "MMG_02_camo_F", "MMG_02_black_F", "MMG_02_sand_F", "MMG_02_sand_RCO_LP_F", "MMG_02_black_RCO_BI_F", "LMG_Mk200_BI_F", "LMG_Mk200_LP_BI_F", "LMG_Zafir_F", "LMG_Zafir_pointer_F", "LMG_Zafir_ARCO_F", "LMG_03_F", "arifle_MX_SW_Black_F", "arifle_MX_SW_Black_Hamr_pointer_F", "arifle_MX_SW_F", "arifle_MX_SW_Hamr_pointer_F", "arifle_MX_SW_khk_F", "arifle_MX_SW_khk_Pointer_F", "arifle_MX_SW_pointer_F", "arifle_SPAR_02_blk_F", "arifle_SPAR_02_blk_Pointer_F", "arifle_SPAR_02_khk_F", "arifle_SPAR_02_snd_F", "arifle_CTARS_ghex_F", "arifle_CTARS_hex_F", "arifle_CTARS_blk_F", "arifle_CTARS_blk_Pointer_F" \
+    "MMG_01_hex_F", "MMG_01_tan_F", "MMG_01_hex_ARCO_LP_F", "MMG_02_camo_F", "MMG_02_black_F", "MMG_02_sand_F", "MMG_02_sand_RCO_LP_F", "MMG_02_black_RCO_BI_F", "LMG_Mk200_F", "LMG_Mk200_BI_F", "LMG_Mk200_LP_BI_F", "LMG_Zafir_F", "LMG_Zafir_pointer_F", "LMG_Zafir_ARCO_F", "LMG_03_F", "arifle_MX_SW_Black_F", "arifle_MX_SW_Black_Hamr_pointer_F", "arifle_MX_SW_F", "arifle_MX_SW_Hamr_pointer_F", "arifle_MX_SW_khk_F", "arifle_MX_SW_khk_Pointer_F", "arifle_MX_SW_pointer_F", "arifle_SPAR_02_blk_F", "arifle_SPAR_02_blk_Pointer_F", "arifle_SPAR_02_khk_F", "arifle_SPAR_02_snd_F", "arifle_CTARS_ghex_F", "arifle_CTARS_hex_F", "arifle_CTARS_blk_F", "arifle_CTARS_blk_Pointer_F" \
 ], "Autorifleman"]
 
 #define GearLimitationUAVOperator [{_unit getUnitTrait 'derp_uavOperator'}, ["B_UavTerminal"], "UAV operator"]
