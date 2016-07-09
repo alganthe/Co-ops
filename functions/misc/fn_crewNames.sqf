@@ -23,12 +23,11 @@
 
         private _name = "";
         private _vehicle = assignedVehicle player;
-        private _weapname = getarray (configFile >> "CfgVehicles" >> typeOf (vehicle player) >> "Turrets" >> "MainTurret" >> "weapons");
-        private _weap = _weapname select 0;
+        private _weap = currentWeapon vehicle player;
 
         {
-            if((driver _vehicle == _x) || (gunner _vehicle == _x)) then {
-                if(driver _vehicle == _x) then {
+            if ((driver _vehicle == _x) || (gunner _vehicle == _x)) then {
+                if (driver _vehicle == _x) then {
                     _name = format ["<t size='0.85' color='#f0e68c'>%1 %2</t> <img size='0.7' color='#6b8e23' image='a3\ui_f\data\IGUI\Cfg\Actions\getindriver_ca.paa'/><br/>", _name, (name _x)];
                 } else {
                     private _target = cursorTarget;

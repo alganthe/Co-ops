@@ -5,8 +5,6 @@ params ["_newUnit", "_corpse", "_respawn", "_respawnDelay"];
 if (_newUnit getVariable ["derp_revive_downed", false]) then {
 
     // Saving corpse pos and dir
-
-
     [{
         (velocity (_this select 1)) distance [0,0,0] < 0.1;
     },

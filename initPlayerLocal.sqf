@@ -1,4 +1,3 @@
-#include "defines.hpp"
 disableRemoteSensors true;
 
 //------------------------------ Headless Client
@@ -119,6 +118,6 @@ if !(isServer or hasInterface) then {
             ];
         };
     } foreach ArsenalBoxes;
-
-    [ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter;;  // Init arsenal boxes.
 };
+
+[ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter; // Init arsenal boxes.

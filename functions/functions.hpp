@@ -36,6 +36,8 @@ class derp {
         class baseCleaning {};
         class cleaner {};
         class crewNames {};
+        class shortNights {};
+        class randomPos {};
     };
 
     class AI {

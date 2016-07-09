@@ -16,7 +16,7 @@ class Header {
 };
 
 //-------------------------Misc
-disableChannels[] = {0, 2, 6};                          // 0 = Global, 1 = Side, 2 = Command, 3 = Group, 4 = Vehicle, 5 = Direct, 6 = System. Admin/server/BattlEye can still use Global.
+disableChannels[] = {{0, true, true}, {1, false, true}, {2, true, true}, {6, true, true}};                          // 0 = Global, 1 = Side, 2 = Command, 3 = Group, 4 = Vehicle, 5 = Direct, 6 = System. Admin/server/BattlEye can still use Global.
 disabledAI = 1;                                         // No AI in playable units
 aiKills = 0;                                            // disable scorelist for AI players
 enableItemsDropping = 0;                                // disabled with 0
@@ -45,11 +45,12 @@ respawnTemplates[] = {"derp_revive", "MenuPosition"};
 
 derp_revive_bleedOutTimer = 300;
 derp_revive_everyoneCanRevive = 0; // 0 = medics only, 1 = everyone
+derp_revive_reviveItem = 0; // 0 = first aid kit, 1 = medikit
+derp_revive_removeFAKOnUse = 1; // 0 = don't remove on use, 1 = remove on use
 
 //-------------------------Functions
 #include "functions\taw_vd\GUI.h"
 #include "functions\portedFuncs\ace3\progressBarGUI.hpp"
-#include "functions\misc\common.hpp"
 
 class CfgFunctions {
     #include "functions\functions.hpp"
@@ -64,6 +65,20 @@ class Params {
         texts[] = {"00:00", "01:00","02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"};
         default = 5;
         function = "derp_fnc_daytime";
+    };
+
+    class DayDuration {
+        title = "Day duration";
+        values[] = {1, 2, 3, 4, 6, 8, 12, 16, 24, 36, 48};
+        texts[] = {"24 hours", "12 hours", "8 hours", "6 hours", "4 hours", "3 hours", "2 hours", "1 hour 30 minutes", "1 hour", "40 minutes", "30 minutes"};
+        default = 6;
+    };
+
+    class ShortNights {
+        title = "Enable shorter nights?";
+        texts[] = {"No", "Yes"};
+        values[] = {0, 1};
+        default = 0;
     };
 
     class staminaEnabled {
@@ -131,21 +146,21 @@ class Params {
 
     class AntiAirAmount {
         title = "Amount of AA vehicles on the main AO";
-        values[] = {1, 2, 3, 4, 5, 6};
-        texts[] = {"1", "2", "3", "4", "5", "6"};
         default = 2;
+        values[] = {0, 1, 2, 3, 4, 5, 6};
+        texts[] = {"0", "1", "2", "3", "4", "5", "6"};
     };
 
     class MRAPAmount {
         title = "Amount of MRAPs on the main AO";
-        values[] = {1, 2, 3, 4, 5, 6};
-        texts[] = {"1", "2", "3", "4", "5", "6"};
+        values[] = {0 ,1, 2, 3, 4, 5, 6};
+        texts[] = {"0" ,"1", "2", "3", "4", "5", "6"};
         default = 2;
     };
 
     class RandomVehcsAmount {
         title = "Amount of random vehicles on the main AO";
-        values[] = {1, 2, 3, 4, 5, 6};
+        values[] = {0 ,1, 2, 3, 4, 5, 6};
         texts[] = {"1", "2", "3", "4", "5", "6"};
         default = 2;
     };
@@ -154,14 +169,14 @@ class Params {
         title = "Amount of infantry groups on the main AO";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-        default = 6;
+        default = 8;
     };
 
     class AAGroupsAmount {
         title = "Amount of AA groups on the main AO";
         values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         texts[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-        default = 2;
+        default = 4;
     };
 
     class ATGroupsAmount {
@@ -175,7 +190,7 @@ class Params {
         title = "Enemy air reinforcements timer";
         values[] = {300, 600, 900};
         texts[] = {"5 minutes", "10 minutes", "15 minutes"};
-        default = 300;
+        default = 600;
     };
 
     class AIAimingAccuracy {
@@ -255,7 +270,7 @@ class CfgTaskEnhancements {
     share        = 0;            //0: do not count assigned players (default), 1: count how many players have the task assigned
     propagate    = 0;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
 };
-
+/*
 class CfgRemoteExec {
     class Functions {
         // State of remoteExec: 0-turned off, 1-turned on, taking whitelist into account, 2-turned on, however, ignoring whitelists (default because of backward compatibility)
@@ -284,3 +299,4 @@ class CfgRemoteExec {
         class setDir { allowedTargets = 0; };
     };
 };
+*/

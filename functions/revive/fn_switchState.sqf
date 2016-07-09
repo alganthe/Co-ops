@@ -29,7 +29,7 @@ switch (_state) do {
         [{
             params ["_unit"];
 
-            [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+            _unit setUnconscious true;
 
             _unit setUnitLoadout (_unit getVariable "derp_revive_loadout");
 
@@ -47,6 +47,7 @@ switch (_state) do {
 
     case "ALIVE": {
         _unit setVariable ["derp_revive_downed", false, true];
+        _unit setUnconscious false;
 
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
@@ -69,6 +70,7 @@ switch (_state) do {
 
     case "REVIVED": {
         _unit setVariable ["derp_revive_downed", false, true];
+        _unit setUnconscious false;
 
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};

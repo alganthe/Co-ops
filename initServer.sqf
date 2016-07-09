@@ -1,3 +1,4 @@
+#include "defines.hpp"
 //---------------------------------- Functions compiling
 call compile preprocessFileLineNumbers "functions\core\serverSide_functions_compile.sqf";
 
@@ -73,3 +74,10 @@ addMissionEventHandler ["HandleDisconnect", {
 
 call derp_fnc_baseCleaning;
 call derp_fnc_cleaner;
+setTimeMultiplier ("DayDuration" call BIS_fnc_getParamValue);
+
+if ("ShortNights" call BIS_fnc_getParamValue == 1) then {
+    call derp_fnc_shortNights;
+};
+
+[ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter; // Init arsenal boxes.

@@ -19,35 +19,48 @@ switch (_filter) do {
 
     case 0: {
         {
-            [_x , [true], true] call BIS_fnc_removeVirtualItemCargo;
-            [_x, [true], true] call BIS_fnc_removeVirtualWeaponCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualItemCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualWeaponCargo;
         } foreach _arsenalBoxes;
     };
 
     case 1: {
         {
-            ["AmmoboxInit", [_x, true, {true}]] call BIS_fnc_arsenal;
-            [_x, [true], true] call BIS_fnc_removeVirtualItemCargo;
-            [_x, [true], true] call BIS_fnc_removeVirtualWeaponCargo;
-            [_x, [true], true] call BIS_fnc_removeVirtualBackpackCargo;
+            if (isServer) then {
+                ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
+            };
+
+            [_x, [true], false] call BIS_fnc_removeVirtualItemCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualWeaponCargo;
+            [_x, [true], false] call BIS_fnc_removeVirtualBackpackCargo;
         } foreach _arsenalBoxes;
 
-
+        if (isServer) exitWith {};
 
         private _availableItems = [] call derp_fnc_findItemList;
 
-        _availableItems = _availableItems - ArsenalWeaponBlacklist;
-        _availableItems = _availableItems - ArsenalBlacklistedItems;
-        _availableItems = _availableItems - ArsenalBlacklistedUniforms;
-        _availableItems = _availableItems - ArsenalBlacklistedHelmets;
-        _availableItems = _availableItems - ArsenalBlacklistedBackpacks;
-        _availableItems = _availableItems - ArsenalBlacklistedGlasses;
-        _availableItems = _availableItems - ArsenalBlacklistedVests;
+        _availableItems = (((((((_availableItems - ArsenalWeaponBlacklist)  - ArsenalBlacklistedItems) - ArsenalBlacklistedUniforms) - ArsenalBlacklistedHelmets) - ArsenalBlacklistedGlasses) - ArsenalBlacklistedBackpacks) - ArsenalBlacklistedVests);
+
+        private _restrictedItems = [];
+        _restrictedItems pushBack GearLimitationMarksman;
+        _restrictedItems pushBack GearLimitationAT;
+        _restrictedItems pushBack GearLimitationSniper;
+        _restrictedItems pushBack GearLimitationMMG;
+        _restrictedItems pushBack GearLimitationUAVOperator;
+        _restrictedItems pushBack GearLimitationGrenadier;
 
         {
-            [_x, _availableItems, true] call BIS_fnc_addVirtualItemCargo;
-            [_x, _availableItems, true] call BIS_fnc_addVirtualWeaponCargo;
-            [_x, _availableItems, true] call BIS_fnc_addVirtualBackpackCargo;
+            _x params ["_classCode", "_testedArray"];
+            private _unit = player;
+            if !(call _classCode) then {
+                _availableItems = _availableItems - _testedArray;
+            };
+        } foreach _restrictedItems;
+
+        {
+            [_x, _availableItems, false] call BIS_fnc_addVirtualItemCargo;
+            [_x, _availableItems, false] call BIS_fnc_addVirtualWeaponCargo;
+            [_x, _availableItems, false] call BIS_fnc_addVirtualBackpackCargo;
         } foreach _arsenalBoxes;
 
         {
@@ -89,7 +102,9 @@ switch (_filter) do {
 
     case 2: {
         {
-            ["AmmoboxInit", [_x, true, {true}]] call BIS_fnc_arsenal;
+            if (isServer) then {
+                ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
+            };
         } foreach _arsenalBoxes;
     };
 };
