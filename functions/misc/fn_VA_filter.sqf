@@ -35,7 +35,7 @@ switch (_filter) do {
             [_x, [true], false] call BIS_fnc_removeVirtualBackpackCargo;
         } foreach _arsenalBoxes;
 
-        if (isServer) exitWith {};
+        if (isServer && isDedicated) exitWith {};
 
         private _availableItems = [] call derp_fnc_findItemList;
 
