@@ -15,7 +15,7 @@ if (_mode) then {
     private _derp_revive_animChangedID = _unit addEventHandler ["AnimChanged", {
         params ["_unit", "_anim"];
 
-        if (_unit getVariable ["derp_revive_downed", false] && {isNull objectParent _unit} && {!(_unit getVariable ["derp_revive_isDragged",false]) || {!(_unit getVariable ["derp_revive_isCarried", false])}}) then {
+        if (_unit getVariable ["derp_revive_downed", false] && {isNull objectParent _unit} && {!(_unit getVariable ["derp_revive_isDragged",false]) || {!(_unit getVariable ["derp_revive_isCarried", false])}} && {animationState _unit != "AinjPfalMstpSnonWrflDf_carried_fallwc"}) then {
             [_unit, "acts_injuredlyingrifle02_180"] remoteExec ["switchMove", 0];
         };
     }];

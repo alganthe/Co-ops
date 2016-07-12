@@ -36,11 +36,11 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragged && {isNull objectParent _dragged}) then {
-            [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+            [_dragged, "AinjPfalMstpSnonWrflDf_carried_fallwc"] call derp_fnc_syncAnim;
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            [_dragger, ""] call derp_fnc_syncAnim;
+            [_dragger, "AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
         };
 
         _dragger setVariable ["derp_revive_isCarrying", false, true];
