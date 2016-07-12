@@ -22,10 +22,35 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
 };
 
 // Revive
-_unit addAction [
-    "<t color='#ff0000'> Revive </t>",
+[
+    _unit, // Object
+    "<t color='#ff0000'> Revive </t>", // Title
+    "", // Idle icon
+    "", // Progress icon
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])", // Condition for action to be shown
+    "true", // Condition for action to progress
     {
-        params ["", "_caller", "", "_args"];
+        params ["", "_caller"];
+        _caller playAction "MedicOther";
+    }, // Code executed on start
+    {
+        (cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent (_this select 1)} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}
+    }, // Code executed on every tick
+    {
+        params ["", "_caller"];
+
+        if (getMissionConfigValue ["derp_revive_removeFAKOnUse", 1] == 1 && {getMissionConfigValue ["derp_revive_reviveItem", 0] == 0}) then {
+            if ('FirstAidKit' in items _caller) then {
+                _caller removeItem "FirstAidKit";
+            } else {
+                cursorObject removeItem "FirstAidKit";
+            };
+
+            [cursorObject, "REVIVED"] remoteExecCall ["derp_revive_fnc_switchState", cursorObject];
+        };
+    }, // Code executed on completion
+    {
+        params ["", "_caller"];
 
         if (getMissionConfigValue ["derp_revive_removeFAKOnUse", 1] == 1 && {getMissionConfigValue ["derp_revive_reviveItem", 0] == 0}) then {
             if ('FirstAidKit' in items _caller) then {
@@ -34,29 +59,13 @@ _unit addAction [
                 cursorObject removeItem "FirstAidKit";
             };
         };
-
-        _caller playAction "MedicOther";
-
-        [
-            6, // Time the action takes to complete
-            [_caller], // Args passed to the code
-            {
-                [cursorObject, "REVIVED"] remoteExecCall ["derp_revive_fnc_switchState", cursorObject];
-            }, // code executed upon action completion
-            {}, // Code executed upon action failure
-            format ["Reviving %1", name cursorObject], // Title text
-            {
-                (alive cursorObject) && {cursorObject getVariable ["derp_revive_downed", false]} && {isNull objectParent ((_this select 0) select 0)} && {!(cursorObject getVariable ['derp_revive_isDragged', false]) || {!(cursorObject getVariable ['derp_revive_isCarried', false])}}
-            } // Code to check each frame
-        ] call derp_fnc_progressBar;
-    },
-    [],
-    10,
-    true,
-    true,
-    "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}" // condition
-];
+    }, // Code executed on fail
+    [], // Arguments
+    6, // Action duration
+    10, // Priority
+    false, // Remove on completion
+    false // Shown on unconscious
+] call BIS_fnc_holdActionAdd;
 
 // Dragging
 _unit addAction [
@@ -72,7 +81,9 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}"
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
+    5,
+    false
 ];
 
 // Carrying
@@ -89,7 +100,9 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {!(_this getVariable ['derp_revive_downed', false])} && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {_this distance cursorObject < 5}"
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
+    5,
+    false
 ];
 
 // Stop dragging

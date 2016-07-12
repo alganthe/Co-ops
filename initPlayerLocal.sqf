@@ -114,7 +114,9 @@ if !(isServer or hasInterface) then {
             true,
             true,
             "",
-            "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
+            "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}",
+            5,
+            false
             ];
         };
     } foreach ArsenalBoxes;
