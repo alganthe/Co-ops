@@ -15,6 +15,8 @@ Examples:
 Author:
     joko // Jonas, donated from ACE3
 ---------------------------------------------------------------------------- */
-params [["_conditionFunction", {}, [{}]], ["_statementFunction", {}, [{}]], ["_args", []]];
+params [["_condition", {}, [{}]], ["_statement", {}, [{}]], ["_args", []]];
 
-derp_waitUntilAndExecArray pushBack [_conditionFunction, _statementFunction, _args];
+derp_waitUntilAndExecArray pushBack [_condition, _statement, _args];
+
+nil

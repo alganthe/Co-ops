@@ -10,6 +10,7 @@ class derp {
         class waitUntilAndExecute {};
         class pfhPostInit { postInit = 1; };
         class getTurret {};
+        class directCall {};
     };
 
     class ACE3 {

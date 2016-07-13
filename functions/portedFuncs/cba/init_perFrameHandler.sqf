@@ -1,4 +1,3 @@
-//init_perFrameHandler.sqf
 #define DELAY_MONITOR_THRESHOLD 1 // Frames
 
 derp_perFrameHandlerArray = [];
@@ -6,12 +5,11 @@ derp_lastTickTime = diag_tickTime;
 
 derp_waitAndExecArray = [];
 derp_waitAndExecArrayIsSorted = false;
-derp_nextFrameNo = diag_frameno;
-derp_nextFrameBufferA = [];
+derp_nextFrameNo = diag_frameno + 1;
+// PostInit can be 2 frames after preInit, need to manually set nextFrameNo, so new items get added to buffer B while processing A for the first time:
+derp_nextFrameBufferA = [[[], {derp_nextFrameNo = diag_frameno;}]];
 derp_nextFrameBufferB = [];
 derp_waitUntilAndExecArray = [];
-
-derp_fnc_perFrameEngine = compile preprocessFileLineNumbers 'functions\portedFuncs\cba\pfhPerFrameEngine.sqf';
 
 // per frame handler system
 derp_fnc_onFrame = {
@@ -28,6 +26,7 @@ derp_fnc_onFrame = {
             false
         };
     } count derp_perFrameHandlerArray;
+
 
     // Execute wait and execute functions
     // Sort the queue if necessary
@@ -92,7 +91,7 @@ addMissionEventHandler ["Loaded", {
 derp_missionTime = 0;
 derp_lastTime = time;
 
-// increase CBA_missionTime variable every frame
+// increase derp_missionTime variable every frame
 if (isMultiplayer) then {
     // multiplayer - no accTime in MP
     if (isServer) then {
@@ -106,7 +105,6 @@ if (isMultiplayer) then {
             derp_lastTickTime = _tickTime;
         };
 
-            // v1.58 and later
         addMissionEventHandler ["PlayerConnected", {
             (_this select 4) publicVariableClient "derp_missionTime";
         }];
