@@ -27,14 +27,14 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
     "<t color='#ff0000'> Revive </t>", // Title
     "", // Idle icon
     "", // Progress icon
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])", // Condition for action to be shown
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])}", // Condition for action to be shown
     "true", // Condition for action to progress
     {
         params ["", "_caller"];
         _caller playAction "MedicOther";
     }, // Code executed on start
     {
-        (cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent (_this select 1)} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}
+        (cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent (_this select 1)} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!((_this select 1) getVariable ['derp_revive_isDragging', false])} && {!((_this select 1) getVariable ['derp_revive_isCarrying', false])}
     }, // Code executed on every tick
     {
         params ["", "_caller"];
@@ -81,7 +81,7 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
     5,
     false
 ];
@@ -100,7 +100,7 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
     5,
     false
 ];
@@ -116,7 +116,7 @@ _unit addAction [
 
         private _dragged = ((attachedObjects _caller) select {_x isKindOf "CAManBase"});
         if (_dragged isEqualTo []) then {
-            _caller setVariable ["derp_revive_isCarrying", false ,true];
+            _caller setVariable ["derp_revive_isDragging", false ,true];
         } else {
             [_caller, _dragged select 0, "DRAGGING"] call derp_revive_fnc_dropPerson;
         };
@@ -152,4 +152,51 @@ _unit addAction [
     true,
     "",
     "(_this getVariable ['derp_revive_isCarrying', false])"
+];
+
+// Put in
+_unit addAction [
+    "<t color='#DEB887'> Put injured in vehicle </t>",
+    {
+        params ["", "_caller", "", "_args"];
+        {
+            detach _x;
+        } foreach ((attachedObjects _caller) select {isNull _x});
+
+        private _dragged = ((attachedObjects _caller) select {_x isKindOf "CAManBase"});
+        if (_dragged isEqualTo []) then {
+            _caller setVariable ["derp_revive_isDragging", false ,true];
+            _caller setVariable ["derp_revive_isCarrying", false ,true];
+        } else {
+            [_caller, _dragged select 0, "VEHICLE", cursorObject] call derp_revive_fnc_dropPerson;
+        };
+
+    },
+    [],
+    10,
+    true,
+    true,
+    "",
+    "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {cursorObject emptyPositions 'cargo' > 0}"
+];
+
+// Pull out
+_unit addAction [
+    "<t color='#DEB887'> Pull injured from vehicle </t>",
+    {
+        params ["", "_caller", "", "_args"];
+
+        private _injured = ((crew cursorObject) select {(_x getVariable ['derp_revive_downed', false])}) select 0;
+        moveOut _injured;
+        _caller setVariable ["derp_revive_isCarrying", true ,true];
+        _injured setVariable ["derp_revive_isCarried", true ,true];
+        [_caller, _injured] call derp_revive_fnc_startCarrying;
+
+    },
+    [],
+    10,
+    true,
+    true,
+    "",
+    "(!(_this getVariable ['derp_revive_isCarrying', true]) || {!(_this getVariable ['derp_revive_isDragging', true])}) && {!(cursorObject isKindof 'CAManBase')} && {{(_x getVariable ['derp_revive_downed', false])} count (crew cursorObject) > 0}"
 ];

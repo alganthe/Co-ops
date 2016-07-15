@@ -68,6 +68,7 @@ class derp_revive {
         class uiElements {};
         class animChanged {};
         class drawDowned {};
+        class handleDamage {};
     };
 };
 

@@ -10,10 +10,10 @@
 * Return Value:
 * Nothing
 */
-params ["_dragger", "_dragged", "_state"];
+params ["_dragger", "_dragged", "_state", ["_vehicle", objNull]];
 
 _state = toUpper _state;
-if !(_state in ["DRAGGING", "CARRYING"]) exitWith {};
+if !(_state in ["DRAGGING", "CARRYING", "VEHICLE"]) exitWith {};
 
 switch (_state) do {
     case "DRAGGING": {
@@ -43,6 +43,18 @@ switch (_state) do {
             [_dragger, "AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
         };
 
+        _dragger setVariable ["derp_revive_isCarrying", false, true];
+        _dragged setVariable ["derp_revive_isCarried", false, true];
+    };
+
+    case "VEHICLE": {
+        detach _dragged;
+
+        [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
+
+        _dragged moveInCargo _vehicle;
+        _dragger setVariable ["derp_revive_isDragging", false, true];
+        _dragged setVariable ["derp_revive_isDragged", false, true];
         _dragger setVariable ["derp_revive_isCarrying", false, true];
         _dragged setVariable ["derp_revive_isCarried", false, true];
     };

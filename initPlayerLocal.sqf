@@ -50,8 +50,10 @@ if !(isServer or hasInterface) then {
                 call derp_revive_fnc_drawDowned;
             };
         } else {
-                call derp_revive_fnc_drawDowned;
+            call derp_revive_fnc_drawDowned;
         };
+        call derp_revive_fnc_handleDamage;
+        if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
     };
 
     //---------------- EHs and addactions
@@ -75,8 +77,6 @@ if !(isServer or hasInterface) then {
             deleteVehicle _projectile;
             ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];
-
-    if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
 
     if ("ArsenalFilter" call BIS_fnc_getParamValue == 1) then {
         player addEventHandler ["Take", {

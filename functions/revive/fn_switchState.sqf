@@ -29,9 +29,8 @@ switch (_state) do {
         [{
             params ["_unit"];
 
-            _unit setUnconscious true;
-
-            _unit setUnitLoadout (_unit getVariable "derp_revive_loadout");
+            _unit setVariable ["derp_revive_downed", true];
+            _unit setVariable ["derp_revive_loadout", getUnitLoadout _unit];
 
             [_unit] call derp_revive_fnc_reviveTimer;
             call derp_revive_fnc_hotkeyHandler;
@@ -42,12 +41,17 @@ switch (_state) do {
             _unit switchCamera "external";
             titleCut ["","BLACK IN",1];
 
+
+            derp_revive_actionID = (_unit addAction ["", {}, "", 0, false, true, "DefaultAction"]);
+            derp_revive_actionID2 = (_unit addAction ["", {}, "", 0, false, true, "Throw"]);
+
+            _unit allowDamage true;
+
         }, [_unit], 2] call derp_fnc_waitAndExecute;
     };
 
     case "ALIVE": {
         _unit setVariable ["derp_revive_downed", false, true];
-        _unit setUnconscious false;
 
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
@@ -70,10 +74,12 @@ switch (_state) do {
 
     case "REVIVED": {
         _unit setVariable ["derp_revive_downed", false, true];
-        _unit setUnconscious false;
 
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
+
+        _unit removeAction derp_revive_actionID;
+        _unit removeAction derp_revive_actionID2;
 
         // Remove revive EHs
        if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
@@ -85,7 +91,6 @@ switch (_state) do {
 
       showHUD [true, true, true, true, false, true, true, true];
 
-       _unit setDamage 0.4;
        _unit setCaptive false;
        remoteExec ["", (str _unit + "animChangedJIPID")];
        [_unit, false] remoteExecCall ["derp_revive_fnc_animChanged", -2];
