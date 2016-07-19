@@ -50,12 +50,13 @@ switch (_state) do {
     case "VEHICLE": {
         detach _dragged;
 
-        [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
-
-        _dragged moveInCargo _vehicle;
         _dragger setVariable ["derp_revive_isDragging", false, true];
         _dragged setVariable ["derp_revive_isDragged", false, true];
         _dragger setVariable ["derp_revive_isCarrying", false, true];
         _dragged setVariable ["derp_revive_isCarried", false, true];
+
+        [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
+
+        _dragged moveInCargo _vehicle;
     };
 };

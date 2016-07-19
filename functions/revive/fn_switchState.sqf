@@ -29,17 +29,23 @@ switch (_state) do {
         [{
             params ["_unit"];
 
-            _unit setVariable ["derp_revive_downed", true];
+            _unit setVariable ["derp_revive_downed", true, true];
             _unit setVariable ["derp_revive_loadout", getUnitLoadout _unit];
 
             [_unit] call derp_revive_fnc_reviveTimer;
             call derp_revive_fnc_hotkeyHandler;
             call derp_revive_fnc_uiElements;
 
+            if (isNull objectParent _unit) then {
+                _unit setUnconscious false;
+                [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+            } else {
+                _unit playAction "Die";
+            };
             [_unit, true] call derp_revive_fnc_animChanged;
             //fade in
             _unit switchCamera "external";
-            titleCut ["","BLACK IN",1];
+            cutText ["","BLACK IN",1];
 
 
             derp_revive_actionID = (_unit addAction ["", {}, "", 0, false, true, "DefaultAction"]);
