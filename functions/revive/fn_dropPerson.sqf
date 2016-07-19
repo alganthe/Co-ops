@@ -25,7 +25,7 @@ switch (_state) do {
         };
 
         if (alive _dragger && {isNull objectParent _dragger}) then {
-            _dragger playActionNow "released";
+            _dragger playAction "released";
         };
 
         _dragger setVariable ["derp_revive_isDragging", false, true];
@@ -57,6 +57,7 @@ switch (_state) do {
 
         [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
 
-        _dragged moveInCargo _vehicle;
+        [_dragged, _vehicle] remoteExec ["moveInCargo", _dragged];
+        [_dragged, "Die"] remoteExec ["playAction", _dragged];
     };
 };

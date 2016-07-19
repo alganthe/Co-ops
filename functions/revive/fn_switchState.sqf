@@ -98,8 +98,6 @@ switch (_state) do {
       showHUD [true, true, true, true, false, true, true, true];
 
        _unit setCaptive false;
-       remoteExec ["", (str _unit + "animChangedJIPID")];
-       [_unit, false] remoteExecCall ["derp_revive_fnc_animChanged", -2];
 
        [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
     };

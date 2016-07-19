@@ -12,7 +12,7 @@
 params ["_dragger", "_dragged"];
 
 [_dragger, "AcinPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
-[_dragged, "AinjPfalMstpSnonWnonDf_carried_dead"] call derp_fnc_syncAnim;
+[_dragged, "AinjPfalMstpSnonWrflDnon_carried_still"] call derp_fnc_syncAnim;
 
  _dragged attachTo [_dragger, [0, 0, -1.2], "LeftShoulder"];
 

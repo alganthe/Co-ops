@@ -31,7 +31,7 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
     "true", // Condition for action to progress
     {
         params ["", "_caller"];
-        _caller playAction "MedicOther";
+        _caller playAction "medicStart";
     }, // Code executed on start
     {
         (cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent (_this select 1)} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!((_this select 1) getVariable ['derp_revive_isDragging', false])} && {!((_this select 1) getVariable ['derp_revive_isCarrying', false])}
@@ -47,10 +47,13 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
             };
 
             [cursorObject, "REVIVED"] remoteExecCall ["derp_revive_fnc_switchState", cursorObject];
+            _caller playAction "medicStop";
         };
     }, // Code executed on completion
     {
         params ["", "_caller"];
+
+        _caller playAction "medicStop";
 
         if (getMissionConfigValue ["derp_revive_removeFAKOnUse", 1] == 1 && {getMissionConfigValue ["derp_revive_reviveItem", 0] == 0}) then {
             if ('FirstAidKit' in items _caller) then {
@@ -163,12 +166,12 @@ _unit addAction [
             detach _x;
         } foreach ((attachedObjects _caller) select {isNull _x});
 
-        private _dragged = ((attachedObjects _caller) select {_x isKindOf "CAManBase"});
+        private _dragged = ((attachedObjects _caller) select {_x isKindOf "CAManBase"}) select 0;
         if (_dragged isEqualTo []) then {
             _caller setVariable ["derp_revive_isDragging", false ,true];
             _caller setVariable ["derp_revive_isCarrying", false ,true];
         } else {
-            [_caller, _dragged select 0, "VEHICLE", cursorObject] call derp_revive_fnc_dropPerson;
+            [_caller, _dragged, "VEHICLE", cursorObject] call derp_revive_fnc_dropPerson;
         };
 
     },
@@ -177,7 +180,8 @@ _unit addAction [
     true,
     true,
     "",
-    "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {cursorObject emptyPositions 'cargo' > 0}"
+    "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {(cursorObject emptyPositions 'cargo' > 0) || {cursorObject emptyPositions 'gunner' > 0} }",
+    3
 ];
 
 // Pull out
@@ -198,5 +202,6 @@ _unit addAction [
     true,
     true,
     "",
-    "(!(_this getVariable ['derp_revive_isCarrying', true]) || {!(_this getVariable ['derp_revive_isDragging', true])}) && {!(cursorObject isKindof 'CAManBase')} && {{(_x getVariable ['derp_revive_downed', false])} count (crew cursorObject) > 0}"
+    "(!(_this getVariable ['derp_revive_isCarrying', true]) || {!(_this getVariable ['derp_revive_isDragging', true])}) && {!(cursorObject isKindof 'CAManBase')} && {{(_x getVariable ['derp_revive_downed', false])} count (crew cursorObject) > 0}",
+    3
 ];
