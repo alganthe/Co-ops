@@ -192,16 +192,12 @@ _unit addAction [
 
         private _injured = ((crew cursorObject) select {(_x getVariable ['derp_revive_downed', false])}) select 0;
         moveOut _injured;
-        _caller setVariable ["derp_revive_isCarrying", true ,true];
-        _injured setVariable ["derp_revive_isCarried", true ,true];
-        [_caller, _injured] call derp_revive_fnc_startCarrying;
-
     },
     [],
     10,
     true,
     true,
     "",
-    "(!(_this getVariable ['derp_revive_isCarrying', true]) || {!(_this getVariable ['derp_revive_isDragging', true])}) && {!(cursorObject isKindof 'CAManBase')} && {{(_x getVariable ['derp_revive_downed', false])} count (crew cursorObject) > 0}",
+    "(!(_this getVariable ['derp_revive_isCarrying', false]) || {!(_this getVariable ['derp_revive_isDragging', false])}) && {!(cursorObject isKindof 'CAManBase')} && {{(_x getVariable ['derp_revive_downed', false])} count (crew cursorObject) > 0}",
     3
 ];
