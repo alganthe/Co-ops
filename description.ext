@@ -131,6 +131,13 @@ class Params {
         default = 1000;
     };
 
+    class AOFinishEnemyPercentage {
+        title = "Percentage of enemies left to complete the AO";
+        values[] = {0.50, 0.40, 0.30, 0.20, 0.15, 0.10, 0.05};
+        texts[] = {"50%", "40%", "30%", "20%", "15%", "10%", "5%"};
+        default = 0.10;
+    };
+
     class MissionAmount {
         title = "Amount of AOs before mission ends";
         values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -271,33 +278,3 @@ class CfgTaskEnhancements {
     share        = 0;            //0: do not count assigned players (default), 1: count how many players have the task assigned
     propagate    = 0;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
 };
-/*
-class CfgRemoteExec {
-    class Functions {
-        // State of remoteExec: 0-turned off, 1-turned on, taking whitelist into account, 2-turned on, however, ignoring whitelists (default because of backward compatibility)
-        mode = 1;
-        // Ability to send jip messages: 0-disabled, 1-enabled (default)
-        jip = 0;
-        // BIS stuff
-        class bis_fnc_curatorrespawn { jip = 1; };
-        class bis_fnc_reviveinit { jip = 1; };
-        class BIS_fnc_effectKilledAirDestruction { jip = 1; };
-        class BIS_fnc_effectKilledSecondaries { jip = 1; };
-        class BIS_fnc_objectVar { jip = 1; };
-
-        // Co-ops functions
-        class derp_fnc_hintC { allowedTargets=1; };
-        class derp_fnc_syncAnim { allowedTargets=1; };
-        class derp_fnc_remoteAddCuratorEditableObjects { allowedTargets = 2; };
-        class derp_fnc_revive_reviveActions { allowedTargets = 1; jip = 1; };
-        class derp_revive_fnc_switchState { allowedTargets = 1; };
-        class derp_revive_fnc_animChanged { allowedTargets = 1; jip = 1; }
-    };
-    class Commands {
-        mode = 1;
-        class switchMove { allowedTargets = 0; };
-        class sideChat { allowedTargets = 0; };
-        class setDir { allowedTargets = 0; };
-    };
-};
-*/

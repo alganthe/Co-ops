@@ -2,6 +2,7 @@ enableSaving [false, false];
 
 //---------------------------------- Mission vars (for all clients)
 derp_PARAM_AOSize = "AOSize" call BIS_fnc_getParamValue;
+derp_PARAM_AOFinishEnemyPercentage = "AOFinishEnemyPercentage" call BIS_fnc_getParamValue;
 derp_PARAM_AntiAirAmount = "AntiAirAmount" call BIS_fnc_getParamValue;
 derp_PARAM_MRAPAmount = "MRAPAmount" call BIS_fnc_getParamValue;
 derp_PARAM_InfantryGroupsAmount = "InfantryGroupsAmount" call BIS_fnc_getParamValue;
