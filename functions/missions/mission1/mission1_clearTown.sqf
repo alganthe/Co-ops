@@ -52,8 +52,6 @@ if (derp_HCAOsConnected) then {
 
 private _mainAOUnitCount = count _mainAOUnits;
 
-systemChat str _mainAOUnitCount;
-
 //------------------- AO boundaries + task
 _marker = createMarker ["mission1_mrk", _pos];
 "mission1_mrk" setMarkerShape "ICON";
