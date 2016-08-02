@@ -27,7 +27,7 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
     "<t color='#ff0000'> Revive </t>", // Title
     "", // Idle icon
     "", // Progress icon
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])}", // Condition for action to be shown
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {vehicle cursorObject == cursorObject} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])}", // Condition for action to be shown
     "true", // Condition for action to progress
     {
         params ["", "_caller"];
@@ -84,7 +84,7 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {vehicle _this == _this} && {vehicle cursorObject == cursorObject} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
     5,
     false
 ];
@@ -103,7 +103,7 @@ _unit addAction [
     true,
     true,
     "",
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {vehicle cursorObject == cursorObject} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])} && {!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])}",
     5,
     false
 ];

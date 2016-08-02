@@ -24,9 +24,6 @@ if (alive _unit) then {
         if (_damage < 0.1) then {
             _damageReturned = (_unit getHit _selection) min MAX_SAFE_DAMAGE;
         } else {
-
-            systemChat format ["damage: %1, selection: %2",_damage, _selection];
-
             if (_damage >= 1.5 && {alive _unit}) then {
                 _damageReturned = 1;
                 forceRespawn player;
@@ -34,31 +31,33 @@ if (alive _unit) then {
             } else {
                 if (_damage >= 1 && {!(_unit getVariable ["derp_revive_downed", false])}) then {
                     _damageReturned = 0.95;
-                    systemChat "ded detected";
 
-                    if (isNull objectParent _unit) then {
+                    if (vehicle _unit == _unit && {(getPosASL _unit) select 2 > 0}) then {
                         _unit setUnconscious true;
                         [player, "DOWNED"] call derp_revive_fnc_switchState;
-                        systemChat "ded, downed";
                         cutText ["","BLACK", 1];
                         _unit allowDamage false;
                     } else {
-                        private _seat = ((fullCrew vehicle _unit) select {_x select 0 == _unit}) select 0;
 
-                        if ( (_seat select 1 == "driver" && {getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "ejectDeadDriver") == 1}) || {(_seat select 1 in ["cargo", "turret", "gunner"]) && {getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "ejectDeadCargo") == 1}}) then {
-                            systemChat "ded force respawn";
+                        if (vehicle _unit == _unit && {(getPosASL _unit) select 2 < 0}) then {
                             _damageReturned = 1;
                             forceRespawn player;
                             [_source] call bis_fnc_reviveAwardKill;
-
                         } else {
-                            [player, "DOWNED"] call derp_revive_fnc_switchState;
-                            systemChat "ded, vehicle downed";
-                            cutText ["","BLACK", 1];
-                            _unit allowDamage false;
+                            private _seat = ((fullCrew vehicle _unit) select {_x select 0 == _unit}) select 0;
+
+                            if ( (_seat select 1 == "driver" && {getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "ejectDeadDriver") == 1}) || {(_seat select 1 in ["cargo", "turret", "gunner"]) && {getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "ejectDeadCargo") == 1}} || {(getPosASL _unit) select 2 < 0}) then {
+                                _damageReturned = 1;
+                                forceRespawn player;
+                                [_source] call bis_fnc_reviveAwardKill;
+
+                            } else {
+                                [player, "DOWNED"] call derp_revive_fnc_switchState;
+                                cutText ["","BLACK", 1];
+                                _unit allowDamage false;
+                            };
                         };
                     };
-
                 } else {
                     _damageReturned = MAX_SAFE_DAMAGE min _damage;
                 };

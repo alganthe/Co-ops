@@ -18,6 +18,9 @@ if !(_state in ["DRAGGING", "CARRYING", "VEHICLE"]) exitWith {};
 switch (_state) do {
     case "DRAGGING": {
 
+        _dragger setVariable ["derp_revive_isDragging", false, true];
+        _dragged setVariable ["derp_revive_isDragged", false, true];
+
         detach _dragged;
 
         if (alive _dragged && {isNull objectParent _dragged}) then {
@@ -27,12 +30,13 @@ switch (_state) do {
         if (alive _dragger && {isNull objectParent _dragger}) then {
             _dragger playAction "released";
         };
-
-        _dragger setVariable ["derp_revive_isDragging", false, true];
-        _dragged setVariable ["derp_revive_isDragged", false, true];
     };
 
     case "CARRYING": {
+
+        _dragger setVariable ["derp_revive_isCarrying", false, true];
+        _dragged setVariable ["derp_revive_isCarried", false, true];
+
         detach _dragged;
 
         if (alive _dragged && {isNull objectParent _dragged}) then {
@@ -42,9 +46,6 @@ switch (_state) do {
         if (alive _dragger && {isNull objectParent _dragger}) then {
             [_dragger, "AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
         };
-
-        _dragger setVariable ["derp_revive_isCarrying", false, true];
-        _dragged setVariable ["derp_revive_isCarried", false, true];
     };
 
     case "VEHICLE": {
@@ -58,6 +59,6 @@ switch (_state) do {
         [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
 
         [_dragged, _vehicle] remoteExec ["moveInCargo", _dragged];
-        [_dragged, "Die"] remoteExec ["playAction", _dragged];
+        
     };
 };

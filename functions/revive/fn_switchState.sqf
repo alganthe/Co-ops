@@ -40,7 +40,7 @@ switch (_state) do {
                 _unit setUnconscious false;
                 [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
             } else {
-                _unit playAction "Die";
+                [_unit, "Die"] remoteExec ["playAction", 0];
             };
             [_unit, true] call derp_revive_fnc_animChanged;
             //fade in
@@ -65,10 +65,12 @@ switch (_state) do {
         _unit setVariable ["derp_revive_downed", false, true];
 
          // Remove revive EHs and effects
-        if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
-        if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]};
-        if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
-        if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
+         if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]; derp_reviveKeyDownID = nil};
+         if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]; derp_reviveKeyUpID = nil};
+         if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]; derp_revive_animChangedID = nil};
+         if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]; derp_revive_drawIcon3DID = nil};
+         if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID; derp_revive_actionID = nil};
+         if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2; derp_revive_actionID2 = nil};
 
         if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
@@ -81,17 +83,19 @@ switch (_state) do {
     case "REVIVED": {
         _unit setVariable ["derp_revive_downed", false, true];
 
-        // Enable player's action menu
-        if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
-
         _unit removeAction derp_revive_actionID;
         _unit removeAction derp_revive_actionID2;
 
+        // Enable player's action menu
+        if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
+
         // Remove revive EHs
-       if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
-       if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]};
-       if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
-       if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
+       if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]; derp_reviveKeyDownID = nil};
+       if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]; derp_reviveKeyUpID = nil};
+       if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]; derp_revive_animChangedID = nil};
+       if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]; derp_revive_drawIcon3DID = nil};
+       if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID; derp_revive_actionID = nil};
+       if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2; derp_revive_actionID2 = nil};
 
       if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
 
