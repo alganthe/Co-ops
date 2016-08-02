@@ -27,7 +27,7 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
     "<t color='#ff0000'> Revive </t>", // Title
     "", // Idle icon
     "", // Progress icon
-    "(cursorObject getVariable ['derp_revive_downed', false]) && {isNull objectParent _this} && {vehicle cursorObject == cursorObject} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])}", // Condition for action to be shown
+    "(cursorObject getVariable ['derp_revive_downed', false]) && {vehicle _this == _this} && {vehicle cursorObject == cursorObject} &&" + _whoCanRevive + _itemUsed + "{!(cursorObject getVariable ['derp_revive_isDragged', false])} && {!(cursorObject getVariable ['derp_revive_isCarried', false])} && {!(_this getVariable ['derp_revive_isDragging', false])} && {!(_this getVariable ['derp_revive_isCarrying', false])}", // Condition for action to be shown
     "true", // Condition for action to progress
     {
         params ["", "_caller"];
@@ -180,7 +180,7 @@ _unit addAction [
     true,
     true,
     "",
-    "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {(cursorObject emptyPositions 'cargo' > 0) || {cursorObject emptyPositions 'gunner' > 0} }",
+        "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {!isNil (((attachedObjects _this) select {_x isKindOf 'CAManBase'}) select 0)} && {(cursorObject emptyPositions 'cargo' > 0) || {cursorObject emptyPositions 'gunner' > 0} }",
     3
 ];
 

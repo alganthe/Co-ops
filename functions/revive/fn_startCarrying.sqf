@@ -24,7 +24,7 @@ params ["_dragger", "_dragged"];
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
-    if (!alive _dragged || {!alive _dragger} || {_dragger getVariable ["derp_revive_downed", false]} || {!(isNull objectParent _dragger)} || {_dragger distance _dragged > 10}) then {
+    if (!alive _dragged || {!alive _dragger} || {_dragger getVariable ["derp_revive_downed", false]} || {vehicle _dragger != _dragger} || {_dragger distance _dragged > 10}) then {
         if ((_dragger distance _dragged > 10) && {(derp_missionTime - _startTime) < 1}) exitWith {};
         [_dragger, _dragged, "CARRYING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;

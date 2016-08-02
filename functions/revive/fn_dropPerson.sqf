@@ -59,6 +59,7 @@ switch (_state) do {
         [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
 
         [_dragged, _vehicle] remoteExec ["moveInCargo", _dragged];
-        
+        [{vehicle _this select 0 != _this select 0}, {[_this select 0, "Die"] remoteExec ["playAction", 0]}, [_dragged]] call derp_fnc_waitUntilAndExecute;
+
     };
 };
