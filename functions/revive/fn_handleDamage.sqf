@@ -26,6 +26,7 @@ if (alive _unit) then {
         } else {
             if (_damage >= 1.5 && {alive _unit}) then {
                 _damageReturned = 1;
+                _unit setVariable ["derp_revive_loadout", getUnitLoadout _unit];
                 forceRespawn player;
                 [_source] call bis_fnc_reviveAwardKill;
             } else {
@@ -41,6 +42,7 @@ if (alive _unit) then {
 
                         if (vehicle _unit == _unit && {(getPosASL _unit) select 2 < 0}) then {
                             _damageReturned = 1;
+                            _unit setVariable ["derp_revive_loadout", getUnitLoadout _unit];
                             forceRespawn player;
                             [_source] call bis_fnc_reviveAwardKill;
                         } else {
@@ -48,6 +50,7 @@ if (alive _unit) then {
 
                             if ( (_seat select 1 == "driver" && {getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "ejectDeadDriver") == 1}) || {(_seat select 1 in ["cargo", "turret", "gunner"]) && {getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "ejectDeadCargo") == 1}} || {(getPosASL _unit) select 2 < 0}) then {
                                 _damageReturned = 1;
+                                _unit setVariable ["derp_revive_loadout", getUnitLoadout _unit];
                                 forceRespawn player;
                                 [_source] call bis_fnc_reviveAwardKill;
 
