@@ -60,11 +60,10 @@ switch (_state) do {
 
         [_dragged, _vehicle] remoteExec ["moveInCargo", _dragged];
         [{
-            (vehicle _this select 0 != _this select 0)
+            (vehicle (_this select 0) != _this select 0)
         },
         {
             [_this select 0, "Die"] remoteExec ["playAction", 0];
-            [format ["die playAction called with %1 as target", _this select 0]] remoteExec ["hint", 0];
         }, [_dragged]] call derp_fnc_waitUntilAndExecute;
 
     };
