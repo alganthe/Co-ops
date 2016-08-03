@@ -180,7 +180,7 @@ _unit addAction [
     true,
     true,
     "",
-    "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {!(((attachedObjects _this) select {_x isKindOf 'CAManBase'}) isEqualTo [])} && {(cursorObject emptyPositions 'cargo' > 0) || {cursorObject emptyPositions 'gunner' > 0} }",
+    "((_this getVariable ['derp_revive_isCarrying', false]) || {_this getVariable ['derp_revive_isDragging', false]}) && {!(((attachedObjects _this) select {_x isKindOf 'CAManBase'}) isEqualTo [])} && {(cursorObject emptyPositions 'cargo' > 0)} ",
     3
 ];
 
