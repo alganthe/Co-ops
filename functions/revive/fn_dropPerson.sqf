@@ -23,11 +23,11 @@ switch (_state) do {
 
         detach _dragged;
 
-        if (alive _dragged && {isNull objectParent _dragged}) then {
+        if (alive _dragged && {vehicle _dragged == _dragged}) then {
             [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
         };
 
-        if (alive _dragger && {isNull objectParent _dragger}) then {
+        if (alive _dragger && {!(_dragger getVariable ["derp_revive_downed", false])} && {vehicle _dragger == _dragger}) then {
             _dragger playAction "released";
         };
     };
@@ -39,11 +39,11 @@ switch (_state) do {
 
         detach _dragged;
 
-        if (alive _dragged && {isNull objectParent _dragged}) then {
+        if (alive _dragged && {vehicle _dragged == _dragged}) then {
             [_dragged, "AinjPfalMstpSnonWrflDf_carried_fallwc"] call derp_fnc_syncAnim;
         };
 
-        if (alive _dragger && {isNull objectParent _dragger}) then {
+        if (alive _dragger && {!(_dragger getVariable ["derp_revive_downed", false])} && {vehicle _dragger == _dragger}) then {
             [_dragger, "AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
         };
     };
@@ -59,7 +59,13 @@ switch (_state) do {
         [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
 
         [_dragged, _vehicle] remoteExec ["moveInCargo", _dragged];
-        [{vehicle _this select 0 != _this select 0}, {[_this select 0, "Die"] remoteExec ["playAction", 0]}, [_dragged]] call derp_fnc_waitUntilAndExecute;
+        [{
+            (vehicle _this select 0 != _this select 0)
+        },
+        {
+            [_this select 0, "Die"] remoteExec ["playAction", 0];
+            [format ["die playAction called with %1 as target", _this select 0]] remoteExec ["hint", 0];
+        }, [_dragged]] call derp_fnc_waitUntilAndExecute;
 
     };
 };

@@ -13,6 +13,7 @@ params ["_dragger", "_dragged"];
 
 [_dragger] allowGetIn false;
 
+// Reverse dir needed because of the downed animation being reversed itself
 [_dragged, ((getDir _dragger) + 180)] remoteExec ["setDir", _dragged];
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMultiply 1.5));
 
@@ -23,23 +24,7 @@ _dragger playActionNow "grabDrag";
     params ["_args", "_idPFH"];
     _args params ["_dragger", "_dragged", "_timeOut"];
 
-    if !(_dragger getVariable ["derp_revive_isDragging", false]) exitWith {
-        _dragger setVariable ["derp_revive_isDragging", false ,true];
-        _dragged setVariable ["derp_revive_isDragged", false ,true];
-        [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
-        [_dragger, ""] call derp_fnc_syncAnim;
-        [_idPFH] call derp_fnc_removePerFrameHandler;
-    };
-
-    if (!alive _dragged || {!alive _dragger}) then {
-        _dragger setVariable ["derp_revive_isDragging", false ,true];
-        _dragged setVariable ["derp_revive_isDragged", false ,true];
-        [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
-        [_dragger, ""] call derp_fnc_syncAnim;
-        [_idPFH] call derp_fnc_removePerFrameHandler;
-    };
-
-    if (derp_missionTime > _timeOut) exitWith {
+    if ((_dragger getVariable ["derp_revive_downed", false]) || {!alive _dragger} || {!alive _dragged} || {derp_missionTime > _timeOut}) exitWith {
         _dragger setVariable ["derp_revive_isDragging", false ,true];
         _dragged setVariable ["derp_revive_isDragged", false ,true];
         [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
