@@ -21,7 +21,7 @@ switch (_state) do {
         // Disable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, "true"]} forEach ["PrevAction", "Action", "NextAction"]};
 
-        // Disable moving and being shot at.
+        // Disable moving and being shot at
         _unit disableAI "MOVE";
         _unit setCaptive true;
 
@@ -36,12 +36,13 @@ switch (_state) do {
             call derp_revive_fnc_hotkeyHandler;
             call derp_revive_fnc_uiElements;
 
-            if (isNull objectParent _unit) then {
+            if (vehicle _unit == _unit) then {
                 _unit setUnconscious false;
                 [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
             } else {
                 [_unit, "Die"] remoteExec ["playAction", 0];
             };
+
             [_unit, true] call derp_revive_fnc_animChanged;
             //fade in
             _unit switchCamera "external";
@@ -64,15 +65,17 @@ switch (_state) do {
 
         _unit setVariable ["derp_revive_downed", false, true];
 
-         // Remove revive EHs and effects
-         if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]; derp_reviveKeyDownID = nil};
-         if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]; derp_reviveKeyUpID = nil};
-         if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]; derp_revive_animChangedID = nil};
-         if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]; derp_revive_drawIcon3DID = nil};
-         if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID; derp_revive_actionID = nil};
-         if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2; derp_revive_actionID2 = nil};
+        // Remove revive EHs and effects
+        if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
+        if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]};
+        if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
+        if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
+        if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID};
+        if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2};
 
-        if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
+        if !(isNil "derp_revive_ppColor") then {
+            {_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur];
+        };
 
         showHUD [true, true, true, true, false, true, true, true];
 
@@ -90,19 +93,21 @@ switch (_state) do {
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
 
         // Remove revive EHs
-       if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]; derp_reviveKeyDownID = nil};
-       if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]; derp_reviveKeyUpID = nil};
-       if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]; derp_revive_animChangedID = nil};
-       if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]; derp_revive_drawIcon3DID = nil};
-       if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID; derp_revive_actionID = nil};
-       if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2; derp_revive_actionID2 = nil};
+        if !(isNil "derp_reviveKeyDownID") then {(findDisplay 46) displayRemoveEventHandler ["KeyDown", derp_reviveKeyDownID]};
+        if !(isNil "derp_reviveKeyUpID") then {(findDisplay 46) displayRemoveEventHandler ["KeyUp", derp_reviveKeyUpID]};
+        if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
+        if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
+        if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID};
+        if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2};
 
-      if !(isNil "derp_revive_ppColor") then {{_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur]};
+        if !(isNil "derp_revive_ppColor") then {
+            {_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur];
+        };
 
-      showHUD [true, true, true, true, false, true, true, true];
+        showHUD [true, true, true, true, false, true, true, true];
 
-       _unit setCaptive false;
+        _unit setCaptive false;
 
-       [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
+        [_unit, "amovppnemstpsnonwnondnon"] call derp_fnc_syncAnim;
     };
 };

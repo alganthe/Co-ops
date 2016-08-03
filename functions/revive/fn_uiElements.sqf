@@ -47,7 +47,7 @@ derp_revive_ppBlur ppEffectAdjust [0];
     _args params ["_timer"];
 
     //grab blood level
-    if (player getVariable ["derp_revive_downed", false]) then {
+    if (player getVariable ["derp_revive_downed", false] && {alive player}) then {
         private _blood = (_timer - derp_revive_bleedOutTimer) / _timer;
 
         //calculate desaturation
