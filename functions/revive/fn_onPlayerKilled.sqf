@@ -1,16 +1,6 @@
 params ["_unit", "_killer", "_respawn", "_respawnDelay"];
 
-// Exit if player respawned using pause menu or bled out
-private _time = missionNamespace getVariable ["RscDisplayMPInterrupt_respawnTime", -1];
-if (time - _time < 1 || {_unit getVariable ["derp_revive_downed", false]}) exitWith {
-
-    _unit setVariable ["derp_revive_downed", false, true];
-    player call derp_revive_fnc_executeTemplates;
-};
-
-// Exit if player is respawned via respanwOnStart or if he was in a vehicle or underwater
-if (_unit == objNull || {(getPosASL _unit) select 2 < 0}) exitWith {
-
-    _unit setVariable ["derp_revive_downed", false, true];
-    player call derp_revive_fnc_executeTemplates;
-};
+// Remove the interactions from the corpse (revive, drag etc) to avoid duplicates
+removeAllActions _unit;
+// Set it as not downed to avoid the above interactions to be available
+_unit setVariable ["derp_revive_downed", false];
