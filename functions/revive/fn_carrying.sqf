@@ -28,7 +28,7 @@ private _timer = derp_missionTime + 15;
     params ["_args", "_idPFH"];
     _args params ["_dragger", "_dragged", "_timeOut"];
 
-    if ((_dragger getVariable ["derp_revive_downed", false]) || {!alive _dragger} || {!alive _dragged} || {_dragger distance _dragged > 10}) exitWith {
+    if ((_dragger getVariable ["derp_revive_downed", false]) || {!alive _dragger} || {!alive _dragged} || {_dragger distance _dragged > 10} || {!(_dragger getVariable ["derp_revive_isCarrying", false])} || {!(_dragged setVariable ["derp_revive_isCarried", false])}) exitWith {
         _dragger setVariable ["derp_revive_isCarrying", false, true];
         _dragged setVariable ["derp_revive_isCarried", false, true];
         [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;

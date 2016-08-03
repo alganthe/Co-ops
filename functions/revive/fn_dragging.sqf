@@ -24,7 +24,7 @@ _dragger playActionNow "grabDrag";
     params ["_args", "_idPFH"];
     _args params ["_dragger", "_dragged", "_timeOut"];
 
-    if ((_dragger getVariable ["derp_revive_downed", false]) || {!alive _dragger} || {!alive _dragged} || {derp_missionTime > _timeOut}) exitWith {
+    if ((_dragger getVariable ["derp_revive_downed", false]) || {!alive _dragger} || {!alive _dragged} || {derp_missionTime > _timeOut} || {!(_dragger getVariable ["derp_revive_isDragging", false])} || {!(_dragged setVariable ["derp_revive_isDragged", false])}) exitWith {
         _dragger setVariable ["derp_revive_isDragging", false ,true];
         _dragged setVariable ["derp_revive_isDragged", false ,true];
         [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
