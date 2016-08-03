@@ -13,11 +13,6 @@ class derp {
         class directCall {};
     };
 
-    class ACE3 {
-        file = "functions\portedFuncs\ace3";
-        class progressBar {};
-    };
-
     class misc {
         file = "functions\misc";
         class VA_filter {};
