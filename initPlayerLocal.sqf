@@ -123,4 +123,5 @@ if !(isServer or hasInterface) then {
     } foreach ArsenalBoxes;
 };
 
-[ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter; // Init arsenal boxes.
+// Init arsenal boxes, waitAndExec needed for players present at mission start to wait for the server remoteExec
+[{[_this select 0, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter}, [ArsenalBoxes], 3] call derp_fnc_waitAndExecute;
