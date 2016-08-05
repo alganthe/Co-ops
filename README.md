@@ -3,6 +3,11 @@
 </p>
 
 <p align="center">
+
+    <a>
+        <img src="https://travis-ci.org/alganthe/Co-ops.svg?branch=master_tanoa">
+    </a>
+
     <a href="https://github.com/alganthe/Co-ops-an-arma3-vanilla-mission/releases">
         <img src="https://img.shields.io/github/release/alganthe/Co-ops.svg">
     </a>
@@ -14,6 +19,10 @@
     <a href="https://github.com/alganthe/Co-ops/wiki">
         <img src="https://img.shields.io/badge/documentation-click%20here-red.svg">
     </a>
+
+    <a href="https://github.com/alganthe/Co-ops/blob/master_tanoa/LICENSE">
+        <img src="https://img.shields.io/badge/License-GPLv2-lightgrey.svg">
+    </a>
 </p>
 
 Co-ops is a vanilla mission based on PFHs being ported to vanilla.
@@ -24,6 +33,11 @@ Features:
    - Easy to install
    - Highly customizable
    - Automatic AO generation using towns, cities and villages already present on the map
-   - 5 different types of side missions
+   - 6 different types of side missions
    - Easy to port to other maps
    - Made with performance in mind
+
+Credits:
+   - @glowbal and the [ACE3 project](https://github.com/acemod/ACE3) for the wonderful sqf validator. (not present in releases)
+   - The [CBA team](https://github.com/CBATeam/CBA_A3) for the glorious PFHs.
+   - Quicksilver for the player tracker.
