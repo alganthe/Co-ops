@@ -39,6 +39,9 @@ switch (_state) do {
             if (vehicle _unit == _unit) then {
                 _unit setUnconscious false;
                 [_unit, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+
+                [_unit] call derp_revive_fnc_adjustForTerrain;
+
             } else {
                 [_unit, "Die"] remoteExec ["playAction", 0];
             };

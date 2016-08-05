@@ -66,6 +66,7 @@ class derp_revive {
         class handleDamage {};
         class ace3Check {};
         class diaryEntries {};
+        class adjustForTerrain {};
     };
 };
 

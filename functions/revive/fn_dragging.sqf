@@ -28,6 +28,7 @@ _dragger playActionNow "grabDrag";
         _dragger setVariable ["derp_revive_isDragging", false ,true];
         _dragged setVariable ["derp_revive_isDragged", false ,true];
         [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+        [_dragged] call derp_revive_fnc_adjustForTerrain;
         [_dragger, ""] call derp_fnc_syncAnim;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
