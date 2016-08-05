@@ -47,6 +47,13 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
             };
 
             [cursorObject, "REVIVED"] remoteExecCall ["derp_revive_fnc_switchState", cursorObject];
+
+            if (group cursorObject isEqualTo group _caller) then {
+                [_caller, 2] remoteExec ["addScore", 2];
+            } else {
+                [_caller, 1] remoteExec ["addScore", 2];
+            };
+
             _caller playAction "medicStop";
         };
     }, // Code executed on completion
@@ -54,14 +61,6 @@ if (getMissionConfigValue ["derp_revive_reviveItem", 0] == 1) then {
         params ["", "_caller"];
 
         _caller playAction "medicStop";
-
-        if (getMissionConfigValue ["derp_revive_removeFAKOnUse", 1] == 1 && {getMissionConfigValue ["derp_revive_reviveItem", 0] == 0}) then {
-            if ('FirstAidKit' in items _caller) then {
-                _caller removeItem "FirstAidKit";
-            } else {
-                cursorObject removeItem "FirstAidKit";
-            };
-        };
     }, // Code executed on fail
     [], // Arguments
     6, // Action duration
