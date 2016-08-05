@@ -53,6 +53,7 @@ if !(isServer or hasInterface) then {
             call derp_revive_fnc_drawDowned;
         };
         call derp_revive_fnc_handleDamage;
+        call derp_revive_fnc_diaryEntries;
         if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
     };
 

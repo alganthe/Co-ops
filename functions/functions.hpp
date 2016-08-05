@@ -65,6 +65,7 @@ class derp_revive {
         class drawDowned {};
         class handleDamage {};
         class ace3Check {};
+        class diaryEntries {};
     };
 };
 
