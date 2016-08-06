@@ -42,7 +42,13 @@ switch (_state) do {
 
         if (alive _dragged && {vehicle _dragged == _dragged}) then {
             [_dragged, "AinjPfalMstpSnonWrflDf_carried_fallwc"] call derp_revive_fnc_syncAnim;
-            [_dragged] call derp_revive_fnc_adjustForTerrain;
+            [{
+                (animationState (_this select 0) == "acts_injuredlyingrifle02_180")
+            },
+            {
+                params ["_dragged"];
+                [_dragged] call derp_revive_fnc_adjustForTerrain;
+            }, [_dragged]] call derp_fnc_waitUntilAndExecute;
         };
 
         if (alive _dragger && {!(_dragger getVariable ["derp_revive_downed", false])} && {vehicle _dragger == _dragger}) then {
