@@ -21,6 +21,7 @@ _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger));
 
 [_dragger, "AcinPknlMstpSnonWnonDnon_AcinPercMrunSnonWnonDnon"] call derp_revive_fnc_syncAnim;
 [_dragged, "AinjPfalMstpSnonWrflDnon_carried_Up"] call derp_revive_fnc_syncAnim;
+[true] remoteExec ["disableUserInput", _dragged];
 
 private _timer = derp_missionTime + 15;
 
@@ -34,6 +35,7 @@ private _timer = derp_missionTime + 15;
         [_dragged, "acts_injuredlyingrifle02_180"] call derp_revive_fnc_syncAnim;
         [_dragged] call derp_revive_fnc_adjustForTerrain;
         [_dragger, ""] call derp_revive_fnc_syncAnim;
+        [false] remoteExec ["disableUserInput", _dragged];
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
