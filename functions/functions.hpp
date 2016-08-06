@@ -27,7 +27,6 @@ class derp {
         class paradrop {};
         class gearLimitations {};
         class remoteAddCuratorEditableObjects {};
-        class syncAnim {};
         class mapLinesHandler {};
         class baseCleaning {};
         class cleaner {};
@@ -67,6 +66,7 @@ class derp_revive {
         class ace3Check {};
         class diaryEntries {};
         class adjustForTerrain {};
+        class syncAnim {};
     };
 };
 

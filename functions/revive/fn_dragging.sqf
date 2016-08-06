@@ -18,7 +18,7 @@ params ["_dragger", "_dragged"];
 _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMultiply 1.5));
 
 _dragger playActionNow "grabDrag";
-[_dragged, "AinjPpneMrunSnonWnonDb_grab"] call derp_fnc_syncAnim;
+[_dragged, "AinjPpneMrunSnonWnonDb_grab"] call derp_revive_fnc_syncAnim;
 
 [{
     params ["_args", "_idPFH"];
@@ -27,9 +27,9 @@ _dragger playActionNow "grabDrag";
     if ((_dragger getVariable ["derp_revive_downed", false]) || {!alive _dragger} || {!alive _dragged} || {derp_missionTime > _timeOut} || {!(_dragger getVariable ["derp_revive_isDragging", false])} || {!(_dragged setVariable ["derp_revive_isDragged", false])}) exitWith {
         _dragger setVariable ["derp_revive_isDragging", false ,true];
         _dragged setVariable ["derp_revive_isDragged", false ,true];
-        [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+        [_dragged, "acts_injuredlyingrifle02_180"] call derp_revive_fnc_syncAnim;
         [_dragged] call derp_revive_fnc_adjustForTerrain;
-        [_dragger, ""] call derp_fnc_syncAnim;
+        [_dragger, ""] call derp_revive_fnc_syncAnim;
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 

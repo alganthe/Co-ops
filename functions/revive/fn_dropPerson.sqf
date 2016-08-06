@@ -24,7 +24,7 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragged && {vehicle _dragged == _dragged}) then {
-            [_dragged, "acts_injuredlyingrifle02_180"] call derp_fnc_syncAnim;
+            [_dragged, "acts_injuredlyingrifle02_180"] call derp_revive_fnc_syncAnim;
             [_dragged] call derp_revive_fnc_adjustForTerrain;
         };
 
@@ -41,12 +41,12 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragged && {vehicle _dragged == _dragged}) then {
-            [_dragged, "AinjPfalMstpSnonWrflDf_carried_fallwc"] call derp_fnc_syncAnim;
+            [_dragged, "AinjPfalMstpSnonWrflDf_carried_fallwc"] call derp_revive_fnc_syncAnim;
             [_dragged] call derp_revive_fnc_adjustForTerrain;
         };
 
         if (alive _dragger && {!(_dragger getVariable ["derp_revive_downed", false])} && {vehicle _dragger == _dragger}) then {
-            [_dragger, "AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
+            [_dragger, "AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"] call derp_revive_fnc_syncAnim;
         };
     };
 
@@ -58,7 +58,7 @@ switch (_state) do {
         _dragger setVariable ["derp_revive_isCarrying", false, true];
         _dragged setVariable ["derp_revive_isCarried", false, true];
 
-        [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_fnc_syncAnim;
+        [_dragger, "AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon"] call derp_revive_fnc_syncAnim;
 
         [_dragged, _vehicle] remoteExec ["moveInCargo", _dragged];
         [{
