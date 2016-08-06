@@ -42,6 +42,8 @@ switch (_state) do {
 
                 [_unit] call derp_revive_fnc_adjustForTerrain;
 
+                call derp_revive_fnc_heartBeatPFH;
+
             } else {
                 [_unit, "Die"] remoteExec ["playAction", 0];
             };

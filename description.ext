@@ -277,3 +277,30 @@ class CfgTaskEnhancements {
     share        = 0;            //0: do not count assigned players (default), 1: count how many players have the task assigned
     propagate    = 0;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
 };
+
+class CfgSounds {
+    sounds[] = {};
+    class derp_heartBeat1 {
+        name = "derp_heart1";
+        sound[] = {"@A3\sounds_f\characters\human-sfx\other\heart_4_1", 1, 1};
+        titles[] = {0, ""};
+    };
+
+    class derp_heartBeat2 {
+        name = "derp_heart2";
+        sound[] = {"@A3\sounds_f\characters\human-sfx\other\heart_4_3", 1, 1};
+        titles[] = {0, ""};
+    };
+
+    class derp_heartBeat3 {
+        name = "derp_heart3";
+        sound[] = {"@A3\sounds_f\characters\human-sfx\other\heart_4_4", 1, 1};
+        titles[] = {0, ""};
+    };
+
+    class derp_heartBeat4 {
+        name = "derp_heart4";
+        sound[] = {"@A3\sounds_f\characters\human-sfx\other\heart_4_5", 1, 1};
+        titles[] = {0, ""};
+    };
+};

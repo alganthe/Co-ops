@@ -67,6 +67,7 @@ class derp_revive {
         class diaryEntries {};
         class adjustForTerrain {};
         class syncAnim {};
+        class heartBeatPFH {};
     };
 };
 
