@@ -21,6 +21,9 @@ switch (_state) do {
         // Disable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, "true"]} forEach ["PrevAction", "Action", "NextAction"]};
 
+        // Save the side before using setCaptive.
+        _unit setVariable ["derp_revive_side", side _unit, true];
+
         // Disable moving and being shot at
         _unit disableAI "MOVE";
         _unit setCaptive true;
