@@ -41,12 +41,12 @@ switch (_state) do {
         detach _dragged;
 
         if (alive _dragged && {vehicle _dragged == _dragged}) then {
-            [true] remoteExec ["disableUserInput", _dragged];
+            true remoteExec ["disableUserInput", _dragged];
             [_dragged, "AinjPfalMstpSnonWrflDf_carried_fallwc"] call derp_revive_fnc_syncAnim;
 
             [{
                 params ["_dragged"];
-                [false] remoteExec ["disableUserInput", _dragged];
+                false remoteExec ["disableUserInput", _dragged];
                 [_dragged] call derp_revive_fnc_adjustForTerrain;
             }, [_dragged], 5] call derp_fnc_waitAndExecute;
         };

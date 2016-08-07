@@ -13,7 +13,6 @@ params ["_dragger", "_dragged"];
 
 [_dragger, "AcinPercMstpSnonWnonDnon"] call derp_revive_fnc_syncAnim;
 [_dragged, "AinjPfalMstpSnonWrflDnon_carried_still"] call derp_revive_fnc_syncAnim;
-[false] remoteExec ["disableUserInput", _dragged];
 
  _dragged attachTo [_dragger, [0.4, 0, -1.2], "LeftShoulder"];
 
