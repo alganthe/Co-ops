@@ -38,6 +38,5 @@ Features:
    - Made with performance in mind
 
 Credits:
-   - @glowbal and the [ACE3 project](https://github.com/acemod/ACE3) for the wonderful sqf validator. (not present in releases)
    - The [CBA team](https://github.com/CBATeam/CBA_A3) for the glorious PFHs.
    - Quicksilver for the player tracker.
