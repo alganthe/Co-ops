@@ -22,5 +22,5 @@ addMissionEventHandler ["Draw3D", {
             2 * (1 - ((player distance2d _x) / 1000)),
             0.04 * (1 - ((player distance2d _x) / 1000))
         ];
-    } forEach (position player nearEntities ["CAManBase", 1000] select {_x != player && {_x getVariable ["derp_revive_downed", false]}});
+    } forEach (position player nearEntities ["CAManBase", 1000] select {_x != player && {_x getVariable ["derp_revive_downed", false]} && {(_x getVariable ['derp_revive_side', west]) == side player}});
 }];
