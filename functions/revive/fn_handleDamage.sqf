@@ -1,10 +1,9 @@
 // can be lower
-#define MAX_SAFE_DAMAGE 0.95
-
 player addEventHandler ["HandleDamage", {
     params ["_unit", "_selection", "_damage", "_source", "", "_index"];
 
-
+private _maxSafeDamage = getMissionConfigValue ["derp_revive_maxSafeDamage", 0.95];
+private _downedDamageTreshold = getMissionConfigValue ["derp_revive_downedDamageTreshold", 1.5];
 private _damageReturned = 0;
 
 if (alive _unit) then {
@@ -22,7 +21,7 @@ if (alive _unit) then {
 
     if (_index > -1) then {
         if (_damage < 0.1) then {
-            _damageReturned = (_unit getHit _selection) min MAX_SAFE_DAMAGE;
+            _damageReturned = (_unit getHit _selection) min _maxSafeDamage;
         } else {
             if (_damage >= 1.5 && {alive _unit}) then {
                 _damageReturned = 1;
@@ -62,7 +61,7 @@ if (alive _unit) then {
                         };
                     };
                 } else {
-                    _damageReturned = MAX_SAFE_DAMAGE min _damage;
+                    _damageReturned = _maxSafeDamage min _damage;
                 };
             };
         };
