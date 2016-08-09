@@ -44,7 +44,7 @@ _removeFakOnUse
 ]]];
 
 player createDiaryRecord ["derp_revive", ["Having an issue?", "
-<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14> Issue tracker:</font> <font size= 14>https://github.com/alganthe/Co-ops/issues</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14> Issue tracker:</font> <execute expression=""copyToClipboard 'https://github.com/alganthe/Co-ops/issues';"">https://github.com/alganthe/Co-ops/issues</execute>
 "]];
 
 player createDiaryRecord ["derp_revive", ["FAQ", "

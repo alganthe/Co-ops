@@ -55,7 +55,7 @@ player createDiaryRecord ["Co-ops", ["Credits",
 
 player createDiaryRecord ["Co-ops", ["Issues",
 "
-<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>You have issues to report?</font> <font size= 14>https://github.com/alganthe/Co-ops/issues</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>You have issues to report?</font> <execute expression=""copyToClipboard 'https://github.com/alganthe/Co-ops/issues';"">https://github.com/alganthe/Co-ops/issues</execute>
 <br/>
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Known issues:</font> <font size= 14>None at the moment!</font>
 "
