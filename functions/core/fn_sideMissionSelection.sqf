@@ -19,7 +19,8 @@ private _sideMissionArray = [
     derp_fnc_truckRetrievalSM,
     derp_fnc_cachesSM,
     derp_fnc_uavDownedSM,
-    derp_fnc_specOpsSM
+    derp_fnc_specOpsSM,
+    derp_fnc_droppedCargoSM
 ];
 
 private _nearComTowers = nearestObjects [_AOPos, COMTOWERSMArray, derp_PARAM_AOSize * 1.5];

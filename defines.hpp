@@ -37,6 +37,9 @@
 // index of the cargo seats that you want locked, leave empty if you don't want that.
 #define TRUCKSMLockedCargoSeats [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 #define UAVSMUav ["O_T_UAV_04_CAS_F"]
+#define CARGOSMScubaGroup >> "CfgGroups" >> "East" >> "OPF_T_F" >> "SpecOps" >> "O_T_diverTeam"
+#define CARGOSMPlane "Land_UWreck_MV22_F"
+#define CARGOSMBox "Land_CargoBox_V1_F"
 
 // first element of the array: vehicle classname, second element: chance to be picked, higher is better, highest should be 10 (for performances)
 #define SMRewards ["B_Heli_Light_01_armed_F", 2], \
