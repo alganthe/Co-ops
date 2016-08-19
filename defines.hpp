@@ -30,15 +30,14 @@
 #define COMTOWERSMArray ["Land_Communication_F", "Land_TTowerBig_1_F", "Land_TTowerBig_2_F"]
 #define OFFICERSMTarget ["O_officer_F"]
 #define OFFICERSMGuards ["O_soldier_F"]
-#define UAVSMUav ["O_UAV_02_F"]
 #define SPECOPSSMGroup >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_ViperTeam"
 #define TRUCKSMTruck "I_C_Van_01_transport_F"
 // Array of arrays in the format [classname, attachTo offset] leave empty if you don't want boxes
 #define TRUCKSMBoxes [["Land_CargoBox_V1_F", [0, -1, 0.4]], ["Land_CargoBox_V1_F", [0, -2.6, 0.4]]]
 // index of the cargo seats that you want locked, leave empty if you don't want that.
 #define TRUCKSMLockedCargoSeats [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-#define UAVSMUav ["O_T_UAV_04_CAS_F"]
-#define CARGOSMScubaGroup >> "CfgGroups" >> "East" >> "OPF_T_F" >> "SpecOps" >> "O_T_diverTeam"
+#define UAVSMUav ["O_UAV_02_F"]
+#define CARGOSMScubaGroup >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_diverTeam"
 #define CARGOSMPlane "Land_UWreck_MV22_F"
 #define CARGOSMBox "Land_CargoBox_V1_F"
 // Offset of the attached explosive
