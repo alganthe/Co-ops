@@ -8,7 +8,7 @@
 * 2: algorithm for selectBestPlaces <STRING>
 *
 * Return Value:
-* Best position returned by selectBestPlaces
+* Best result selected by selectBestPlaces in the format <[pos, algorithm result]>
 *
 * Example:
 * [[0,0,0], 1000, "(1 - sea)"] call derp_fnc_randomPos
@@ -23,4 +23,4 @@ if (_mathsRHard isEqualTo "") exitWith {systemChat "randomPos: no arithmetic ope
 
 private _returnValue = selectBestPlaces [_pos, _radius, _mathsRHard, 60, 10];
 
-(_returnValue select 0) select 0;
+_returnValue select 0

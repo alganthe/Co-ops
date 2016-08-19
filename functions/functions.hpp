@@ -41,6 +41,11 @@ class derp {
         class AISkill {};
         class AIOccupyBuilding {};
     };
+
+    class SM {
+        file = "functions\side missions";
+        class droppedCargoSM_action {};
+    };
 };
 
 class derp_revive {

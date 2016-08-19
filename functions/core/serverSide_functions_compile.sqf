@@ -15,3 +15,4 @@ derp_fnc_cachesSM = compileFinal preprocessFileLineNumbers "functions\side missi
 derp_fnc_uavDownedSM = compileFinal preprocessFileLineNumbers "functions\side missions\uavDownedSM.sqf";
 derp_fnc_specOpsSM = compileFinal preprocessFileLineNumbers "functions\side missions\specOpsSM.sqf";
 derp_fnc_droppedCargoSM = compileFinal preprocessFileLineNumbers "functions\side missions\droppedCargoSM.sqf";
+derp_fnc_droppedCargoSM_actionPFH = compileFinal preprocessFileLineNumbers "functions\side missions\droppedCargoSM_actionPFH.sqf";

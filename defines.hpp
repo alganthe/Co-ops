@@ -40,6 +40,8 @@
 #define CARGOSMScubaGroup >> "CfgGroups" >> "East" >> "OPF_T_F" >> "SpecOps" >> "O_T_diverTeam"
 #define CARGOSMPlane "Land_UWreck_MV22_F"
 #define CARGOSMBox "Land_CargoBox_V1_F"
+// Offset of the attached explosive
+#define CARGOSMBoxAttachOffset [0, 0, 0.75]
 
 // first element of the array: vehicle classname, second element: chance to be picked, higher is better, highest should be 10 (for performances)
 #define SMRewards ["B_Heli_Light_01_armed_F", 2], \
