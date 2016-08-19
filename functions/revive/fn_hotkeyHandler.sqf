@@ -72,7 +72,6 @@ derp_reviveKeyDownID = (findDisplay 46) displayAddEventHandler ["KeyDown", {
             }, 1, [derp_missionTime]] call derp_fnc_addPerFrameHandler;
             derp_revive_keyDown = true;
         };
-        _key = 0;
     };
 
     if (isServer || {serverCommandAvailable "#kick"}) then {

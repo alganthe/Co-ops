@@ -20,8 +20,8 @@ player createDiaryRecord ["rules", ["Enforcement",
 //-------------------------------------------------- Teamspeak
 player createDiaryRecord ["teamspeak", ["TS3",
 "
-<br/> Teamspeak:
-<br/> http://www.teamspeak.com/?page=downloads
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Teamspeak:</font> <font size= 14>http://www.teamspeak.com/?page=downloads</font>
+<br/>
 <br/> your adress here
 "
 ]];
@@ -29,39 +29,34 @@ player createDiaryRecord ["teamspeak", ["TS3",
 //-------------------------------------------------- Mission related, don't touch
 player createDiaryRecord ["Co-ops", ["FAQ",
 "
-<br/> Q: How do I paradrop?
-<br/> A: If it's enabled talk to the arsenal guy when an AO is up, an action will show up.
-<br/> If a pilot is present on the server a helo will be necessary to be around the ao to paradrop.
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Q:</font> <font size= 14>How do I paradrop?</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>A:</font> <font size= 14>If it's enabled talk to the arsenal guy when an AO is up, an action will show up.
+<br/> If a pilot is present on the server a helo will be necessary to be around the ao to paradrop.</font>
 <br/>
-<br/> Q: Why is my view distance really low even when my video options says it's high?
-<br/> A: Scroll down and click on view settings.
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Q:</font> <font size= 14>Why is my view distance really low even when my video options says it's high?</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>A:</font> <font size= 14>Scroll down and click on view settings.</font>
 <br/>
-<br/> Q: How long do vehicles take to respawn?
-<br/> A: It can vary from server to server, it's highly configurable, ask on side chat.
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Q:</font> <font size= 14>How long do vehicles take to respawn?</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>A:</font> <font size= 14>It can vary from server to server, it's highly configurable, ask on side chat.</font>
 <br/>
-<br/> Q: I can't revive my comrades, how can I do that?
-<br/> A: Depends on the setting, just get close to the unit, scroll down and click revive, not treat, revive.
 "
 ]];
 
-player createDiaryRecord ["Co-ops", ["credits",
+player createDiaryRecord ["Co-ops", ["Credits",
 "
-<br/> Credits:
-<br/> player icons on map: Quicksilver
-<br/> ACE3 ported funcs: see the respective funcs headers
-<br/> CBA_A3 for the glorious PFHs
-<br/> the rest: alganthe
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Player icons on map:</font> <font size= 14>Quicksilver</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Glorious PFHs:</font> <font size= 14>The CBA_A3 team, check the headers of the functions for more specific informations</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>The rest:</font> <font size= 14>Alganthe</font>
 <br/>
-<br/> Contributors:
-<br/> yourstruly
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Contributors:</font>
+<br/> <font size= 14>yourstruly</font>
 "
 ]];
 
-player createDiaryRecord ["Co-ops", ["current issues",
+player createDiaryRecord ["Co-ops", ["Issues",
 "
-<br/> remoteExec whitelisting causes high desync when the number of players is high, disabling it will fix the issue but it will break arsenal gear limitations.
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>You have issues to report?</font> <execute expression=""copyToClipboard 'https://github.com/alganthe/Co-ops/issues';"">https://github.com/alganthe/Co-ops/issues</execute>
 <br/>
-<br/> You have issues to report?
-<br/> Go here ---->  https://github.com/alganthe/Co-ops/issues
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Known issues:</font> <font size= 14>None at the moment!</font>
 "
 ]];

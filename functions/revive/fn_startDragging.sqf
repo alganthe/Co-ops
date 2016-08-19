@@ -15,7 +15,7 @@ _dragged setPosASL (getPosASL _dragger vectorAdd (vectorDir _dragger vectorMulti
 
 _dragged attachTo [_dragger, [0, 1, 0]];
 [_dragged, 180] remoteExec ["setDir", _dragged];
-[_dragged, "AinjPpneMrunSnonWnonDb_still"] call derp_fnc_syncAnim;
+[_dragged, "AinjPpneMrunSnonWnonDb_still"] call derp_revive_fnc_syncAnim;
 
 [{
     params ["_args", "_idPFH"];
@@ -25,7 +25,7 @@ _dragged attachTo [_dragger, [0, 1, 0]];
         [_idPFH] call derp_fnc_removePerFrameHandler;
     };
 
-    if (!alive _dragged || {!alive _dragger} || {!(isNull objectParent _dragger)} || {_dragger distance _dragged > 10}) then {
+    if (!alive _dragged || {!alive _dragger}|| {_dragger getVariable ["derp_revive_downed", false]} || {vehicle _dragger != _dragger} || {_dragger distance _dragged > 10}) then {
         if ((_dragger distance _dragged > 10) && {(derp_missionTime - _startTime) < 1}) exitWith {};
         [_dragger, _dragged, "DRAGGING"] call derp_revive_fnc_dropPerson;
         [_idPFH] call derp_fnc_removePerFrameHandler;

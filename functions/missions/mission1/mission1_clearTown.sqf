@@ -50,6 +50,8 @@ if (derp_HCAOsConnected) then {
     _mainAOUnits = [_pos, [true, true, true, true, true, true, true, true]] call derp_fnc_mainAOSpawnHandler;
 };
 
+private _mainAOUnitCount = count _mainAOUnits;
+
 //------------------- AO boundaries + task
 _marker = createMarker ["mission1_mrk", _pos];
 "mission1_mrk" setMarkerShape "ICON";
@@ -67,51 +69,46 @@ _missionID = "mission1" + str derp_mission1ID;
 
 [west, _missionID, [format ["%1 has been captured, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.",_townName ], ["Clear ", _townName] joinString "", ""], _pos, true, 5, true, "Attack", true] call BIS_fnc_taskCreate;
 
-//------------------- Trigger for mission end
-[{
-    params ["_pos", "_missionID"];
-
-    [_pos, _missionID] call derp_fnc_sideMissionSelection;
-
-    _winTrigger = createTrigger ["EmptyDetector", _pos, false];
-    _winTrigger setTriggerArea [derp_PARAM_AOSize, derp_PARAM_AOSize, 0, false];
-    _winTrigger setTriggerActivation ["EAST", "PRESENT", false];
-    _winTrigger setTriggerStatements ["(({alive _x && {side _x == east}} count thisList) < 10)", "missionWin = true", ""];
-}, [_pos, _missionID], 30] call derp_fnc_waitAndExecute;
 
 //------------------- PFH checking every 10s if the mission has been completed
 [{
-    if ((!isNil "missionWin") && {missionWin} && {!derp_sideMissionInProgress}) then {
+    params ["_pos", "_missionID", "_mainAOUnits", "_mainAOUnitCount"];
+    [_pos, _missionID] call derp_fnc_sideMissionSelection;
+
+    [{
         params ["_args", "_pfhID"];
-        _args params ["_pos", "_mainAOUnits", "_missionID"];
+        _args params ["_pos", "_missionID", "_mainAOUnits" ,"_mainAOUnitCount"];
 
-        deleteMarker "mission1_mrk";
-        deleteMarker "mission1_1_mrk";
-        [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
-        missionWin = nil;
-        missionInProgress = false;
-        publicVariable "missionInProgress";
+        if (floor ((({position _x inArea "mission1_1_mrk" && {side _x == east} && {alive _x}} count allUnits) / _mainAOUnitCount) * 100) <= ceil (derp_PARAM_AOFinishEnemyPercentage * _mainAOUnitCount) && {!derp_sideMissionInProgress}) then {
 
-        if (derp_PARAM_paraJumpEnabled) then {
-            derp_paraPos = nil;
-            publicVariable "derp_paraPos";
+            deleteMarker "mission1_mrk";
+            deleteMarker "mission1_1_mrk";
+            [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
+            missionWin = nil;
+            missionInProgress = false;
+            publicVariable "missionInProgress";
+
+            if (derp_PARAM_paraJumpEnabled) then {
+                derp_paraPos = nil;
+                publicVariable "derp_paraPos";
+            };
+
+            [{
+                params ["_mainAOUnits", "_missionID"];
+
+                {
+                    if (!(isNull _x) && {alive _x}) then {
+                        deleteVehicle _x;
+                    };
+                } foreach _mainAOUnits;
+
+                [_missionID, true] call BIS_fnc_deleteTask;
+            }, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExecute;
+
+            derp_missionCounter = derp_missionCounter + 1;
+            false call derp_fnc_missionSelection;
+
+            _pfhID call derp_fnc_removePerFrameHandler;
         };
-
-        [{
-            params ["_mainAOUnits", "_missionID"];
-
-            {
-                if (!(isNull _x) && {alive _x}) then {
-                    deleteVehicle _x;
-                };
-            } foreach _mainAOUnits;
-
-            [_missionID, true] call BIS_fnc_deleteTask;
-        }, [_mainAOUnits, _missionID], 300] call derp_fnc_waitAndExecute;
-
-        derp_missionCounter = derp_missionCounter + 1;
-        false call derp_fnc_missionSelection;
-
-        _pfhID call derp_fnc_removePerFrameHandler;
-    };
-}, 10, [_pos, _mainAOUnits, _missionID]] call derp_fnc_addPerFrameHandler;
+    }, 10, [_pos, _missionID, _mainAOUnits, _mainAOUnitCount]] call derp_fnc_addPerFrameHandler;
+}, [_pos, _missionID,  _mainAOUnits, _mainAOUnitCount], 30] call derp_fnc_waitAndExecute;

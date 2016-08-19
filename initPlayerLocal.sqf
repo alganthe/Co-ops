@@ -50,8 +50,11 @@ if !(isServer or hasInterface) then {
                 call derp_revive_fnc_drawDowned;
             };
         } else {
-                call derp_revive_fnc_drawDowned;
+            call derp_revive_fnc_drawDowned;
         };
+        call derp_revive_fnc_handleDamage;
+        call derp_revive_fnc_diaryEntries;
+        if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
     };
 
     //---------------- EHs and addactions
@@ -75,8 +78,6 @@ if !(isServer or hasInterface) then {
             deleteVehicle _projectile;
             ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];
-
-    if (getMissionConfigValue "respawnOnStart" == -1) then {[player] call derp_revive_fnc_reviveActions};
 
     if ("ArsenalFilter" call BIS_fnc_getParamValue == 1) then {
         player addEventHandler ["Take", {
@@ -114,10 +115,13 @@ if !(isServer or hasInterface) then {
             true,
             true,
             "",
-            "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}"
+            "(!isNil 'missionInProgress') && {missionInProgress} && {!isNil 'derp_paraPos'}",
+            5,
+            false
             ];
         };
     } foreach ArsenalBoxes;
 };
 
-[ArsenalBoxes, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter; // Init arsenal boxes.
+// Init arsenal boxes, waitAndExec needed for players present at mission start to wait for the server remoteExec
+[{[_this select 0, ("ArsenalFilter" call BIS_fnc_getParamValue)] call derp_fnc_VA_filter}, [ArsenalBoxes], 3] call derp_fnc_waitAndExecute;

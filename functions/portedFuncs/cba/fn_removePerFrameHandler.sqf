@@ -19,7 +19,7 @@ params [["_handle", -1, [0]]];
 
 if (_handle < 0 || {_handle >= count derp_PFHhandles}) exitWith {};
 
-[_handle] call {
+[{
     params ["_handle"];
 
     derp_perFrameHandlerArray deleteAt (derp_PFHhandles select _handle);
@@ -29,6 +29,6 @@ if (_handle < 0 || {_handle >= count derp_PFHhandles}) exitWith {};
         _x params ["", "", "", "", "", "_handle"];
         derp_PFHhandles set [_handle, _forEachIndex];
     } forEach derp_perFrameHandlerArray;
-};
+}, _handle] call derp_fnc_directCall;
 
 nil
