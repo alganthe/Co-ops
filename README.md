@@ -4,10 +4,6 @@
 
 <p align="center">
 
-    <a>
-        <img src="https://travis-ci.org/alganthe/Co-ops.svg?branch=master_tanoa">
-    </a>
-
     <a href="https://github.com/alganthe/Co-ops-an-arma3-vanilla-mission/releases">
         <img src="https://img.shields.io/github/release/alganthe/Co-ops.svg">
     </a>
