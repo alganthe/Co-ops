@@ -79,7 +79,7 @@ _missionID = "mission1" + str derp_mission1ID;
         params ["_args", "_pfhID"];
         _args params ["_pos", "_missionID", "_mainAOUnits" ,"_mainAOUnitCount"];
 
-        if (floor ((({position _x inArea "mission1_1_mrk" && {side _x == east} && {alive _x}} count allUnits) / _mainAOUnitCount) * 100) <= ceil (derp_PARAM_AOFinishEnemyPercentage * _mainAOUnitCount) && {!derp_sideMissionInProgress}) then {
+        if (floor ((({position _x inArea "mission1_1_mrk" && {side _x == east} && {alive _x}} count allUnits) / _mainAOUnitCount) * 100) <= ceil ((derp_PARAM_AOFinishEnemyPercentage / 100) * _mainAOUnitCount) && {!derp_sideMissionInProgress}) then {
 
             deleteMarker "mission1_mrk";
             deleteMarker "mission1_1_mrk";

@@ -52,6 +52,9 @@ derp_revive_reviveItem = 0; // 0 = first aid kit, 1 = medikit
 derp_revive_removeFAKOnUse = 1; // 0 = don't remove on use, 1 = remove on use
 
 //-------------------------Functions
+#include "functions\misc\commonGUIDefines.hpp"
+#include "functions\taw_vd\GUI.h"
+
 class CfgFunctions {
     #include "functions\functions.hpp"
 };
@@ -132,9 +135,9 @@ class Params {
 
     class AOFinishEnemyPercentage {
         title = "Percentage of enemies left to complete the AO";
-        values[] = {0.50, 0.40, 0.30, 0.20, 0.15, 0.10, 0.05};
+        values[] = {50, 40, 30, 20, 15, 10, 5};
         texts[] = {"50%", "40%", "30%", "20%", "15%", "10%", "5%"};
-        default = 0.10;
+        default = 10;
     };
 
     class MissionAmount {

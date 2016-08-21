@@ -46,6 +46,7 @@ player createDiaryRecord ["Co-ops", ["Credits",
 "
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Player icons on map:</font> <font size= 14>Quicksilver</font>
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Glorious PFHs:</font> <font size= 14>The CBA_A3 team, check the headers of the functions for more specific informations</font>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>TAW VD:</font> <font size= 14>Bryan 'Tonic' Boardwine</font>
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>The rest:</font> <font size= 14>Alganthe</font>
 <br/>
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Contributors:</font>
