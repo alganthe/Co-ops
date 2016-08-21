@@ -53,6 +53,7 @@ derp_revive_removeFAKOnUse = 1; // 0 = don't remove on use, 1 = remove on use
 
 //-------------------------Functions
 class CfgFunctions {
+    #include "functions\misc\commonGUIDefines.hpp"
     #include "functions\functions.hpp"
 };
 
