@@ -14,6 +14,7 @@ class HudNames {
             idc = names_idc;
             type = CT_STRUCTURED_TEXT;
             size = 0.040;
+            style = ST_LEFT;
             x = (SafeZoneX + 0.015);
             y = (SafeZoneY + 0.60);
             w = 0.4; h = 0.65;
