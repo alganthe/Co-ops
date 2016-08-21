@@ -23,17 +23,14 @@ switch (_state) do {
 
         // Save the side before using setCaptive.
         _unit setVariable ["derp_revive_side", side _unit, true];
-
-        // Disable moving and being shot at
-        _unit disableAI "MOVE";
         _unit setCaptive true;
 
-        // Because BI loves race conditions....
         [{
             params ["_unit"];
 
             _unit setVariable ["derp_revive_downed", true, true];
             _unit setVariable ["derp_revive_loadout", getUnitLoadout _unit];
+            derp_revive_actionID = (_unit addAction ["", {}, "", 0, false, true, "DefaultAction"]);
 
             [_unit] call derp_revive_fnc_reviveTimer;
             call derp_revive_fnc_hotkeyHandler;
@@ -52,13 +49,10 @@ switch (_state) do {
             };
 
             [_unit, true] call derp_revive_fnc_animChanged;
+
             //fade in
             _unit switchCamera "external";
             cutText ["","BLACK IN",1];
-
-
-            derp_revive_actionID = (_unit addAction ["", {}, "", 0, false, true, "DefaultAction"]);
-            derp_revive_actionID2 = (_unit addAction ["", {}, "", 0, false, true, "Throw"]);
 
             _unit allowDamage true;
 
@@ -79,7 +73,6 @@ switch (_state) do {
         if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
         if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
         if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID};
-        if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2};
 
         if !(isNil "derp_revive_ppColor") then {
             {_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur];
@@ -94,9 +87,6 @@ switch (_state) do {
     case "REVIVED": {
         _unit setVariable ["derp_revive_downed", false, true];
 
-        _unit removeAction derp_revive_actionID;
-        _unit removeAction derp_revive_actionID2;
-
         // Enable player's action menu
         if (isPlayer _unit) then {{inGameUISetEventHandler [_x, ""]} forEach ["PrevAction", "Action", "NextAction"]};
 
@@ -106,7 +96,6 @@ switch (_state) do {
         if !(isNil "derp_revive_animChangedID") then {_unit removeEventHandler ["AnimChanged",derp_revive_animChangedID]};
         if !(isNil "derp_revive_drawIcon3DID") then {removeMissionEventHandler ["Draw3D", derp_revive_drawIcon3DID]};
         if !(isNil "derp_revive_actionID") then {_unit removeAction derp_revive_actionID};
-        if !(isNil "derp_revive_actionID2") then {_unit removeAction derp_revive_actionID2};
 
         if !(isNil "derp_revive_ppColor") then {
             {_x ppEffectEnable false} forEach [derp_revive_ppColor, derp_revive_ppVig, derp_revive_ppBlur];

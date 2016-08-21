@@ -1,4 +1,3 @@
-// can be lower
 player addEventHandler ["HandleDamage", {
     params ["_unit", "_selection", "_damage", "_source", "", "_index"];
 
