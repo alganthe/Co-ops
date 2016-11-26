@@ -44,13 +44,11 @@ _removeFakOnUse
 ]]];
 
 player createDiaryRecord ["derp_revive", ["Having an issue?", "
-<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14> Issue tracker:</font> <execute expression=""copyToClipboard 'https://github.com/alganthe/Co-ops/issues';"">https://github.com/alganthe/Co-ops/issues</execute>
+<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14> Issue tracker:</font> <execute expression=""copyToClipboard 'https://github.com/alganthe/derp_revive/issues'; hint 'Link copied.';"">https://github.com/alganthe/Co-ops/issues</execute>
 "]];
 
 player createDiaryRecord ["derp_revive", ["FAQ", "
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Q:</font>Why do I sometimes die straight away instead of entering the downed state?<font size= 14></font>
 <br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>A:</font> <font size= 14>Entering the downed state or not is based on the amount of damage you took, if you get shot in the head you'll die straight away, same for a tank shell to the torso, or even 5.56 to the pelvis.</font>
 <br/>
-<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>Q:</font> <font size= 14>I'm pressing the revive button but it doesn't revive the downed person, what should I do?</font>
-<br/> <font face= 'PuristaLight' color= '#D3D3D3' size= 14>A:</font> <font size= 14>You need to hold the button.</font>
 "]];
