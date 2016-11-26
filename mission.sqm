@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=214;
+		nextID=215;
 	};
 	class Camera
 	{
@@ -68,6 +68,7 @@ addons[]=
 	"A3_Structures_F_Civ_Camping",
 	"A3_Structures_F_EPB_Items_Military",
 	"A3_Structures_F_EPA_Mil_Scrapyard",
+	"A3_3DEN",
 	"A3_Structures_F_EPB_Items_Documents",
 	"A3_Structures_F_Items_Documents",
 	"A3_Structures_F_Bootcamp_Civ_Camping",
@@ -89,7 +90,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=26;
+		items=27;
 		class Item0
 		{
 			className="A3_Ui_F";
@@ -253,19 +254,26 @@ class AddonsMetaData
 		};
 		class Item23
 		{
+			className="A3_3DEN";
+			name="Arma 3 Eden Update - Eden Editor";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item24
+		{
 			className="A3_Structures_F_Bootcamp";
 			name="Arma 3 Bootcamp Update - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item24
+		class Item25
 		{
 			className="A3_Structures_F_EPC";
 			name="Arma 3 Win Episode - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item25
+		class Item26
 		{
 			className="A3_Structures_F_Heli";
 			name="Arma 3 Helicopters - Buildings and Structures";
@@ -310,7 +318,7 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="Co-ops 1.4.350";
+		briefingName="Co-ops 1.4.362";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=28800;
