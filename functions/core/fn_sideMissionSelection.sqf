@@ -1,4 +1,3 @@
-#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Side mission selector.
@@ -20,13 +19,8 @@ private _sideMissionArray = [
     derp_fnc_cachesSM,
     derp_fnc_uavDownedSM,
     derp_fnc_specOpsSM,
-    derp_fnc_droppedCargoSM
+    derp_fnc_droppedCargoSM,
+    derp_fnc_comTowerSM
 ];
 
-private _nearComTowers = nearestObjects [_AOPos, COMTOWERSMArray, derp_PARAM_AOSize * 1.5];
-if ({alive _x} count _nearComTowers > 0) then {
-    [_AOPos, _nearComTowers, _missionID] call derp_fnc_comTowerSM;
-
-} else {
-    [_AOPos, _missionID] call (selectRandom _sideMissionArray);
-};
+[_AOPos, _missionID] call (selectRandom _sideMissionArray);

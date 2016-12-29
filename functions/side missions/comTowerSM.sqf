@@ -1,3 +1,4 @@
+#include "..\..\defines.hpp"
 /*
 * Author: alganthe
 * Com towers side mission
@@ -14,7 +15,7 @@
 * Win: Destroy all communication antennas.
 * Fail: None
 */
-params ["_AOPos", "_comTowers", "_missionID"];
+params ["_AOPos", "_missionID"];
 
 //------------------- Task
 derp_SMID = derp_SMID + 1;
@@ -23,6 +24,7 @@ private _smID = "antennaTask" + str derp_SMID;
 [west, [_smID, _missionID], ["Our enemies have took control of a few antennas, destroy them or they'll call air support. We've marked their locations on your map.", "Destroy enemy com array", ""], objNull, "Created", 5, true, "destroy", true] call BIS_fnc_taskCreate;
 
 //------------------- Markers + mines
+private _comTowers = (nearestObjects [_AOPos, COMTOWERSMArray, derp_PARAM_AOSize * 1.5]) select {alive _x};
 private _towerMines = [];
 private _markerNumber = 0;
 private _markerArray = [];
