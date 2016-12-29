@@ -21,8 +21,7 @@ if ((!alive derp_airReinforcement) && {derp_lastAirReinforcementTime <= (time - 
 
     {_x addCuratorEditableObjects [[derp_airReinforcement], true]} forEach allCurators;
 
-    private _wp = (group derp_airReinforcement) addWaypoint [[_xPos, _yPos, 1000], 0];
-    _wp setWaypointType "SAD";
+    [group derp_airReinforcement, _AOpos, derp_PARAM_AOSize / 2] call BIS_fnc_taskPatrol;
 
     derp_lastAirReinforcementTime = time;
 };
