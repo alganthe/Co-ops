@@ -71,10 +71,10 @@ if !(isServer or hasInterface) then {
 
     }];
 
-    player addEventHandler ["Fired", {
+    player addEventHandler ["FiredMan", {
         params ["_unit", "_weapon", "", "", "", "", "_projectile"];
 
-        if (_unit distance2D (getMarkerPos "BASE") < 300) then {
+        if (_unit distance2D (getMarkerPos "BASE") < 300 && {_weapon != "CMFlareLauncher"}) then {
             deleteVehicle _projectile;
             ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];
