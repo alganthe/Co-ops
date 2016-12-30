@@ -72,6 +72,7 @@ addMissionEventHandler ["HandleDisconnect", {
 } forEach VehicleHandlerArrayQuads;
 [] call derp_vehicleHandler_fnc_quadPFH;
 
+//-------------- Misc
 call derp_fnc_baseCleaning;
 call derp_fnc_cleaner;
 setTimeMultiplier ("DayDuration" call BIS_fnc_getParamValue);

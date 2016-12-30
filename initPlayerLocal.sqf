@@ -14,8 +14,6 @@ if !(isServer or hasInterface) then {
     enableSentences false;
     [] call derp_fnc_diary; // Diary
 
-    [{!isNull (findDisplay 46)}, {call derp_fnc_mapLinesHandler}, []] call derp_fnc_waitUntilAndExecute; // No more penii
-
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
     [] execVM "scripts\misc\QS_icons.sqf";  // Map icons
