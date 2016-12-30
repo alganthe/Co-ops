@@ -34,7 +34,7 @@ if !(isServer or hasInterface) then {
 
     //---------------- class specific stuff
     if (player getUnitTrait "derp_pilot") then {
-        [player, pilotRespawnMarker] call BIS_fnc_addRespawnPosition;
+        [player, pilotRespawnMarker, "Pilot respawn"] call BIS_fnc_addRespawnPosition;
     };
 
      // Disable arty computer for non FSG members
