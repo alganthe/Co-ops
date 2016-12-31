@@ -18,13 +18,11 @@
 missionInProgress = true;
 publicVariable "missionInProgress";
 
-private _mainAOUnits = [];
 private _selectedLocation = selectRandom derp_mission1Locations;
 
 //------------------- Get random mission loc based on existing markers
 while {(count ((_selectedLocation select 1) nearEntities [["CAManBase", "Air", "Car", "Tank"], derp_PARAM_AOSize * 2])) > 0 || {((getMarkerPos "BASE") distance2D (_selectedLocation select 1)) < (derp_PARAM_AOSize * 2)}} do {
     _selectedLocation = selectRandom derp_mission1Locations;
-
 };
 
 //------------------- Sort the AO location
@@ -43,14 +41,9 @@ if (derp_PARAM_paraJumpEnabled) then {
 //------------------- Spawn In enemies
 if (derp_HCAOsConnected) then {
     [_pos, [true, true, true, true, true, true, true, true]] remoteExecCall ["derp_fnc_mainAOSpawnHandler", derp_HCAOs];
-    _mainAOUnits = spawnedUnits;
-    spawnedUnits = nil;
-
 } else {
-    _mainAOUnits = [_pos, [true, true, true, true, true, true, true, true]] call derp_fnc_mainAOSpawnHandler;
+    [_pos, [true, true, true, true, true, true, true, true]] call derp_fnc_mainAOSpawnHandler;
 };
-
-private _mainAOUnitCount = count _mainAOUnits;
 
 //------------------- AO boundaries + task
 _marker = createMarker ["mission1_mrk", _pos];
@@ -69,10 +62,9 @@ _missionID = "mission1" + str derp_mission1ID;
 
 [west, _missionID, [format ["%1 has been captured, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.",_townName ], ["Clear ", _townName] joinString "", ""], _pos, true, 5, true, "Attack", true] call BIS_fnc_taskCreate;
 
-
 //------------------- PFH checking every 10s if the mission has been completed
 [{
-    params ["_pos", "_missionID", "_mainAOUnits", "_mainAOUnitCount"];
+    params ["_pos", "_missionID"];
     [_pos, _missionID] call derp_fnc_sideMissionSelection;
 
     [{
@@ -85,6 +77,7 @@ _missionID = "mission1" + str derp_mission1ID;
             deleteMarker "mission1_1_mrk";
             [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
             missionWin = nil;
+            derp_spawnedUnits = nil;
             missionInProgress = false;
             publicVariable "missionInProgress";
 
@@ -110,5 +103,5 @@ _missionID = "mission1" + str derp_mission1ID;
 
             _pfhID call derp_fnc_removePerFrameHandler;
         };
-    }, 10, [_pos, _missionID, _mainAOUnits, _mainAOUnitCount]] call derp_fnc_addPerFrameHandler;
-}, [_pos, _missionID,  _mainAOUnits, _mainAOUnitCount], 30] call derp_fnc_waitAndExecute;
+    }, 10, [_pos, _missionID, derp_spawnedUnits, count derp_spawnedUnits]] call derp_fnc_addPerFrameHandler;
+}, [_pos, _missionID], 60] call derp_fnc_waitAndExecute;
