@@ -28,6 +28,12 @@ private _comTowers = (nearestObjects [_AOPos, COMTOWERSMArray, derp_PARAM_AOSize
 private _towerMines = [];
 private _markerNumber = 0;
 private _markerArray = [];
+
+if (count _comTowers == 0) then {
+    private _spawnTowerPos = [_AOPos, derp_PARAM_AOSize, "(meadow * 1) + (hills * 2) - forest - houses"] call derp_fnc_randomPos;
+    _comTowers = [(selectRandom COMTOWERSMArray) createVehicle (_spawnTowerPos select 0)]
+};
+
 {
     _markerNumber = _markerNumber + 1;
     private _marker = createMarker ["comTowerMarker" + str _markerNumber, (getPosWorld _x)];
