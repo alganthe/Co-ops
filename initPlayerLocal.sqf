@@ -14,8 +14,6 @@ if !(isServer or hasInterface) then {
     enableSentences false;
     [] call derp_fnc_diary; // Diary
 
-    [{!isNull (findDisplay 46)}, {call derp_fnc_mapLinesHandler}, []] call derp_fnc_waitUntilAndExecute; // No more penii
-
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups; // Dynamic groups init
 
     [] execVM "scripts\misc\QS_icons.sqf";  // Map icons
@@ -34,7 +32,7 @@ if !(isServer or hasInterface) then {
 
     //---------------- class specific stuff
     if (player getUnitTrait "derp_pilot") then {
-        [player, pilotRespawnMarker] call BIS_fnc_addRespawnPosition;
+        [player, pilotRespawnMarker, "Pilot respawn"] call BIS_fnc_addRespawnPosition;
     };
 
      // Disable arty computer for non FSG members
@@ -71,10 +69,10 @@ if !(isServer or hasInterface) then {
 
     }];
 
-    player addEventHandler ["Fired", {
+    player addEventHandler ["FiredMan", {
         params ["_unit", "_weapon", "", "", "", "", "_projectile"];
 
-        if (_unit distance2D (getMarkerPos "BASE") < 300) then {
+        if (_unit distance2D (getMarkerPos "BASE") < 300 && {_weapon != "CMFlareLauncher"}) then {
             deleteVehicle _projectile;
             ["Don't goof at base", "Hold your horses soldier, don't throw, fire or place anything inside the base."] remoteExecCall ["derp_fnc_hintC", _unit];
         }}];

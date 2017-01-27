@@ -27,7 +27,6 @@ class derp {
         class paradrop {};
         class gearLimitations {};
         class remoteAddCuratorEditableObjects {};
-        class mapLinesHandler {};
         class baseCleaning {};
         class cleaner {};
         class crewNames {};
